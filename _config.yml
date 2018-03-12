@@ -79,7 +79,8 @@ theme: yilia
 deploy:
   type: git
   #elfwalk改为你的github用户名
-  repository: https://github.com/huangyebiaoke/huangyebiaoke.github.io.git
+  #https://github.com/huangyebiaoke/huangyebiaoke.github.io.git
+  repository: git@github.com:huangyebiaoke/huangyebiaoke.github.io.git
   branch: master
 
 jsonContent:
