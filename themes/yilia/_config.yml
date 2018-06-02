@@ -2,8 +2,9 @@
 
 menu:
   主页: /
-  随想: /tags/随想/
+  音乐: /music-player/
   实验: /itme/
+#随想: /tags/随想/
 
 # SubNav
 subnav:
@@ -136,6 +137,8 @@ friends:
   不死鸟: https://lai.yuweining.cn/
   Perhaps的小站: http://blogperhaps.cn/
   漫长人生: https://longlife.wodemo.net/
+  颜海镜: https://yanhaijing.com/
+  Hollis: http://www.hollischuang.com/
   干货集中营: https://gank.io/
   刘未鹏: http://mindhacks.cn/
   vczh: http://www.cppblog.com/vczh/
