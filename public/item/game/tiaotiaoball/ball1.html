@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>ball</title>
+	<script type="text/javascript">
+	var img1=new Image();
+	var img2=new Image();
+	img1.src="../../images/cool.jpg";
+	img2.src="../../images/dog.gif";
+	var ctx;
+	function init(){
+		ctx=document.getElementById("canvas").getContext('2d');
+		ctx.drawImage(img1,10,20,50,50);
+        ctx.drawImage(img2,150,20,100,100);
+	}
+	</script>
+</head>
+<body onload="init();">
+	<canvas id="canvas" width="400" height="400" style="background-color: aqua;">
+		your browser don't support convas
+	</canvas>
+</body>
+</html>

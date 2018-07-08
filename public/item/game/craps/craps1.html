@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>craps</title>
+    <script>
+        function init() {
+            var ctx=document.getElementById("canvas").getContext('2d');
+            ctx.beginPath();
+
+            ctx.fillStyle = "rgb(200,0,200)";
+            ctx.arc(200,20,200,0,0.5*Math.PI,true);
+            ctx.lineWidth=5;
+            ctx.closePath();
+            ctx.strokeStyle = "rgb(200,0,0)";
+            ctx.stroke();
+            ctx.fill();
+
+        }
+    </script>
+</head>
+<body onload="init();" >
+    <canvas id="canvas" width="400" height="400" style="background-color: aqua;">
+      your explor don't support h5 cavas
+    </canvas>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimum=1.0">
+    <title>歌单</title>
+    <link rel="stylesheet" href="./mustard-ui.min.css">
+    <style type="text/css">
+        .card{
+            width:90%;
+            margin:5%;
+            padding: 10px;
+            position: relative;
+        }
+        .music-name,.singer,.ablum{
+            font-size: 20px;
+            line-height: 20px;
+        }
+        .music-cover{
+            width: 300px;
+            border-radius:5px;
+            float: left;
+            margin-right: 20px;
+        }
+        .player{
+            width: 100%;
+            position: relative;
+            border-radius:5px;
+        }
+        .app{
+            width: 100%;
+            height: 100%;
+        }
+        .load-btn{
+            width: 100px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <center><h4 class="title">我喜欢的歌</h4></center>
+    <div class="app"></div>
+    <button class="button-primary button-small load-btn" id="load-btn">more 10+</button>
+    <p class="copyright align-center">Made by madeai,css by Mustard UI.</p>
+    <script>
+        var page=0;
+        var data=null;
+        var request = new XMLHttpRequest;
+        request.open("GET", "https://blog.madeai.cn/music-player/js/playlist.json");
+        request.onload = function () {
+            data = JSON.parse(request.responseText);
+            /*console.table(data.result.tracks);*/
+            printFont(data,page);
+
+        }
+        request.send();
+
+        /*function printList(data) {
+            for (var i = 0; i < data.result.tracks.length; i++) {
+                list.innerHTML += "<li>" + data.result.tracks[i].name + "</li>";
+            }
+        }*/
+        function split_array(arr, len){
+            var a_len = arr.length;
+            var result = [];
+            for(var i=0;i<a_len;i+=len){
+                result.push(arr.slice(i,i+len));
+            }    
+            return result;
+        }
+        function printFont(e,page) {
+            // 划重点,innerHTML+=会刷新页面,体验极其不好!!
+            document.querySelector(".app").insertAdjacentHTML('beforeend',`
+	    ${split_array(e.result.tracks,10)[page].map(function (value) {
+                    return `
+    <div class="card">
+    <img class="music-cover"src="${value.album.picUrl}?param=300y300">
+    <p class="music-name"><strong>歌名:</strong>${value.name}</p>
+    <p class="singer"><strong>歌手:</strong>${value.artists[0].name}</p>
+    <p class="ablum"><strong>专辑:</strong>${value.album.name}</p>
+    <audio class="player" preload="matedata" controls="controls" src="https://music.163.com/song/media/outer/url?id=${value.id}.mp3"></audio>
+	</div>`}).join('')}
+	    `);
+        }
+
+
+    document.querySelector("#load-btn").addEventListener("click",function() {
+        page++;
+        printFont(data,page);
+    })
+
+    </script>
+</body>
+
+</html>

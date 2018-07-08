@@ -1,0 +1,20 @@
+<html>
+<head>
+    <meta charset="UTF-8"> <!--解决中文乱码的问题-->
+    <script>
+        function init() {
+            setInterval("document.f.display.value=String(Number(document.f.display.value)+1)",1000);
+        }//定时器 每隔一秒加一次
+        /*function incre() {
+         document.f.display.value=String(Number(document.f.display.value)+1);
+
+         }*/
+
+    </script>
+</head>
+<body onload="init()">
+    <form name="f"><!--不写form总报错 不知道为啥-->
+        <input name="display" type="text" value="0"/>
+    </form>
+</body>
+</html>
