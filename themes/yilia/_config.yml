@@ -6,20 +6,26 @@ menu:
   实验: /item/
 #随想: /tags/随想/
 
+menu_icon:
+  主页: home
+  音乐: music
+  实验: book-open
+
+
 # SubNav
 subnav:
   github: "https://github.com/huangyebiaoke"
   weibo: "http://weibo.com/5910563005/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1"
-  #rss: /atom.xml
+  rss: /atom.xml
   #zhihu: "#"
   #qq: "#"
   #weixin: "#"
   #jianshu: "#"
   #douban: "#"
-  #segmentfault: "#"
-  #bilibili: "#"
+  #segmentfault: "https://segmentfault.com/u/madeai"
+  #bilibili: "https://space.bilibili.com/56733506/#/"
   #acfun: "#"
-  mail: "mailto:huangyebiaoke@outlook.com"
+  #mail: "mailto:huangyebiaoke@outlook.com"
   #facebook: "#"
   #google: "#"
   #twitter: "#"
@@ -101,7 +107,7 @@ gitment_oauth:
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:
-  # 头像上面的背景颜色
+  # 头像上面的背景颜色linear-gradient(#4d4d4d,#fff)
   header: '#4d4d4d'
   # 右滑板块背景
   slider: 'linear-gradient(200deg,#a0cfe4,#e8c37e)'
@@ -117,9 +123,14 @@ slider:
 #smart_menu:
 #  friends: false
 smart_menu:
-  innerArchive: '所有文章'
+  innerArchive: '存档'
   friends: '友链'
-  aboutme: '关于我'
+  aboutme: '关于'
+
+smart_menu_icon:
+  innerArchive: 'book'
+  friends: 'user-friends'
+  aboutme: 'address-card'
 
 friends:
   DIYgod: https://www.anotherhome.net/

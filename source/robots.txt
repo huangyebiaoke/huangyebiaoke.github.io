@@ -1,0 +1,12 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /tags/ 
+Disallow: /img/
+Disallow: /item/
+Disallow: /fonts/
+Disallow: /page/
+
+Sitemap: http://blog.madeai.cn/sitemap.xml
+Sitemap: http://blog.madeai.cn/baidusitemap.xml

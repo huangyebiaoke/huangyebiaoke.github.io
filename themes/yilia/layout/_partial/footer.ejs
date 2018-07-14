@@ -1,21 +1,47 @@
 <footer id="footer">
+  <!-- Font-Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <style type="text/css">
+    .throb{
+      animation:animate 1.33s cubic-bezier(0.1, 1.39, 0.95, 1.93) infinite;
+      filter:drop-shadow(0px 0px 10px rgb(255,80,0));
+    }
+    @keyframes animate{
+      0%{
+        transform: scale(0.9,0.9);
+        opacity: 0.5;
+      }
+      50%{
+        transform: scale(1,1);
+        opacity: 0.7;
+      }
+      100%{
+        transform: scale(1.2,1.2);
+        opacity: 1;
+      }
+    }
+  </style>
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %>
+    		&copy; <%= date(new Date(), 'YYYY') %>
+        <i class="fa fa-heartbeat throb" style="color:rgb(255, 80, 0)"></i>
+        <%= config.author || config.title %>
     	</div>
-	    <span id="busuanzi_container_site_pv">
-	    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+	    <span id="busuanzi_container_site_pv" title="page view">
+      <i class="fa fa-eye"></i>
+	    <span id="busuanzi_value_site_pv"></span>
 	    </span>
-	    <span id="busuanzi_container_site_uv">
-	    总访客数<span id="busuanzi_value_site_uv"></span>人次
+	    <span id="busuanzi_container_site_uv" title="unique visitor">
+	    <i class="fa fa-user"></i>
+      <span id="busuanzi_value_site_uv"></span>
 	    </span>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<a href="http://hexo.io/" rel="external nofollow" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" rel="external nofollow" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
- </script>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
 </footer>
  
