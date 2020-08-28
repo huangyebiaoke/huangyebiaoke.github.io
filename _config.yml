@@ -3,19 +3,20 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Eric_fish's Blog
-subtitle:
-description: 
-keywords:
-author: Eric_fish
+title: 无人之境
+subtitle: 默默地coding是我的态度
+description: Android,MySQL,Ajax,JSON,web,SpringBoot,madeai
+keywords: Android,MySQL,Ajax,JSON,web,SpringBoot,madeai
+author: madeai
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://yyb1995.github.io
+url: http://blog.madeai.cn
 root: /
-permalink: :year/:month/:day/:title/
+permalink: articles/:title.html
+#  :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
@@ -28,6 +29,11 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
   - 'plugins/**'
+  - 'resume/**'
+  - '_drafts/**'
+  - 'assets/**'
+  - 'CNAME'
+  - 'robots.txt'
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -80,9 +86,28 @@ theme: pinghsu
 ## Docs: https://hexo.io/docs/deployment.html
 deploy: 
   type: git
-  repository: git@github.com:yyb1995/yyb1995.github.io.git
+  repository: git@github.com:huangyebiaoke/huangyebiaoke.github.io.git
   branch: master
 
 search:
   path: search.xml
   field: post
+
+# on _config.yml of hexo-site
+hexo-tag-dplayer:
+  js_path:
+  css_path:
+  default: #default tag argument
+    id:  # equals to setting id=somedefid in all {%dplayer%} tags
+    api:
+    pic: /assets/img/dplayer-cover.svg
+
+sitemap:
+  path: sitemap.xml
+  template:
+  rel: false
+  tags: true
+  categories: true
+
+baidusitemap:
+  path: baidusitemap.xml

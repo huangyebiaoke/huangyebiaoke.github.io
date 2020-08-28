@@ -53,9 +53,43 @@
 	<div class="footer-meta">
 		<div class="footer-container">
             <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-            <% if (theme.lowerleftLogo) { %>
+            <% if (theme.lowerleftLogo&&!is_post()) { %>
                 <div class="girl-fixed"> <img src="<%= theme.lowerleftLogo %>"> </div>
                 <% } %>
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="<%= config.url %>" class="info-logo">
+                        <% if (theme.footerLogoUrl) { %>
+                            <img src="<%= theme.footerLogoUrl %>" alt="<%= config.title %>" />
+                        <% } else { %>
+                            <%# config.title %>
+                        <% } %>
+                    </a>
+                    <h3 class="meta-title">站点信息</h3>
+                    <div class="info-text">
+                        <p id="chakhsu"></p>
+                        <p><a href="https://github.com/cccyb/hexo-theme-pinghsu" target="_blank">Pinghsu</a> theme | Powered by <a href="https://hexo.io/" target="_blank" rel="nofollow">Hexo</a></p>
+                    </div>
+                    <div class="site-statistics">
+                        <p style="margin-top: 10px"><%- __('sitecount.text') %> <%= totalcount(site) %></p>
+                        <% if (theme.busuanzi) { %>
+                            <p>
+                        <span id="busuanzi_container_site_pv" style='display:none'>
+                        <i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span></span>&nbsp;
+                                <span id="busuanzi_container_site_uv" style='display:none'>
+                        <i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span></span>
+                            </p>
+                        <% } %>
+                    </div>
+                    <div class="site-copyright">
+                        <% if (theme.beian) { %>
+                            <p style="margin-top: 10px"><a href="https://www.miibeian.gov.cn"><%= theme.beian %></a></p>
+                        <% } %>
+                        <p>&copy; <%= theme.since %>-<%- date(Date.now(), 'YYYY') %>
+                            <i class="fa fa-heart animated infinite pulse"></i> <a href="<%= config.url %>"><%= config.author %></a></p>
+                    </div>
+                </div>
+            </div>
             <% if (theme.recentlyPosts.enable) { %>
             <div class="meta-item meta-posts">
                 <h3 class="meta-title"><%= __('recentlyPosts') %></h3>
@@ -68,40 +102,6 @@
             <div class="meta-item meta-comments">
             </div>
             <% } %>
-            <div class="meta-item meta-copyright">
-				<div class="meta-copyright-info">
-                        <a href="<%= config.url %>" class="info-logo">
-                        <% if (theme.footerLogoUrl) { %>
-                        <img src="<%= theme.footerLogoUrl %>" alt="<%= config.title %>" />
-                        <% } else { %>
-                        <%# config.title %>
-                        <% } %>
-                    </a>
-                    
-                    <%- "站点信息" %>
-					<div class="info-text">
-                        <p id="chakhsu"></p>
-                    	<p>Theme — <a href="https://github.com/cccyb/hexo-theme-pinghsu" target="_blank">Pinghsu</a></p>
-                        <p>Powered by <a href="https://hexo.io/" target="_blank" rel="nofollow">Hexo</a></p>
-                        <p>Hosted on <a href="https://pages.github.com/" target="_blank" rel="nofollow">Github Pages</a></p>
-                    </div>
-
-                    <div class="site-statistics">
-                        <p style="margin-top: 10px"><%- __('sitecount.text') %> <%= totalcount(site) %></p>
-                        <% if (theme.busuanzi) { %>
-                        <p><span id="busuanzi_container_site_pv" style='display:none'><%- __('views.text') %> <span id="busuanzi_value_site_pv"></span> <%- __('views.unit') %></span></p>
-                        <p><span id="busuanzi_container_site_uv" style='display:none'><%- __('vistors.text') %> <span id="busuanzi_value_site_uv"></span> <%- __('vistors.unit') %></span></p>
-                        <% } %>
-                    </div>
-                    <div class="site-copyright">
-                        <% if (theme.beian) { %>
-                        <p style="margin-top: 10px"><a href="http://www.miibeian.gov.cn"><%= theme.beian %></a></p>
-                        <% } %>
-                        <p style="margin-top: 10px">&copy; <%= theme.since %> - <%- date(Date.now(), 'YYYY') %> with 
-                        <i class="fa fa-heart animated infinite pulse"></i> <a href="<%= config.url %>"> by <%= config.author %></a></p>
-                    </div>
-				</div>
-            </div>
 		</div>
 	</div>
 </footer>
@@ -320,7 +320,20 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         visitor: <%= theme.valine.visitor %>,
     })
 </script>
-<% } %>
+<% } else if(theme.gitalk.enable){%>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '<%= theme.gitalk.client_id %>',
+        clientSecret: '<%= theme.gitalk.client_secret %>',
+        repo: '<%= theme.gitalk.repo %>',      // The repository of store comments,
+        owner: '<%= theme.gitalk.owner %>',
+        admin: ['<%= theme.gitalk.admin %>'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+<% }%>
 <% if (theme.enablePjax) { %>
 <script data-no-instant>
 InstantClick.on('change', function(isInitialLoad){
@@ -383,6 +396,5 @@ query2.find().then(function (data) {
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 <% } %>
-
 </body>
 </html>

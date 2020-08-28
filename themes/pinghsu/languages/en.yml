@@ -1,9 +1,12 @@
 menu:
+  home: Home
   categories: Categories
   tags: Tags
   archives: Archives
-  links: Links
+  links: Friends
   about: About
+  resume: Resume
+  gallery: Photoes
 
 recentlyPosts: RECENT POSTS
 

@@ -1,0 +1,192 @@
+# Header
+
+menu:
+  主页: /
+  存档: /archives/
+  音乐: http://huangyebiaoke.github.io/music-player/
+  网盘: http://pan.madeai.cn
+#随想: /tags/随想/
+
+menu_icon:
+  主页: home
+  存档: archive
+  音乐: music
+  网盘: hdd
+
+
+# SubNav
+subnav:
+  github: "https://github.com/huangyebiaoke"
+  weibo: "http://weibo.com/5910563005/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1"
+  #zhihu: "#"
+  qq: "http://wpa.qq.com/msgrd?v=3&uin=1536711290&site=qq&menu=yes"
+  #weixin: "#"
+  #jianshu: "#"
+  #douban: "#"
+  #acfun: "#"
+  mail: "mailto:huangyebiaoke@outlook.com"
+  bilibili: "https://space.bilibili.com/56733506/#/"
+  #segmentfault: "https://segmentfault.com/u/madeai"
+  twitter: "https://twitter.com/1536711290M?s=09"
+  rss: /atom.xml
+  #facebook: "#"
+  #google: "#"
+  #linkedin: "#"
+
+
+
+# 是否需要修改 root 路径
+# 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，
+# 请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。
+root: 
+
+# Content
+
+# 文章太长，截断按钮文字
+excerpt_link: false
+# 文章卡片右下角常驻链接，不需要请设置为false
+show_all_link: 'more'
+# 数学公式
+mathjax: true
+# 是否在新窗口打开链接
+open_in_new: false
+
+# 打赏
+# 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏
+reward_type: 1
+# 打赏wording
+reward_wording: '谢谢你请我吃糖果'
+# 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg
+alipay: /assets/img/alipay.jpg
+# 微信二维码图片地址
+weixin: /assets/img/weixin.png
+
+# 目录
+# 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录
+toc: 1
+# 根据自己的习惯来设置，如果你的目录标题习惯有标号，置为true即可隐藏hexo重复的序号；否则置为false
+toc_hide_index: true
+# 目录为空时的提示
+toc_empty_wording: '目录，不存在的…'
+
+# 是否有快速回到顶部的按钮
+top: true
+
+# Miscellaneous
+baidu_analytics: 'fda70a9fbd113c8f1905fe991a5d593a'
+#google_analytics: 'UA-122338069-1'
+favicon: /assets/img/favicon.png
+
+#你的头像url
+avatar: /assets/img/100.ico
+
+#是否开启分享
+share_jia: true
+
+#评论：1、多说；2、网易云跟帖；3、畅言；4、Disqus；5、Gitment
+#不需要使用某项，直接设置值为false，或注释掉
+#具体请参考wiki：https://github.com/litten/hexo-theme-yilia/wiki/
+
+#1、多说
+duoshuo: false
+
+#2、网易云跟帖
+wangyiyun: false
+
+#3、畅言
+changyan_appid: false
+#'cytfnxW7Q'
+changyan_conf: false
+#'916a995bfea1f22a5fa0837fa6a3dbae'
+
+#4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia的
+disqus: false
+
+#5、Gitment
+gitment_owner: false #你的 GitHub ID
+gitment_repo: ''          #存储评论的 repo
+gitment_oauth:
+  client_id: ''           #client ID
+  client_secret: ''       #client secret
+
+#6、gitalk评论
+gitalk:
+  enable:  true
+  githubID:  huangyebiaoke   
+  repo:  'huangyebiaoke.github.io'
+  ClientID:  '23abedc384baaed0f181'
+  ClientSecret:  'a0b5098dcff025e49c424ba1cbe5cd3684b6822f'
+  adminUser:  huangyebiaoke
+  distractionFreeMode: true
+
+# 样式定制 - 一般不需要修改，除非有很强的定制欲望…
+style:
+  # 头像上面的背景颜色linear-gradient(#4d4d4d,#fff)
+  header: '#ffeb4f'
+  # 右滑板块背景
+  slider: '-webkit-radial-gradient(0% 100%, ellipse cover, #96DEDA    10%,rgba(255,255,227,0) 40%),-webkit-linear-gradient(-45deg,  #1fddff 0%,#FFEDBC 100%)'
+
+# slider的设置
+slider:
+  # 是否默认展开tags板块
+  showTags: false
+
+# 智能菜单
+# 如不需要，将该对应项置为false
+# 比如
+#smart_menu:
+#  friends: false
+smart_menu:
+  innerArchive: '所有文章'
+  friends: '友链'
+  aboutme: '关于我'
+
+smart_menu_icon:
+  innerArchive: 'book'
+  friends: 'user-friends'
+  aboutme: 'address-card'
+
+friends:
+  编程笔记: https://code5.cn/
+  Reed: http://andeveloper.com/
+  scateu: http://scateu.me/
+  bigeagle: https://bigeagle.me
+  Bob: https://bobcn.github.io
+  余卫国: https://yuweiguocn.github.io
+  DIYgod: https://diygod.me/
+  #https://www.anotherhome.net/
+  Zhisheng Tian: http://www.54tianzhisheng.cn/
+  猫与向日葵: https://imjad.cn/
+  #赞鱼鱼: http://blog.zanyuyu.com/
+  #那时候的我: http://www.cnblogs.com/xljzlw/
+  黎明余光: https://blog.lim-light.com/
+  方平君的后花园: https://i-square.github.io/
+  #叶凡: http://yi9.me/
+  #この青空に約束を: https://9yu.eu/
+  计算姬: http://taoxinhao.cn/
+  第三只筷子: http://www.jianshu.com/u/c7b407783459
+  阮一峰: http://www.ruanyifeng.com/blog/
+  廖雪峰: https://www.liaoxuefeng.com/
+  不死鸟: https://hao.su/
+  #https://lai.yuweining.cn/
+  #Perhaps的小站: http://blogperhaps.cn/
+  #漫长人生: https://longlife.wodemo.net/
+  颜海镜: https://yanhaijing.com/
+  Hollis: http://www.hollischuang.com/
+  tc9011: http://tc9011.com/
+  学步园: http://www.xuebuyuan.com/
+  干货集中营: https://gank.io/
+  #刘未鹏: http://mindhacks.cn/
+  #vczh: http://www.cppblog.com/vczh/
+  #陈浩: https://coolshell.cn/
+  #徐宥: https://blog.youxu.info/
+  #peng_gong: http://lucida.me/
+  #Axb的自我修养: http://blog.2baxb.me/
+  Benjamin Pollack: https://bitquabit.com/
+  ChiuCC: http://alrightchiu.github.io/SecondRound/archives.html
+  MathxH: https://alexiachen.github.io/blog/
+  怡红院落: https://imnerd.org/
+  极客导航: http://gogeeks.cn/job/2/Java%E5%B7%A5%E7%A8%8B%E5%B8%88
+  海牛部落: http://hainiubl.com/
+
+aboutme: <center>坐标:(114°53'12'',25°23'51'',158.9)<br><br>现役:银河系->太阳系->地月轨道<br>->地球村合法公民<br><br>信仰:coding change the world!!</center>

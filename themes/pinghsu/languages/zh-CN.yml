@@ -1,9 +1,12 @@
 menu:
+  home: 首页
   categories: 分类
   tags: 标签
   archives: 归档
-  links: 友人帐
-  about: 关于我
+  links: 友链
+  about: 关于
+  resume: 简历
+  gallery: 相册
 
 recentlyPosts: 最近文章
 

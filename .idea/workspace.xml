@@ -1,74 +1,276 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c1386f06-10f7-4417-bc91-2b52ceecf8c2" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="c1386f06-10f7-4417-bc91-2b52ceecf8c2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/yyb1995.github.io.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/CNAME" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_drafts/an-experience-of-dos-attack.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_drafts/limitation-derivative.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_drafts/p13.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_drafts/p14.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_drafts/weiboshow.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/005CxIB2gy1fp5ueb659pj31kw19inpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/005CxIB2gy1fqg451h28oj314a0osqjq.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/005CxIB2gy1fsoz122865j30tf0gcn5d.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/005CxIB2gy1fvnenpajdrj30xm0ljakx.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/08.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/09.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/14.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/21.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/gallery-dir/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/assets/img/dplayer-cover.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resume/files/avatar.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resume/files/y1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resume/files/y2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resume/files/y3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resume/files/y4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resume/index-backup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resume/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/pinghsu/layout/_partial/gallery.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/.babelrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/_config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/languages/default.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/languages/fr.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/languages/nl.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/languages/no.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/languages/ru.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/languages/zh-cn.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/languages/zh-tw.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/after-footer.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/archive-post.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/archive.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/article.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/aside.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/baidu-analytics.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/css.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/footer.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/google-analytics.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/head.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/header.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/left-col.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/mathjax.bak" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/mathjax.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/mobile-nav.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/category.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/changyan.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/date.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/duoshuo.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/gitalk.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/gitment.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/nav.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/share.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/tag.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/title.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/post/wangyiyun.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/script.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/toc.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/tools.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/viewer.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/archive.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/category.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/layout.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/page.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/post.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/layout/tag.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/_core.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/_function.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/archive.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/article-inner.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/article-main.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/article-nav.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/article.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/aside.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/comment.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/core/_animation.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/core/_media-queries.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/core/_mixin.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/core/_reset.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/core/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/fonts.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/fonts/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/fonts/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/fonts/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/fonts/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/footer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/global.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/grid.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/highlight.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/img/checkered-pattern.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/img/scrollbar_arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/img/tooltip.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/left.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/main.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/mobile-slider.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/mobile.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/page.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/reward.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/scroll.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/share.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/social.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/tags-cloud.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/tags.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/tools.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/css/tooltip.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/Q.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/anm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/aside.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/fix.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/report.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/share.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/js/viewer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source-src/script.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/fonts/default-skin.b257fa.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/fonts/iconfont.16acc2.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/fonts/iconfont.45d7ee.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/fonts/iconfont.8c627f.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/fonts/iconfont.b322fa.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/fonts/tooltip.4004ff.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/img/default-skin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/img/preloader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/img/scrollbar_arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/main.266c1c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/main.266c1c.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/mobile.906508.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/source/slider.096dc6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/yilia/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scaffolds/draft.md" beforeDir="false" afterPath="$PROJECT_DIR$/scaffolds/draft.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scaffolds/post.md" beforeDir="false" afterPath="$PROJECT_DIR$/scaffolds/post.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/.vscode/ipch/2af2abb5bbc9e1b6/mmap_address.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/BookNotes/The C Programming Language/《C程序设计语言》读书笔记（七）——输入与输出.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/BookNotes/The C Programming Language/《C程序设计语言》读书笔记（五）——指针与数组.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/BookNotes/The C Programming Language/《C程序设计语言》读书笔记（六）——结构.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/BookNotes/The C Programming Language/《C程序设计语言》读书笔记（四）——函数与程序结构.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/CProgrammingLanguage/C语言中数组名作为参数进行函数传递.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/CProgrammingLanguage/联合体（Union）.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/DBN/受限玻尔兹曼机（RBM）&amp;深度信念网络（DBN）.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/DBN/深度信念网络(Deep Belief Network,DBN).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/NLP/NLP发展新方向.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/NLP/Word2vec资料.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/RNN/LSTM/LSTM.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/RNN/LSTM/LSTM时序预测滞后问题.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/RNN/LSTM/TimeDistributedDense()层.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/RNN/Seq2Seq/参考资料.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/other techniques/layer normalization.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/最大似然估计.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/深度学习中的batch size.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/DeepLearning/深度学习参考资料.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Git/Git学习.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Git/Git常用命令.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Hexo/搭建我的Hexo博客——从入门到放弃.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Java/适合练手的Java项目.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Keras/Build the First Neural Network.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/LaTeX/Latex一些坑.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/LaTeX/Latex安装.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/LaTeX/Latex导言区设置.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/LaTeX/Latex常用代码段.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Linux/Linux使用过程中的问题.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Mac/Mac折腾.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/MachineLearning/最小二乘解(Least-squares Minimization).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Matlab/MATLAB GUI编程入门.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Others/傅里叶变换的新理解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Others/常用颜色收集.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Python/Python 迭代器(iterator) 生成器(generator).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Python/Python基础.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Python/Python常用文件及目录操作.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Python/Python技巧.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Python/Python装饰器(decorator).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Python/figures/deepcopy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Python/simpread-styleguide _ Style guides for Google-originated open-source projects.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/argparse.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/getopt.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/json.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/matplotlib.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/numpy.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/pandas.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/pip换源.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/re.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/scikit-learn.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/seaborn/数据可视化 Seaborn 从零开始学习教程（一） 风格选择.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/seaborn/数据可视化 Seaborn 从零开始学习教程（三） 数据分布可视化篇.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/seaborn/数据可视化 Seaborn 从零开始学习教程（二） 颜色调控篇.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/PythonPackages/seaborn/数据可视化 Seaborn 从零开始学习教程（四） 分类数据可视化篇.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Pytorch/Pytorch中常用tensor操作.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Pytorch/Pytorch入门.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Pytorch/Pytorch学习.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Pytorch/Pytorch遇到的问题.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Regex/常用查询网站.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Regex/常用正则表达式.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/adjust.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/about/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/about/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/links/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/links/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/languages/default.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/languages/default.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/languages/en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/languages/en.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/languages/zh-CN.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/languages/zh-CN.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/layout/_partial/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/layout/_partial/footer.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/layout/_partial/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/layout/_partial/header.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/layout/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/layout/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/layout/post.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/layout/post.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/source/images/apple-touch-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/source/images/apple-touch-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/source/images/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/source/images/favicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/pinghsu/source/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/themes/pinghsu/source/style.min.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/hello-md.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="70">
-                <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.deploy_git" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="232" />
-    <option name="y" value="106" />
-    <option name="width" value="1399" />
-    <option name="height" value="940" />
+  <component name="NamedScopeManager">
+    <scope name="pinghsu" pattern="file[yyb1995.github.io]:themes/pinghsu//*" />
+    <scope name="post" pattern="file[yyb1995.github.io]:source/_posts//*" />
+    <scope name="yilia" pattern="" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="hexo_blog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hexo_blog" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hexo_blog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hexo_blog" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hexo_blog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hexo_blog" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="_posts" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1gihcZ7luYbgDbpfCMY3KUDx4sM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/source/assets/gallery-dir" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="xml.catalog" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -88,17 +290,27 @@
   <component name="PyDebuggerOptionsProvider">
     <option name="mySupportQtDebugging" value="false" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\yyb1995.github.io\source\_posts" />
+      <recent name="E:\yyb1995.github.io\source\_posts\tech\sql" />
+      <recent name="E:\yyb1995.github.io\source\_posts\tech\data-structure" />
+      <recent name="E:\yyb1995.github.io\source\_posts\tech\android" />
+      <recent name="E:\yyb1995.github.io\source\_posts\others" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\blog.madeai.cn\source\assets\gallery-dir" />
+      <recent name="E:\blog.madeai.cn\themes" />
+      <recent name="E:\yyb1995.github.io\source\assets\img" />
+      <recent name="E:\yyb1995.github.io\source" />
+      <recent name="E:\yyb1995.github.io\source\resume\files" />
+    </key>
+  </component>
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -110,57 +322,40 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553419929160</updated>
+      <workItem from="1598603401070" duration="14779000" />
+      <workItem from="1598619307465" duration="6653000" />
+      <workItem from="1598628365119" duration="6801000" />
+      <workItem from="1598639613733" duration="687000" />
+      <workItem from="1598644758938" duration="1007000" />
+      <workItem from="1598646012877" duration="2154000" />
+      <workItem from="1598648293291" duration="129000" />
+      <workItem from="1598648978248" duration="75000" />
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="186" y="85" width="1119" height="752" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17174515" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_posts/hello-md.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="70">
-            <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="WindowStateProjectService">
+    <state x="511" y="212" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598619675590">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="511" y="212" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1598619675590" />
+    <state x="349" y="146" key="IDE.errors.dialog" timestamp="1598614186328">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="146" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1598614186328" />
+    <state x="270" y="56" key="SettingsEditor" timestamp="1598628526700">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598628526700" />
+    <state x="467" y="144" width="691" height="594" key="find.popup" timestamp="1598646114952">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="467" y="144" width="691" height="594" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1598646114952" />
+    <state x="605" y="299" width="502" height="401" key="scopes" timestamp="1598627809171">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="605" y="299" width="502" height="401" key="scopes/0.0.1536.824@0.0.1536.824" timestamp="1598627809171" />
   </component>
 </project>

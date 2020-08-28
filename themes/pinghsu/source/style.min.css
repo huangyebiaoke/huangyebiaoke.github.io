@@ -39,7 +39,6 @@ body {
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor:url('https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/normal.cur'), auto;
 }
 
 body > :first-child {
@@ -1782,7 +1781,7 @@ text-align: left;
 .footer-meta .footer-container {
   width: 100%;
   max-width: 1060px;
-  height: 250px;
+  height: 200px;
   margin: 0 auto;
   padding: 0 80px;
 }
@@ -2001,33 +2000,33 @@ text-align: left;
     display: none;
   }
   .footer-meta .footer-container {
-    height: 52px;
+    /*height: 52px;*/
     padding: 0 15px;
   }
   .footer-meta .meta-item {
     width: 100%;
     padding: 0 10px;
   }
-  .footer-meta .meta-copyright .info-text {
-    float: right;
-  }
-  .footer-meta .meta-copyright .site-statistics {
-    float: right;
-  }
+  /*.footer-meta .meta-copyright .info-text {*/
+  /*  float: right;*/
+  /*}*/
+  /*.footer-meta .meta-copyright .site-statistics {*/
+  /*  float: right;*/
+  /*}*/
   
-  .footer-meta .meta-copyright .site-copyright {
-    float: right;
-  }
-  .footer-meta .meta-copyright .info-text p {
-    text-align: right;
-  }
-  .footer-meta .meta-copyright .site-statistics p {
-    float: right;
-  }
+  /*.footer-meta .meta-copyright .site-copyright {*/
+  /*  float: right;*/
+  /*}*/
+  /*.footer-meta .meta-copyright .info-text p {*/
+  /*  text-align: right;*/
+  /*}*/
+  /*.footer-meta .meta-copyright .site-statistics p {*/
+  /*  float: right;*/
+  /*}*/
   
-  .footer-meta .meta-copyright .site-copyright p {
-    float: right;
-  }
+  /*.footer-meta .meta-copyright .site-copyright p {*/
+  /*  float: right;*/
+  /*}*/
   .post-onelist-item-container .onelist-item-thumb {
     min-height: 220px;
   }
@@ -2210,6 +2209,11 @@ text-align: left;
 }
 #vcomments {
   max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+#gitalk-container {
+  max-width: 940px;
   margin: 0 auto;
   padding: 20px;
 }
