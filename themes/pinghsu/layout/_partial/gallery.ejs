@@ -1,0 +1,35 @@
+<div class="gallery">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
+    <style type="text/css">
+        .gallery-photo{
+            display: block;
+            width: 100%;
+            height: 270px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: cover;
+            margin-bottom: 20px;
+            border-radius: 3px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+    <% if (photos.length){ %>
+        <%
+        photos.forEach(function(photo) {
+            var path = config.root + photo;
+        %>
+        <a data-fancybox="gallery" class="gallery-photo" style="background-image: url(<%- path %>);" href="<%-path %>"></a>
+        <% }); %>
+    <% } %>
+
+    <!--
+      If you use lightGallery, you can then simply use it by adding the following
+    -->
+<!--    <script>-->
+<!--        document.addEventListener('DOMContentLoaded', function () {-->
+<!--            lightGallery(document.querySelector('.post-gallery'));-->
+<!--        });-->
+<!--    </script>-->
+</div>
