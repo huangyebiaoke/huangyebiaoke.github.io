@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.madeai.cn/articles/euler-s-formula.html</loc>
+    
+    <lastmod>2020-08-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/data-type-of-java.html</loc>
+    
+    <lastmod>2020-08-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.madeai.cn/articles/p18.html</loc>
     
     <lastmod>2020-08-30</lastmod>
@@ -10,13 +24,6 @@
   
   <url>
     <loc>http://blog.madeai.cn/articles/how-to-make-a-showgirl-use-live2d.html</loc>
-    
-    <lastmod>2020-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/data-type-of-java.html</loc>
     
     <lastmod>2020-08-30</lastmod>
     
@@ -171,13 +178,6 @@
   
   <url>
     <loc>http://blog.madeai.cn/articles/automatic-generate-question.html</loc>
-    
-    <lastmod>2020-08-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/euler-s-formula.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
