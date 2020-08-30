@@ -169,95 +169,6 @@ VALUES
       </tags>
   </entry>
   <entry>
-    <title>自动出题机</title>
-    <url>/articles/automatic-generate-question.html</url>
-    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre><h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
-<p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
-<p>然后把excel导入数据库.</p>
-<h3 id="step2-后端API的设计-PHP是web最牛逼的语言"><a href="#step2-后端API的设计-PHP是web最牛逼的语言" class="headerlink" title="step2:后端API的设计(PHP是web最牛逼的语言)"></a>step2:后端API的设计(PHP是web最牛逼的语言)</h3><ol>
-<li><p>先来说一下需求吧,首先是像从数据库中随机抽取100道题,在把这些题目转为json格式(这里有一个不理想的地方是答案也一起包含进去了,这个在v2.0中改进)向前端提供.然后从前端接受json格式的分数等用户信息.</p>
-</li>
-<li><p>需求弄清楚就好办了,在时间紧迫和项目比较小的情况下用PHP做后端是比较理想的.结果向前端提供题目数据的<code>handle.php</code>减掉注释只用了<font color="red">26-9</font>行,从前端接收信息的<code>report.php</code>只用了<font color="red">20-4</font>行.让我不禁感叹PHP是web开发对新人最友好的后端语言!!<img src="https://i.loli.net/2018/09/24/5ba8724b10653.jpg" alt="5ba8724b10653"></p>
-</li>
-</ol>
-<h3 id="step3-前端页面设计-主要用jquery"><a href="#step3-前端页面设计-主要用jquery" class="headerlink" title="step3:前端页面设计(主要用jquery)"></a>step3:前端页面设计(主要用jquery)</h3><p>前端css用的很少主要是展示一个原型,在v2.0后会用现成的工具继续美化,主要是用js生成的页面</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
-<p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
-<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
-<ul>
-<li><p><strong>todo list</strong></p>
-<ul>
-<li><p>单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
-</li>
-<li><p>添加rank排行榜</p>
-</li>
-<li><p>添加评论系统</p>
-</li>
-<li><p>css美化页面</p>
-</li>
-<li><p>更友好的交互体验</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>PHP</tag>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>欧拉公式の推导</title>
-    <url>/articles/euler-s-formula.html</url>
-    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
-<a id="more"></a>
-<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
-<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
-<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
-<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
-<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
-<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
-<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
-<p>that is $e^{ix}=cosx+isinx$</p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>how-to-make-a-showgirl-use-live2d</title>
-    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
-    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
-<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
-]]></content>
-      <tags>
-        <tag>live2d</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>撒野</title>
-    <url>/articles/i-can-not-hear-you.html</url>
-    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
-<p>这首歌就一句话:好听！</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>就是不听话</title>
-    <url>/articles/just-fuck-you.html</url>
-    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
-      <tags>
-        <tag>think</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>&lt;算法第四版&gt;最佳实践</title>
     <url>/articles/algorithms-fourth-edition-best-practice.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
@@ -409,6 +320,215 @@ VALUES
       <tags>
         <tag>Java</tag>
         <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欧拉公式の推导</title>
+    <url>/articles/euler-s-formula.html</url>
+    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
+<a id="more"></a>
+<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
+<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
+<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
+<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
+<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
+<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
+<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
+<p>that is $e^{ix}=cosx+isinx$</p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>data-type-of-java</title>
+    <url>/articles/data-type-of-java.html</url>
+    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动出题机</title>
+    <url>/articles/automatic-generate-question.html</url>
+    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre><h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
+<p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
+<p>然后把excel导入数据库.</p>
+<h3 id="step2-后端API的设计-PHP是web最牛逼的语言"><a href="#step2-后端API的设计-PHP是web最牛逼的语言" class="headerlink" title="step2:后端API的设计(PHP是web最牛逼的语言)"></a>step2:后端API的设计(PHP是web最牛逼的语言)</h3><ol>
+<li><p>先来说一下需求吧,首先是像从数据库中随机抽取100道题,在把这些题目转为json格式(这里有一个不理想的地方是答案也一起包含进去了,这个在v2.0中改进)向前端提供.然后从前端接受json格式的分数等用户信息.</p>
+</li>
+<li><p>需求弄清楚就好办了,在时间紧迫和项目比较小的情况下用PHP做后端是比较理想的.结果向前端提供题目数据的<code>handle.php</code>减掉注释只用了<font color="red">26-9</font>行,从前端接收信息的<code>report.php</code>只用了<font color="red">20-4</font>行.让我不禁感叹PHP是web开发对新人最友好的后端语言!!<img src="https://i.loli.net/2018/09/24/5ba8724b10653.jpg" alt="5ba8724b10653"></p>
+</li>
+</ol>
+<h3 id="step3-前端页面设计-主要用jquery"><a href="#step3-前端页面设计-主要用jquery" class="headerlink" title="step3:前端页面设计(主要用jquery)"></a>step3:前端页面设计(主要用jquery)</h3><p>前端css用的很少主要是展示一个原型,在v2.0后会用现成的工具继续美化,主要是用js生成的页面</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
+<p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
+<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
+<ul>
+<li><p><strong>todo list</strong></p>
+<ul>
+<li><p>单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
+</li>
+<li><p>添加rank排行榜</p>
+</li>
+<li><p>添加评论系统</p>
+</li>
+<li><p>css美化页面</p>
+</li>
+<li><p>更友好的交互体验</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>PHP</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>官网信息更新获得通知</title>
+    <url>/articles/get-website-message-alert.html</url>
+    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
+<ol>
+<li>每隔10min检查一下官网的通知栏</li>
+<li>抓取第一条通知</li>
+<li>将抓取到的通知与上一条抓取的通知比对<ul>
+<li>如果不相同则将这次的通知发送到用户的手机上, 将上一条通告覆盖并重复以上步骤</li>
+<li>如果相同则不进行操作, 重复以上三个步骤</li>
+</ul>
+</li>
+</ol>
+<h3 id="jsoup"><a href="#jsoup" class="headerlink" title="jsoup"></a>jsoup</h3><blockquote>
+<p>jsoup is a Java library for working with real-world HTML. It provides a very convenient API for fetching URLs and extracting and manipulating data, using the best of HTML5 DOM methods and CSS selectors.</p>
+</blockquote>
+<p>jsoup是一个HTML解析器, 他能像CSS选择器一样选取DOM节点, 做到类似于XPath的效果;</p>
+<p>使用jsoup获得网页内容就一句话<code>Document doc = Jsoup.connect(TARGET_URL).get();</code><br><img src="/assets/blogimg/example_2020-03-10.jpg" alt="example"><br>如何选到<code>&lt;a&gt;</code>标签中的Text呢?</p>
+<ol>
+<li>先获取到它们的父级标签<code>&lt;td class=&quot;tablexu&quot;&gt;</code><pre><code class="java">Element element = doc.select(&quot;td.tablexu&quot;).first();</code></pre>
+</li>
+<li>在<code>&lt;a&gt;</code>标签所组成的集合里面选取第一个标签并获取标签内的文字, 也就是最新的通告<pre><code class="java">String newMsg=element.select(&quot;a&quot;).first().text();</code></pre>
+<h3 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h3></li>
+</ol>
+<p><strong>Timer</strong>是javaAPI中的一个定时器, 它能每隔一段时间开启一个子线程处理任务(C#中也有类似的API);</p>
+<p>java代码如下:</p>
+<pre><code class="java">import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Main {
+    public final static String TARGET_URL=&quot;http://jky.yangtzeu.edu.cn/tzgg.htm&quot;;
+    public final static String TARGET_URL2=&quot;http://yjsc.yangtzeu.edu.cn/zsgz/tzgg.htm&quot;;
+    public final static String MSG_URL;
+
+    private static String oldMsg=&quot;&quot;;
+    public static void main(String[] args) {
+        Timer timer=new Timer();
+        timer.schedule(new FooTimerTask(),1000,1000*60*10);
+    }
+    static class FooTimerTask extends TimerTask {
+        @Override
+        public void run() {
+            try {
+                Document doc = Jsoup.connect(TARGET_URL2).get();
+                Element element = doc.select(&quot;td.tablexu&quot;).first();
+                String newMsg=element.select(&quot;a&quot;).first().text();
+                if (!newMsg.equals(oldMsg)){
+                    System.out.println(newMsg);
+                    System.out.println(sendGet(MSG_URL+&quot;?text=&quot;+newMsg.replace(&quot; &quot;,&quot;&quot;)+&quot;&amp;desp=[点击这里](http://yjsc.yangtzeu.edu.cn/&quot;+element.select(&quot;a&quot;).attr(&quot;href&quot;).replace(&quot;..&quot;,&quot;&quot;)+&quot;)&quot;));
+                    oldMsg=newMsg;
+                }
+            }catch(Exception e) {
+                System.err.println(sendGet(MSG_URL+&quot;?text=get website message failed!!!&amp;desep=&quot;+e.getMessage()));
+            }
+        }
+    }
+
+    public static String sendGet(String urlName){
+        String result = &quot;&quot;;
+        try{
+            URL realUrl = new URL(urlName);
+            URLConnection conn = realUrl.openConnection();
+            conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
+            conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
+            conn.setRequestProperty(&quot;user-agent&quot;,
+                    &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)&quot;);
+            conn.connect();
+            Map&lt;String, List&lt;String&gt;&gt; map = conn.getHeaderFields();
+            for (String key : map.keySet()) {
+                System.out.println(key + &quot;--&gt;&quot; + map.get(key));
+            }
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            System.out.println(&quot;get request failed!!&quot; + e);
+            e.printStackTrace();
+        }
+        return result;
+    }
+}
+</code></pre>
+<h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><ul>
+<li>怎么把通知发送到手机上?<ul>
+<li>可以借助于微信或者QQ的API(我用的是Server酱)</li>
+<li>可以用做一个AndroidAPP用Socket和部署在服务器上的脚本建立连接;</li>
+</ul>
+</li>
+<li>怎么部署<ul>
+<li>将项目打包成可执行的jar包扔到装有JDK的服务器上运行</li>
+<li>服务器甚至不需要开放相应的端口(省去了很多麻烦)</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>how-to-make-a-showgirl-use-live2d</title>
+    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
+    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
+<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
+]]></content>
+      <tags>
+        <tag>live2d</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>撒野</title>
+    <url>/articles/i-can-not-hear-you.html</url>
+    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
+<p>这首歌就一句话:好听！</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
+        <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>就是不听话</title>
+    <url>/articles/just-fuck-you.html</url>
+    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
+      <tags>
+        <tag>think</tag>
       </tags>
   </entry>
   <entry>
@@ -675,114 +795,35 @@ VALUES
       </tags>
   </entry>
   <entry>
-    <title>官网信息更新获得通知</title>
-    <url>/articles/get-website-message-alert.html</url>
-    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
+    <title>CMD批处理命令的强大</title>
+    <url>/articles/p11.html</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre><p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
 <ol>
-<li>每隔10min检查一下官网的通知栏</li>
-<li>抓取第一条通知</li>
-<li>将抓取到的通知与上一条抓取的通知比对<ul>
-<li>如果不相同则将这次的通知发送到用户的手机上, 将上一条通告覆盖并重复以上步骤</li>
-<li>如果相同则不进行操作, 重复以上三个步骤</li>
-</ul>
-</li>
+<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
+<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
+<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
+<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
+<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot;</code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
+<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
 </ol>
-<h3 id="jsoup"><a href="#jsoup" class="headerlink" title="jsoup"></a>jsoup</h3><blockquote>
-<p>jsoup is a Java library for working with real-world HTML. It provides a very convenient API for fetching URLs and extracting and manipulating data, using the best of HTML5 DOM methods and CSS selectors.</p>
-</blockquote>
-<p>jsoup是一个HTML解析器, 他能像CSS选择器一样选取DOM节点, 做到类似于XPath的效果;</p>
-<p>使用jsoup获得网页内容就一句话<code>Document doc = Jsoup.connect(TARGET_URL).get();</code><br><img src="/assets/blogimg/example_2020-03-10.jpg" alt="example"><br>如何选到<code>&lt;a&gt;</code>标签中的Text呢?</p>
+<ul>
+<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
+<li>参考：</li>
+</ul>
 <ol>
-<li>先获取到它们的父级标签<code>&lt;td class=&quot;tablexu&quot;&gt;</code><pre><code class="java">Element element = doc.select(&quot;td.tablexu&quot;).first();</code></pre>
-</li>
-<li>在<code>&lt;a&gt;</code>标签所组成的集合里面选取第一个标签并获取标签内的文字, 也就是最新的通告<pre><code class="java">String newMsg=element.select(&quot;a&quot;).first().text();</code></pre>
-<h3 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h3></li>
+<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
+<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
+<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
+<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
 </ol>
-<p><strong>Timer</strong>是javaAPI中的一个定时器, 它能每隔一段时间开启一个子线程处理任务(C#中也有类似的API);</p>
-<p>java代码如下:</p>
-<pre><code class="java">import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-
-public class Main {
-    public final static String TARGET_URL=&quot;http://jky.yangtzeu.edu.cn/tzgg.htm&quot;;
-    public final static String TARGET_URL2=&quot;http://yjsc.yangtzeu.edu.cn/zsgz/tzgg.htm&quot;;
-    public final static String MSG_URL;
-
-    private static String oldMsg=&quot;&quot;;
-    public static void main(String[] args) {
-        Timer timer=new Timer();
-        timer.schedule(new FooTimerTask(),1000,1000*60*10);
-    }
-    static class FooTimerTask extends TimerTask {
-        @Override
-        public void run() {
-            try {
-                Document doc = Jsoup.connect(TARGET_URL2).get();
-                Element element = doc.select(&quot;td.tablexu&quot;).first();
-                String newMsg=element.select(&quot;a&quot;).first().text();
-                if (!newMsg.equals(oldMsg)){
-                    System.out.println(newMsg);
-                    System.out.println(sendGet(MSG_URL+&quot;?text=&quot;+newMsg.replace(&quot; &quot;,&quot;&quot;)+&quot;&amp;desp=[点击这里](http://yjsc.yangtzeu.edu.cn/&quot;+element.select(&quot;a&quot;).attr(&quot;href&quot;).replace(&quot;..&quot;,&quot;&quot;)+&quot;)&quot;));
-                    oldMsg=newMsg;
-                }
-            }catch(Exception e) {
-                System.err.println(sendGet(MSG_URL+&quot;?text=get website message failed!!!&amp;desep=&quot;+e.getMessage()));
-            }
-        }
-    }
-
-    public static String sendGet(String urlName){
-        String result = &quot;&quot;;
-        try{
-            URL realUrl = new URL(urlName);
-            URLConnection conn = realUrl.openConnection();
-            conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
-            conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
-            conn.setRequestProperty(&quot;user-agent&quot;,
-                    &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)&quot;);
-            conn.connect();
-            Map&lt;String, List&lt;String&gt;&gt; map = conn.getHeaderFields();
-            for (String key : map.keySet()) {
-                System.out.println(key + &quot;--&gt;&quot; + map.get(key));
-            }
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line;
-            while ((line = in.readLine()) != null) {
-                result += line;
-            }
-        } catch (Exception e) {
-            System.out.println(&quot;get request failed!!&quot; + e);
-            e.printStackTrace();
-        }
-        return result;
-    }
-}
-</code></pre>
-<h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><ul>
-<li>怎么把通知发送到手机上?<ul>
-<li>可以借助于微信或者QQ的API(我用的是Server酱)</li>
-<li>可以用做一个AndroidAPP用Socket和部署在服务器上的脚本建立连接;</li>
-</ul>
-</li>
-<li>怎么部署<ul>
-<li>将项目打包成可执行的jar包扔到装有JDK的服务器上运行</li>
-<li>服务器甚至不需要开放相应的端口(省去了很多麻烦)</li>
-</ul>
-</li>
+<ul>
+<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>Java</tag>
+        <tag>CMD</tag>
+        <tag>DOS</tag>
+        <tag>.bat</tag>
       </tags>
   </entry>
   <entry>
@@ -1184,6 +1225,30 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>My idol--Obama</title>
+    <url>/articles/p6.html</url>
+    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
+    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
+their own idol.Maybe actor singer or other famous people.
+    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
+humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
+<a id="more"></a>
+    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
+without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
+    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
+withhis daughter whenever how busy he is.
+    Oboma is so great person that's why I like him.
+
+<p>附：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>风往南吹-想法</title>
     <url>/articles/p18.html</url>
     <content><![CDATA[<p><meting-js server="netease" type="song" id="145586"></meting-js></p>
@@ -1225,15 +1290,6 @@ xhr.send();</code></pre>
       <tags>
         <tag>think</tag>
         <tag>reading book</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>data-type-of-java</title>
-    <url>/articles/data-type-of-java.html</url>
-    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -1378,30 +1434,6 @@ if(Objects.equals(a,b)){.......}
       </tags>
   </entry>
   <entry>
-    <title>My idol--Obama</title>
-    <url>/articles/p6.html</url>
-    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
-    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
-their own idol.Maybe actor singer or other famous people.
-    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
-humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
-<a id="more"></a>
-    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
-without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
-    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
-withhis daughter whenever how busy he is.
-    Oboma is so great person that's why I like him.
-
-<p>附：</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>什么是伴随矩阵？</title>
     <url>/articles/what-is-adjoint-matrix.html</url>
     <content><![CDATA[<img src="/assets/blogimg/伴随矩阵.jpg">
@@ -1426,38 +1458,6 @@ a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</su
 ]]></content>
       <tags>
         <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CMD批处理命令的强大</title>
-    <url>/articles/p11.html</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre><p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
-<ol>
-<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
-<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
-<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
-<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
-<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot;</code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
-<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
-</ol>
-<ul>
-<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
-<li>参考：</li>
-</ul>
-<ol>
-<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
-<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
-<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
-<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
-</ol>
-<ul>
-<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>DOS</tag>
-        <tag>CMD</tag>
-        <tag>.bat</tag>
       </tags>
   </entry>
 </search>
