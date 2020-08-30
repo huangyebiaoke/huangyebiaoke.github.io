@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.madeai.cn/articles/p18.html</loc>
+    <lastmod>2020-08-30</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.madeai.cn/articles/how-to-make-a-showgirl-use-live2d.html</loc>
+    <lastmod>2020-08-30</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.madeai.cn/articles/data-type-of-java.html</loc>
+    <lastmod>2020-08-30</lastmod>
+  </url>
+  <url>
     <loc>http://blog.madeai.cn/articles/p11.html</loc>
     <lastmod>2020-08-29</lastmod>
   </url>
@@ -9,11 +21,11 @@
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
-    <loc>http://blog.madeai.cn/articles/p8.html</loc>
+    <loc>http://blog.madeai.cn/articles/p9.html</loc>
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
-    <loc>http://blog.madeai.cn/articles/p9.html</loc>
+    <loc>http://blog.madeai.cn/articles/p8.html</loc>
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
@@ -45,15 +57,11 @@
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
-    <loc>http://blog.madeai.cn/articles/mark-ball-game.html</loc>
-    <lastmod>2020-08-29</lastmod>
-  </url>
-  <url>
     <loc>http://blog.madeai.cn/articles/make-dice-game.html</loc>
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
-    <loc>http://blog.madeai.cn/articles/get-website-message-alert.html</loc>
+    <loc>http://blog.madeai.cn/articles/mark-ball-game.html</loc>
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
@@ -62,6 +70,10 @@
   </url>
   <url>
     <loc>http://blog.madeai.cn/articles/just-fuck-you.html</loc>
+    <lastmod>2020-08-29</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.madeai.cn/articles/get-website-message-alert.html</loc>
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
@@ -77,11 +89,11 @@
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
-    <loc>http://blog.madeai.cn/articles/algorithms-fourth-edition-best-practice.html</loc>
+    <loc>http://blog.madeai.cn/articles/about-mysql.html</loc>
     <lastmod>2020-08-29</lastmod>
   </url>
   <url>
-    <loc>http://blog.madeai.cn/articles/about-mysql.html</loc>
+    <loc>http://blog.madeai.cn/articles/algorithms-fourth-edition-best-practice.html</loc>
     <lastmod>2020-08-29</lastmod>
   </url>
 </urlset> 
