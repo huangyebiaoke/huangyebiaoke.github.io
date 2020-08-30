@@ -169,6 +169,95 @@ VALUES
       </tags>
   </entry>
   <entry>
+    <title>自动出题机</title>
+    <url>/articles/automatic-generate-question.html</url>
+    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre><h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
+<p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
+<p>然后把excel导入数据库.</p>
+<h3 id="step2-后端API的设计-PHP是web最牛逼的语言"><a href="#step2-后端API的设计-PHP是web最牛逼的语言" class="headerlink" title="step2:后端API的设计(PHP是web最牛逼的语言)"></a>step2:后端API的设计(PHP是web最牛逼的语言)</h3><ol>
+<li><p>先来说一下需求吧,首先是像从数据库中随机抽取100道题,在把这些题目转为json格式(这里有一个不理想的地方是答案也一起包含进去了,这个在v2.0中改进)向前端提供.然后从前端接受json格式的分数等用户信息.</p>
+</li>
+<li><p>需求弄清楚就好办了,在时间紧迫和项目比较小的情况下用PHP做后端是比较理想的.结果向前端提供题目数据的<code>handle.php</code>减掉注释只用了<font color="red">26-9</font>行,从前端接收信息的<code>report.php</code>只用了<font color="red">20-4</font>行.让我不禁感叹PHP是web开发对新人最友好的后端语言!!<img src="https://i.loli.net/2018/09/24/5ba8724b10653.jpg" alt="5ba8724b10653"></p>
+</li>
+</ol>
+<h3 id="step3-前端页面设计-主要用jquery"><a href="#step3-前端页面设计-主要用jquery" class="headerlink" title="step3:前端页面设计(主要用jquery)"></a>step3:前端页面设计(主要用jquery)</h3><p>前端css用的很少主要是展示一个原型,在v2.0后会用现成的工具继续美化,主要是用js生成的页面</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
+<p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
+<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
+<ul>
+<li><p><strong>todo list</strong></p>
+<ul>
+<li><p>单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
+</li>
+<li><p>添加rank排行榜</p>
+</li>
+<li><p>添加评论系统</p>
+</li>
+<li><p>css美化页面</p>
+</li>
+<li><p>更友好的交互体验</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>PHP</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欧拉公式の推导</title>
+    <url>/articles/euler-s-formula.html</url>
+    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
+<a id="more"></a>
+<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
+<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
+<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
+<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
+<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
+<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
+<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
+<p>that is $e^{ix}=cosx+isinx$</p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>how-to-make-a-showgirl-use-live2d</title>
+    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
+    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
+<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
+]]></content>
+      <tags>
+        <tag>live2d</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>撒野</title>
+    <url>/articles/i-can-not-hear-you.html</url>
+    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
+<p>这首歌就一句话:好听！</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
+        <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>就是不听话</title>
+    <url>/articles/just-fuck-you.html</url>
+    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
+      <tags>
+        <tag>think</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>&lt;算法第四版&gt;最佳实践</title>
     <url>/articles/algorithms-fourth-edition-best-practice.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
@@ -320,355 +409,6 @@ VALUES
       <tags>
         <tag>Java</tag>
         <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自动出题机</title>
-    <url>/articles/automatic-generate-question.html</url>
-    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre><h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
-<p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
-<p>然后把excel导入数据库.</p>
-<h3 id="step2-后端API的设计-PHP是web最牛逼的语言"><a href="#step2-后端API的设计-PHP是web最牛逼的语言" class="headerlink" title="step2:后端API的设计(PHP是web最牛逼的语言)"></a>step2:后端API的设计(PHP是web最牛逼的语言)</h3><ol>
-<li><p>先来说一下需求吧,首先是像从数据库中随机抽取100道题,在把这些题目转为json格式(这里有一个不理想的地方是答案也一起包含进去了,这个在v2.0中改进)向前端提供.然后从前端接受json格式的分数等用户信息.</p>
-</li>
-<li><p>需求弄清楚就好办了,在时间紧迫和项目比较小的情况下用PHP做后端是比较理想的.结果向前端提供题目数据的<code>handle.php</code>减掉注释只用了<font color="red">26-9</font>行,从前端接收信息的<code>report.php</code>只用了<font color="red">20-4</font>行.让我不禁感叹PHP是web开发对新人最友好的后端语言!!<img src="https://i.loli.net/2018/09/24/5ba8724b10653.jpg" alt="5ba8724b10653"></p>
-</li>
-</ol>
-<h3 id="step3-前端页面设计-主要用jquery"><a href="#step3-前端页面设计-主要用jquery" class="headerlink" title="step3:前端页面设计(主要用jquery)"></a>step3:前端页面设计(主要用jquery)</h3><p>前端css用的很少主要是展示一个原型,在v2.0后会用现成的工具继续美化,主要是用js生成的页面</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
-<p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
-<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
-<ul>
-<li><p><strong>todo list</strong></p>
-<ul>
-<li><p>单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
-</li>
-<li><p>添加rank排行榜</p>
-</li>
-<li><p>添加评论系统</p>
-</li>
-<li><p>css美化页面</p>
-</li>
-<li><p>更友好的交互体验</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>PHP</tag>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>data-type-of-java</title>
-    <url>/articles/data-type-of-java.html</url>
-    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>欧拉公式の推导</title>
-    <url>/articles/euler-s-formula.html</url>
-    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
-<a id="more"></a>
-<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
-<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
-<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
-<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
-<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
-<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
-<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
-<p>that is $e^{ix}=cosx+isinx$</p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>how-to-make-a-showgirl-use-live2d</title>
-    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
-    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
-<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
-]]></content>
-      <tags>
-        <tag>live2d</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>撒野</title>
-    <url>/articles/i-can-not-hear-you.html</url>
-    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
-<p>这首歌就一句话:好听！</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>就是不听话</title>
-    <url>/articles/just-fuck-you.html</url>
-    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
-      <tags>
-        <tag>think</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CMD批处理命令的强大</title>
-    <url>/articles/p11.html</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre><p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
-<ol>
-<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
-<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
-<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
-<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
-<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot;</code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
-<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
-</ol>
-<ul>
-<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
-<li>参考：</li>
-</ul>
-<ol>
-<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
-<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
-<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
-<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
-</ol>
-<ul>
-<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>CMD</tag>
-        <tag>DOS</tag>
-        <tag>.bat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ajax异步加载</title>
-    <url>/articles/p12.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
-<a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre><h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
-xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
-xhr.onload = function () {
-    var data = JSON.parse(xhr.responseText);
-    doSomething(data);
-}
-xhr.send();</code></pre>
-<ol>
-<li>其中<code>xhr.open();</code>有3个传入参数,第一个是数据传输的方式,最常用的就是<code>post</code>,<code>get</code>,<code>put</code>,<code>delect</code>了.第二个是后端的URL,值得注意的是如果是<strong>跨域</strong>的话,需要在后端PHP代码前添加<code>header(&quot;Access-Control-Allow-Origin: *&quot;);</code>,或者用代理.<br>第三参数是Boolean型的可选项,表示是否异步加载;</li>
-<li><code>xhr.onload();</code>是在数据加载完成后要处理的事情;也可以用<code>xhr.onreadystatechange=doSomething;</code>.<blockquote>
-<p>onreadystatechange 是一个事件句柄。它的值 (state_Change) 是一个函数的名称，当 XMLHttpRequest 对象的状态发生改变时，会触发此函数。状态从 0 (uninitialized) 到 4 (complete) 进行变化。仅在状态为 4 时，我们才执行代码。</p>
-</blockquote>
-</li>
-<li>最后一个<code>xhr.send();</code>就是将请求发送到服务器端了;</li>
-</ol>
-<h3 id="使用jquery封装的-ajax-和-getJSON-函数"><a href="#使用jquery封装的-ajax-和-getJSON-函数" class="headerlink" title="使用jquery封装的$ajax()和$getJSON()函数"></a>使用jquery封装的$ajax()和$getJSON()函数</h3><ul>
-<li>$ajax比较灵活哦,异步加载任何格式的数据;<pre><code class="javascript">$.ajax({
-  type: &quot;POST&quot;,//像登陆一样的比较重要的数据要用post,放进请求体里哦;
-  url: &quot;http://madeai.cn/api&quot;,
-  dataType: &quot;json&quot;,
-  data: {
-      username:444,
-      password:6666//用md5签名,数据传输更安全;
-  },
-  success: function (obj) {
-      doSomething(obj);
-  },
-  error: function(XMLHttpRequest, textStatus, errorThrown) {
-      console.log(XMLHttpRequest.status,XMLHttpRequest.status,textStatus);
-  },</code></pre>
-</li>
-<li>用$getJSON()来获取json数据;<pre><code class="javascript">$.getJSON(&quot;http://madeai.cn/api&quot;, &quot;&quot;, function (data) {
-  $.each(data[&quot;result&quot;].tracks, function (i, item) {//each循环 使用$.each方法遍历返回的数据data
-  /*doSomething;
-   *function();中第一个参数是数组的索引index,第二个是原数组对象;
-   */
-  });
-});</code></pre>
-</li>
-</ul>
-<p>jquery还封装了类似<code>$get()</code>,<code>$.post()</code>的函数;</p>
-<hr>
-<p>demo click <a href="https://huangyebiaoke.github.io/item/example/ajax&json.html" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>AJAX</tag>
-        <tag>JSON</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网红辞职信</title>
-    <url>/articles/p15.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
-<a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre><p>头条上的视频</p>
-{% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式:"></a>样式:</h4><pre><code>&lt;style&gt;
-    .main{
-        width: 500px;
-        height: 250px;
-        border: 2px solid black;
-        margin: 0 auto;
-        position:absolute;
-        left: 500px;
-    }
-    .title,.chose{
-        text-align: center;
-    }
-    .chose{
-        margin:40px;
-    }
-    .yes{
-        margin-right: 40px;
-    }
-&lt;/style&gt;</code></pre><h4 id="dom树"><a href="#dom树" class="headerlink" title="dom树:"></a>dom树:</h4><pre><code class="html">&lt;div class=&quot;main&quot;&gt;
-    &lt;h2 class=&quot;title&quot;&gt;辞职信&lt;/h2&gt;
-    &lt;article&gt;老板我要辞职&lt;img width=&quot;100&quot; src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1530346447488&amp;di=cdd760f50b3188a667921dc3de943d38&amp;imgtype=0&amp;src=http%3A%2F%2F1873.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2011%2F5%2F3%2F13%2F13%2Fu115243949_1306e5597e5g214.gif&quot;&gt;,请批准!&lt;/article&gt;
-    &lt;div class=&quot;chose&quot;&gt;&lt;button class=&quot;yes&quot; id=&quot;yes&quot;&gt;同意&lt;/button&gt;&lt;button class=&quot;no&quot; id=&quot;no&quot;&gt;不同意&lt;/button&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript:"></a>javascript:</h4><pre><code class="script">&lt;script type=&quot;text/javascript&quot;&gt;
-    var no=document.getElementById(&quot;no&quot;);
-    var yes=document.getElementById(&quot;yes&quot;);
-    var main=document.querySelector(&quot;.main&quot;);
-    no.onmouseover=function () {
-        var x=Math.random() * (500-this.offsetWidth);
-        var y=Math.random()*(250-this.offsetHeight);
-        this.setAttribute(&#39;style&#39;,
-            &#39;position:absolute;&#39;+
-            &#39;left:&#39;+x+&#39;px;&#39;+
-            &#39;top:&#39;+y+&#39;px;&#39;
-        );
-    }
-    yes.onmousedown=function () {
-    main.innerHTML=&quot;&lt;h3 style=&#39;size: 30px; color: orangered;&#39;&gt;臣退了&lt;/h3&gt;,这一退也许就是一辈子~~~~&quot;;
-    }
-&lt;/script&gt;</code></pre>
-<hr>
-<p>实际演示请转向<a href="http://blog.madeai.cn/item/example/resign.html">demo</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>H5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用win10提高工作效率</title>
-    <url>/articles/p16.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/windows-icon.png" alt="windows-icon"></p>
-<a id="more"></a>
-<p><meting-js server="netease" type="song" id="5197160"></meting-js></p>
-<h3 id="windows-10-快捷键"><a href="#windows-10-快捷键" class="headerlink" title="windows 10 快捷键"></a>windows 10 快捷键</h3><h5 id="1-截图"><a href="#1-截图" class="headerlink" title="1. 截图"></a>1. 截图</h5><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>是否保存到剪贴板</th>
-<th>是否保存到目录</th>
-<th>是否可选区域</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>win+shift+s</td>
-<td>是</td>
-<td>否</td>
-<td>是</td>
-</tr>
-<tr>
-<td>printscreen</td>
-<td>是</td>
-<td>是(onedrive)</td>
-<td>否(全屏)</td>
-</tr>
-<tr>
-<td>alt+printscreen</td>
-<td>是</td>
-<td>是(onedrive)</td>
-<td>否(当前窗口)</td>
-</tr>
-<tr>
-<td>win+printscreen</td>
-<td>是</td>
-<td>是</td>
-<td>否(全屏)</td>
-</tr>
-</tbody></table>
-<h5 id="2-窗口操作"><a href="#2-窗口操作" class="headerlink" title="2. 窗口操作"></a>2. 窗口操作</h5><ul>
-<li><p>切换当前工作窗口用<code>win+tab</code>或<code>alt+tab</code></p>
-</li>
-<li><p><code>alt+f4</code>关闭当前窗口</p>
-</li>
-<li><p><code>win+↓</code>缩小当前窗口至任务栏</p>
-</li>
-<li><p><code>win+↑</code>放大当前窗口至全屏</p>
-</li>
-<li><p><code>win+m</code>缩小所有窗口至任务栏,恢复缩小的窗口用<code>win+shift+m</code></p>
-</li>
-<li><p><code>win+d</code>缩小所有窗口至任务栏,恢复缩小的窗口用<code>win+d</code></p>
-</li>
-</ul>
-<h5 id="3-文件操作"><a href="#3-文件操作" class="headerlink" title="3. 文件操作"></a>3. 文件操作</h5><ul>
-<li><p><code>win+e</code>打开资源管理器</p>
-</li>
-<li><p><code>win+shift+n</code>新建文件夹</p>
-</li>
-<li><p><code>选中文件+f2</code>文件重命名</p>
-</li>
-<li><p><code>alt+double click</code>查看文件属性</p>
-</li>
-<li><p><code>选中文件+ctrl+d</code>删除文件(不可恢复)</p>
-</li>
-</ul>
-<h5 id="4-其他"><a href="#4-其他" class="headerlink" title="4. 其他"></a>4. 其他</h5><ul>
-<li><p><code>win+a</code>打开通知面板</p>
-</li>
-<li><p><code>win+p</code>打开投影(此电脑投影到同一局域网下别的设备)</p>
-</li>
-<li><p><code>win+k</code>同一局域网下别的设备(智能手机)投影到此电脑</p>
-</li>
-<li><p><code>win+t</code>任务栏切换图标,配合<code>win+shift+t</code>和<code>win+number</code>使用效果更佳</p>
-</li>
-<li><p><code>win+break</code>控制面板中的系统界面(设置环境变量佷方便)</p>
-</li>
-<li><p><code>win+r</code>打开运行界面(输入后可以快捷地打开一些小工具)</p>
-</li>
-</ul>
-<h3 id="windows10运行界面"><a href="#windows10运行界面" class="headerlink" title="windows10运行界面"></a>windows10运行界面</h3><ul>
-<li><p>mspaint—画图工具</p>
-</li>
-<li><p>osk—虚拟键盘(一些tablet computer会用到)</p>
-</li>
-<li><p>psr—步骤记录器</p>
-</li>
-<li><p>ftp—windows10自带的文件传输协议(其他版本的windows应该也有)</p>
-</li>
-<li><p>notepad—windows最**的记事本(推荐用notepad++,你会爱上它)</p>
-</li>
-<li><p>sysdm.cpl—打开系统属性界(可以方便地设置远程协助)</p>
-</li>
-<li><p>mstsc(microsoft terminal services client)—打开远程桌面连接(remote desktop connecting)</p>
-</li>
-<li><p>cmd—windows自带的dos系统</p>
-</li>
-</ul>
-<hr>
-<p>ps:由于正在身为学生的博主正在学习英语所以会穿插一些英语不要见怪…</p>
-<p>and:未完待续…</p>
-<p>other:一些格式上的问题不习惯的话<a href="../item/example/windows10-hotkey.html">点我</a></p>
-]]></content>
-      <tags>
-        <tag>DOS</tag>
-        <tag>hotkey</tag>
       </tags>
   </entry>
   <entry>
@@ -935,50 +675,6 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>风往南吹-想法</title>
-    <url>/articles/p18.html</url>
-    <content><![CDATA[<p><meting-js server="netease" type="song" id="145586"></meting-js></p>
-<p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
-<p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
-<p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
-<p>2018-03-20<br>原文：疼痛让我麻木的大脑清醒了一些，我内心里要把这种横来的力量化作工作上的动力，为了我的工作，我失去了曾经认为要相伴一生的微微，所以我唯一能继续做的，就是努力地去工作，我失去的，不能白失去。<br>想法：补偿心理，失去的想要以别的方式补回来[呲牙]</p>
-<p>2018-03-20<br>原文：嗯，该过去的就是会过去，不过一切都没关系，因为昨天总会被今天代替，今天又会很快被明天代替，所以人都该有希望，因为没有力量能阻挡明天的到来。<br>想法：</p>
-<p>2018-03-20<br>原文：有时候我觉得世界就想一台计算精确的计算机，每一个人都在其中，接受着它的安排。<br>想法：</p>
-<p>2018-03-20<br>原文：我心里想，嘿，我这总花公司钱请客吃饭的，到头来还总能加薪受表扬，这，这何乐而不为呢？用脑子挣钱和用腿挣钱就差这个区别，呵呵。<br>想法：</p>
-<p>2018-03-20<br>原文：因为我一直认为接吻时睁着眼的女人不值得信任<br>想法：</p>
-<p>2018-03-20<br>原文：不过每当我在回忆当时的事情，就嘲笑自己的无知和幼稚，殊不知张哥每次关心我伤口的时候，实际上就是在提醒我，他曾经为我的生命都做出过贡献，让我觉得为他做事是天经地义一般。<br>想法：</p>
-<p>2018-03-20<br>原文：两个人好了容易，分开就恶心了。<br>想法：</p>
-<p>2018-03-20<br>原文：我对女人的手非常敏感，可能大家对女人的手散发女人味很难理解？其实我觉得这只是种感觉，很细、很长又很肉乎的就是女人味的那种。<br>想法：</p>
-<p>2018-03-20<br>原文：自从经历了张全佑的那次事情之后，我一直感觉自己太累了，体力加脑力都在辛苦，所以我刚躺下就已经睡着了。<br>想法：过了35岁就干不动了，这是亚健康ಥ_ಥ</p>
-<p>2018-03-20<br>原文：因为我发现，我真心的爱整体的人们，我爱这片土地，但又痛恨每一个单独的人。<br>想法：每一个人都是可爱的，但是分开看又是另一回事了(＠_＠;)</p>
-<p>2018-03-20<br>原文：做人、做公司都是这样，如果不向上发展了，脚步一旦停滞就会后退，就像逆水行舟。<br>想法：永远不要让自己太安逸(๑•̀ㅂ•́)ง</p>
-<p>2018-03-21<br>原文：但是问题没有我想象的那般简单，因为当一个集体不能团结一致工作的话，那麻烦根本就是你难以想象的。交待下去的事情，员工还是正常地去做，但是你就是感觉很别扭，总是在某个地方让你觉得吃惊，就好像有很大仇恨一样，这就是内斗的痛苦。<br>想法：</p>
-<p>2018-03-21<br>原文：我发现，这款游戏真的很好玩，关键是它代表的风格，是一种更高更强的味道。和真实生活中的竞争颇有相似，而且它在游戏开始的时候，基本上是公平的，而且比赛双方的机会也是一样的。这点和生活不同，生活中除了时间外，就没有公平可言了。<br>想法：quake3，《雷神之锤：竞技场》是2001年由id software推出的吃鸡游戏（没错，最早的第一人称fps3D实施对抗类打枪游戏▄█▀█●），id software的每一款游戏都在挑战显卡和CPU的最高性能，推动着硬件的不断发展（就像现在的王者荣耀ヾ(≧O≦)〃嗷~）</p>
-<p>2018-03-21<br>原文：现在到好，我开始烦恼女人，因为前来和她说话的人太多了，总会碍到我喝酒。不过对这些网友前来约她，我心里也有反感，只是我自己告诉自己不能表现出来，否则又会有可能发生一段好开始不好终结的感情，这是我最不希望的感情，因为我觉得男人扔到感情里，是在糟蹋自己，而且我已经累了。<br>想法：</p>
-<p>2018-03-21<br>原文：在这个时候，我突然对女人产生一种厌恶，因为我当时就认为这钱不会丢失，只要我安排得当。<br>想法：女人的可怕你不懂，世界上最可怕的动物莫过于女人╥﹏╥</p>
-<p>2018-03-21<br>原文：饭菜基本上都是我们吃个刚好，没有过多的讲究排场。看来，富贵不是吃的。<br>想法：</p>
-<p>2018-03-21<br>原文：我听完这话后，我都呆住了。因为我一直认为的大好人、大男人居然是这样卑鄙龌龊。还好意思向一个弱不禁风的女孩子要分手费，而且张口还不是小数。我刹那间感觉天旋地转，好像天和地是掉过来的，原来认为是好的，居然都是坏的。我的世界观都跌进了混乱当众，一直认为正确的事情被全盘推翻了一样，不由得让我心里一阵抽搐。<br>想法：</p>
-<p>2018-03-21<br>原文：我早听说过，上海边上有一个叫周庄的地方，那里号称是东方的威尼斯，城市房子中间都是水道组成，过往的交通工具都是大小船舶，咱去不了威尼斯，就去个周庄也不错，况且还有美女相伴。<br>想法：mark一下，有机会一定要去看看～(^з^)-</p>
-<p>2018-03-21<br>原文：且站在石桥上，和站在北京山顶上看日落的感觉也完全不同，就好像是太阳特别优待你，在她就要隐去的瞬间里，把最后一点浪漫和温存都偷偷地洒给需要她的人。<br>想法：</p>
-<p>2018-03-21<br>原文：灵魂在阴影中挣扎，似乎在快乐中的一个个瞬间，总是带有空洞和压抑，让我有种余恨未消的感觉，但这种感觉来得莫名其妙，我不明白怎么会有这样的感觉。<br>想法：</p>
-<p>2018-03-21<br>原文：我开始想，是不是这个社会的教育下，人的外面和里面永远不能配套？<br>想法：</p>
-<p>2018-03-21<br>原文：飞机要是一路顺风就肯定要掉下去了，我得逆风才飞的起来啊。<br>想法：</p>
-<p>2018-03-21<br>原文：七、不过男人的这种情结也不能完全怪罪于可怜的男人，因为这个观点是女人们慢慢帮着树立起来的，她们也是帮凶。按照自己的意愿去捏造男人的性情和行为，然后又冠冕堂皇的用各种理由去指责男人的缺点，却不知道这一切的制造者才是罪魁祸首。<br>想法：</p>
-<p>2018-03-21<br>原文：二十、我的脑子一片混乱，我在颠簸中，看到罗骁呆呆的样子，不知道为什么，我开始发现这张天使面孔底下，充满了邪恶的忧郁。我发现她很反常，面孔中有内疚的表情，但却不知道像上次我受伤那样帮我止血。<br>想法：</p>
-<p>2018-03-21<br>原文：我也明白事理，人家有事情要忙，这是第一；男女经常是只能共福却不能共难这是第二；人在世界上只能相信自己，对其他人还是不要抱有太大的希望，否则希望越大失望越大。<br>想法：</p>
-<p>2018-03-21<br>原文：我在想，为什么会这样呢？命运为什么总捉弄强者呢？不过我很快就冷静了下来，因为现在即便再怎么样，对已经发生的事情也无济于事，最应该做的，是立刻把事情查清楚，毕竟这300万不会莫名其妙的人间蒸发。<br>想法：</p>
-<p>2018-03-21<br>原文：后来我发现，罗骁这种成熟的女人，似乎已经被社会沾染的太油滑，太圆滑了，根本就不能够完全赤诚相待。虽然也不知道罗骁究竟是怎么圆滑，但就是感觉相处，她的处事方式让我产生了一种危机感。也许女人注定就不要太强，否则就只能找那些可以与她互补的人才可以相安无事的在一起。或者我这样说欠缺公平，毕竟我现在的情况让任何人难以有安全感，而罗骁这样的女人最需要的就是安全感。<br>想法：</p>
-<p>2018-03-21<br>原文：生活往往是出人意料的，也许你一直以为是好的，实际却是坏的。不过你一直怀疑的，也许反而是最好的。<br>想法：</p>
-<p>2018-03-21<br>原文：一阵风从我的右边刮来，好冷，冷的刺骨，怎么风向南刮会冷呢？我混沌的脑子用唯一剩下的智慧思考这个问题。！！！！原来，现在刮的是北风啊，原来风往南吹，吹的却是北风，难怪我一直错觉风往南吹时是那么温暖，原来是刺骨的北风。怪不得我以为的好人却都害了我，而爱我的人却总是离开自己，原来，我早就是个自以为是的瞎子了……<br>想法：男主弥留之际的顿悟，看的不是太懂(°ー°〃)</p>
-<p>2018-03-21<br>原文：我既然已经表示了辞职，就不会再回头，否则就算回头了，也未必能得到重用。<br>想法：辞职上司挽留只是礼貌性的，想好再辞职，提出辞职就不能再待下去了(。_。)</p>
-<p>原文阅读☞<a href="/assets/files/1206665799.txt">风往南吹.TXT</a>，结局泪目T_T，又被作者摆了一道</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>reading book</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>官网信息更新获得通知</title>
     <url>/articles/get-website-message-alert.html</url>
     <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
@@ -1087,30 +783,6 @@ public class Main {
 ]]></content>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>My idol--Obama</title>
-    <url>/articles/p6.html</url>
-    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
-    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
-their own idol.Maybe actor singer or other famous people.
-    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
-humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
-<a id="more"></a>
-    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
-without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
-    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
-withhis daughter whenever how busy he is.
-    Oboma is so great person that's why I like him.
-
-<p>附：</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1234,31 +906,222 @@ withhis daughter whenever how busy he is.
       </tags>
   </entry>
   <entry>
-    <title>关于java的各种包</title>
-    <url>/articles/p9.html</url>
-    <content><![CDATA[<blockquote>
-<p>在整个JavaSE API中，大约包含1 200个包，总体来看，包名第一个名称主要有3种：java、javax和org。其中以java开头的包名是基础语言包，以javax开头的属于扩展包（其中x是extend的简写），而以org开头的则是第三方组织提供的功能包（organization的简写）。<br>下面简单介绍几个Java SE API的主要包。<br>（1）java．lang，是Java语言的核心包，是编写Java程序所需要的基本类和接口，包括Object类、System类、Class类、异常处理类、线程类等。这个包由编译器自动引入。<br>（2）java．applet，提供Applet执行时需要的类。<br>（3）java．awt，提供操作图形用户界面的基本功能。<br>（4）java．io，提供Java程序进行输入输出的类，以及目录和文件管理类。<br>（5）java．net，提供实现网络功能。<br>（6）java．util，提供实用程序类及集合类等常用的工具类。<br>（7）java．sql，提供使Java程序具有访问不同数据库的能力。<br>（8）java．rmi，提供远程连接与载入，实现了远程方法调用的功能。</p>
+    <title>ajax异步加载</title>
+    <url>/articles/p12.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
+<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre><h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
+xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
+xhr.onload = function () {
+    var data = JSON.parse(xhr.responseText);
+    doSomething(data);
+}
+xhr.send();</code></pre>
+<ol>
+<li>其中<code>xhr.open();</code>有3个传入参数,第一个是数据传输的方式,最常用的就是<code>post</code>,<code>get</code>,<code>put</code>,<code>delect</code>了.第二个是后端的URL,值得注意的是如果是<strong>跨域</strong>的话,需要在后端PHP代码前添加<code>header(&quot;Access-Control-Allow-Origin: *&quot;);</code>,或者用代理.<br>第三参数是Boolean型的可选项,表示是否异步加载;</li>
+<li><code>xhr.onload();</code>是在数据加载完成后要处理的事情;也可以用<code>xhr.onreadystatechange=doSomething;</code>.<blockquote>
+<p>onreadystatechange 是一个事件句柄。它的值 (state_Change) 是一个函数的名称，当 XMLHttpRequest 对象的状态发生改变时，会触发此函数。状态从 0 (uninitialized) 到 4 (complete) 进行变化。仅在状态为 4 时，我们才执行代码。</p>
 </blockquote>
-<h3 id="java-util-Arrays"><a href="#java-util-Arrays" class="headerlink" title="java.util.Arrays;"></a>java.util.Arrays;</h3><p>usage：</p>
-<pre><code class="java">    import java.util.Arrays;
-
-    Arrays.sort(arr);//升序排序
-    Arrays.toString(arr);//将数组转为字符串</code></pre>
-<h3 id="java-util-Scanner"><a href="#java-util-Scanner" class="headerlink" title="java.util.Scanner;"></a>java.util.Scanner;</h3><pre><code class="java">import java.util.Scanner;
-
-Scanner input = new Scanner(System.in);
-String name=input.next();
-int num=input.nextIn();</code></pre>
-<h3 id="关于equals；"><a href="#关于equals；" class="headerlink" title="关于equals；"></a>关于equals；</h3><p><img src="http://img.mukewang.com/53703cb10001f78a06340312.jpg" alt="picture" title="picture"></p>
-<pre><code class="java">import java.util.*;
-if( a!=null &amp;&amp; a.equals(b) ){.............}
-
-if(Objects.equals(a,b)){.......}
-</code></pre>
-<p>more…click <a href="https://docs.oracle.com/javase/9/index.html" target="_blank" rel="noopener">docs.oracle.com</a></p>
+</li>
+<li>最后一个<code>xhr.send();</code>就是将请求发送到服务器端了;</li>
+</ol>
+<h3 id="使用jquery封装的-ajax-和-getJSON-函数"><a href="#使用jquery封装的-ajax-和-getJSON-函数" class="headerlink" title="使用jquery封装的$ajax()和$getJSON()函数"></a>使用jquery封装的$ajax()和$getJSON()函数</h3><ul>
+<li>$ajax比较灵活哦,异步加载任何格式的数据;<pre><code class="javascript">$.ajax({
+  type: &quot;POST&quot;,//像登陆一样的比较重要的数据要用post,放进请求体里哦;
+  url: &quot;http://madeai.cn/api&quot;,
+  dataType: &quot;json&quot;,
+  data: {
+      username:444,
+      password:6666//用md5签名,数据传输更安全;
+  },
+  success: function (obj) {
+      doSomething(obj);
+  },
+  error: function(XMLHttpRequest, textStatus, errorThrown) {
+      console.log(XMLHttpRequest.status,XMLHttpRequest.status,textStatus);
+  },</code></pre>
+</li>
+<li>用$getJSON()来获取json数据;<pre><code class="javascript">$.getJSON(&quot;http://madeai.cn/api&quot;, &quot;&quot;, function (data) {
+  $.each(data[&quot;result&quot;].tracks, function (i, item) {//each循环 使用$.each方法遍历返回的数据data
+  /*doSomething;
+   *function();中第一个参数是数组的索引index,第二个是原数组对象;
+   */
+  });
+});</code></pre>
+</li>
+</ul>
+<p>jquery还封装了类似<code>$get()</code>,<code>$.post()</code>的函数;</p>
+<hr>
+<p>demo click <a href="https://huangyebiaoke.github.io/item/example/ajax&json.html" target="_blank" rel="noopener">here</a></p>
 ]]></content>
       <tags>
-        <tag>Java</tag>
+        <tag>JS</tag>
+        <tag>AJAX</tag>
+        <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网红辞职信</title>
+    <url>/articles/p15.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
+<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre><p>头条上的视频</p>
+{% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
+
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式:"></a>样式:</h4><pre><code>&lt;style&gt;
+    .main{
+        width: 500px;
+        height: 250px;
+        border: 2px solid black;
+        margin: 0 auto;
+        position:absolute;
+        left: 500px;
+    }
+    .title,.chose{
+        text-align: center;
+    }
+    .chose{
+        margin:40px;
+    }
+    .yes{
+        margin-right: 40px;
+    }
+&lt;/style&gt;</code></pre><h4 id="dom树"><a href="#dom树" class="headerlink" title="dom树:"></a>dom树:</h4><pre><code class="html">&lt;div class=&quot;main&quot;&gt;
+    &lt;h2 class=&quot;title&quot;&gt;辞职信&lt;/h2&gt;
+    &lt;article&gt;老板我要辞职&lt;img width=&quot;100&quot; src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1530346447488&amp;di=cdd760f50b3188a667921dc3de943d38&amp;imgtype=0&amp;src=http%3A%2F%2F1873.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2011%2F5%2F3%2F13%2F13%2Fu115243949_1306e5597e5g214.gif&quot;&gt;,请批准!&lt;/article&gt;
+    &lt;div class=&quot;chose&quot;&gt;&lt;button class=&quot;yes&quot; id=&quot;yes&quot;&gt;同意&lt;/button&gt;&lt;button class=&quot;no&quot; id=&quot;no&quot;&gt;不同意&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript:"></a>javascript:</h4><pre><code class="script">&lt;script type=&quot;text/javascript&quot;&gt;
+    var no=document.getElementById(&quot;no&quot;);
+    var yes=document.getElementById(&quot;yes&quot;);
+    var main=document.querySelector(&quot;.main&quot;);
+    no.onmouseover=function () {
+        var x=Math.random() * (500-this.offsetWidth);
+        var y=Math.random()*(250-this.offsetHeight);
+        this.setAttribute(&#39;style&#39;,
+            &#39;position:absolute;&#39;+
+            &#39;left:&#39;+x+&#39;px;&#39;+
+            &#39;top:&#39;+y+&#39;px;&#39;
+        );
+    }
+    yes.onmousedown=function () {
+    main.innerHTML=&quot;&lt;h3 style=&#39;size: 30px; color: orangered;&#39;&gt;臣退了&lt;/h3&gt;,这一退也许就是一辈子~~~~&quot;;
+    }
+&lt;/script&gt;</code></pre>
+<hr>
+<p>实际演示请转向<a href="http://blog.madeai.cn/item/example/resign.html">demo</a></p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>H5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何使用win10提高工作效率</title>
+    <url>/articles/p16.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/windows-icon.png" alt="windows-icon"></p>
+<a id="more"></a>
+<p><meting-js server="netease" type="song" id="5197160"></meting-js></p>
+<h3 id="windows-10-快捷键"><a href="#windows-10-快捷键" class="headerlink" title="windows 10 快捷键"></a>windows 10 快捷键</h3><h5 id="1-截图"><a href="#1-截图" class="headerlink" title="1. 截图"></a>1. 截图</h5><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>是否保存到剪贴板</th>
+<th>是否保存到目录</th>
+<th>是否可选区域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>win+shift+s</td>
+<td>是</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>printscreen</td>
+<td>是</td>
+<td>是(onedrive)</td>
+<td>否(全屏)</td>
+</tr>
+<tr>
+<td>alt+printscreen</td>
+<td>是</td>
+<td>是(onedrive)</td>
+<td>否(当前窗口)</td>
+</tr>
+<tr>
+<td>win+printscreen</td>
+<td>是</td>
+<td>是</td>
+<td>否(全屏)</td>
+</tr>
+</tbody></table>
+<h5 id="2-窗口操作"><a href="#2-窗口操作" class="headerlink" title="2. 窗口操作"></a>2. 窗口操作</h5><ul>
+<li><p>切换当前工作窗口用<code>win+tab</code>或<code>alt+tab</code></p>
+</li>
+<li><p><code>alt+f4</code>关闭当前窗口</p>
+</li>
+<li><p><code>win+↓</code>缩小当前窗口至任务栏</p>
+</li>
+<li><p><code>win+↑</code>放大当前窗口至全屏</p>
+</li>
+<li><p><code>win+m</code>缩小所有窗口至任务栏,恢复缩小的窗口用<code>win+shift+m</code></p>
+</li>
+<li><p><code>win+d</code>缩小所有窗口至任务栏,恢复缩小的窗口用<code>win+d</code></p>
+</li>
+</ul>
+<h5 id="3-文件操作"><a href="#3-文件操作" class="headerlink" title="3. 文件操作"></a>3. 文件操作</h5><ul>
+<li><p><code>win+e</code>打开资源管理器</p>
+</li>
+<li><p><code>win+shift+n</code>新建文件夹</p>
+</li>
+<li><p><code>选中文件+f2</code>文件重命名</p>
+</li>
+<li><p><code>alt+double click</code>查看文件属性</p>
+</li>
+<li><p><code>选中文件+ctrl+d</code>删除文件(不可恢复)</p>
+</li>
+</ul>
+<h5 id="4-其他"><a href="#4-其他" class="headerlink" title="4. 其他"></a>4. 其他</h5><ul>
+<li><p><code>win+a</code>打开通知面板</p>
+</li>
+<li><p><code>win+p</code>打开投影(此电脑投影到同一局域网下别的设备)</p>
+</li>
+<li><p><code>win+k</code>同一局域网下别的设备(智能手机)投影到此电脑</p>
+</li>
+<li><p><code>win+t</code>任务栏切换图标,配合<code>win+shift+t</code>和<code>win+number</code>使用效果更佳</p>
+</li>
+<li><p><code>win+break</code>控制面板中的系统界面(设置环境变量佷方便)</p>
+</li>
+<li><p><code>win+r</code>打开运行界面(输入后可以快捷地打开一些小工具)</p>
+</li>
+</ul>
+<h3 id="windows10运行界面"><a href="#windows10运行界面" class="headerlink" title="windows10运行界面"></a>windows10运行界面</h3><ul>
+<li><p>mspaint—画图工具</p>
+</li>
+<li><p>osk—虚拟键盘(一些tablet computer会用到)</p>
+</li>
+<li><p>psr—步骤记录器</p>
+</li>
+<li><p>ftp—windows10自带的文件传输协议(其他版本的windows应该也有)</p>
+</li>
+<li><p>notepad—windows最**的记事本(推荐用notepad++,你会爱上它)</p>
+</li>
+<li><p>sysdm.cpl—打开系统属性界(可以方便地设置远程协助)</p>
+</li>
+<li><p>mstsc(microsoft terminal services client)—打开远程桌面连接(remote desktop connecting)</p>
+</li>
+<li><p>cmd—windows自带的dos系统</p>
+</li>
+</ul>
+<hr>
+<p>ps:由于正在身为学生的博主正在学习英语所以会穿插一些英语不要见怪…</p>
+<p>and:未完待续…</p>
+<p>other:一些格式上的问题不习惯的话<a href="../item/example/windows10-hotkey.html">点我</a></p>
+]]></content>
+      <tags>
+        <tag>DOS</tag>
+        <tag>hotkey</tag>
       </tags>
   </entry>
   <entry>
@@ -1321,31 +1184,56 @@ if(Objects.equals(a,b)){.......}
       </tags>
   </entry>
   <entry>
-    <title>git创建版本库和关联远程库</title>
-    <url>/articles/p8.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
-<a id="more"></a>
-<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
-<li>mkdir LearningDataStructure//创建本地文件夹</li>
-<li>cd LearningDataStructure//进入文件夹</li>
-<li>pwd//显示当前目录<pre><code class="bash"> /e/LearningDataStructure</code></pre>
-</li>
-<li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li>
-<li>git add README.md//把文件添加到仓库</li>
-<li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash"> [master (root-commit) cb926e7] wrote a readme file
-  1 file changed, 2 insertions(+)
-  create mode 100644 readme.txt</code></pre>
-<h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
-<li>click “Create a new repository”</li>
-<li>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
-<li>git remote remove origin//取消本地关联远程库</li>
-<li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
-</ol>
-<hr>
-<p>附:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a></p>
+    <title>风往南吹-想法</title>
+    <url>/articles/p18.html</url>
+    <content><![CDATA[<p><meting-js server="netease" type="song" id="145586"></meting-js></p>
+<p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
+<p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
+<p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
+<p>2018-03-20<br>原文：疼痛让我麻木的大脑清醒了一些，我内心里要把这种横来的力量化作工作上的动力，为了我的工作，我失去了曾经认为要相伴一生的微微，所以我唯一能继续做的，就是努力地去工作，我失去的，不能白失去。<br>想法：补偿心理，失去的想要以别的方式补回来[呲牙]</p>
+<p>2018-03-20<br>原文：嗯，该过去的就是会过去，不过一切都没关系，因为昨天总会被今天代替，今天又会很快被明天代替，所以人都该有希望，因为没有力量能阻挡明天的到来。<br>想法：</p>
+<p>2018-03-20<br>原文：有时候我觉得世界就想一台计算精确的计算机，每一个人都在其中，接受着它的安排。<br>想法：</p>
+<p>2018-03-20<br>原文：我心里想，嘿，我这总花公司钱请客吃饭的，到头来还总能加薪受表扬，这，这何乐而不为呢？用脑子挣钱和用腿挣钱就差这个区别，呵呵。<br>想法：</p>
+<p>2018-03-20<br>原文：因为我一直认为接吻时睁着眼的女人不值得信任<br>想法：</p>
+<p>2018-03-20<br>原文：不过每当我在回忆当时的事情，就嘲笑自己的无知和幼稚，殊不知张哥每次关心我伤口的时候，实际上就是在提醒我，他曾经为我的生命都做出过贡献，让我觉得为他做事是天经地义一般。<br>想法：</p>
+<p>2018-03-20<br>原文：两个人好了容易，分开就恶心了。<br>想法：</p>
+<p>2018-03-20<br>原文：我对女人的手非常敏感，可能大家对女人的手散发女人味很难理解？其实我觉得这只是种感觉，很细、很长又很肉乎的就是女人味的那种。<br>想法：</p>
+<p>2018-03-20<br>原文：自从经历了张全佑的那次事情之后，我一直感觉自己太累了，体力加脑力都在辛苦，所以我刚躺下就已经睡着了。<br>想法：过了35岁就干不动了，这是亚健康ಥ_ಥ</p>
+<p>2018-03-20<br>原文：因为我发现，我真心的爱整体的人们，我爱这片土地，但又痛恨每一个单独的人。<br>想法：每一个人都是可爱的，但是分开看又是另一回事了(＠_＠;)</p>
+<p>2018-03-20<br>原文：做人、做公司都是这样，如果不向上发展了，脚步一旦停滞就会后退，就像逆水行舟。<br>想法：永远不要让自己太安逸(๑•̀ㅂ•́)ง</p>
+<p>2018-03-21<br>原文：但是问题没有我想象的那般简单，因为当一个集体不能团结一致工作的话，那麻烦根本就是你难以想象的。交待下去的事情，员工还是正常地去做，但是你就是感觉很别扭，总是在某个地方让你觉得吃惊，就好像有很大仇恨一样，这就是内斗的痛苦。<br>想法：</p>
+<p>2018-03-21<br>原文：我发现，这款游戏真的很好玩，关键是它代表的风格，是一种更高更强的味道。和真实生活中的竞争颇有相似，而且它在游戏开始的时候，基本上是公平的，而且比赛双方的机会也是一样的。这点和生活不同，生活中除了时间外，就没有公平可言了。<br>想法：quake3，《雷神之锤：竞技场》是2001年由id software推出的吃鸡游戏（没错，最早的第一人称fps3D实施对抗类打枪游戏▄█▀█●），id software的每一款游戏都在挑战显卡和CPU的最高性能，推动着硬件的不断发展（就像现在的王者荣耀ヾ(≧O≦)〃嗷~）</p>
+<p>2018-03-21<br>原文：现在到好，我开始烦恼女人，因为前来和她说话的人太多了，总会碍到我喝酒。不过对这些网友前来约她，我心里也有反感，只是我自己告诉自己不能表现出来，否则又会有可能发生一段好开始不好终结的感情，这是我最不希望的感情，因为我觉得男人扔到感情里，是在糟蹋自己，而且我已经累了。<br>想法：</p>
+<p>2018-03-21<br>原文：在这个时候，我突然对女人产生一种厌恶，因为我当时就认为这钱不会丢失，只要我安排得当。<br>想法：女人的可怕你不懂，世界上最可怕的动物莫过于女人╥﹏╥</p>
+<p>2018-03-21<br>原文：饭菜基本上都是我们吃个刚好，没有过多的讲究排场。看来，富贵不是吃的。<br>想法：</p>
+<p>2018-03-21<br>原文：我听完这话后，我都呆住了。因为我一直认为的大好人、大男人居然是这样卑鄙龌龊。还好意思向一个弱不禁风的女孩子要分手费，而且张口还不是小数。我刹那间感觉天旋地转，好像天和地是掉过来的，原来认为是好的，居然都是坏的。我的世界观都跌进了混乱当众，一直认为正确的事情被全盘推翻了一样，不由得让我心里一阵抽搐。<br>想法：</p>
+<p>2018-03-21<br>原文：我早听说过，上海边上有一个叫周庄的地方，那里号称是东方的威尼斯，城市房子中间都是水道组成，过往的交通工具都是大小船舶，咱去不了威尼斯，就去个周庄也不错，况且还有美女相伴。<br>想法：mark一下，有机会一定要去看看～(^з^)-</p>
+<p>2018-03-21<br>原文：且站在石桥上，和站在北京山顶上看日落的感觉也完全不同，就好像是太阳特别优待你，在她就要隐去的瞬间里，把最后一点浪漫和温存都偷偷地洒给需要她的人。<br>想法：</p>
+<p>2018-03-21<br>原文：灵魂在阴影中挣扎，似乎在快乐中的一个个瞬间，总是带有空洞和压抑，让我有种余恨未消的感觉，但这种感觉来得莫名其妙，我不明白怎么会有这样的感觉。<br>想法：</p>
+<p>2018-03-21<br>原文：我开始想，是不是这个社会的教育下，人的外面和里面永远不能配套？<br>想法：</p>
+<p>2018-03-21<br>原文：飞机要是一路顺风就肯定要掉下去了，我得逆风才飞的起来啊。<br>想法：</p>
+<p>2018-03-21<br>原文：七、不过男人的这种情结也不能完全怪罪于可怜的男人，因为这个观点是女人们慢慢帮着树立起来的，她们也是帮凶。按照自己的意愿去捏造男人的性情和行为，然后又冠冕堂皇的用各种理由去指责男人的缺点，却不知道这一切的制造者才是罪魁祸首。<br>想法：</p>
+<p>2018-03-21<br>原文：二十、我的脑子一片混乱，我在颠簸中，看到罗骁呆呆的样子，不知道为什么，我开始发现这张天使面孔底下，充满了邪恶的忧郁。我发现她很反常，面孔中有内疚的表情，但却不知道像上次我受伤那样帮我止血。<br>想法：</p>
+<p>2018-03-21<br>原文：我也明白事理，人家有事情要忙，这是第一；男女经常是只能共福却不能共难这是第二；人在世界上只能相信自己，对其他人还是不要抱有太大的希望，否则希望越大失望越大。<br>想法：</p>
+<p>2018-03-21<br>原文：我在想，为什么会这样呢？命运为什么总捉弄强者呢？不过我很快就冷静了下来，因为现在即便再怎么样，对已经发生的事情也无济于事，最应该做的，是立刻把事情查清楚，毕竟这300万不会莫名其妙的人间蒸发。<br>想法：</p>
+<p>2018-03-21<br>原文：后来我发现，罗骁这种成熟的女人，似乎已经被社会沾染的太油滑，太圆滑了，根本就不能够完全赤诚相待。虽然也不知道罗骁究竟是怎么圆滑，但就是感觉相处，她的处事方式让我产生了一种危机感。也许女人注定就不要太强，否则就只能找那些可以与她互补的人才可以相安无事的在一起。或者我这样说欠缺公平，毕竟我现在的情况让任何人难以有安全感，而罗骁这样的女人最需要的就是安全感。<br>想法：</p>
+<p>2018-03-21<br>原文：生活往往是出人意料的，也许你一直以为是好的，实际却是坏的。不过你一直怀疑的，也许反而是最好的。<br>想法：</p>
+<p>2018-03-21<br>原文：一阵风从我的右边刮来，好冷，冷的刺骨，怎么风向南刮会冷呢？我混沌的脑子用唯一剩下的智慧思考这个问题。！！！！原来，现在刮的是北风啊，原来风往南吹，吹的却是北风，难怪我一直错觉风往南吹时是那么温暖，原来是刺骨的北风。怪不得我以为的好人却都害了我，而爱我的人却总是离开自己，原来，我早就是个自以为是的瞎子了……<br>想法：男主弥留之际的顿悟，看的不是太懂(°ー°〃)</p>
+<p>2018-03-21<br>原文：我既然已经表示了辞职，就不会再回头，否则就算回头了，也未必能得到重用。<br>想法：辞职上司挽留只是礼貌性的，想好再辞职，提出辞职就不能再待下去了(。_。)</p>
+<p>原文阅读☞<a href="/assets/files/1206665799.txt">风往南吹.TXT</a>，结局泪目T_T，又被作者摆了一道</p>
 ]]></content>
       <tags>
-        <tag>Git</tag>
+        <tag>think</tag>
+        <tag>reading book</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>data-type-of-java</title>
+    <url>/articles/data-type-of-java.html</url>
+    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -1434,6 +1322,86 @@ typedef struct{
       </tags>
   </entry>
   <entry>
+    <title>git创建版本库和关联远程库</title>
+    <url>/articles/p8.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
+<a id="more"></a>
+<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
+<li>mkdir LearningDataStructure//创建本地文件夹</li>
+<li>cd LearningDataStructure//进入文件夹</li>
+<li>pwd//显示当前目录<pre><code class="bash"> /e/LearningDataStructure</code></pre>
+</li>
+<li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li>
+<li>git add README.md//把文件添加到仓库</li>
+<li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash"> [master (root-commit) cb926e7] wrote a readme file
+  1 file changed, 2 insertions(+)
+  create mode 100644 readme.txt</code></pre>
+<h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
+<li>click “Create a new repository”</li>
+<li>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
+<li>git remote remove origin//取消本地关联远程库</li>
+<li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
+</ol>
+<hr>
+<p>附:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于java的各种包</title>
+    <url>/articles/p9.html</url>
+    <content><![CDATA[<blockquote>
+<p>在整个JavaSE API中，大约包含1 200个包，总体来看，包名第一个名称主要有3种：java、javax和org。其中以java开头的包名是基础语言包，以javax开头的属于扩展包（其中x是extend的简写），而以org开头的则是第三方组织提供的功能包（organization的简写）。<br>下面简单介绍几个Java SE API的主要包。<br>（1）java．lang，是Java语言的核心包，是编写Java程序所需要的基本类和接口，包括Object类、System类、Class类、异常处理类、线程类等。这个包由编译器自动引入。<br>（2）java．applet，提供Applet执行时需要的类。<br>（3）java．awt，提供操作图形用户界面的基本功能。<br>（4）java．io，提供Java程序进行输入输出的类，以及目录和文件管理类。<br>（5）java．net，提供实现网络功能。<br>（6）java．util，提供实用程序类及集合类等常用的工具类。<br>（7）java．sql，提供使Java程序具有访问不同数据库的能力。<br>（8）java．rmi，提供远程连接与载入，实现了远程方法调用的功能。</p>
+</blockquote>
+<h3 id="java-util-Arrays"><a href="#java-util-Arrays" class="headerlink" title="java.util.Arrays;"></a>java.util.Arrays;</h3><p>usage：</p>
+<pre><code class="java">    import java.util.Arrays;
+
+    Arrays.sort(arr);//升序排序
+    Arrays.toString(arr);//将数组转为字符串</code></pre>
+<h3 id="java-util-Scanner"><a href="#java-util-Scanner" class="headerlink" title="java.util.Scanner;"></a>java.util.Scanner;</h3><pre><code class="java">import java.util.Scanner;
+
+Scanner input = new Scanner(System.in);
+String name=input.next();
+int num=input.nextIn();</code></pre>
+<h3 id="关于equals；"><a href="#关于equals；" class="headerlink" title="关于equals；"></a>关于equals；</h3><p><img src="http://img.mukewang.com/53703cb10001f78a06340312.jpg" alt="picture" title="picture"></p>
+<pre><code class="java">import java.util.*;
+if( a!=null &amp;&amp; a.equals(b) ){.............}
+
+if(Objects.equals(a,b)){.......}
+</code></pre>
+<p>more…click <a href="https://docs.oracle.com/javase/9/index.html" target="_blank" rel="noopener">docs.oracle.com</a></p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>My idol--Obama</title>
+    <url>/articles/p6.html</url>
+    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
+    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
+their own idol.Maybe actor singer or other famous people.
+    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
+humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
+<a id="more"></a>
+    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
+without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
+    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
+withhis daughter whenever how busy he is.
+    Oboma is so great person that's why I like him.
+
+<p>附：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>什么是伴随矩阵？</title>
     <url>/articles/what-is-adjoint-matrix.html</url>
     <content><![CDATA[<img src="/assets/blogimg/伴随矩阵.jpg">
@@ -1458,6 +1426,38 @@ a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</su
 ]]></content>
       <tags>
         <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CMD批处理命令的强大</title>
+    <url>/articles/p11.html</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre><p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
+<ol>
+<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
+<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
+<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
+<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
+<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot;</code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
+<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
+</ol>
+<ul>
+<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
+<li>参考：</li>
+</ul>
+<ol>
+<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
+<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
+<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
+<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
+</ol>
+<ul>
+<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>DOS</tag>
+        <tag>CMD</tag>
+        <tag>.bat</tag>
       </tags>
   </entry>
 </search>
