@@ -4,7 +4,6 @@
     <title>关于mysql</title>
     <url>/articles/about-mysql.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
-<a id="more"></a>
 <h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
 <pre><code class="plsql">    use mysql;//选择mysql库
     update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
@@ -86,7 +85,6 @@ VALUES
     <title>关于Android线程</title>
     <url>/articles/about-android-thread.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/andy-lg.png" alt="banner"></p>
-<a id="more"></a>
 <h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>众所周知,android只能在主线程中更新UI视图,而一些诸如网络请求,socket通讯和Json解析之类比较耗时的操作一般放在子线程(用线程池来管理便于回收)中处理,否则会阻塞(zu se)UI线程.那么子线程中处理的结果怎么显示出来呢?有三种方法:</p>
 <ul>
 <li>使用RunOnUiThread切回主线程;</li>
@@ -169,11 +167,18 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
       </tags>
   </entry>
   <entry>
+    <title>Java数据类型</title>
+    <url>/articles/data-type-of-java.html</url>
+    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>&lt;算法第四版&gt;最佳实践</title>
     <url>/articles/algorithms-fourth-edition-best-practice.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
-<a id="more"></a>
-
 <h3 id="bucket-sort"><a href="#bucket-sort" class="headerlink" title="bucket sort"></a>bucket sort</h3><p><strong>桶排序</strong>的基本思路是遍历一个待排的数组,把每个数出现的次数记录到一个新的数组里面,那这个新的数组里的下标就是待排序的数组的值.</p>
 <p>设待排数组是arr,记录待排数组的桶是bucket让我们来理一下思路:</p>
 <ol>
@@ -323,52 +328,20 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
       </tags>
   </entry>
   <entry>
-    <title>自动出题机</title>
-    <url>/articles/automatic-generate-question.html</url>
-    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre>
-<h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
-<p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
-<p>然后把excel导入数据库.</p>
-<h3 id="step2-后端API的设计-PHP是web最牛逼的语言"><a href="#step2-后端API的设计-PHP是web最牛逼的语言" class="headerlink" title="step2:后端API的设计(PHP是web最牛逼的语言)"></a>step2:后端API的设计(PHP是web最牛逼的语言)</h3><ol>
-<li><p>先来说一下需求吧,首先是像从数据库中随机抽取100道题,在把这些题目转为json格式(这里有一个不理想的地方是答案也一起包含进去了,这个在v2.0中改进)向前端提供.然后从前端接受json格式的分数等用户信息.</p>
-</li>
-<li><p>需求弄清楚就好办了,在时间紧迫和项目比较小的情况下用PHP做后端是比较理想的.结果向前端提供题目数据的<code>handle.php</code>减掉注释只用了<font color="red">26-9</font>行,从前端接收信息的<code>report.php</code>只用了<font color="red">20-4</font>行.让我不禁感叹PHP是web开发对新人最友好的后端语言!!<img src="https://i.loli.net/2018/09/24/5ba8724b10653.jpg" alt="5ba8724b10653"></p>
-</li>
-</ol>
-<h3 id="step3-前端页面设计-主要用jquery"><a href="#step3-前端页面设计-主要用jquery" class="headerlink" title="step3:前端页面设计(主要用jquery)"></a>step3:前端页面设计(主要用jquery)</h3><p>前端css用的很少主要是展示一个原型,在v2.0后会用现成的工具继续美化,主要是用js生成的页面</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
-<p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
-<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
-<p><strong>todo list</strong></p>
-<ul>
-<li><p><input disabled type="checkbox">  单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
-</li>
-<li><p><input checked disabled type="checkbox">  添加rank排行榜</p>
-</li>
-<li><p><input disabled type="checkbox">  添加评论系统</p>
-</li>
-<li><p><input checked disabled type="checkbox">  css美化页面</p>
-</li>
-<li><p><input checked disabled type="checkbox">  更友好的交互体验</p>
-</li>
-</ul>
-<p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
+    <title>欧拉公式の推导</title>
+    <url>/articles/euler-s-formula.html</url>
+    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
+<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
+<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
+<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
+<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
+<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
+<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
+<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
+<p>that is $e^{ix}=cosx+isinx$</p>
 ]]></content>
       <tags>
-        <tag>MySQL</tag>
-        <tag>PHP</tag>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java数据类型</title>
-    <url>/articles/data-type-of-java.html</url>
-    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -483,21 +456,43 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>欧拉公式の推导</title>
-    <url>/articles/euler-s-formula.html</url>
-    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
-<a id="more"></a>
-<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
-<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
-<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
-<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
-<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
-<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
-<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
-<p>that is $e^{ix}=cosx+isinx$</p>
+    <title>自动出题机</title>
+    <url>/articles/automatic-generate-question.html</url>
+    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre>
+<h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
+<p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
+<p>然后把excel导入数据库.</p>
+<h3 id="step2-后端API的设计-PHP是web最牛逼的语言"><a href="#step2-后端API的设计-PHP是web最牛逼的语言" class="headerlink" title="step2:后端API的设计(PHP是web最牛逼的语言)"></a>step2:后端API的设计(PHP是web最牛逼的语言)</h3><ol>
+<li><p>先来说一下需求吧,首先是像从数据库中随机抽取100道题,在把这些题目转为json格式(这里有一个不理想的地方是答案也一起包含进去了,这个在v2.0中改进)向前端提供.然后从前端接受json格式的分数等用户信息.</p>
+</li>
+<li><p>需求弄清楚就好办了,在时间紧迫和项目比较小的情况下用PHP做后端是比较理想的.结果向前端提供题目数据的<code>handle.php</code>减掉注释只用了<font color="red">26-9</font>行,从前端接收信息的<code>report.php</code>只用了<font color="red">20-4</font>行.让我不禁感叹PHP是web开发对新人最友好的后端语言!!<img src="https://i.loli.net/2018/09/24/5ba8724b10653.jpg" alt="5ba8724b10653"></p>
+</li>
+</ol>
+<h3 id="step3-前端页面设计-主要用jquery"><a href="#step3-前端页面设计-主要用jquery" class="headerlink" title="step3:前端页面设计(主要用jquery)"></a>step3:前端页面设计(主要用jquery)</h3><p>前端css用的很少主要是展示一个原型,在v2.0后会用现成的工具继续美化,主要是用js生成的页面</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
+<p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
+<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
+<p><strong>todo list</strong></p>
+<ul>
+<li><p><input disabled type="checkbox">  单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
+</li>
+<li><p><input checked disabled type="checkbox">  添加rank排行榜</p>
+</li>
+<li><p><input disabled type="checkbox">  添加评论系统</p>
+</li>
+<li><p><input checked disabled type="checkbox">  css美化页面</p>
+</li>
+<li><p><input checked disabled type="checkbox">  更友好的交互体验</p>
+</li>
+</ul>
+<p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
 ]]></content>
       <tags>
-        <tag>math</tag>
+        <tag>MySQL</tag>
+        <tag>PHP</tag>
+        <tag>JS</tag>
       </tags>
   </entry>
   <entry>
@@ -530,10 +525,9 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>极限和导数</title>
+    <title>极限&amp;导数</title>
     <url>/articles/limitation-derivative.html</url>
     <content><![CDATA[<p><img src="http://pic.9ht.com/up/2016-4/201642715311.jpg" alt="title-picture"></p>
-<a id="more"></a>
 <h3 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h3><ul>
 <li>函数的极限<ul>
 <li>$frac{0}{0}; \frac{\infty}{\infty}$</li>
@@ -567,130 +561,9 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>跳跳球</title>
-    <url>/articles/mark-ball-game.html</url>
-    <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"></p>
-<a id="more"></a>
-<p>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
-    &lt;script&gt;
-        function init() {
-            setInterval(&quot;document.f.display.value=String(Number(document.f.display.value)+1)&quot;,1000);
-        }//定时器 每隔一秒加一次
-        /*function incre() {
-         document.f.display.value=String(Number(document.f.display.value)+1);
-
-         }*/
-
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init()&quot;&gt;
-    &lt;form name=&quot;f&quot;&gt;&lt;!--不写form总报错 不知道为啥--&gt;
-        &lt;input name=&quot;display&quot; type=&quot;text&quot; value=&quot;0&quot;/&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>2.<a href="/item/game/tiaotiaoball/ball1">用canvas插入img：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;ball&lt;/title&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    var img1=new Image();
-    var img2=new Image();
-    img1.src=&quot;../../images/cool.jpg&quot;;
-    img2.src=&quot;../../images/dog.gif&quot;;
-    var ctx;
-    function init(){
-        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);
-        ctx.drawImage(img1,10,20,50,50);
-        ctx.drawImage(img2,150,20,100,100);
-    }
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init();&quot;&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
-        your browser don&#39;t support convas
-    &lt;/canvas&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>3.<a href="/item/game/tiaotiaoball/ball">跳跳球：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;ball&lt;/title&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    var boxx=50,boxy=50,boxw=300,boxh=300;//盒子左上角据左边画布的距离，盒子左上角据上边画布的距离，盒子的宽高；
-    var ballx=20,bally=20,ballvx=2,ballvy=4,ballr=6;//球的初始位置（相对盒子），球的位移，球的半径；
-    var hshang=boxy+ballr,hxia=boxh+boxy-ballr,hzuo=boxx+ballr,hyou=boxw+boxx-ballr;//里面的小盒子 用于检测碰撞；
-    var ctx;//保存上下文 不太懂上下文是啥
-    function init(){
-        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);//获取canvas的上下文
-        ctx.fillStyle=&quot;rgb(200.0.0)&quot;;//设置填充颜色
-        ctx.lineWidth=6; //设置线宽
-        moveball();//先显示ball
-        setInterval(moveball,10); //setTimeout()只执行一次事件 不能重复调用moveball事件；
-    }
-    function moveball() {
-        ctx.clearRect(boxx,boxy,boxw,boxh);//擦除整个盒子包括ball 第一次运行不会有任何影响
-        moveandcheck();
-        ctx.beginPath();
-        ctx.arc(ballx,bally,ballr,0,2*Math.PI,true);//画圆
-        ctx.fill();
-        ctx.strokeRect(boxx,boxy,boxw,boxh);//画盒子
-    }
-    function moveandcheck() {//检测碰撞
-        var perballx=ballx+ballvx,perbally=bally+ballvy;
-        if(perballx&gt;hyou) {//如果超过小盒子的右边
-            ballvx=-ballvx;//改变水平方向
-            perballx=hyou; //&quot;设置下一个x等于这个边界值&quot; 没看懂啥意思；
-        }
-        if(perballx&lt;hzuo) {
-            perballx=hzuo;
-            ballvx=-ballvx;
-        }
-        if(perbally&gt;hxia) {
-            perbally=hxia;
-            ballvy=-ballvy;
-        }
-        if(perbally&lt;hshang) {
-            perbally=hshang;
-            ballvy=-ballvy;
-        }
-        ballx=perballx;
-        bally=perbally;
-    }
-    function change() {
-        ballvx=Number(document.f.vx.value);
-        ballvy=Number(document.f.vy.value);
-    }//在form标签里调用onsubmit=&quot;return change();&quot;需要设置return false不然会整个刷新页面
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init();&quot;&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
-        your browser don&#39;t support convas
-    &lt;/canvas&gt;
-    &lt;form name=&quot;f&quot; id=&quot;f&quot;&gt;
-        水平速度:&lt;input name=&quot;vx&quot; id=&quot;vx&quot; type=&quot;number&quot; value=&quot;2&quot;&gt;
-        垂直速度:&lt;input name=&quot;vy&quot; id=&quot;xy&quot; type=&quot;number&quot; value=&quot;4&quot;&gt;
-        &lt;input type=&quot;button&quot; value=&quot;change&quot; onclick=&quot;change()&quot;&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>H5</tag>
-        <tag>canvas</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>扔骰（tou）子小游戏</title>
     <url>/articles/make-dice-game.html</url>
     <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：</p>
-<a id="more"></a>
 <h3 id="demo1"><a href="#demo1" class="headerlink" title="demo1:"></a>demo1:</h3><pre><code class="javascript">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
@@ -950,43 +823,182 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>CMD批处理命令的强大</title>
-    <url>/articles/p11.html</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
-<p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
-<ol>
-<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
-<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
-<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
-<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
-<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot; </code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
-<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
-</ol>
-<ul>
-<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
-<li>参考：</li>
-</ul>
-<ol>
-<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
-<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
-<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
-<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
-</ol>
-<ul>
-<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
-</ul>
+    <title>跳跳球</title>
+    <url>/articles/mark-ball-game.html</url>
+    <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"><br>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
+    &lt;script&gt;
+        function init() {
+            setInterval(&quot;document.f.display.value=String(Number(document.f.display.value)+1)&quot;,1000);
+        }//定时器 每隔一秒加一次
+        /*function incre() {
+         document.f.display.value=String(Number(document.f.display.value)+1);
+
+         }*/
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init()&quot;&gt;
+    &lt;form name=&quot;f&quot;&gt;&lt;!--不写form总报错 不知道为啥--&gt;
+        &lt;input name=&quot;display&quot; type=&quot;text&quot; value=&quot;0&quot;/&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>2.<a href="/item/game/tiaotiaoball/ball1">用canvas插入img：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ball&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var img1=new Image();
+    var img2=new Image();
+    img1.src=&quot;../../images/cool.jpg&quot;;
+    img2.src=&quot;../../images/dog.gif&quot;;
+    var ctx;
+    function init(){
+        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);
+        ctx.drawImage(img1,10,20,50,50);
+        ctx.drawImage(img2,150,20,100,100);
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
+        your browser don&#39;t support convas
+    &lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>3.<a href="/item/game/tiaotiaoball/ball">跳跳球：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ball&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var boxx=50,boxy=50,boxw=300,boxh=300;//盒子左上角据左边画布的距离，盒子左上角据上边画布的距离，盒子的宽高；
+    var ballx=20,bally=20,ballvx=2,ballvy=4,ballr=6;//球的初始位置（相对盒子），球的位移，球的半径；
+    var hshang=boxy+ballr,hxia=boxh+boxy-ballr,hzuo=boxx+ballr,hyou=boxw+boxx-ballr;//里面的小盒子 用于检测碰撞；
+    var ctx;//保存上下文 不太懂上下文是啥
+    function init(){
+        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);//获取canvas的上下文
+        ctx.fillStyle=&quot;rgb(200.0.0)&quot;;//设置填充颜色
+        ctx.lineWidth=6; //设置线宽
+        moveball();//先显示ball
+        setInterval(moveball,10); //setTimeout()只执行一次事件 不能重复调用moveball事件；
+    }
+    function moveball() {
+        ctx.clearRect(boxx,boxy,boxw,boxh);//擦除整个盒子包括ball 第一次运行不会有任何影响
+        moveandcheck();
+        ctx.beginPath();
+        ctx.arc(ballx,bally,ballr,0,2*Math.PI,true);//画圆
+        ctx.fill();
+        ctx.strokeRect(boxx,boxy,boxw,boxh);//画盒子
+    }
+    function moveandcheck() {//检测碰撞
+        var perballx=ballx+ballvx,perbally=bally+ballvy;
+        if(perballx&gt;hyou) {//如果超过小盒子的右边
+            ballvx=-ballvx;//改变水平方向
+            perballx=hyou; //&quot;设置下一个x等于这个边界值&quot; 没看懂啥意思；
+        }
+        if(perballx&lt;hzuo) {
+            perballx=hzuo;
+            ballvx=-ballvx;
+        }
+        if(perbally&gt;hxia) {
+            perbally=hxia;
+            ballvy=-ballvy;
+        }
+        if(perbally&lt;hshang) {
+            perbally=hshang;
+            ballvy=-ballvy;
+        }
+        ballx=perballx;
+        bally=perbally;
+    }
+    function change() {
+        ballvx=Number(document.f.vx.value);
+        ballvy=Number(document.f.vy.value);
+    }//在form标签里调用onsubmit=&quot;return change();&quot;需要设置return false不然会整个刷新页面
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
+        your browser don&#39;t support convas
+    &lt;/canvas&gt;
+    &lt;form name=&quot;f&quot; id=&quot;f&quot;&gt;
+        水平速度:&lt;input name=&quot;vx&quot; id=&quot;vx&quot; type=&quot;number&quot; value=&quot;2&quot;&gt;
+        垂直速度:&lt;input name=&quot;vy&quot; id=&quot;xy&quot; type=&quot;number&quot; value=&quot;4&quot;&gt;
+        &lt;input type=&quot;button&quot; value=&quot;change&quot; onclick=&quot;change()&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
 ]]></content>
       <tags>
-        <tag>CMD</tag>
-        <tag>DOS</tag>
-        <tag>.bat</tag>
+        <tag>JS</tag>
+        <tag>H5</tag>
+        <tag>canvas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ajax异步加载</title>
+    <url>/articles/p12.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre>
+<h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
+xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
+xhr.onload = function () {
+    var data = JSON.parse(xhr.responseText);
+    doSomething(data);
+}
+xhr.send();</code></pre>
+<ol>
+<li>其中<code>xhr.open();</code>有3个传入参数,第一个是数据传输的方式,最常用的就是<code>post</code>,<code>get</code>,<code>put</code>,<code>delect</code>了.第二个是后端的URL,值得注意的是如果是<strong>跨域</strong>的话,需要在后端PHP代码前添加<code>header(&quot;Access-Control-Allow-Origin: *&quot;);</code>,或者用代理.<br>第三参数是Boolean型的可选项,表示是否异步加载;</li>
+<li><code>xhr.onload();</code>是在数据加载完成后要处理的事情;也可以用<code>xhr.onreadystatechange=doSomething;</code>.<blockquote>
+<p>onreadystatechange 是一个事件句柄。它的值 (state_Change) 是一个函数的名称，当 XMLHttpRequest 对象的状态发生改变时，会触发此函数。状态从 0 (uninitialized) 到 4 (complete) 进行变化。仅在状态为 4 时，我们才执行代码。</p>
+</blockquote>
+</li>
+<li>最后一个<code>xhr.send();</code>就是将请求发送到服务器端了;</li>
+</ol>
+<h3 id="使用jquery封装的-ajax-和-getJSON-函数"><a href="#使用jquery封装的-ajax-和-getJSON-函数" class="headerlink" title="使用jquery封装的$ajax()和$getJSON()函数"></a>使用jquery封装的$ajax()和$getJSON()函数</h3><ul>
+<li>$ajax比较灵活哦,异步加载任何格式的数据;<pre><code class="javascript">$.ajax({
+  type: &quot;POST&quot;,//像登陆一样的比较重要的数据要用post,放进请求体里哦;
+  url: &quot;http://madeai.cn/api&quot;,
+  dataType: &quot;json&quot;,
+  data: {
+      username:444,
+      password:6666//用md5签名,数据传输更安全;
+  },
+  success: function (obj) {
+      doSomething(obj);
+  },
+  error: function(XMLHttpRequest, textStatus, errorThrown) {
+      console.log(XMLHttpRequest.status,XMLHttpRequest.status,textStatus);
+  },</code></pre>
+</li>
+<li>用$getJSON()来获取json数据;<pre><code class="javascript">$.getJSON(&quot;http://madeai.cn/api&quot;, &quot;&quot;, function (data) {
+  $.each(data[&quot;result&quot;].tracks, function (i, item) {//each循环 使用$.each方法遍历返回的数据data
+  /*doSomething;
+   *function();中第一个参数是数组的索引index,第二个是原数组对象;
+   */
+  });
+});</code></pre>
+</li>
+</ul>
+<p>jquery还封装了类似<code>$get()</code>,<code>$.post()</code>的函数;</p>
+<hr>
+<p>demo click <a href="https://huangyebiaoke.github.io/item/example/ajax&json.html" target="_blank" rel="noopener">here</a></p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>AJAX</tag>
+        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
     <title>网红辞职信</title>
     <url>/articles/p15.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
-<a id="more"></a>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre>
 <p>头条上的视频</p>
 {% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
@@ -1041,67 +1053,9 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>ajax异步加载</title>
-    <url>/articles/p12.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
-<a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre>
-<h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
-xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
-xhr.onload = function () {
-    var data = JSON.parse(xhr.responseText);
-    doSomething(data);
-}
-xhr.send();</code></pre>
-<ol>
-<li>其中<code>xhr.open();</code>有3个传入参数,第一个是数据传输的方式,最常用的就是<code>post</code>,<code>get</code>,<code>put</code>,<code>delect</code>了.第二个是后端的URL,值得注意的是如果是<strong>跨域</strong>的话,需要在后端PHP代码前添加<code>header(&quot;Access-Control-Allow-Origin: *&quot;);</code>,或者用代理.<br>第三参数是Boolean型的可选项,表示是否异步加载;</li>
-<li><code>xhr.onload();</code>是在数据加载完成后要处理的事情;也可以用<code>xhr.onreadystatechange=doSomething;</code>.<blockquote>
-<p>onreadystatechange 是一个事件句柄。它的值 (state_Change) 是一个函数的名称，当 XMLHttpRequest 对象的状态发生改变时，会触发此函数。状态从 0 (uninitialized) 到 4 (complete) 进行变化。仅在状态为 4 时，我们才执行代码。</p>
-</blockquote>
-</li>
-<li>最后一个<code>xhr.send();</code>就是将请求发送到服务器端了;</li>
-</ol>
-<h3 id="使用jquery封装的-ajax-和-getJSON-函数"><a href="#使用jquery封装的-ajax-和-getJSON-函数" class="headerlink" title="使用jquery封装的$ajax()和$getJSON()函数"></a>使用jquery封装的$ajax()和$getJSON()函数</h3><ul>
-<li>$ajax比较灵活哦,异步加载任何格式的数据;<pre><code class="javascript">$.ajax({
-  type: &quot;POST&quot;,//像登陆一样的比较重要的数据要用post,放进请求体里哦;
-  url: &quot;http://madeai.cn/api&quot;,
-  dataType: &quot;json&quot;,
-  data: {
-      username:444,
-      password:6666//用md5签名,数据传输更安全;
-  },
-  success: function (obj) {
-      doSomething(obj);
-  },
-  error: function(XMLHttpRequest, textStatus, errorThrown) {
-      console.log(XMLHttpRequest.status,XMLHttpRequest.status,textStatus);
-  },</code></pre>
-</li>
-<li>用$getJSON()来获取json数据;<pre><code class="javascript">$.getJSON(&quot;http://madeai.cn/api&quot;, &quot;&quot;, function (data) {
-  $.each(data[&quot;result&quot;].tracks, function (i, item) {//each循环 使用$.each方法遍历返回的数据data
-  /*doSomething;
-   *function();中第一个参数是数组的索引index,第二个是原数组对象;
-   */
-  });
-});</code></pre>
-</li>
-</ul>
-<p>jquery还封装了类似<code>$get()</code>,<code>$.post()</code>的函数;</p>
-<hr>
-<p>demo click <a href="https://huangyebiaoke.github.io/item/example/ajax&json.html" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>AJAX</tag>
-        <tag>JSON</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何使用win10提高工作效率</title>
     <url>/articles/p16.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/windows-icon.png" alt="windows-icon"></p>
-<a id="more"></a>
-<p><meting-js server="netease" type="song" id="5197160"></meting-js></p>
+    <content><![CDATA[<p><img src="/assets/blogimg/windows-icon.png" alt="windows-icon"><br><meting-js server="netease" type="song" id="5197160"></meting-js></p>
 <h3 id="windows-10-快捷键"><a href="#windows-10-快捷键" class="headerlink" title="windows 10 快捷键"></a>windows 10 快捷键</h3><h5 id="1-截图"><a href="#1-截图" class="headerlink" title="1. 截图"></a>1. 截图</h5><table>
 <thead>
 <tr>
@@ -1205,12 +1159,44 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>CMD批处理命令的强大</title>
+    <url>/articles/p11.html</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
+<p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
+<ol>
+<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
+<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
+<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
+<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
+<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot; </code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
+<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
+</ol>
+<ul>
+<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
+<li>参考：</li>
+</ul>
+<ol>
+<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
+<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
+<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
+<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
+</ol>
+<ul>
+<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>DOS</tag>
+        <tag>CMD</tag>
+        <tag>.bat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一些linux命令</title>
     <url>/articles/p17.html</url>
     <content><![CDATA[<p><img src="//img2.tfd.com/pp/wikiimg.ashx?p=commons/thumb/3/35/Tux.svg/280px-Tux.svg.png" alt="liunx"></p>
 <blockquote><p>Talk is cheap, show me the code.</p>
 <footer><strong>@Linus Benedict Torvalds ---</strong><cite><a href="https://github.com/torvalds" target="_blank" rel="noopener">github.com/torvalds</a></cite></footer></blockquote>
-<a id="more"></a>
 
 <h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>liunx常见的发行版有ubuntu,red hat,centos,gun,kail...整理一些常用的liunx(测试环境 centos release 6.9)命令,然后由于要学英语嘛,尝试用英语写作.</code></pre>
 <div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"https://gslb.miaopai.com/stream/gX1nvE-FwDbx3sHgFfAvVfhdFHSViZLDe7mO9Q__.mp4?yx=&refer=weibo_app&Expires=1531913346&ssig=ieIoafqxGZ&KID=unistore,video","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
@@ -1366,7 +1352,6 @@ xhr.send();</code></pre>
 their own idol.Maybe actor singer or other famous people.
     My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
 humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
-<a id="more"></a>
     As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
 without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
     As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
@@ -1380,6 +1365,16 @@ withhis daughter whenever how busy he is.
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>六级写作模板</title>
+    <url>/articles/six-band-writing-template.html</url>
+    <content><![CDATA[<p>1.<br>    In recent years,<em>has/have been prevailing among</em>. In contrast,<em>.<br>    In number of factors can account for such phenomenon, but the following might be the critial ones. First and foremost,</em>. Moreover,<em>. Undoubtedly,</em>.Firstly_. Secondly,<em>.<br>    In my view,</em>. To begin with,<em>. What’s more,</em>. Only_.<br>2.<br>    It is widely accepted that_. What’s more,<em>.However</em>.<br>    On the one hand, some people hold the view that_. On the other hand, a great many people insist that_.<br>    From my perspective, however,<em>. Therefore</em>.<br>3.<br>    It is not an uncommon social phenomenon that_. For example,<em>.<br>    As to this issue, opinions vary from person to person. Some people hold that</em>. But others maintain that_.<br>    As far as I am concerned,<em>. On the one hand,</em>. On the other hand,<em>. In a word,</em>.<br>4.<br>    As is portrayed  in the picture,<em>. Actually, recent years have witnessed an increasing trend of</em>.<br>    This_ has inevitably brought about some_ effects. Anyway,<em>.<br>    However,</em>. Therefore, people should become fully aware of both sides of_.<br> 5.<br>    Nowdays, it is widely acknowledged that_. Therefore,<em>.However, as for this phenomenon, people’s ideas vary.<br>    Some insist that</em>.However,<em>.<br>    From my perspective,</em>. On the one hand,<em>.One the other hand,</em>.What’s more,<em>.<br>6.<br>    As is known to all,</em>. However,<em>.The cases of</em>.<br>    Therefore,<em>.Firstly,</em>.Secondly,<em>.Thirdly</em>.<br>    As far as I’m concerned,<em>.<br>7.<br>    As a saying goes</em>.Nowadays we are in an era of_.More and more people_.<br>    Admittedly, no one can deny the fact that_. Nevertheless,<em>. For example,</em>.Besides,<em>.<br>    Then what can we do to aviod being</em>? Here are some useful tips: To begin with,<em>. What’s more,</em>.<br>8.<br>    As someone once said,”<em>.”<em>have enormously facilitated and enriched our lives, yet</em>.<br>    In order to</em>, one needs_. Only when one succeeds in <em>can he</em>.<br>    It is never easy to_.Just as the saying goes,<em>.<br>9.<br>    As is vivdly shown in the picture,</em>. It mirrors a common phenomenon, which has raised a wide range of concern.<br>    This phenomenon may bring about some severe consequences. On the other hand,<em>.<br>    Considering the seriousness of the condition, some measures can be taken to improve it. Only in this way can we</em>.<br>10.<br>    For a growing number of_,<em>has come into fashion. From_to_.What’s more,</em>.<br>    Admittedly, there are different purposes behind this phenomenon, but the following are the most critical ones. To begin with,<em>. In addition,</em>.All of the above is_. In my opinion,<em>.To conclude,</em>.</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+        <tag>writing</tag>
       </tags>
   </entry>
   <entry>
@@ -1471,7 +1466,6 @@ typedef struct{
     <title>git创建版本库和关联远程库</title>
     <url>/articles/p8.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
-<a id="more"></a>
 <h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
 <li>mkdir LearningDataStructure//创建本地文件夹</li>
 <li>cd LearningDataStructure//进入文件夹</li>
@@ -1484,7 +1478,7 @@ typedef struct{
  create mode 100644 readme.txt</code></pre>
 <h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
 <li>click “Create a new repository”</li>
-<li>git remote add origin <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#103;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
+<li>git remote add origin <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;" target="_blank" rel="noopener">&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
 <li>git remote remove origin//取消本地关联远程库</li>
 <li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
 </ol>
@@ -1493,6 +1487,31 @@ typedef struct{
 ]]></content>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>什么是伴随矩阵？</title>
+    <url>/articles/what-is-adjoint-matrix.html</url>
+    <content><![CDATA[<img src="/assets/blogimg/伴随矩阵.jpg">
+<h2>首先我们来看如何得到<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">伴随矩阵</a>:</h2>
+~~1.设A=（a<sub>ij</sub>）为n阶方阵
+2.A<sub>ij</sub>是|A|在（i，j）上a<sub>ij</sub>的代数余子式
+3.则全部由代数余子式组成的n阶方阵为A的伴随矩阵A~~
+
+
+<h2>我们来弄清楚几个专有名词：</h2>
+~~|A|：n阶方阵的n阶行列式，行列式是一个数;
+a<sub>ij</sub>的元余子式：n阶行列式去除i行j列剩下的部分，记作M<sub>ij</sub>;
+a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</sub>;~~
+
+<p>现在知道什么叫伴随矩阵了吗？不知道点这里—&gt;<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">https://www.baidu.com/s?ie=UTF-8&amp;wd=伴随矩阵</a></p>
+<h2>放图时间：</h2>
+<img src="/assets/blogimg/cat1.jpg">
+<img src="/assets/blogimg/cat2.jpg">
+<img src="/assets/blogimg/cat3.jpg">
+]]></content>
+      <tags>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -1521,42 +1540,6 @@ if(Objects.equals(a,b)){.......}
 ]]></content>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>six-band-writing-template</title>
-    <url>/articles/six-band-writing-template.html</url>
-    <content><![CDATA[<p>1.<br>    In recent years,<em>has/have been prevailing among</em>. In contrast,<em>.<br>    In number of factors can account for such phenomenon, but the following might be the critial ones. First and foremost,</em>. Moreover,<em>. Undoubtedly,</em>.Firstly_. Secondly,<em>.<br>    In my view,</em>. To begin with,<em>. What’s more,</em>. Only_.<br>2.<br>    It is widely accepted that_. What’s more,<em>.However</em>.<br>    On the one hand, some people hold the view that_. On the other hand, a great many people insist that_.<br>    From my perspective, however,<em>. Therefore</em>.<br>3.<br>    It is not an uncommon social phenomenon that_. For example,<em>.<br>    As to this issue, opinions vary from person to person. Some people hold that</em>. But others maintain that_.<br>    As far as I am concerned,<em>. On the one hand,</em>. On the other hand,<em>. In a word,</em>.<br>4.<br>    As is portrayed  in the picture,<em>. Actually, recent years have witnessed an increasing trend of</em>.<br>    This_ has inevitably brought about some_ effects. Anyway,<em>.<br>    However,</em>. Therefore, people should become fully aware of both sides of_.<br> 5.<br>    Nowdays, it is widely acknowledged that_. Therefore,<em>.However, as for this phenomenon, people’s ideas vary.<br>    Some insist that</em>.However,<em>.<br>    From my perspective,</em>. On the one hand,<em>.One the other hand,</em>.What’s more,<em>.<br>6.<br>    As is known to all,</em>. However,<em>.The cases of</em>.<br>    Therefore,<em>.Firstly,</em>.Secondly,<em>.Thirdly</em>.<br>    As far as I’m concerned,<em>.<br>7.<br>    As a saying goes</em>.Nowadays we are in an era of_.More and more people_.<br>    Admittedly, no one can deny the fact that_. Nevertheless,<em>. For example,</em>.Besides,<em>.<br>    Then what can we do to aviod being</em>? Here are some useful tips: To begin with,<em>. What’s more,</em>.<br>8.<br>    As someone once said,”<em>.”<em>have enormously facilitated and enriched our lives, yet</em>.<br>    In order to</em>, one needs_. Only when one succeeds in <em>can he</em>.<br>    It is never easy to_.Just as the saying goes,<em>.<br>9.<br>    As is vivdly shown in the picture,</em>. It mirrors a common phenomenon, which has raised a wide range of concern.<br>    This phenomenon may bring about some severe consequences. On the other hand,<em>.<br>    Considering the seriousness of the condition, some measures can be taken to improve it. Only in this way can we</em>.<br>10.<br>    For a growing number of_,<em>has come into fashion. From_to_.What’s more,</em>.<br>    Admittedly, there are different purposes behind this phenomenon, but the following are the most critical ones. To begin with,<em>. In addition,</em>.All of the above is_. In my opinion,<em>.To conclude,</em>.</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-        <tag>writing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>什么是伴随矩阵？</title>
-    <url>/articles/what-is-adjoint-matrix.html</url>
-    <content><![CDATA[<img src="/assets/blogimg/伴随矩阵.jpg">
-<a id="more"></a>
-<h2>首先我们来看如何得到<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">伴随矩阵</a>:</h2>
-~~1.设A=（a<sub>ij</sub>）为n阶方阵
-2.A<sub>ij</sub>是|A|在（i，j）上a<sub>ij</sub>的代数余子式
-3.则全部由代数余子式组成的n阶方阵为A的伴随矩阵A~~
-
-
-<h2>我们来弄清楚几个专有名词：</h2>
-~~|A|：n阶方阵的n阶行列式，行列式是一个数;
-a<sub>ij</sub>的元余子式：n阶行列式去除i行j列剩下的部分，记作M<sub>ij</sub>;
-a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</sub>;~~
-
-<p>现在知道什么叫伴随矩阵了吗？不知道点这里—&gt;<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">https://www.baidu.com/s?ie=UTF-8&amp;wd=伴随矩阵</a></p>
-<h2>放图时间：</h2>
-<img src="/assets/blogimg/cat1.jpg">
-<img src="/assets/blogimg/cat2.jpg">
-<img src="/assets/blogimg/cat3.jpg">
-]]></content>
-      <tags>
-        <tag>math</tag>
       </tags>
   </entry>
 </search>
