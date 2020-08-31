@@ -219,14 +219,14 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/articles/i-can-not-hear-you.html</loc>
+    <loc>http://blog.madeai.cn/articles/just-fuck-you.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/articles/just-fuck-you.html</loc>
+    <loc>http://blog.madeai.cn/articles/i-can-not-hear-you.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
@@ -240,13 +240,6 @@
     <priority>1.0</priority>
   </url>
 
-  
-  <url>
-    <loc>http://blog.madeai.cn/tags/MySQL/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>http://blog.madeai.cn/tags/Java/</loc>
@@ -270,13 +263,6 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/tags/math/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.madeai.cn/tags/PHP/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
@@ -285,6 +271,20 @@
   
   <url>
     <loc>http://blog.madeai.cn/tags/JS/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/tags/MySQL/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/tags/math/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -326,6 +326,27 @@
   </url>
   
   <url>
+    <loc>http://blog.madeai.cn/tags/CMD/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/tags/DOS/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/tags/bat/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.madeai.cn/tags/AJAX/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
@@ -340,7 +361,7 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/tags/DOS/</loc>
+    <loc>http://blog.madeai.cn/tags/reading-book/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -354,20 +375,6 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/tags/CMD/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/tags/bat/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.madeai.cn/tags/Linux/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
@@ -375,21 +382,7 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/tags/reading-book/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.madeai.cn/tags/English/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/tags/writing/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -411,6 +404,13 @@
   
   <url>
     <loc>http://blog.madeai.cn/tags/Git/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/tags/writing/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

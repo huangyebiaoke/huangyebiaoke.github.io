@@ -54,8 +54,8 @@
     </script>
     
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/valine@1.3.6/dist/Valine.min.js"></script>
     
 
 </head>
@@ -138,17 +138,23 @@
 						<span class="post-count"><i class="fa fa-clock-o"></i> 阅读时长:1 分钟</span>
 <!--									<div class="post-header-thumb-meta">-->
 					
+						<span id="/articles/automatic-generate-question.html" class="leancloud-visitors" data-flag-title="自动出题机">
+							<i class="fa fa-eye"></i> 阅读量: <span class="leancloud-visitors-count">0</span> |
+						</span>
+						
+					
+					<i class="fa fa-comment-o"></i> 评论量: <a id="page-title-comment" href="#vcomments"></a>
 					
 					</div>
 				</div>
 				<div class="post-tags">
 					
 					
-					<a href="/tags/MySQL/">MySQL</a>
-					
 					<a href="/tags/PHP/">PHP</a>
 					
 					<a href="/tags/JS/">JS</a>
+					
+					<a href="/tags/MySQL/">MySQL</a>
 					
 					
 				</div>
@@ -165,7 +171,13 @@
 		</h1>
 		<div class="post-data">
 			
+			<span id="/articles/automatic-generate-question.html" class="leancloud-visitors" data-flag-title="自动出题机">
+				<span class="leancloud-visitors-count">0</span> Views 
+			</span>
+			
             <time datetime="1537761684" itemprop="datePublished">Published on 2018-09-24</time>
+			
+			with <a id="page-title-comment" href="#vcomments"></a>
 			
 
 			<div>
@@ -179,11 +191,11 @@
 		<p class="post-tags">
             
             
-            <a href="/tags/MySQL/">MySQL</a>
-            
             <a href="/tags/PHP/">PHP</a>
             
             <a href="/tags/JS/">JS</a>
+            
+            <a href="/tags/MySQL/">MySQL</a>
             
             
         </p>
@@ -287,7 +299,7 @@
 						<div class="item-title"><a href="/articles/p15.html">网红辞职信</a></div>
 						<div class="item-meta clearfix">
 							<div class="item-meta-date" style="color: #5f5f5f;">2018-06-30</div>
-							<div class="item-meta-ico bg-ico-game" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+							<div class="item-meta-ico bg-ico-image" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -302,7 +314,7 @@
 						<div class="item-title"><a href="/articles/p12.html">ajax异步加载</a></div>
 						<div class="item-meta clearfix">
 							<div class="item-meta-date" style="color: #5f5f5f;">2018-06-02</div>
-							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+							<div class="item-meta-ico bg-ico-link" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -317,7 +329,7 @@
 						<div class="item-title"><a href="/articles/about-mysql.html">关于mysql</a></div>
 						<div class="item-meta clearfix">
 							<div class="item-meta-date" style="color: #5f5f5f;">2018-03-26</div>
-							<div class="item-meta-ico bg-ico-chat" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+							<div class="item-meta-ico bg-ico-design" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -333,7 +345,7 @@
 
 
 <div class="comment-container">
-	<div id="gitalk-container"></div>
+	<div id="vcomments"></div>
 </div>
 
 <footer id="footer" class="footer bg-white">
@@ -432,6 +444,9 @@
                 
             </div>
             
+            
+            <div class="meta-item meta-comments">
+            </div>
             
 		</div>
 	</div>
@@ -624,22 +639,52 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
 
 <script>
-    const gitalk = new Gitalk({
-        clientID: '23abedc384baaed0f181',
-        clientSecret: 'a0b5098dcff025e49c424ba1cbe5cd3684b6822f',
-        repo: 'huangyebiaoke.github.io',      // The repository of store comments,
-        owner: 'huangyebiaoke',
-        admin: ['huangyebiaoke'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
+    new Valine({
+        el: '#vcomments',
+        appId: 'wjVSwutKSNftRb5mFdxR7yKd-gzGzoHsz',
+        appKey: 'UgUgglfLX4JPziyHc98fyPXD',
+        placeholder: '说点什么吧~' || 'Your commnet here. Be cool.',
+        avatar: 'mp' || 'mp',
+        pageSize: 10 || 10,
+        visitor: true,
     })
-    gitalk.render('gitalk-container')
 </script>
 
 
 <script>
 
+// 获取文章评论数
+var query1 = new AV.Query('Comment');
+query1.equalTo('url', '/articles/automatic-generate-question.html');
+query1.doesNotExist('pid');
+query1.count().then(function (count) {
+    document.getElementById('page-title-comment').innerText = count;
+}, function (error) {
+    console.log(error.message);    
+}).catch(function (error) {
+    console.log(error.message);
+});
 
+
+
+// 获取最近评论
+var query2 = new AV.Query('Comment');
+query2.doesNotExist('pid');
+query2.descending('createdAt');
+query2.limit(5);
+query2.find().then(function (data) {
+    var _dom = '<h3 class="meta-title">最近评论</h3>';
+    data.forEach(function(comment) {
+        const plainComment = comment.get('comment').replace(/<[^>]+>/gim, '');
+        const href = `${comment.get('url')}#${comment.get('objectId')}`;
+        _dom += `<li><a href="${href}">${comment.get('nick')} : ${plainComment}</a></li>`
+    })
+    document.getElementsByClassName('meta-comments')[0].innerHTML = _dom;
+}, function (error) {
+    console.log(error.message);    
+}).catch(function (error) {
+    console.log(error.message);
+});
 
 </script>
 

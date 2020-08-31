@@ -54,8 +54,8 @@
     </script>
     
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/valine@1.3.6/dist/Valine.min.js"></script>
     
 
 </head>
@@ -122,7 +122,7 @@
 
 	
 	<div class="post-header-thumb">
-		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/3.jpg);"></div>
+		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/6.jpg);"></div>
 		<div class="post-header-thumb-cover">
 			<div class="post-header-thumb-container">
 				<div class="post-header-thumb-title">
@@ -138,6 +138,12 @@
 						<span class="post-count"><i class="fa fa-clock-o"></i> 阅读时长:9 分钟</span>
 <!--									<div class="post-header-thumb-meta">-->
 					
+						<span id="/articles/p18.html" class="leancloud-visitors" data-flag-title="风往南吹-想法">
+							<i class="fa fa-eye"></i> 阅读量: <span class="leancloud-visitors-count">0</span> |
+						</span>
+						
+					
+					<i class="fa fa-comment-o"></i> 评论量: <a id="page-title-comment" href="#vcomments"></a>
 					
 					</div>
 				</div>
@@ -163,7 +169,13 @@
 		</h1>
 		<div class="post-data">
 			
+			<span id="/articles/p18.html" class="leancloud-visitors" data-flag-title="风往南吹-想法">
+				<span class="leancloud-visitors-count">0</span> Views 
+			</span>
+			
             <time datetime="1521574200" itemprop="datePublished">Published on 2018-03-21</time>
+			
+			with <a id="page-title-comment" href="#vcomments"></a>
 			
 
 			<div>
@@ -334,7 +346,7 @@
 
 
 <div class="comment-container">
-	<div id="gitalk-container"></div>
+	<div id="vcomments"></div>
 </div>
 
 <footer id="footer" class="footer bg-white">
@@ -433,6 +445,9 @@
                 
             </div>
             
+            
+            <div class="meta-item meta-comments">
+            </div>
             
 		</div>
 	</div>
@@ -625,22 +640,52 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
 
 <script>
-    const gitalk = new Gitalk({
-        clientID: '23abedc384baaed0f181',
-        clientSecret: 'a0b5098dcff025e49c424ba1cbe5cd3684b6822f',
-        repo: 'huangyebiaoke.github.io',      // The repository of store comments,
-        owner: 'huangyebiaoke',
-        admin: ['huangyebiaoke'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
+    new Valine({
+        el: '#vcomments',
+        appId: 'wjVSwutKSNftRb5mFdxR7yKd-gzGzoHsz',
+        appKey: 'UgUgglfLX4JPziyHc98fyPXD',
+        placeholder: '说点什么吧~' || 'Your commnet here. Be cool.',
+        avatar: 'mp' || 'mp',
+        pageSize: 10 || 10,
+        visitor: true,
     })
-    gitalk.render('gitalk-container')
 </script>
 
 
 <script>
 
+// 获取文章评论数
+var query1 = new AV.Query('Comment');
+query1.equalTo('url', '/articles/p18.html');
+query1.doesNotExist('pid');
+query1.count().then(function (count) {
+    document.getElementById('page-title-comment').innerText = count;
+}, function (error) {
+    console.log(error.message);    
+}).catch(function (error) {
+    console.log(error.message);
+});
 
+
+
+// 获取最近评论
+var query2 = new AV.Query('Comment');
+query2.doesNotExist('pid');
+query2.descending('createdAt');
+query2.limit(5);
+query2.find().then(function (data) {
+    var _dom = '<h3 class="meta-title">最近评论</h3>';
+    data.forEach(function(comment) {
+        const plainComment = comment.get('comment').replace(/<[^>]+>/gim, '');
+        const href = `${comment.get('url')}#${comment.get('objectId')}`;
+        _dom += `<li><a href="${href}">${comment.get('nick')} : ${plainComment}</a></li>`
+    })
+    document.getElementsByClassName('meta-comments')[0].innerHTML = _dom;
+}, function (error) {
+    console.log(error.message);    
+}).catch(function (error) {
+    console.log(error.message);
+});
 
 </script>
 

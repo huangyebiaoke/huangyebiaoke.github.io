@@ -186,11 +186,11 @@
     </summary>
     
     
-      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
-    
       <category term="PHP" scheme="http://blog.madeai.cn/tags/PHP/"/>
     
       <category term="JS" scheme="http://blog.madeai.cn/tags/JS/"/>
+    
+      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
     
   </entry>
   
@@ -346,9 +346,9 @@
     </summary>
     
     
-      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
-    
       <category term="CMD" scheme="http://blog.madeai.cn/tags/CMD/"/>
+    
+      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
     
       <category term=".bat" scheme="http://blog.madeai.cn/tags/bat/"/>
     
