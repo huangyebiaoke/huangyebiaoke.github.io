@@ -136,11 +136,11 @@
     </summary>
     
     
+      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
+    
       <category term="PHP" scheme="http://blog.madeai.cn/tags/PHP/"/>
     
       <category term="JS" scheme="http://blog.madeai.cn/tags/JS/"/>
-    
-      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
     
   </entry>
   
@@ -248,9 +248,9 @@
     </summary>
     
     
-      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
-    
       <category term="CMD" scheme="http://blog.madeai.cn/tags/CMD/"/>
+    
+      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
     
       <category term=".bat" scheme="http://blog.madeai.cn/tags/bat/"/>
     
@@ -469,7 +469,7 @@ humorous,wise and farsighted.He is so glamour that attract me to look forward wi
     <link href="http://blog.madeai.cn/articles/what-is-adjoint-matrix.html"/>
     <id>http://blog.madeai.cn/articles/what-is-adjoint-matrix.html</id>
     <published>2017-10-13T12:44:46.000Z</published>
-    <updated>2020-08-31T08:47:28.726Z</updated>
+    <updated>2020-08-31T09:47:08.079Z</updated>
     
     <summary type="html">
     

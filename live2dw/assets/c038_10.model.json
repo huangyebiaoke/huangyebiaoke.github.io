@@ -1,0 +1,24 @@
+{
+	"version":"Sample 1.0.0",
+	"model":"00000003.moc",
+	"textures":[
+		"textures/00000005.png"
+	],
+	"hit_areas": [
+		{
+			"name": "body",
+			"id": "D_REF.PT_SOBA_01"
+		}
+	],
+	"motions":{
+		"tap_body":[
+			{"file":"motions/00000000.mtn","fade_in":0,"fade_out":0}
+		],
+		"idle":[
+			{"file":"motions/00000002.mtn","fade_in":0,"fade_out":0}
+		],
+		"shark":[
+			{"file":"motions/00000001.mtn","fade_in":0,"fade_out":0}
+		]
+	}
+}
