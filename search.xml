@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于mysql</title>
+    <url>/articles/about-mysql.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
+<a id="more"></a>
+<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
+<pre><code class="plsql">    use mysql;//选择mysql库
+    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
+    flush privileges;//刷新数据库</code></pre>
+<p>2.root用户远程连接数据库</p>
+<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
+    flush privileges;</code></pre>
+<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
+<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
+<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
+<thead>
+<tr>
+<th align="left">operation</th>
+<th align="left">usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">创建数据库</td>
+<td align="left">CREATE DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">删除数据库</td>
+<td align="left">DROP DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">创建数据表</td>
+<td align="left">CREATE TABLE table_name (column_name column_type);</td>
+</tr>
+<tr>
+<td align="left">删除数据表</td>
+<td align="left">DROP TABLE table_name</td>
+</tr>
+<tr>
+<td align="left">增(insert)</td>
+<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
+</tr>
+<tr>
+<td align="left">删(delete)</td>
+<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
+</tr>
+<tr>
+<td align="left">查(select)</td>
+<td align="left">select * from stu_info;</td>
+</tr>
+<tr>
+<td align="left">改(update)</td>
+<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
+</tr>
+</tbody></table>
+<p>其中关于创建数据表：</p>
+<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
+   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
+   `stuNo`  CHAR(6)  NOT  NULL,
+   `stuName` VARCHAR(40) NOT NULL,
+   `stuAge` INTEGER,
+   `stuAddress` VARCHAR(100) NOT NULL,
+   `subDate` DATE,//上传时间NOW();
+   PRIMARY KEY ( `stuId` )//主键;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+<p>其中关于往数据表中增加一条数据：</p>
+<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
+<p>往数据表中增加多条数据：</p>
+<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
+VALUES
+(valueA1,valueA2,...valueAN),
+(valueB1,valueB2,...valueBN),
+(valueC1,valueC2,...valueCN)
+......;</code></pre>
+<p>改数据表中的数据：</p>
+<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
+<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
+<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于Android线程</title>
     <url>/articles/about-android-thread.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/andy-lg.png" alt="banner"></p>
@@ -84,88 +166,6 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
       <tags>
         <tag>Java</tag>
         <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于mysql</title>
-    <url>/articles/about-mysql.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
-<a id="more"></a>
-<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
-<pre><code class="plsql">    use mysql;//选择mysql库
-    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
-    flush privileges;//刷新数据库</code></pre>
-<p>2.root用户远程连接数据库</p>
-<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
-    flush privileges;</code></pre>
-<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
-<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
-<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
-<thead>
-<tr>
-<th align="left">operation</th>
-<th align="left">usage</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">创建数据库</td>
-<td align="left">CREATE DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">删除数据库</td>
-<td align="left">DROP DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">创建数据表</td>
-<td align="left">CREATE TABLE table_name (column_name column_type);</td>
-</tr>
-<tr>
-<td align="left">删除数据表</td>
-<td align="left">DROP TABLE table_name</td>
-</tr>
-<tr>
-<td align="left">增(insert)</td>
-<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
-</tr>
-<tr>
-<td align="left">删(delete)</td>
-<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
-</tr>
-<tr>
-<td align="left">查(select)</td>
-<td align="left">select * from stu_info;</td>
-</tr>
-<tr>
-<td align="left">改(update)</td>
-<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
-</tr>
-</tbody></table>
-<p>其中关于创建数据表：</p>
-<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
-   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
-   `stuNo`  CHAR(6)  NOT  NULL,
-   `stuName` VARCHAR(40) NOT NULL,
-   `stuAge` INTEGER,
-   `stuAddress` VARCHAR(100) NOT NULL,
-   `subDate` DATE,//上传时间NOW();
-   PRIMARY KEY ( `stuId` )//主键;
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
-<p>其中关于往数据表中增加一条数据：</p>
-<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
-<p>往数据表中增加多条数据：</p>
-<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
-VALUES
-(valueA1,valueA2,...valueAN),
-(valueB1,valueB2,...valueBN),
-(valueC1,valueC2,...valueCN)
-......;</code></pre>
-<p>改数据表中的数据：</p>
-<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
-<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
-<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -363,21 +363,12 @@ VALUES
       </tags>
   </entry>
   <entry>
-    <title>欧拉公式の推导</title>
-    <url>/articles/euler-s-formula.html</url>
-    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
-<a id="more"></a>
-<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
-<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
-<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
-<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
-<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
-<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
-<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
-<p>that is $e^{ix}=cosx+isinx$</p>
+    <title>Java数据类型</title>
+    <url>/articles/data-type-of-java.html</url>
+    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
 ]]></content>
       <tags>
-        <tag>math</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -492,12 +483,21 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>Java数据类型</title>
-    <url>/articles/data-type-of-java.html</url>
-    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+    <title>欧拉公式の推导</title>
+    <url>/articles/euler-s-formula.html</url>
+    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
+<a id="more"></a>
+<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
+<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
+<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
+<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
+<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
+<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
+<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
+<p>that is $e^{ix}=cosx+isinx$</p>
 ]]></content>
       <tags>
-        <tag>Java</tag>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -564,6 +564,126 @@ public class Main {
 <h6 id="抓大头"><a href="#抓大头" class="headerlink" title="抓大头"></a><em>抓大头</em></h6><h5 id="infty-infty-0-cdot-infty"><a href="#infty-infty-0-cdot-infty" class="headerlink" title="$\infty-\infty; 0\cdot\infty$"></a>$\infty-\infty; 0\cdot\infty$</h5><h5 id="1-infty-0-0-infty-0"><a href="#1-infty-0-0-infty-0" class="headerlink" title="$1^{\infty} 0^{0}; \infty^{0}$"></a>$1^{\infty} 0^{0}; \infty^{0}$</h5><h4 id="数列的极限"><a href="#数列的极限" class="headerlink" title="数列的极限"></a>数列的极限</h4><h4 id="极限的应用"><a href="#极限的应用" class="headerlink" title="极限的应用"></a>极限的应用</h4><h3 id="导数"><a href="#导数" class="headerlink" title="导数"></a>导数</h3><h4 id="导数的计算"><a href="#导数的计算" class="headerlink" title="导数的计算"></a>导数的计算</h4><h4 id="导数的应用"><a href="#导数的应用" class="headerlink" title="导数的应用"></a>导数的应用</h4>]]></content>
       <tags>
         <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跳跳球</title>
+    <url>/articles/mark-ball-game.html</url>
+    <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"></p>
+<a id="more"></a>
+<p>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
+    &lt;script&gt;
+        function init() {
+            setInterval(&quot;document.f.display.value=String(Number(document.f.display.value)+1)&quot;,1000);
+        }//定时器 每隔一秒加一次
+        /*function incre() {
+         document.f.display.value=String(Number(document.f.display.value)+1);
+
+         }*/
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init()&quot;&gt;
+    &lt;form name=&quot;f&quot;&gt;&lt;!--不写form总报错 不知道为啥--&gt;
+        &lt;input name=&quot;display&quot; type=&quot;text&quot; value=&quot;0&quot;/&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>2.<a href="/item/game/tiaotiaoball/ball1">用canvas插入img：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ball&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var img1=new Image();
+    var img2=new Image();
+    img1.src=&quot;../../images/cool.jpg&quot;;
+    img2.src=&quot;../../images/dog.gif&quot;;
+    var ctx;
+    function init(){
+        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);
+        ctx.drawImage(img1,10,20,50,50);
+        ctx.drawImage(img2,150,20,100,100);
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
+        your browser don&#39;t support convas
+    &lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>3.<a href="/item/game/tiaotiaoball/ball">跳跳球：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ball&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var boxx=50,boxy=50,boxw=300,boxh=300;//盒子左上角据左边画布的距离，盒子左上角据上边画布的距离，盒子的宽高；
+    var ballx=20,bally=20,ballvx=2,ballvy=4,ballr=6;//球的初始位置（相对盒子），球的位移，球的半径；
+    var hshang=boxy+ballr,hxia=boxh+boxy-ballr,hzuo=boxx+ballr,hyou=boxw+boxx-ballr;//里面的小盒子 用于检测碰撞；
+    var ctx;//保存上下文 不太懂上下文是啥
+    function init(){
+        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);//获取canvas的上下文
+        ctx.fillStyle=&quot;rgb(200.0.0)&quot;;//设置填充颜色
+        ctx.lineWidth=6; //设置线宽
+        moveball();//先显示ball
+        setInterval(moveball,10); //setTimeout()只执行一次事件 不能重复调用moveball事件；
+    }
+    function moveball() {
+        ctx.clearRect(boxx,boxy,boxw,boxh);//擦除整个盒子包括ball 第一次运行不会有任何影响
+        moveandcheck();
+        ctx.beginPath();
+        ctx.arc(ballx,bally,ballr,0,2*Math.PI,true);//画圆
+        ctx.fill();
+        ctx.strokeRect(boxx,boxy,boxw,boxh);//画盒子
+    }
+    function moveandcheck() {//检测碰撞
+        var perballx=ballx+ballvx,perbally=bally+ballvy;
+        if(perballx&gt;hyou) {//如果超过小盒子的右边
+            ballvx=-ballvx;//改变水平方向
+            perballx=hyou; //&quot;设置下一个x等于这个边界值&quot; 没看懂啥意思；
+        }
+        if(perballx&lt;hzuo) {
+            perballx=hzuo;
+            ballvx=-ballvx;
+        }
+        if(perbally&gt;hxia) {
+            perbally=hxia;
+            ballvy=-ballvy;
+        }
+        if(perbally&lt;hshang) {
+            perbally=hshang;
+            ballvy=-ballvy;
+        }
+        ballx=perballx;
+        bally=perbally;
+    }
+    function change() {
+        ballvx=Number(document.f.vx.value);
+        ballvy=Number(document.f.vy.value);
+    }//在form标签里调用onsubmit=&quot;return change();&quot;需要设置return false不然会整个刷新页面
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
+        your browser don&#39;t support convas
+    &lt;/canvas&gt;
+    &lt;form name=&quot;f&quot; id=&quot;f&quot;&gt;
+        水平速度:&lt;input name=&quot;vx&quot; id=&quot;vx&quot; type=&quot;number&quot; value=&quot;2&quot;&gt;
+        垂直速度:&lt;input name=&quot;vy&quot; id=&quot;xy&quot; type=&quot;number&quot; value=&quot;4&quot;&gt;
+        &lt;input type=&quot;button&quot; value=&quot;change&quot; onclick=&quot;change()&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>H5</tag>
+        <tag>canvas</tag>
       </tags>
   </entry>
   <entry>
@@ -830,126 +950,6 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>跳跳球</title>
-    <url>/articles/mark-ball-game.html</url>
-    <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"></p>
-<a id="more"></a>
-<p>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
-    &lt;script&gt;
-        function init() {
-            setInterval(&quot;document.f.display.value=String(Number(document.f.display.value)+1)&quot;,1000);
-        }//定时器 每隔一秒加一次
-        /*function incre() {
-         document.f.display.value=String(Number(document.f.display.value)+1);
-
-         }*/
-
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init()&quot;&gt;
-    &lt;form name=&quot;f&quot;&gt;&lt;!--不写form总报错 不知道为啥--&gt;
-        &lt;input name=&quot;display&quot; type=&quot;text&quot; value=&quot;0&quot;/&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>2.<a href="/item/game/tiaotiaoball/ball1">用canvas插入img：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;ball&lt;/title&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    var img1=new Image();
-    var img2=new Image();
-    img1.src=&quot;../../images/cool.jpg&quot;;
-    img2.src=&quot;../../images/dog.gif&quot;;
-    var ctx;
-    function init(){
-        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);
-        ctx.drawImage(img1,10,20,50,50);
-        ctx.drawImage(img2,150,20,100,100);
-    }
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init();&quot;&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
-        your browser don&#39;t support convas
-    &lt;/canvas&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>3.<a href="/item/game/tiaotiaoball/ball">跳跳球：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;ball&lt;/title&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    var boxx=50,boxy=50,boxw=300,boxh=300;//盒子左上角据左边画布的距离，盒子左上角据上边画布的距离，盒子的宽高；
-    var ballx=20,bally=20,ballvx=2,ballvy=4,ballr=6;//球的初始位置（相对盒子），球的位移，球的半径；
-    var hshang=boxy+ballr,hxia=boxh+boxy-ballr,hzuo=boxx+ballr,hyou=boxw+boxx-ballr;//里面的小盒子 用于检测碰撞；
-    var ctx;//保存上下文 不太懂上下文是啥
-    function init(){
-        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);//获取canvas的上下文
-        ctx.fillStyle=&quot;rgb(200.0.0)&quot;;//设置填充颜色
-        ctx.lineWidth=6; //设置线宽
-        moveball();//先显示ball
-        setInterval(moveball,10); //setTimeout()只执行一次事件 不能重复调用moveball事件；
-    }
-    function moveball() {
-        ctx.clearRect(boxx,boxy,boxw,boxh);//擦除整个盒子包括ball 第一次运行不会有任何影响
-        moveandcheck();
-        ctx.beginPath();
-        ctx.arc(ballx,bally,ballr,0,2*Math.PI,true);//画圆
-        ctx.fill();
-        ctx.strokeRect(boxx,boxy,boxw,boxh);//画盒子
-    }
-    function moveandcheck() {//检测碰撞
-        var perballx=ballx+ballvx,perbally=bally+ballvy;
-        if(perballx&gt;hyou) {//如果超过小盒子的右边
-            ballvx=-ballvx;//改变水平方向
-            perballx=hyou; //&quot;设置下一个x等于这个边界值&quot; 没看懂啥意思；
-        }
-        if(perballx&lt;hzuo) {
-            perballx=hzuo;
-            ballvx=-ballvx;
-        }
-        if(perbally&gt;hxia) {
-            perbally=hxia;
-            ballvy=-ballvy;
-        }
-        if(perbally&lt;hshang) {
-            perbally=hshang;
-            ballvy=-ballvy;
-        }
-        ballx=perballx;
-        bally=perbally;
-    }
-    function change() {
-        ballvx=Number(document.f.vx.value);
-        ballvy=Number(document.f.vy.value);
-    }//在form标签里调用onsubmit=&quot;return change();&quot;需要设置return false不然会整个刷新页面
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init();&quot;&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
-        your browser don&#39;t support convas
-    &lt;/canvas&gt;
-    &lt;form name=&quot;f&quot; id=&quot;f&quot;&gt;
-        水平速度:&lt;input name=&quot;vx&quot; id=&quot;vx&quot; type=&quot;number&quot; value=&quot;2&quot;&gt;
-        垂直速度:&lt;input name=&quot;vy&quot; id=&quot;xy&quot; type=&quot;number&quot; value=&quot;4&quot;&gt;
-        &lt;input type=&quot;button&quot; value=&quot;change&quot; onclick=&quot;change()&quot;&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>H5</tag>
-        <tag>canvas</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CMD批处理命令的强大</title>
     <url>/articles/p11.html</url>
     <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
@@ -1097,66 +1097,6 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>一些linux命令</title>
-    <url>/articles/p17.html</url>
-    <content><![CDATA[<p><img src="//img2.tfd.com/pp/wikiimg.ashx?p=commons/thumb/3/35/Tux.svg/280px-Tux.svg.png" alt="liunx"></p>
-<blockquote><p>Talk is cheap, show me the code.</p>
-<footer><strong>@Linus Benedict Torvalds ---</strong><cite><a href="https://github.com/torvalds" target="_blank" rel="noopener">github.com/torvalds</a></cite></footer></blockquote>
-<a id="more"></a>
-
-<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>liunx常见的发行版有ubuntu,red hat,centos,gun,kail...整理一些常用的liunx(测试环境 centos release 6.9)命令,然后由于要学英语嘛,尝试用英语写作.</code></pre>
-<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"https://gslb.miaopai.com/stream/gX1nvE-FwDbx3sHgFfAvVfhdFHSViZLDe7mO9Q__.mp4?yx=&refer=weibo_app&Expires=1531913346&ssig=ieIoafqxGZ&KID=unistore,video","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-
-<h3 id="file-operation-at-touch-vi-ls-cd"><a href="#file-operation-at-touch-vi-ls-cd" class="headerlink" title="file operation (at,touch,vi,ls,cd..)"></a>file operation (at,touch,vi,ls,cd..)</h3><ul>
-<li><p>cat perview file content.</p>
-</li>
-<li><p><code>touch+path+filename</code> creat an empty file.</p>
-</li>
-<li><p>vi edit file.<br>vim有四种模式,分别是command(normal)-mode,last-line-mode,insert-mode,和visual-mode.默认进入vim时是普通模式,此时按:是底行模式,按insert是插入模式,按v是视图模式(可以用鼠标滑动)</p>
-<ul>
-<li>在普通模式下dd删除光标所在行</li>
-<li>在底行模式下wq保存并退出!q不保存退出</li>
-</ul>
-</li>
-<li><p>ls list folder or file.</p>
-<ul>
-<li><p><code>ls -l +path</code>view property of file or folder.<br><img src="https://i.loli.net/2018/07/16/5b4c66f7af213.png" alt="5b4c66f7af213"></p>
-</li>
-<li><p><code>ls +[letters]*</code>list file or folder began with letters(正则表达式).<br><img src="https://i.loli.net/2018/07/16/5b4c694bc560a.png" alt="5b4c694bc560a"></p>
-</li>
-</ul>
-</li>
-<li><p>cd Change the shell working directory.</p>
-<ul>
-<li><code>cd ..</code>进入当前目录的父目录</li>
-<li><code>cd -</code>切换到上一个工作目录</li>
-<li><code>cd ~</code>切换到root工作目录</li>
-<li><code>cd \</code>切换到根目录注意不是root目录</li>
-<li>如果路径太长你不想用cd的话看这里–&gt;<a href="https://olivierlacan.com/posts/cd-is-wasting-your-time/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website" target="_blank" rel="noopener">cd is wasting time</a></li>
-</ul>
-</li>
-<li><p><code>tree -d -L 2</code>搜索的深度为2层且只搜索文件夹,注意区分大小写</p>
-</li>
-</ul>
-<h3 id="other"><a href="#other" class="headerlink" title="other"></a>other</h3><ol>
-<li>切换用户<ul>
-<li>root-&gt;普通用户:<code>su +username</code></li>
-<li>普通用户-&gt;root:<code>sudo su</code>或者<code>su -root</code><br><img src="https://i.loli.net/2018/07/22/5b54953315576.png" alt="5b54953315576"><br>需要稍加注意的是当在root环境下时前面是#,而在普通用户环境下时前面是~</li>
-</ul>
-</li>
-</ol>
-<h3 id="package-management"><a href="#package-management" class="headerlink" title="package management"></a>package management</h3><p>yum,pkg,apt…</p>
-<p>brew,npm,yarn,pip…</p>
-<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><ol>
-<li><a href="https://www.jianshu.com/p/a182a0be4b8a" target="_blank" rel="noopener">看完这篇Linux基本的操作就会了</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>hotkey</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何使用win10提高工作效率</title>
     <url>/articles/p16.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/windows-icon.png" alt="windows-icon"></p>
@@ -1265,6 +1205,66 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>一些linux命令</title>
+    <url>/articles/p17.html</url>
+    <content><![CDATA[<p><img src="//img2.tfd.com/pp/wikiimg.ashx?p=commons/thumb/3/35/Tux.svg/280px-Tux.svg.png" alt="liunx"></p>
+<blockquote><p>Talk is cheap, show me the code.</p>
+<footer><strong>@Linus Benedict Torvalds ---</strong><cite><a href="https://github.com/torvalds" target="_blank" rel="noopener">github.com/torvalds</a></cite></footer></blockquote>
+<a id="more"></a>
+
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>liunx常见的发行版有ubuntu,red hat,centos,gun,kail...整理一些常用的liunx(测试环境 centos release 6.9)命令,然后由于要学英语嘛,尝试用英语写作.</code></pre>
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"https://gslb.miaopai.com/stream/gX1nvE-FwDbx3sHgFfAvVfhdFHSViZLDe7mO9Q__.mp4?yx=&refer=weibo_app&Expires=1531913346&ssig=ieIoafqxGZ&KID=unistore,video","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+
+<h3 id="file-operation-at-touch-vi-ls-cd"><a href="#file-operation-at-touch-vi-ls-cd" class="headerlink" title="file operation (at,touch,vi,ls,cd..)"></a>file operation (at,touch,vi,ls,cd..)</h3><ul>
+<li><p>cat perview file content.</p>
+</li>
+<li><p><code>touch+path+filename</code> creat an empty file.</p>
+</li>
+<li><p>vi edit file.<br>vim有四种模式,分别是command(normal)-mode,last-line-mode,insert-mode,和visual-mode.默认进入vim时是普通模式,此时按:是底行模式,按insert是插入模式,按v是视图模式(可以用鼠标滑动)</p>
+<ul>
+<li>在普通模式下dd删除光标所在行</li>
+<li>在底行模式下wq保存并退出!q不保存退出</li>
+</ul>
+</li>
+<li><p>ls list folder or file.</p>
+<ul>
+<li><p><code>ls -l +path</code>view property of file or folder.<br><img src="https://i.loli.net/2018/07/16/5b4c66f7af213.png" alt="5b4c66f7af213"></p>
+</li>
+<li><p><code>ls +[letters]*</code>list file or folder began with letters(正则表达式).<br><img src="https://i.loli.net/2018/07/16/5b4c694bc560a.png" alt="5b4c694bc560a"></p>
+</li>
+</ul>
+</li>
+<li><p>cd Change the shell working directory.</p>
+<ul>
+<li><code>cd ..</code>进入当前目录的父目录</li>
+<li><code>cd -</code>切换到上一个工作目录</li>
+<li><code>cd ~</code>切换到root工作目录</li>
+<li><code>cd \</code>切换到根目录注意不是root目录</li>
+<li>如果路径太长你不想用cd的话看这里–&gt;<a href="https://olivierlacan.com/posts/cd-is-wasting-your-time/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website" target="_blank" rel="noopener">cd is wasting time</a></li>
+</ul>
+</li>
+<li><p><code>tree -d -L 2</code>搜索的深度为2层且只搜索文件夹,注意区分大小写</p>
+</li>
+</ul>
+<h3 id="other"><a href="#other" class="headerlink" title="other"></a>other</h3><ol>
+<li>切换用户<ul>
+<li>root-&gt;普通用户:<code>su +username</code></li>
+<li>普通用户-&gt;root:<code>sudo su</code>或者<code>su -root</code><br><img src="https://i.loli.net/2018/07/22/5b54953315576.png" alt="5b54953315576"><br>需要稍加注意的是当在root环境下时前面是#,而在普通用户环境下时前面是~</li>
+</ul>
+</li>
+</ol>
+<h3 id="package-management"><a href="#package-management" class="headerlink" title="package management"></a>package management</h3><p>yum,pkg,apt…</p>
+<p>brew,npm,yarn,pip…</p>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><ol>
+<li><a href="https://www.jianshu.com/p/a182a0be4b8a" target="_blank" rel="noopener">看完这篇Linux基本的操作就会了</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>hotkey</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>风往南吹-想法</title>
     <url>/articles/p18.html</url>
     <content><![CDATA[<p><meting-js server="netease" type="song" id="145586"></meting-js></p>
@@ -1309,30 +1309,6 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>My idol--Obama</title>
-    <url>/articles/p6.html</url>
-    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
-    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
-their own idol.Maybe actor singer or other famous people.
-    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
-humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
-<a id="more"></a>
-    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
-without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
-    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
-withhis daughter whenever how busy he is.
-    Oboma is so great person that's why I like him.
-
-<p>附：</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>堕落之王-想法</title>
     <url>/articles/p19.html</url>
     <content><![CDATA[<p>2018-01-31<br>原文：“走了？分手？好啊！滚吧，我早就想甩了你了，就是不好开口！哈哈……哈哈！”<br>想法：</p>
@@ -1360,6 +1336,50 @@ withhis daughter whenever how busy he is.
       <tags>
         <tag>think</tag>
         <tag>reading book</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爱丽丝梦游仙境-想法</title>
+    <url>/articles/p20.html</url>
+    <content><![CDATA[<p>2018-07-13<br>原文：起来，哭是没用的！”爱丽丝严厉地对自己说，”限你-，分钟内就停止哭！<br>想法：</p>
+<p>2018-07-13<br>原文：这个小孩很喜欢装成两个人<br>想法：</p>
+<p>2018-07-13<br>原文：小鳄鱼怎样保养 它闪亮的尾巴， 把尼罗河水灌进 每一片金色的鳞甲。 它笑得多么快乐， 伸开爪子的姿势多么文雅， 它在欢迎那些小鱼 游进它温柔微笑着的嘴巴。<br>想法：</p>
+<p>2018-07-13<br>原文：她第一个念头是掉进海里了。她对自己说：”那么我可以坐火车回去了，”<br>想法：孩子的想法可爱又单纯ಠ౪ಠ</p>
+<p>2018-07-13<br>原文：只渡渡鸟（一种现已绝种的鸟，原产非洲毛里求斯。）<br>想法：中学课本上的渡渡鸟，可怜的小家伙╥﹏╥</p>
+<p>2018-07-13<br>原文：我发现了什么吃的东西时，当然知道’这’是指什么。’这’通常指一只青蛙或一条蚯蚓<br>想法：可爱的小鸭子～(^з^)-</p>
+<p>2018-07-13<br>原文：”你的口袋里还有别的东西吗，”它转向爱丽丝问道。 “只有一个顶针了。”爱丽丝伤心地说。 “把它拿来。”渡渡鸟说， 这时，大家又围住了爱丽丝，渡渡鸟接过顶针后兑严肃地递给了她，说：”我们请求你接受这只精致的顶针，”<br>想法：自己给自己奖品嘛？渡渡鸟严肃起来可真好笑ಠ౪ಠ</p>
+<p>2018-07-13<br>原文： “你记得吗，你答应过讲你的历史，”爱丽丝说，”作为什么恨……恨’m’和’g’呀，”她压低声音，说完了这句话，她怕说出猫和狗这两个字惹老鼠生气，于是只说出猫和狗两字的拼音字头。<br>想法：这个翻译我不同意，猫就是m，狗就是g，有点low还是写c和d好。</p>
+<p>2018-07-13<br>原文：因为今晨我没事干，所以我要跟你捣捣蛋<br>想法：</p>
+<p>2018-07-13<br>原文：你要个碗（弯）！”爱丽丝说，由于她总是热心帮助别人的，因此就焦急她四周寻找，”哦，让我帮你找找看。”<br>想法：傻白甜的天然呆爱丽丝o(*≧▽≦)ツ┏━┓拍桌狂笑</p>
+<p>2018-07-13<br>原文：”别说了，妈！你这样罗嗦，就是牡蛎都忍耐不了。”小螃蟹耐着小脾气说。<br>想法：螃蟹都是这样吃杜蛎的么？ಥ_ಥ</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
+        <tag>reading book</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>My idol--Obama</title>
+    <url>/articles/p6.html</url>
+    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
+    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
+their own idol.Maybe actor singer or other famous people.
+    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
+humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
+<a id="more"></a>
+    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
+without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
+    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
+withhis daughter whenever how busy he is.
+    Oboma is so great person that's why I like him.
+
+<p>附：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1448,26 +1468,6 @@ typedef struct{
       </tags>
   </entry>
   <entry>
-    <title>爱丽丝梦游仙境-想法</title>
-    <url>/articles/p20.html</url>
-    <content><![CDATA[<p>2018-07-13<br>原文：起来，哭是没用的！”爱丽丝严厉地对自己说，”限你-，分钟内就停止哭！<br>想法：</p>
-<p>2018-07-13<br>原文：这个小孩很喜欢装成两个人<br>想法：</p>
-<p>2018-07-13<br>原文：小鳄鱼怎样保养 它闪亮的尾巴， 把尼罗河水灌进 每一片金色的鳞甲。 它笑得多么快乐， 伸开爪子的姿势多么文雅， 它在欢迎那些小鱼 游进它温柔微笑着的嘴巴。<br>想法：</p>
-<p>2018-07-13<br>原文：她第一个念头是掉进海里了。她对自己说：”那么我可以坐火车回去了，”<br>想法：孩子的想法可爱又单纯ಠ౪ಠ</p>
-<p>2018-07-13<br>原文：只渡渡鸟（一种现已绝种的鸟，原产非洲毛里求斯。）<br>想法：中学课本上的渡渡鸟，可怜的小家伙╥﹏╥</p>
-<p>2018-07-13<br>原文：我发现了什么吃的东西时，当然知道’这’是指什么。’这’通常指一只青蛙或一条蚯蚓<br>想法：可爱的小鸭子～(^з^)-</p>
-<p>2018-07-13<br>原文：”你的口袋里还有别的东西吗，”它转向爱丽丝问道。 “只有一个顶针了。”爱丽丝伤心地说。 “把它拿来。”渡渡鸟说， 这时，大家又围住了爱丽丝，渡渡鸟接过顶针后兑严肃地递给了她，说：”我们请求你接受这只精致的顶针，”<br>想法：自己给自己奖品嘛？渡渡鸟严肃起来可真好笑ಠ౪ಠ</p>
-<p>2018-07-13<br>原文： “你记得吗，你答应过讲你的历史，”爱丽丝说，”作为什么恨……恨’m’和’g’呀，”她压低声音，说完了这句话，她怕说出猫和狗这两个字惹老鼠生气，于是只说出猫和狗两字的拼音字头。<br>想法：这个翻译我不同意，猫就是m，狗就是g，有点low还是写c和d好。</p>
-<p>2018-07-13<br>原文：因为今晨我没事干，所以我要跟你捣捣蛋<br>想法：</p>
-<p>2018-07-13<br>原文：你要个碗（弯）！”爱丽丝说，由于她总是热心帮助别人的，因此就焦急她四周寻找，”哦，让我帮你找找看。”<br>想法：傻白甜的天然呆爱丽丝o(*≧▽≦)ツ┏━┓拍桌狂笑</p>
-<p>2018-07-13<br>原文：”别说了，妈！你这样罗嗦，就是牡蛎都忍耐不了。”小螃蟹耐着小脾气说。<br>想法：螃蟹都是这样吃杜蛎的么？ಥ_ಥ</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>reading book</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>git创建版本库和关联远程库</title>
     <url>/articles/p8.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
@@ -1484,7 +1484,7 @@ typedef struct{
  create mode 100644 readme.txt</code></pre>
 <h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
 <li>click “Create a new repository”</li>
-<li>git remote add origin <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
+<li>git remote add origin <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#103;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
 <li>git remote remove origin//取消本地关联远程库</li>
 <li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
 </ol>

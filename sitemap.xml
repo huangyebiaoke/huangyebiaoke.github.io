@@ -107,14 +107,14 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/search/index.html</loc>
+    <loc>http://blog.madeai.cn/tags/index.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/tags/index.html</loc>
+    <loc>http://blog.madeai.cn/search/index.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
@@ -184,14 +184,14 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/articles/make-dice-game.html</loc>
+    <loc>http://blog.madeai.cn/articles/mark-ball-game.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/articles/mark-ball-game.html</loc>
+    <loc>http://blog.madeai.cn/articles/make-dice-game.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
@@ -242,6 +242,13 @@
 
   
   <url>
+    <loc>http://blog.madeai.cn/tags/MySQL/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.madeai.cn/tags/Java/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
@@ -250,13 +257,6 @@
   
   <url>
     <loc>http://blog.madeai.cn/tags/Android/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/tags/MySQL/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
