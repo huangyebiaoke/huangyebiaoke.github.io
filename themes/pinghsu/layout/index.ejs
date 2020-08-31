@@ -1,4 +1,4 @@
-<%- partial('_partial/header', { 
+<%- partial('_partial/header', {
     title: config.title, 
     bgColor: 'bg-grey'
 }) %>
@@ -18,7 +18,7 @@
                             <% if (post.excerpt) { %>
                             <p><%- truncate(strip_html(post.excerpt), { length: 75 }) %></p>
                             <% } else { %>
-                            <p><%- truncate(strip_html(post.content), { length: 75 }) %></p>
+                            <p><%= truncate(strip_html(post.content), { length: 75 }) %></p>
                             <% } %>
 						</div>
 					</a>

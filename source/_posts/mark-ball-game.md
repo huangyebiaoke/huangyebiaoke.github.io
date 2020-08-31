@@ -9,7 +9,6 @@ tags:
 ---
 这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：
 <img src="/assets/blogimg/item_game_tiaotiaoball_ball.png">
-<!--more-->
 1.<a href="/item/game/tiaotiaoball/settime">计时器：</a>
 ``` bash
 <html>

@@ -28,7 +28,7 @@ function randPostThumb(theme) {
         return "";
     } else {
         const prefix = '/images/thumbs/';
-        const number = theme.randomThumb && typeof theme.randomThumb === 'number' ? theme.randomThumb : 18; 
+        const number = theme.randomThumb && typeof theme.randomThumb === 'number' ? theme.randomThumb : 22;
         return prefix + randomInt(1, number) + '.jpg';
     }
 };
@@ -36,7 +36,7 @@ function randPostThumb(theme) {
 // 校验url是否是合法，可以是外链，要符合http(s)开头，也可以是source内/images/下的以（jpg | png | jpeg |webp）结尾的图片
 function validUrl(url) {
     const regUrl = /^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*\.{1}(png|jpg|jpeg|webp)$/i;
-    const regFolder = /^\/images\/.+\.{1}(png|jpg|jpeg|webp)$/i
+    const regFolder = /^\/assets\/blogimg\/.+\.{1}(png|jpg|jpeg|webp)$/i
     return regUrl.test(url) || regFolder.test(url);
 }
 

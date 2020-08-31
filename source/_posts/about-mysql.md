@@ -5,7 +5,6 @@ date: 2018-03-26 16:52:37
 tags: MySQL
 ---
 ![login mysql](/assets/blogimg/p10-1.png "login mysql")
-<!--more-->
 ### 如何开启mysql的远程连接
 1.直接修改user表
 ``` plsql

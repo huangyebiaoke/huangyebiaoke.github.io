@@ -7,7 +7,6 @@ date: 2019-07-27 15:48:56
 math: true
 ---
 ![Euler](https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg)
-<!---more--->
 ### Euler's formula: 
 $$
 \Large{e^{ix}=cosx+isinx
@@ -25,7 +24,6 @@ when $x_0$ equals $0$, the formula transform to
 $$
 \underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)
 $$
-
 Here's three items about $e^x\quad sinx\quad cosx$
 
 $

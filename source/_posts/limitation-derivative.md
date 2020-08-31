@@ -1,13 +1,12 @@
 ---
 uuid: 955eac8f-0644-0911-e8a6-2151c009a723
-title: limitation&derivative
+title: 极限&导数
 reward: true
 date: 2019-01-21 16:49:50
 tags: math
 toc: true
 ---
 ![title-picture](http://pic.9ht.com/up/2016-4/201642715311.jpg)
-<!--more-->
 ### 极限
 
 - 函数的极限
@@ -35,12 +34,14 @@ $$\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^
 - $e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$
 - $ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$
 - ${1+x}^a=1+ax+\frac{a(a-1)}{2!}x+o(x^2)$
-	
+
 ###### *抓大头*
+
 ##### $\infty-\infty\; 0\cdot\infty$
 ##### $1^{\infty} 0^{0}\; \infty^{0}$
 #### 数列的极限
 #### 极限的应用
+
 ### 导数
 #### 导数的计算
 #### 导数的应用

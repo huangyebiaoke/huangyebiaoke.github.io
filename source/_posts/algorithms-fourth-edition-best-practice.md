@@ -10,9 +10,6 @@ tags:
 ---
 
 ![sort-algorithm](/assets/blogimg/sort-algorithm-banner.png)
-
-<!--more-->
-
 ### bucket sort
 
 **桶排序**的基本思路是遍历一个待排的数组,把每个数出现的次数记录到一个新的数组里面,那这个新的数组里的下标就是待排序的数组的值.

@@ -1,0 +1,18 @@
+{
+	"version":"Sample 1.0.0",
+	"model":"00000003.moc",
+	"textures":[
+		"textures/00000005.png"
+	],
+	"motions":{
+		"tap":[
+			{"file":"motions/00000000.mtn"}
+		],
+		"idle":[
+			{"file":"motions/00000002.mtn"}
+		],
+		"attack":[
+			{"file":"motions/00000001.mtn"}
+		]
+	}
+}

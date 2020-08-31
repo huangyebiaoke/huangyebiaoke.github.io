@@ -1,0 +1,15 @@
+{
+	"version":"Sample 1.0.0",
+	"model":"00000002.moc",
+	"textures":[
+		"textures/00000004.png"
+	],
+	"motions":{
+		"tap_body":[
+			{"file":"motions/tap.mtn"}
+		],
+		"idle":[
+			{"file":"motions/idle.mtn","fade_in":0,"fade_out":0}
+		]
+	}
+}

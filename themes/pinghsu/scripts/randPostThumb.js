@@ -1,6 +1,6 @@
 var randPostThumb = function() {
   const prefix = '/images/thumbs/';
-  return prefix + randomInt(0, 9) + '.jpg';
+  return prefix + randomInt(1, 22) + '.jpg';
 };
 
 function randomInt(min, max) {

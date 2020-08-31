@@ -44,16 +44,16 @@ tags:
 
 这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:
 
-- **todo list**
+**todo list**
 
-	- 单独列为一个项目用`http://www.exam.madeai.cn`
+- [ ] 单独列为一个项目用`http://www.exam.madeai.cn`
 
-	- 添加rank排行榜
+- [x] 添加rank排行榜
 
-	- 添加评论系统
+- [ ] 添加评论系统
 
-	- css美化页面
+- [x] css美化页面
 
-	- 更友好的交互体验
+- [x] 更友好的交互体验
 
 然后是传送门:[信息技术大赛出题机](http://www.madeai.cn/exam)

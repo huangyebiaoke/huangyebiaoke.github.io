@@ -1,0 +1,30 @@
+{
+  "version": "Sample 1.0.0",
+  "model": "moc/c010_01.moc",
+  "textures": [
+    "moc/c010_01.2048/00000005.png"
+  ],
+  "motions": {
+    "attack": [
+      {
+        "file": "mtn/00000000.mtn",
+        "fade_in": 0,
+        "fade_out": 0
+      }
+    ],
+    "hit": [
+      {
+        "file": "mtn/00000001.mtn",
+        "fade_in": 0,
+        "fade_out": 0
+      }
+    ],
+    "idle": [
+      {
+        "file": "mtn/00000002.mtn",
+        "fade_in": 0,
+        "fade_out": 0
+      }
+    ]
+  }
+}
