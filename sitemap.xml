@@ -2,105 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.madeai.cn/articles/p8.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/p17.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/mark-ball-game.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/p6.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/p15.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/limitation-derivative.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/make-dice-game.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.madeai.cn/articles/what-is-adjoint-matrix.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/p16.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/p12.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/about-mysql.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/about-android-thread.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/algorithms-fourth-edition-best-practice.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/euler-s-formula.html</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/six-band-writing-template.html</loc>
     
     <lastmod>2020-08-31</lastmod>
     
@@ -121,6 +23,97 @@
   </url>
   
   <url>
+    <loc>http://blog.madeai.cn/articles/p18.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p17.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p12.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p16.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p15.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p11.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p8.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p9.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p7.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/p6.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/limitation-derivative.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/make-dice-game.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/mark-ball-game.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.madeai.cn/articles/automatic-generate-question.html</loc>
     
     <lastmod>2020-08-31</lastmod>
@@ -128,7 +121,42 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/articles/data-type-of-java.html</loc>
+    <loc>http://blog.madeai.cn/articles/get-website-message-alert.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/euler-s-formula.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/algorithms-fourth-edition-best-practice.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/about-mysql.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/about-android-thread.html</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/articles/six-band-writing-template.html</loc>
     
     <lastmod>2020-08-31</lastmod>
     
@@ -152,20 +180,6 @@
     <loc>http://blog.madeai.cn/links/index.html</loc>
     
     <lastmod>2020-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/p18.html</loc>
-    
-    <lastmod>2020-08-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/p11.html</loc>
-    
-    <lastmod>2020-08-29</lastmod>
     
   </url>
   
@@ -198,21 +212,7 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/articles/p9.html</loc>
-    
-    <lastmod>2020-08-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/p7.html</loc>
-    
-    <lastmod>2020-08-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/get-website-message-alert.html</loc>
+    <loc>http://blog.madeai.cn/articles/i-can-not-hear-you.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
@@ -220,13 +220,6 @@
   
   <url>
     <loc>http://blog.madeai.cn/articles/just-fuck-you.html</loc>
-    
-    <lastmod>2020-08-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/articles/i-can-not-hear-you.html</loc>
     
     <lastmod>2020-08-29</lastmod>
     
@@ -242,6 +235,13 @@
 
   
   <url>
+    <loc>http://blog.madeai.cn/tags/MySQL/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.madeai.cn/tags/Java/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
@@ -250,13 +250,6 @@
   
   <url>
     <loc>http://blog.madeai.cn/tags/Android/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.madeai.cn/tags/algorithm/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -277,7 +270,7 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/tags/MySQL/</loc>
+    <loc>http://blog.madeai.cn/tags/algorithm/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -361,13 +354,6 @@
   </url>
   
   <url>
-    <loc>http://blog.madeai.cn/tags/reading-book/</loc>
-    <lastmod>2020-08-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.madeai.cn/tags/hotkey/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
@@ -376,6 +362,13 @@
   
   <url>
     <loc>http://blog.madeai.cn/tags/Linux/</loc>
+    <lastmod>2020-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.madeai.cn/tags/reading-book/</loc>
     <lastmod>2020-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
