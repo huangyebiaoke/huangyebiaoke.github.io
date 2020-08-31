@@ -122,7 +122,7 @@
 
 	
 	<div class="post-header-thumb">
-		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/5.jpg);"></div>
+		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/12.jpg);"></div>
 		<div class="post-header-thumb-cover">
 			<div class="post-header-thumb-container">
 				<div class="post-header-thumb-title">
@@ -144,9 +144,9 @@
 				<div class="post-tags">
 					
 					
-					<a href="/tags/CMD/">CMD</a>
-					
 					<a href="/tags/DOS/">DOS</a>
+					
+					<a href="/tags/CMD/">CMD</a>
 					
 					<a href="/tags/bat/">.bat</a>
 					
@@ -179,21 +179,22 @@
 		<p class="post-tags">
             
             
-            <a href="/tags/CMD/">CMD</a>
-            
             <a href="/tags/DOS/">DOS</a>
+            
+            <a href="/tags/CMD/">CMD</a>
             
             <a href="/tags/bat/">.bat</a>
             
             
         </p>
-		<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre><p><a data-fancybox="gallery" href="/assets/blogimg/p11-1.png" data-height="800"><img src="/assets/blogimg/p11-1.png"></a><br>    每个文件夹里是这样的文件：<br><a data-fancybox="gallery" href="/assets/blogimg/p11-2.png" data-height="800"><img src="/assets/blogimg/p11-2.png"></a><br>现在我需要：</p>
+		<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
+<p><a data-fancybox="gallery" href="/assets/blogimg/p11-1.png" data-height="800"><img src="/assets/blogimg/p11-1.png"></a><br>    每个文件夹里是这样的文件：<br><a data-fancybox="gallery" href="/assets/blogimg/p11-2.png" data-height="800"><img src="/assets/blogimg/p11-2.png"></a><br>现在我需要：</p>
 <ol>
 <li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
 <li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
 <li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
 <li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
-<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot;</code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
+<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot; </code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
 <li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><a data-fancybox="gallery" href="/assets/blogimg/p11-3.png" data-height="800"><img src="/assets/blogimg/p11-3.png"></a><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
 </ol>
 <ul>
@@ -278,7 +279,7 @@
 						<div class="item-title"><a href="/articles/p16.html">如何使用win10提高工作效率</a></div>
 						<div class="item-meta clearfix">
 							<div class="item-meta-date" style="color: #5f5f5f;">2018-07-07</div>
-							<div class="item-meta-ico bg-ico-design" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+							<div class="item-meta-ico bg-ico-web" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -359,7 +360,7 @@
                         <p><a href="https://github.com/cccyb/hexo-theme-pinghsu" target="_blank">Pinghsu</a> theme | Powered by <a href="https://hexo.io/" target="_blank" rel="nofollow">Hexo</a></p>
                     </div>
                     <div class="site-statistics">
-                        <p style="margin-top: 10px">总字数 12.3k</p>
+                        <p style="margin-top: 10px">总字数 12.5k</p>
                         
                             <p>
                         <span id="busuanzi_container_site_pv" style='display:none'>
@@ -390,7 +391,7 @@
                 
                 <li><a href="/articles/about-android-thread.html">关于Android线程</a></li>
                 
-                <li><a href="/articles/automatic-generate-question.html">自动出题机</a></li>
+                <li><a href="/articles/limitation-derivative.html">极限和导数</a></li>
                 
             </div>
             

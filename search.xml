@@ -87,88 +87,6 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
       </tags>
   </entry>
   <entry>
-    <title>关于mysql</title>
-    <url>/articles/about-mysql.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
-<a id="more"></a>
-<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
-<pre><code class="plsql">    use mysql;//选择mysql库
-    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
-    flush privileges;//刷新数据库</code></pre>
-<p>2.root用户远程连接数据库</p>
-<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
-    flush privileges;</code></pre>
-<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
-<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
-<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
-<thead>
-<tr>
-<th align="left">operation</th>
-<th align="left">usage</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">创建数据库</td>
-<td align="left">CREATE DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">删除数据库</td>
-<td align="left">DROP DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">创建数据表</td>
-<td align="left">CREATE TABLE table_name (column_name column_type);</td>
-</tr>
-<tr>
-<td align="left">删除数据表</td>
-<td align="left">DROP TABLE table_name</td>
-</tr>
-<tr>
-<td align="left">增(insert)</td>
-<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
-</tr>
-<tr>
-<td align="left">删(delete)</td>
-<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
-</tr>
-<tr>
-<td align="left">查(select)</td>
-<td align="left">select * from stu_info;</td>
-</tr>
-<tr>
-<td align="left">改(update)</td>
-<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
-</tr>
-</tbody></table>
-<p>其中关于创建数据表：</p>
-<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
-   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
-   `stuNo`  CHAR(6)  NOT  NULL,
-   `stuName` VARCHAR(40) NOT NULL,
-   `stuAge` INTEGER,
-   `stuAddress` VARCHAR(100) NOT NULL,
-   `subDate` DATE,//上传时间NOW();
-   PRIMARY KEY ( `stuId` )//主键;
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
-<p>其中关于往数据表中增加一条数据：</p>
-<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
-<p>往数据表中增加多条数据：</p>
-<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
-VALUES
-(valueA1,valueA2,...valueAN),
-(valueB1,valueB2,...valueBN),
-(valueC1,valueC2,...valueCN)
-......;</code></pre>
-<p>改数据表中的数据：</p>
-<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
-<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
-<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>&lt;算法第四版&gt;最佳实践</title>
     <url>/articles/algorithms-fourth-edition-best-practice.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
@@ -323,36 +241,10 @@ VALUES
       </tags>
   </entry>
   <entry>
-    <title>欧拉公式の推导</title>
-    <url>/articles/euler-s-formula.html</url>
-    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
-<a id="more"></a>
-<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
-<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
-<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
-<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
-<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
-<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
-<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
-<p>that is $e^{ix}=cosx+isinx$</p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>data-type-of-java</title>
-    <url>/articles/data-type-of-java.html</url>
-    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>自动出题机</title>
     <url>/articles/automatic-generate-question.html</url>
-    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre><h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
+    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre>
+<h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
 <p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
 <p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
 <p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
@@ -367,28 +259,63 @@ VALUES
 <p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
 <p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
 <h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
+<p><strong>todo list</strong></p>
 <ul>
-<li><p><strong>todo list</strong></p>
-<ul>
-<li><p>单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
+<li><p><input disabled type="checkbox">  单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
 </li>
-<li><p>添加rank排行榜</p>
+<li><p><input checked disabled type="checkbox">  添加rank排行榜</p>
 </li>
-<li><p>添加评论系统</p>
+<li><p><input disabled type="checkbox">  添加评论系统</p>
 </li>
-<li><p>css美化页面</p>
+<li><p><input checked disabled type="checkbox">  css美化页面</p>
 </li>
-<li><p>更友好的交互体验</p>
-</li>
-</ul>
+<li><p><input checked disabled type="checkbox">  更友好的交互体验</p>
 </li>
 </ul>
 <p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
 ]]></content>
       <tags>
-        <tag>MySQL</tag>
         <tag>PHP</tag>
         <tag>JS</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java数据类型</title>
+    <url>/articles/data-type-of-java.html</url>
+    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>怎么使用live2d做一个看板娘</title>
+    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
+    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
+<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
+]]></content>
+      <tags>
+        <tag>live2d</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>撒野</title>
+    <url>/articles/i-can-not-hear-you.html</url>
+    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
+<p>这首歌就一句话:好听！</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
+        <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>就是不听话</title>
+    <url>/articles/just-fuck-you.html</url>
+    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
+      <tags>
+        <tag>think</tag>
       </tags>
   </entry>
   <entry>
@@ -503,32 +430,160 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>how-to-make-a-showgirl-use-live2d</title>
-    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
-    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
-<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
-]]></content>
+    <title>极限和导数</title>
+    <url>/articles/limitation-derivative.html</url>
+    <content><![CDATA[<p><img src="http://pic.9ht.com/up/2016-4/201642715311.jpg" alt="title-picture"></p>
+<a id="more"></a>
+<h3 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h3><ul>
+<li>函数的极限<ul>
+<li>$frac{0}{0}; \frac{\infty}{\infty}$</li>
+<li>$\infty-\infty; 0\cdot\infty$</li>
+<li>$1^{\infty} 0^{0}; \infty^{0}$</li>
+</ul>
+</li>
+<li>数列的极限<ul>
+<li>夹逼准则</li>
+<li>单调有界收敛准则</li>
+<li>定积分的定义</li>
+</ul>
+</li>
+<li>极限的应用<ul>
+<li>连续,间断点</li>
+<li>渐近线(垂直,水平,斜)</li>
+<li>导数的定义</li>
+</ul>
+</li>
+</ul>
+<h4 id="函数的极限"><a href="#函数的极限" class="headerlink" title="函数的极限"></a>函数的极限</h4><h5 id="frac-0-0-frac-infty-infty"><a href="#frac-0-0-frac-infty-infty" class="headerlink" title="$frac{0}{0}; \frac{\infty}{\infty}$"></a>$frac{0}{0}; \frac{\infty}{\infty}$</h5><h6 id="洛必达"><a href="#洛必达" class="headerlink" title="洛必达"></a><em>洛必达</em></h6><h6 id="泰勒公式"><a href="#泰勒公式" class="headerlink" title="泰勒公式"></a><em>泰勒公式</em></h6><p>$$\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)$$</p>
+<p>常见的泰勒公式:</p>
+<ul>
+<li>$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$</li>
+<li>$ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$</li>
+<li>${1+x}^a=1+ax+\frac{a(a-1)}{2!}x+o(x^2)$</li>
+</ul>
+<h6 id="抓大头"><a href="#抓大头" class="headerlink" title="抓大头"></a><em>抓大头</em></h6><h5 id="infty-infty-0-cdot-infty"><a href="#infty-infty-0-cdot-infty" class="headerlink" title="$\infty-\infty; 0\cdot\infty$"></a>$\infty-\infty; 0\cdot\infty$</h5><h5 id="1-infty-0-0-infty-0"><a href="#1-infty-0-0-infty-0" class="headerlink" title="$1^{\infty} 0^{0}; \infty^{0}$"></a>$1^{\infty} 0^{0}; \infty^{0}$</h5><h4 id="数列的极限"><a href="#数列的极限" class="headerlink" title="数列的极限"></a>数列的极限</h4><h4 id="极限的应用"><a href="#极限的应用" class="headerlink" title="极限的应用"></a>极限的应用</h4><h3 id="导数"><a href="#导数" class="headerlink" title="导数"></a>导数</h3><h4 id="导数的计算"><a href="#导数的计算" class="headerlink" title="导数的计算"></a>导数的计算</h4><h4 id="导数的应用"><a href="#导数的应用" class="headerlink" title="导数的应用"></a>导数的应用</h4>]]></content>
       <tags>
-        <tag>live2d</tag>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
-    <title>撒野</title>
-    <url>/articles/i-can-not-hear-you.html</url>
-    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
-<p>这首歌就一句话:好听！</p>
+    <title>跳跳球</title>
+    <url>/articles/mark-ball-game.html</url>
+    <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"></p>
+<a id="more"></a>
+<p>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
+    &lt;script&gt;
+        function init() {
+            setInterval(&quot;document.f.display.value=String(Number(document.f.display.value)+1)&quot;,1000);
+        }//定时器 每隔一秒加一次
+        /*function incre() {
+         document.f.display.value=String(Number(document.f.display.value)+1);
+
+         }*/
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init()&quot;&gt;
+    &lt;form name=&quot;f&quot;&gt;&lt;!--不写form总报错 不知道为啥--&gt;
+        &lt;input name=&quot;display&quot; type=&quot;text&quot; value=&quot;0&quot;/&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>2.<a href="/item/game/tiaotiaoball/ball1">用canvas插入img：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ball&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var img1=new Image();
+    var img2=new Image();
+    img1.src=&quot;../../images/cool.jpg&quot;;
+    img2.src=&quot;../../images/dog.gif&quot;;
+    var ctx;
+    function init(){
+        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);
+        ctx.drawImage(img1,10,20,50,50);
+        ctx.drawImage(img2,150,20,100,100);
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
+        your browser don&#39;t support convas
+    &lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>3.<a href="/item/game/tiaotiaoball/ball">跳跳球：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ball&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var boxx=50,boxy=50,boxw=300,boxh=300;//盒子左上角据左边画布的距离，盒子左上角据上边画布的距离，盒子的宽高；
+    var ballx=20,bally=20,ballvx=2,ballvy=4,ballr=6;//球的初始位置（相对盒子），球的位移，球的半径；
+    var hshang=boxy+ballr,hxia=boxh+boxy-ballr,hzuo=boxx+ballr,hyou=boxw+boxx-ballr;//里面的小盒子 用于检测碰撞；
+    var ctx;//保存上下文 不太懂上下文是啥
+    function init(){
+        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);//获取canvas的上下文
+        ctx.fillStyle=&quot;rgb(200.0.0)&quot;;//设置填充颜色
+        ctx.lineWidth=6; //设置线宽
+        moveball();//先显示ball
+        setInterval(moveball,10); //setTimeout()只执行一次事件 不能重复调用moveball事件；
+    }
+    function moveball() {
+        ctx.clearRect(boxx,boxy,boxw,boxh);//擦除整个盒子包括ball 第一次运行不会有任何影响
+        moveandcheck();
+        ctx.beginPath();
+        ctx.arc(ballx,bally,ballr,0,2*Math.PI,true);//画圆
+        ctx.fill();
+        ctx.strokeRect(boxx,boxy,boxw,boxh);//画盒子
+    }
+    function moveandcheck() {//检测碰撞
+        var perballx=ballx+ballvx,perbally=bally+ballvy;
+        if(perballx&gt;hyou) {//如果超过小盒子的右边
+            ballvx=-ballvx;//改变水平方向
+            perballx=hyou; //&quot;设置下一个x等于这个边界值&quot; 没看懂啥意思；
+        }
+        if(perballx&lt;hzuo) {
+            perballx=hzuo;
+            ballvx=-ballvx;
+        }
+        if(perbally&gt;hxia) {
+            perbally=hxia;
+            ballvy=-ballvy;
+        }
+        if(perbally&lt;hshang) {
+            perbally=hshang;
+            ballvy=-ballvy;
+        }
+        ballx=perballx;
+        bally=perbally;
+    }
+    function change() {
+        ballvx=Number(document.f.vx.value);
+        ballvy=Number(document.f.vy.value);
+    }//在form标签里调用onsubmit=&quot;return change();&quot;需要设置return false不然会整个刷新页面
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
+        your browser don&#39;t support convas
+    &lt;/canvas&gt;
+    &lt;form name=&quot;f&quot; id=&quot;f&quot;&gt;
+        水平速度:&lt;input name=&quot;vx&quot; id=&quot;vx&quot; type=&quot;number&quot; value=&quot;2&quot;&gt;
+        垂直速度:&lt;input name=&quot;vy&quot; id=&quot;xy&quot; type=&quot;number&quot; value=&quot;4&quot;&gt;
+        &lt;input type=&quot;button&quot; value=&quot;change&quot; onclick=&quot;change()&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
 ]]></content>
       <tags>
-        <tag>think</tag>
-        <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>就是不听话</title>
-    <url>/articles/just-fuck-you.html</url>
-    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
-      <tags>
-        <tag>think</tag>
+        <tag>JS</tag>
+        <tag>H5</tag>
+        <tag>canvas</tag>
       </tags>
   </entry>
   <entry>
@@ -795,155 +850,103 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>CMD批处理命令的强大</title>
-    <url>/articles/p11.html</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre><p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
-<ol>
-<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
-<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
-<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
-<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
-<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot;</code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
-<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
-</ol>
-<ul>
-<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
-<li>参考：</li>
-</ul>
-<ol>
-<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
-<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
-<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
-<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
-</ol>
-<ul>
-<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
-</ul>
+    <title>欧拉公式の推导</title>
+    <url>/articles/euler-s-formula.html</url>
+    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
+<a id="more"></a>
+<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
+<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
+<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
+<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
+<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
+<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
+<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
+<p>that is $e^{ix}=cosx+isinx$</p>
 ]]></content>
       <tags>
-        <tag>CMD</tag>
-        <tag>DOS</tag>
-        <tag>.bat</tag>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
-    <title>跳跳球</title>
-    <url>/articles/mark-ball-game.html</url>
-    <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"></p>
+    <title>关于mysql</title>
+    <url>/articles/about-mysql.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
 <a id="more"></a>
-<p>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
-    &lt;script&gt;
-        function init() {
-            setInterval(&quot;document.f.display.value=String(Number(document.f.display.value)+1)&quot;,1000);
-        }//定时器 每隔一秒加一次
-        /*function incre() {
-         document.f.display.value=String(Number(document.f.display.value)+1);
-
-         }*/
-
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init()&quot;&gt;
-    &lt;form name=&quot;f&quot;&gt;&lt;!--不写form总报错 不知道为啥--&gt;
-        &lt;input name=&quot;display&quot; type=&quot;text&quot; value=&quot;0&quot;/&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>2.<a href="/item/game/tiaotiaoball/ball1">用canvas插入img：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;ball&lt;/title&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    var img1=new Image();
-    var img2=new Image();
-    img1.src=&quot;../../images/cool.jpg&quot;;
-    img2.src=&quot;../../images/dog.gif&quot;;
-    var ctx;
-    function init(){
-        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);
-        ctx.drawImage(img1,10,20,50,50);
-        ctx.drawImage(img2,150,20,100,100);
-    }
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init();&quot;&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
-        your browser don&#39;t support convas
-    &lt;/canvas&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>3.<a href="/item/game/tiaotiaoball/ball">跳跳球：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;ball&lt;/title&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    var boxx=50,boxy=50,boxw=300,boxh=300;//盒子左上角据左边画布的距离，盒子左上角据上边画布的距离，盒子的宽高；
-    var ballx=20,bally=20,ballvx=2,ballvy=4,ballr=6;//球的初始位置（相对盒子），球的位移，球的半径；
-    var hshang=boxy+ballr,hxia=boxh+boxy-ballr,hzuo=boxx+ballr,hyou=boxw+boxx-ballr;//里面的小盒子 用于检测碰撞；
-    var ctx;//保存上下文 不太懂上下文是啥
-    function init(){
-        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);//获取canvas的上下文
-        ctx.fillStyle=&quot;rgb(200.0.0)&quot;;//设置填充颜色
-        ctx.lineWidth=6; //设置线宽
-        moveball();//先显示ball
-        setInterval(moveball,10); //setTimeout()只执行一次事件 不能重复调用moveball事件；
-    }
-    function moveball() {
-        ctx.clearRect(boxx,boxy,boxw,boxh);//擦除整个盒子包括ball 第一次运行不会有任何影响
-        moveandcheck();
-        ctx.beginPath();
-        ctx.arc(ballx,bally,ballr,0,2*Math.PI,true);//画圆
-        ctx.fill();
-        ctx.strokeRect(boxx,boxy,boxw,boxh);//画盒子
-    }
-    function moveandcheck() {//检测碰撞
-        var perballx=ballx+ballvx,perbally=bally+ballvy;
-        if(perballx&gt;hyou) {//如果超过小盒子的右边
-            ballvx=-ballvx;//改变水平方向
-            perballx=hyou; //&quot;设置下一个x等于这个边界值&quot; 没看懂啥意思；
-        }
-        if(perballx&lt;hzuo) {
-            perballx=hzuo;
-            ballvx=-ballvx;
-        }
-        if(perbally&gt;hxia) {
-            perbally=hxia;
-            ballvy=-ballvy;
-        }
-        if(perbally&lt;hshang) {
-            perbally=hshang;
-            ballvy=-ballvy;
-        }
-        ballx=perballx;
-        bally=perbally;
-    }
-    function change() {
-        ballvx=Number(document.f.vx.value);
-        ballvy=Number(document.f.vy.value);
-    }//在form标签里调用onsubmit=&quot;return change();&quot;需要设置return false不然会整个刷新页面
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init();&quot;&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
-        your browser don&#39;t support convas
-    &lt;/canvas&gt;
-    &lt;form name=&quot;f&quot; id=&quot;f&quot;&gt;
-        水平速度:&lt;input name=&quot;vx&quot; id=&quot;vx&quot; type=&quot;number&quot; value=&quot;2&quot;&gt;
-        垂直速度:&lt;input name=&quot;vy&quot; id=&quot;xy&quot; type=&quot;number&quot; value=&quot;4&quot;&gt;
-        &lt;input type=&quot;button&quot; value=&quot;change&quot; onclick=&quot;change()&quot;&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
+<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
+<pre><code class="plsql">    use mysql;//选择mysql库
+    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
+    flush privileges;//刷新数据库</code></pre>
+<p>2.root用户远程连接数据库</p>
+<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
+    flush privileges;</code></pre>
+<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
+<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
+<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
+<thead>
+<tr>
+<th align="left">operation</th>
+<th align="left">usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">创建数据库</td>
+<td align="left">CREATE DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">删除数据库</td>
+<td align="left">DROP DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">创建数据表</td>
+<td align="left">CREATE TABLE table_name (column_name column_type);</td>
+</tr>
+<tr>
+<td align="left">删除数据表</td>
+<td align="left">DROP TABLE table_name</td>
+</tr>
+<tr>
+<td align="left">增(insert)</td>
+<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
+</tr>
+<tr>
+<td align="left">删(delete)</td>
+<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
+</tr>
+<tr>
+<td align="left">查(select)</td>
+<td align="left">select * from stu_info;</td>
+</tr>
+<tr>
+<td align="left">改(update)</td>
+<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
+</tr>
+</tbody></table>
+<p>其中关于创建数据表：</p>
+<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
+   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
+   `stuNo`  CHAR(6)  NOT  NULL,
+   `stuName` VARCHAR(40) NOT NULL,
+   `stuAge` INTEGER,
+   `stuAddress` VARCHAR(100) NOT NULL,
+   `subDate` DATE,//上传时间NOW();
+   PRIMARY KEY ( `stuId` )//主键;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+<p>其中关于往数据表中增加一条数据：</p>
+<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
+<p>往数据表中增加多条数据：</p>
+<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
+VALUES
+(valueA1,valueA2,...valueAN),
+(valueB1,valueB2,...valueBN),
+(valueC1,valueC2,...valueCN)
+......;</code></pre>
+<p>改数据表中的数据：</p>
+<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
+<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
+<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
 ]]></content>
       <tags>
-        <tag>JS</tag>
-        <tag>H5</tag>
-        <tag>canvas</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -951,7 +954,8 @@ public class Main {
     <url>/articles/p12.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
 <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre><h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre>
+<h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
 xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
 xhr.onload = function () {
     var data = JSON.parse(xhr.responseText);
@@ -1006,7 +1010,8 @@ xhr.send();</code></pre>
     <url>/articles/p15.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
 <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre><p>头条上的视频</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre>
+<p>头条上的视频</p>
 {% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
 
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式:"></a>样式:</h4><pre><code>&lt;style&gt;
@@ -1027,7 +1032,8 @@ xhr.send();</code></pre>
     .yes{
         margin-right: 40px;
     }
-&lt;/style&gt;</code></pre><h4 id="dom树"><a href="#dom树" class="headerlink" title="dom树:"></a>dom树:</h4><pre><code class="html">&lt;div class=&quot;main&quot;&gt;
+&lt;/style&gt;</code></pre>
+<h4 id="dom树"><a href="#dom树" class="headerlink" title="dom树:"></a>dom树:</h4><pre><code class="html">&lt;div class=&quot;main&quot;&gt;
     &lt;h2 class=&quot;title&quot;&gt;辞职信&lt;/h2&gt;
     &lt;article&gt;老板我要辞职&lt;img width=&quot;100&quot; src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1530346447488&amp;di=cdd760f50b3188a667921dc3de943d38&amp;imgtype=0&amp;src=http%3A%2F%2F1873.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2011%2F5%2F3%2F13%2F13%2Fu115243949_1306e5597e5g214.gif&quot;&gt;,请批准!&lt;/article&gt;
     &lt;div class=&quot;chose&quot;&gt;&lt;button class=&quot;yes&quot; id=&quot;yes&quot;&gt;同意&lt;/button&gt;&lt;button class=&quot;no&quot; id=&quot;no&quot;&gt;不同意&lt;/button&gt;&lt;/div&gt;
@@ -1168,12 +1174,13 @@ xhr.send();</code></pre>
   <entry>
     <title>一些linux命令</title>
     <url>/articles/p17.html</url>
-    <content><![CDATA[<p><img src="//img2.tfd.com/pp/wikiimg.ashx?p=commons%2fthumb%2f3%2f35%2fTux.svg%2f280px-Tux.svg.png" alt="liunx"></p>
+    <content><![CDATA[<p><img src="//img2.tfd.com/pp/wikiimg.ashx?p=commons/thumb/3/35/Tux.svg/280px-Tux.svg.png" alt="liunx"></p>
 <blockquote><p>Talk is cheap, show me the code.</p>
 <footer><strong>@Linus Benedict Torvalds ---</strong><cite><a href="https://github.com/torvalds" target="_blank" rel="noopener">github.com/torvalds</a></cite></footer></blockquote>
 <a id="more"></a>
 
-<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>liunx常见的发行版有ubuntu,red hat,centos,gun,kail...整理一些常用的liunx(测试环境 centos release 6.9)命令,然后由于要学英语嘛,尝试用英语写作.</code></pre><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"https://gslb.miaopai.com/stream/gX1nvE-FwDbx3sHgFfAvVfhdFHSViZLDe7mO9Q__.mp4?yx=&refer=weibo_app&Expires=1531913346&ssig=ieIoafqxGZ&KID=unistore,video","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>liunx常见的发行版有ubuntu,red hat,centos,gun,kail...整理一些常用的liunx(测试环境 centos release 6.9)命令,然后由于要学英语嘛,尝试用英语写作.</code></pre>
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"https://gslb.miaopai.com/stream/gX1nvE-FwDbx3sHgFfAvVfhdFHSViZLDe7mO9Q__.mp4?yx=&refer=weibo_app&Expires=1531913346&ssig=ieIoafqxGZ&KID=unistore,video","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 
 <h3 id="file-operation-at-touch-vi-ls-cd"><a href="#file-operation-at-touch-vi-ls-cd" class="headerlink" title="file operation (at,touch,vi,ls,cd..)"></a>file operation (at,touch,vi,ls,cd..)</h3><ul>
 <li><p>cat perview file content.</p>
@@ -1225,71 +1232,36 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>My idol--Obama</title>
-    <url>/articles/p6.html</url>
-    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
-    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
-their own idol.Maybe actor singer or other famous people.
-    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
-humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
-<a id="more"></a>
-    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
-without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
-    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
-withhis daughter whenever how busy he is.
-    Oboma is so great person that's why I like him.
-
-<p>附：</p>
+    <title>CMD批处理命令的强大</title>
+    <url>/articles/p11.html</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
+<p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
 <ol>
-<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
+<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
+<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
+<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
+<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
+<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot; </code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
+<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
 </ol>
+<ul>
+<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
+<li>参考：</li>
+</ul>
+<ol>
+<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
+<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
+<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
+<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
+</ol>
+<ul>
+<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
+</ul>
 ]]></content>
       <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>风往南吹-想法</title>
-    <url>/articles/p18.html</url>
-    <content><![CDATA[<p><meting-js server="netease" type="song" id="145586"></meting-js></p>
-<p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
-<p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
-<p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
-<p>2018-03-20<br>原文：疼痛让我麻木的大脑清醒了一些，我内心里要把这种横来的力量化作工作上的动力，为了我的工作，我失去了曾经认为要相伴一生的微微，所以我唯一能继续做的，就是努力地去工作，我失去的，不能白失去。<br>想法：补偿心理，失去的想要以别的方式补回来[呲牙]</p>
-<p>2018-03-20<br>原文：嗯，该过去的就是会过去，不过一切都没关系，因为昨天总会被今天代替，今天又会很快被明天代替，所以人都该有希望，因为没有力量能阻挡明天的到来。<br>想法：</p>
-<p>2018-03-20<br>原文：有时候我觉得世界就想一台计算精确的计算机，每一个人都在其中，接受着它的安排。<br>想法：</p>
-<p>2018-03-20<br>原文：我心里想，嘿，我这总花公司钱请客吃饭的，到头来还总能加薪受表扬，这，这何乐而不为呢？用脑子挣钱和用腿挣钱就差这个区别，呵呵。<br>想法：</p>
-<p>2018-03-20<br>原文：因为我一直认为接吻时睁着眼的女人不值得信任<br>想法：</p>
-<p>2018-03-20<br>原文：不过每当我在回忆当时的事情，就嘲笑自己的无知和幼稚，殊不知张哥每次关心我伤口的时候，实际上就是在提醒我，他曾经为我的生命都做出过贡献，让我觉得为他做事是天经地义一般。<br>想法：</p>
-<p>2018-03-20<br>原文：两个人好了容易，分开就恶心了。<br>想法：</p>
-<p>2018-03-20<br>原文：我对女人的手非常敏感，可能大家对女人的手散发女人味很难理解？其实我觉得这只是种感觉，很细、很长又很肉乎的就是女人味的那种。<br>想法：</p>
-<p>2018-03-20<br>原文：自从经历了张全佑的那次事情之后，我一直感觉自己太累了，体力加脑力都在辛苦，所以我刚躺下就已经睡着了。<br>想法：过了35岁就干不动了，这是亚健康ಥ_ಥ</p>
-<p>2018-03-20<br>原文：因为我发现，我真心的爱整体的人们，我爱这片土地，但又痛恨每一个单独的人。<br>想法：每一个人都是可爱的，但是分开看又是另一回事了(＠_＠;)</p>
-<p>2018-03-20<br>原文：做人、做公司都是这样，如果不向上发展了，脚步一旦停滞就会后退，就像逆水行舟。<br>想法：永远不要让自己太安逸(๑•̀ㅂ•́)ง</p>
-<p>2018-03-21<br>原文：但是问题没有我想象的那般简单，因为当一个集体不能团结一致工作的话，那麻烦根本就是你难以想象的。交待下去的事情，员工还是正常地去做，但是你就是感觉很别扭，总是在某个地方让你觉得吃惊，就好像有很大仇恨一样，这就是内斗的痛苦。<br>想法：</p>
-<p>2018-03-21<br>原文：我发现，这款游戏真的很好玩，关键是它代表的风格，是一种更高更强的味道。和真实生活中的竞争颇有相似，而且它在游戏开始的时候，基本上是公平的，而且比赛双方的机会也是一样的。这点和生活不同，生活中除了时间外，就没有公平可言了。<br>想法：quake3，《雷神之锤：竞技场》是2001年由id software推出的吃鸡游戏（没错，最早的第一人称fps3D实施对抗类打枪游戏▄█▀█●），id software的每一款游戏都在挑战显卡和CPU的最高性能，推动着硬件的不断发展（就像现在的王者荣耀ヾ(≧O≦)〃嗷~）</p>
-<p>2018-03-21<br>原文：现在到好，我开始烦恼女人，因为前来和她说话的人太多了，总会碍到我喝酒。不过对这些网友前来约她，我心里也有反感，只是我自己告诉自己不能表现出来，否则又会有可能发生一段好开始不好终结的感情，这是我最不希望的感情，因为我觉得男人扔到感情里，是在糟蹋自己，而且我已经累了。<br>想法：</p>
-<p>2018-03-21<br>原文：在这个时候，我突然对女人产生一种厌恶，因为我当时就认为这钱不会丢失，只要我安排得当。<br>想法：女人的可怕你不懂，世界上最可怕的动物莫过于女人╥﹏╥</p>
-<p>2018-03-21<br>原文：饭菜基本上都是我们吃个刚好，没有过多的讲究排场。看来，富贵不是吃的。<br>想法：</p>
-<p>2018-03-21<br>原文：我听完这话后，我都呆住了。因为我一直认为的大好人、大男人居然是这样卑鄙龌龊。还好意思向一个弱不禁风的女孩子要分手费，而且张口还不是小数。我刹那间感觉天旋地转，好像天和地是掉过来的，原来认为是好的，居然都是坏的。我的世界观都跌进了混乱当众，一直认为正确的事情被全盘推翻了一样，不由得让我心里一阵抽搐。<br>想法：</p>
-<p>2018-03-21<br>原文：我早听说过，上海边上有一个叫周庄的地方，那里号称是东方的威尼斯，城市房子中间都是水道组成，过往的交通工具都是大小船舶，咱去不了威尼斯，就去个周庄也不错，况且还有美女相伴。<br>想法：mark一下，有机会一定要去看看～(^з^)-</p>
-<p>2018-03-21<br>原文：且站在石桥上，和站在北京山顶上看日落的感觉也完全不同，就好像是太阳特别优待你，在她就要隐去的瞬间里，把最后一点浪漫和温存都偷偷地洒给需要她的人。<br>想法：</p>
-<p>2018-03-21<br>原文：灵魂在阴影中挣扎，似乎在快乐中的一个个瞬间，总是带有空洞和压抑，让我有种余恨未消的感觉，但这种感觉来得莫名其妙，我不明白怎么会有这样的感觉。<br>想法：</p>
-<p>2018-03-21<br>原文：我开始想，是不是这个社会的教育下，人的外面和里面永远不能配套？<br>想法：</p>
-<p>2018-03-21<br>原文：飞机要是一路顺风就肯定要掉下去了，我得逆风才飞的起来啊。<br>想法：</p>
-<p>2018-03-21<br>原文：七、不过男人的这种情结也不能完全怪罪于可怜的男人，因为这个观点是女人们慢慢帮着树立起来的，她们也是帮凶。按照自己的意愿去捏造男人的性情和行为，然后又冠冕堂皇的用各种理由去指责男人的缺点，却不知道这一切的制造者才是罪魁祸首。<br>想法：</p>
-<p>2018-03-21<br>原文：二十、我的脑子一片混乱，我在颠簸中，看到罗骁呆呆的样子，不知道为什么，我开始发现这张天使面孔底下，充满了邪恶的忧郁。我发现她很反常，面孔中有内疚的表情，但却不知道像上次我受伤那样帮我止血。<br>想法：</p>
-<p>2018-03-21<br>原文：我也明白事理，人家有事情要忙，这是第一；男女经常是只能共福却不能共难这是第二；人在世界上只能相信自己，对其他人还是不要抱有太大的希望，否则希望越大失望越大。<br>想法：</p>
-<p>2018-03-21<br>原文：我在想，为什么会这样呢？命运为什么总捉弄强者呢？不过我很快就冷静了下来，因为现在即便再怎么样，对已经发生的事情也无济于事，最应该做的，是立刻把事情查清楚，毕竟这300万不会莫名其妙的人间蒸发。<br>想法：</p>
-<p>2018-03-21<br>原文：后来我发现，罗骁这种成熟的女人，似乎已经被社会沾染的太油滑，太圆滑了，根本就不能够完全赤诚相待。虽然也不知道罗骁究竟是怎么圆滑，但就是感觉相处，她的处事方式让我产生了一种危机感。也许女人注定就不要太强，否则就只能找那些可以与她互补的人才可以相安无事的在一起。或者我这样说欠缺公平，毕竟我现在的情况让任何人难以有安全感，而罗骁这样的女人最需要的就是安全感。<br>想法：</p>
-<p>2018-03-21<br>原文：生活往往是出人意料的，也许你一直以为是好的，实际却是坏的。不过你一直怀疑的，也许反而是最好的。<br>想法：</p>
-<p>2018-03-21<br>原文：一阵风从我的右边刮来，好冷，冷的刺骨，怎么风向南刮会冷呢？我混沌的脑子用唯一剩下的智慧思考这个问题。！！！！原来，现在刮的是北风啊，原来风往南吹，吹的却是北风，难怪我一直错觉风往南吹时是那么温暖，原来是刺骨的北风。怪不得我以为的好人却都害了我，而爱我的人却总是离开自己，原来，我早就是个自以为是的瞎子了……<br>想法：男主弥留之际的顿悟，看的不是太懂(°ー°〃)</p>
-<p>2018-03-21<br>原文：我既然已经表示了辞职，就不会再回头，否则就算回头了，也未必能得到重用。<br>想法：辞职上司挽留只是礼貌性的，想好再辞职，提出辞职就不能再待下去了(。_。)</p>
-<p>原文阅读☞<a href="/assets/files/1206665799.txt">风往南吹.TXT</a>，结局泪目T_T，又被作者摆了一道</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>reading book</tag>
+        <tag>DOS</tag>
+        <tag>CMD</tag>
+        <tag>.bat</tag>
       </tags>
   </entry>
   <entry>
@@ -1385,16 +1357,16 @@ typedef struct{
 <h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
 <li>mkdir LearningDataStructure//创建本地文件夹</li>
 <li>cd LearningDataStructure//进入文件夹</li>
-<li>pwd//显示当前目录<pre><code class="bash"> /e/LearningDataStructure</code></pre>
+<li>pwd//显示当前目录<pre><code class="bash">/e/LearningDataStructure</code></pre>
 </li>
 <li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li>
 <li>git add README.md//把文件添加到仓库</li>
-<li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash"> [master (root-commit) cb926e7] wrote a readme file
-  1 file changed, 2 insertions(+)
-  create mode 100644 readme.txt</code></pre>
+<li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash">[master (root-commit) cb926e7] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt</code></pre>
 <h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
 <li>click “Create a new repository”</li>
-<li>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
+<li>git remote add origin <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#111;&#109;" target="_blank" rel="noopener">&#103;&#105;&#x74;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#111;&#109;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
 <li>git remote remove origin//取消本地关联远程库</li>
 <li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
 </ol>
@@ -1434,6 +1406,74 @@ if(Objects.equals(a,b)){.......}
       </tags>
   </entry>
   <entry>
+    <title>My idol--Obama</title>
+    <url>/articles/p6.html</url>
+    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
+    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
+their own idol.Maybe actor singer or other famous people.
+    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
+humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
+<a id="more"></a>
+    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
+without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
+    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
+withhis daughter whenever how busy he is.
+    Oboma is so great person that's why I like him.
+
+<p>附：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>风往南吹-想法</title>
+    <url>/articles/p18.html</url>
+    <content><![CDATA[<p><meting-js server="netease" type="song" id="145586"></meting-js></p>
+<p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
+<p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
+<p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
+<p>2018-03-20<br>原文：疼痛让我麻木的大脑清醒了一些，我内心里要把这种横来的力量化作工作上的动力，为了我的工作，我失去了曾经认为要相伴一生的微微，所以我唯一能继续做的，就是努力地去工作，我失去的，不能白失去。<br>想法：补偿心理，失去的想要以别的方式补回来[呲牙]</p>
+<p>2018-03-20<br>原文：嗯，该过去的就是会过去，不过一切都没关系，因为昨天总会被今天代替，今天又会很快被明天代替，所以人都该有希望，因为没有力量能阻挡明天的到来。<br>想法：</p>
+<p>2018-03-20<br>原文：有时候我觉得世界就想一台计算精确的计算机，每一个人都在其中，接受着它的安排。<br>想法：</p>
+<p>2018-03-20<br>原文：我心里想，嘿，我这总花公司钱请客吃饭的，到头来还总能加薪受表扬，这，这何乐而不为呢？用脑子挣钱和用腿挣钱就差这个区别，呵呵。<br>想法：</p>
+<p>2018-03-20<br>原文：因为我一直认为接吻时睁着眼的女人不值得信任<br>想法：</p>
+<p>2018-03-20<br>原文：不过每当我在回忆当时的事情，就嘲笑自己的无知和幼稚，殊不知张哥每次关心我伤口的时候，实际上就是在提醒我，他曾经为我的生命都做出过贡献，让我觉得为他做事是天经地义一般。<br>想法：</p>
+<p>2018-03-20<br>原文：两个人好了容易，分开就恶心了。<br>想法：</p>
+<p>2018-03-20<br>原文：我对女人的手非常敏感，可能大家对女人的手散发女人味很难理解？其实我觉得这只是种感觉，很细、很长又很肉乎的就是女人味的那种。<br>想法：</p>
+<p>2018-03-20<br>原文：自从经历了张全佑的那次事情之后，我一直感觉自己太累了，体力加脑力都在辛苦，所以我刚躺下就已经睡着了。<br>想法：过了35岁就干不动了，这是亚健康ಥ_ಥ</p>
+<p>2018-03-20<br>原文：因为我发现，我真心的爱整体的人们，我爱这片土地，但又痛恨每一个单独的人。<br>想法：每一个人都是可爱的，但是分开看又是另一回事了(＠_＠;)</p>
+<p>2018-03-20<br>原文：做人、做公司都是这样，如果不向上发展了，脚步一旦停滞就会后退，就像逆水行舟。<br>想法：永远不要让自己太安逸(๑•̀ㅂ•́)ง</p>
+<p>2018-03-21<br>原文：但是问题没有我想象的那般简单，因为当一个集体不能团结一致工作的话，那麻烦根本就是你难以想象的。交待下去的事情，员工还是正常地去做，但是你就是感觉很别扭，总是在某个地方让你觉得吃惊，就好像有很大仇恨一样，这就是内斗的痛苦。<br>想法：</p>
+<p>2018-03-21<br>原文：我发现，这款游戏真的很好玩，关键是它代表的风格，是一种更高更强的味道。和真实生活中的竞争颇有相似，而且它在游戏开始的时候，基本上是公平的，而且比赛双方的机会也是一样的。这点和生活不同，生活中除了时间外，就没有公平可言了。<br>想法：quake3，《雷神之锤：竞技场》是2001年由id software推出的吃鸡游戏（没错，最早的第一人称fps3D实施对抗类打枪游戏▄█▀█●），id software的每一款游戏都在挑战显卡和CPU的最高性能，推动着硬件的不断发展（就像现在的王者荣耀ヾ(≧O≦)〃嗷~）</p>
+<p>2018-03-21<br>原文：现在到好，我开始烦恼女人，因为前来和她说话的人太多了，总会碍到我喝酒。不过对这些网友前来约她，我心里也有反感，只是我自己告诉自己不能表现出来，否则又会有可能发生一段好开始不好终结的感情，这是我最不希望的感情，因为我觉得男人扔到感情里，是在糟蹋自己，而且我已经累了。<br>想法：</p>
+<p>2018-03-21<br>原文：在这个时候，我突然对女人产生一种厌恶，因为我当时就认为这钱不会丢失，只要我安排得当。<br>想法：女人的可怕你不懂，世界上最可怕的动物莫过于女人╥﹏╥</p>
+<p>2018-03-21<br>原文：饭菜基本上都是我们吃个刚好，没有过多的讲究排场。看来，富贵不是吃的。<br>想法：</p>
+<p>2018-03-21<br>原文：我听完这话后，我都呆住了。因为我一直认为的大好人、大男人居然是这样卑鄙龌龊。还好意思向一个弱不禁风的女孩子要分手费，而且张口还不是小数。我刹那间感觉天旋地转，好像天和地是掉过来的，原来认为是好的，居然都是坏的。我的世界观都跌进了混乱当众，一直认为正确的事情被全盘推翻了一样，不由得让我心里一阵抽搐。<br>想法：</p>
+<p>2018-03-21<br>原文：我早听说过，上海边上有一个叫周庄的地方，那里号称是东方的威尼斯，城市房子中间都是水道组成，过往的交通工具都是大小船舶，咱去不了威尼斯，就去个周庄也不错，况且还有美女相伴。<br>想法：mark一下，有机会一定要去看看～(^з^)-</p>
+<p>2018-03-21<br>原文：且站在石桥上，和站在北京山顶上看日落的感觉也完全不同，就好像是太阳特别优待你，在她就要隐去的瞬间里，把最后一点浪漫和温存都偷偷地洒给需要她的人。<br>想法：</p>
+<p>2018-03-21<br>原文：灵魂在阴影中挣扎，似乎在快乐中的一个个瞬间，总是带有空洞和压抑，让我有种余恨未消的感觉，但这种感觉来得莫名其妙，我不明白怎么会有这样的感觉。<br>想法：</p>
+<p>2018-03-21<br>原文：我开始想，是不是这个社会的教育下，人的外面和里面永远不能配套？<br>想法：</p>
+<p>2018-03-21<br>原文：飞机要是一路顺风就肯定要掉下去了，我得逆风才飞的起来啊。<br>想法：</p>
+<p>2018-03-21<br>原文：七、不过男人的这种情结也不能完全怪罪于可怜的男人，因为这个观点是女人们慢慢帮着树立起来的，她们也是帮凶。按照自己的意愿去捏造男人的性情和行为，然后又冠冕堂皇的用各种理由去指责男人的缺点，却不知道这一切的制造者才是罪魁祸首。<br>想法：</p>
+<p>2018-03-21<br>原文：二十、我的脑子一片混乱，我在颠簸中，看到罗骁呆呆的样子，不知道为什么，我开始发现这张天使面孔底下，充满了邪恶的忧郁。我发现她很反常，面孔中有内疚的表情，但却不知道像上次我受伤那样帮我止血。<br>想法：</p>
+<p>2018-03-21<br>原文：我也明白事理，人家有事情要忙，这是第一；男女经常是只能共福却不能共难这是第二；人在世界上只能相信自己，对其他人还是不要抱有太大的希望，否则希望越大失望越大。<br>想法：</p>
+<p>2018-03-21<br>原文：我在想，为什么会这样呢？命运为什么总捉弄强者呢？不过我很快就冷静了下来，因为现在即便再怎么样，对已经发生的事情也无济于事，最应该做的，是立刻把事情查清楚，毕竟这300万不会莫名其妙的人间蒸发。<br>想法：</p>
+<p>2018-03-21<br>原文：后来我发现，罗骁这种成熟的女人，似乎已经被社会沾染的太油滑，太圆滑了，根本就不能够完全赤诚相待。虽然也不知道罗骁究竟是怎么圆滑，但就是感觉相处，她的处事方式让我产生了一种危机感。也许女人注定就不要太强，否则就只能找那些可以与她互补的人才可以相安无事的在一起。或者我这样说欠缺公平，毕竟我现在的情况让任何人难以有安全感，而罗骁这样的女人最需要的就是安全感。<br>想法：</p>
+<p>2018-03-21<br>原文：生活往往是出人意料的，也许你一直以为是好的，实际却是坏的。不过你一直怀疑的，也许反而是最好的。<br>想法：</p>
+<p>2018-03-21<br>原文：一阵风从我的右边刮来，好冷，冷的刺骨，怎么风向南刮会冷呢？我混沌的脑子用唯一剩下的智慧思考这个问题。！！！！原来，现在刮的是北风啊，原来风往南吹，吹的却是北风，难怪我一直错觉风往南吹时是那么温暖，原来是刺骨的北风。怪不得我以为的好人却都害了我，而爱我的人却总是离开自己，原来，我早就是个自以为是的瞎子了……<br>想法：男主弥留之际的顿悟，看的不是太懂(°ー°〃)</p>
+<p>2018-03-21<br>原文：我既然已经表示了辞职，就不会再回头，否则就算回头了，也未必能得到重用。<br>想法：辞职上司挽留只是礼貌性的，想好再辞职，提出辞职就不能再待下去了(。_。)</p>
+<p>原文阅读☞<a href="/assets/files/1206665799.txt">风往南吹.TXT</a>，结局泪目T_T，又被作者摆了一道</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
+        <tag>reading book</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>什么是伴随矩阵？</title>
     <url>/articles/what-is-adjoint-matrix.html</url>
     <content><![CDATA[<img src="/assets/blogimg/伴随矩阵.jpg">
@@ -1441,7 +1481,7 @@ if(Objects.equals(a,b)){.......}
 <h2>首先我们来看如何得到<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">伴随矩阵</a>:</h2>
 ~~1.设A=（a<sub>ij</sub>）为n阶方阵
 2.A<sub>ij</sub>是|A|在（i，j）上a<sub>ij</sub>的代数余子式
-3.则全部由代数余子式组成的n阶方阵为A的伴随矩阵A*~~
+3.则全部由代数余子式组成的n阶方阵为A的伴随矩阵A~~
 
 
 <h2>我们来弄清楚几个专有名词：</h2>
