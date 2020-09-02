@@ -1,87 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>关于mysql</title>
-    <url>/articles/about-mysql.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
-<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
-<pre><code class="plsql">    use mysql;//选择mysql库
-    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
-    flush privileges;//刷新数据库</code></pre>
-<p>2.root用户远程连接数据库</p>
-<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
-    flush privileges;</code></pre>
-<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
-<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
-<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
-<thead>
-<tr>
-<th align="left">operation</th>
-<th align="left">usage</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">创建数据库</td>
-<td align="left">CREATE DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">删除数据库</td>
-<td align="left">DROP DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">创建数据表</td>
-<td align="left">CREATE TABLE table_name (column_name column_type);</td>
-</tr>
-<tr>
-<td align="left">删除数据表</td>
-<td align="left">DROP TABLE table_name</td>
-</tr>
-<tr>
-<td align="left">增(insert)</td>
-<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
-</tr>
-<tr>
-<td align="left">删(delete)</td>
-<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
-</tr>
-<tr>
-<td align="left">查(select)</td>
-<td align="left">select * from stu_info;</td>
-</tr>
-<tr>
-<td align="left">改(update)</td>
-<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
-</tr>
-</tbody></table>
-<p>其中关于创建数据表：</p>
-<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
-   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
-   `stuNo`  CHAR(6)  NOT  NULL,
-   `stuName` VARCHAR(40) NOT NULL,
-   `stuAge` INTEGER,
-   `stuAddress` VARCHAR(100) NOT NULL,
-   `subDate` DATE,//上传时间NOW();
-   PRIMARY KEY ( `stuId` )//主键;
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
-<p>其中关于往数据表中增加一条数据：</p>
-<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
-<p>往数据表中增加多条数据：</p>
-<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
-VALUES
-(valueA1,valueA2,...valueAN),
-(valueB1,valueB2,...valueBN),
-(valueC1,valueC2,...valueCN)
-......;</code></pre>
-<p>改数据表中的数据：</p>
-<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
-<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
-<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于Android线程</title>
     <url>/articles/about-android-thread.html</url>
     <content><![CDATA[<p><img src="/assets/blogimg/andy-lg.png" alt="banner"></p>
@@ -167,6 +86,87 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
       </tags>
   </entry>
   <entry>
+    <title>关于mysql</title>
+    <url>/articles/about-mysql.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
+<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
+<pre><code class="plsql">    use mysql;//选择mysql库
+    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
+    flush privileges;//刷新数据库</code></pre>
+<p>2.root用户远程连接数据库</p>
+<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
+    flush privileges;</code></pre>
+<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
+<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
+<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
+<thead>
+<tr>
+<th align="left">operation</th>
+<th align="left">usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">创建数据库</td>
+<td align="left">CREATE DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">删除数据库</td>
+<td align="left">DROP DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">创建数据表</td>
+<td align="left">CREATE TABLE table_name (column_name column_type);</td>
+</tr>
+<tr>
+<td align="left">删除数据表</td>
+<td align="left">DROP TABLE table_name</td>
+</tr>
+<tr>
+<td align="left">增(insert)</td>
+<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
+</tr>
+<tr>
+<td align="left">删(delete)</td>
+<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
+</tr>
+<tr>
+<td align="left">查(select)</td>
+<td align="left">select * from stu_info;</td>
+</tr>
+<tr>
+<td align="left">改(update)</td>
+<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
+</tr>
+</tbody></table>
+<p>其中关于创建数据表：</p>
+<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
+   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
+   `stuNo`  CHAR(6)  NOT  NULL,
+   `stuName` VARCHAR(40) NOT NULL,
+   `stuAge` INTEGER,
+   `stuAddress` VARCHAR(100) NOT NULL,
+   `subDate` DATE,//上传时间NOW();
+   PRIMARY KEY ( `stuId` )//主键;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+<p>其中关于往数据表中增加一条数据：</p>
+<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
+<p>往数据表中增加多条数据：</p>
+<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
+VALUES
+(valueA1,valueA2,...valueAN),
+(valueB1,valueB2,...valueBN),
+(valueC1,valueC2,...valueCN)
+......;</code></pre>
+<p>改数据表中的数据：</p>
+<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
+<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
+<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>自动出题机</title>
     <url>/articles/automatic-generate-question.html</url>
     <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre>
@@ -204,6 +204,15 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
         <tag>MySQL</tag>
         <tag>PHP</tag>
         <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java数据类型</title>
+    <url>/articles/data-type-of-java.html</url>
+    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -376,27 +385,6 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
       </tags>
   </entry>
   <entry>
-    <title>怎么使用live2d做一个看板娘</title>
-    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
-    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
-<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
-]]></content>
-      <tags>
-        <tag>live2d</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>撒野</title>
-    <url>/articles/i-can-not-hear-you.html</url>
-    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
-<p>这首歌就一句话:好听！</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>官网信息更新获得通知</title>
     <url>/articles/get-website-message-alert.html</url>
     <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
@@ -505,6 +493,71 @@ public class Main {
 ]]></content>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>怎么使用live2d做一个看板娘</title>
+    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
+    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
+<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
+]]></content>
+      <tags>
+        <tag>live2d</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>撒野</title>
+    <url>/articles/i-can-not-hear-you.html</url>
+    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
+<p>这首歌就一句话:好听！</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
+        <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>就是不听话</title>
+    <url>/articles/just-fuck-you.html</url>
+    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
+      <tags>
+        <tag>think</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极限&amp;导数</title>
+    <url>/articles/limitation-derivative.html</url>
+    <content><![CDATA[<p><img src="http://pic.9ht.com/up/2016-4/201642715311.jpg" alt="title-picture"></p>
+<h3 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h3><ul>
+<li>函数的极限<ul>
+<li>$frac{0}{0}; \frac{\infty}{\infty}$</li>
+<li>$\infty-\infty; 0\cdot\infty$</li>
+<li>$1^{\infty} 0^{0}; \infty^{0}$</li>
+</ul>
+</li>
+<li>数列的极限<ul>
+<li>夹逼准则</li>
+<li>单调有界收敛准则</li>
+<li>定积分的定义</li>
+</ul>
+</li>
+<li>极限的应用<ul>
+<li>连续,间断点</li>
+<li>渐近线(垂直,水平,斜)</li>
+<li>导数的定义</li>
+</ul>
+</li>
+</ul>
+<h4 id="函数的极限"><a href="#函数的极限" class="headerlink" title="函数的极限"></a>函数的极限</h4><h5 id="frac-0-0-frac-infty-infty"><a href="#frac-0-0-frac-infty-infty" class="headerlink" title="$frac{0}{0}; \frac{\infty}{\infty}$"></a>$frac{0}{0}; \frac{\infty}{\infty}$</h5><h6 id="洛必达"><a href="#洛必达" class="headerlink" title="洛必达"></a><em>洛必达</em></h6><h6 id="泰勒公式"><a href="#泰勒公式" class="headerlink" title="泰勒公式"></a><em>泰勒公式</em></h6><p>$$\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)$$</p>
+<p>常见的泰勒公式:</p>
+<ul>
+<li>$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$</li>
+<li>$ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$</li>
+<li>${1+x}^a=1+ax+\frac{a(a-1)}{2!}x+o(x^2)$</li>
+</ul>
+<h6 id="抓大头"><a href="#抓大头" class="headerlink" title="抓大头"></a><em>抓大头</em></h6><h5 id="infty-infty-0-cdot-infty"><a href="#infty-infty-0-cdot-infty" class="headerlink" title="$\infty-\infty; 0\cdot\infty$"></a>$\infty-\infty; 0\cdot\infty$</h5><h5 id="1-infty-0-0-infty-0"><a href="#1-infty-0-0-infty-0" class="headerlink" title="$1^{\infty} 0^{0}; \infty^{0}$"></a>$1^{\infty} 0^{0}; \infty^{0}$</h5><h4 id="数列的极限"><a href="#数列的极限" class="headerlink" title="数列的极限"></a>数列的极限</h4><h4 id="极限的应用"><a href="#极限的应用" class="headerlink" title="极限的应用"></a>极限的应用</h4><h3 id="导数"><a href="#导数" class="headerlink" title="导数"></a>导数</h3><h4 id="导数的计算"><a href="#导数的计算" class="headerlink" title="导数的计算"></a>导数的计算</h4><h4 id="导数的应用"><a href="#导数的应用" class="headerlink" title="导数的应用"></a>导数的应用</h4>]]></content>
+      <tags>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -770,42 +823,6 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>极限&amp;导数</title>
-    <url>/articles/limitation-derivative.html</url>
-    <content><![CDATA[<p><img src="http://pic.9ht.com/up/2016-4/201642715311.jpg" alt="title-picture"></p>
-<h3 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h3><ul>
-<li>函数的极限<ul>
-<li>$frac{0}{0}; \frac{\infty}{\infty}$</li>
-<li>$\infty-\infty; 0\cdot\infty$</li>
-<li>$1^{\infty} 0^{0}; \infty^{0}$</li>
-</ul>
-</li>
-<li>数列的极限<ul>
-<li>夹逼准则</li>
-<li>单调有界收敛准则</li>
-<li>定积分的定义</li>
-</ul>
-</li>
-<li>极限的应用<ul>
-<li>连续,间断点</li>
-<li>渐近线(垂直,水平,斜)</li>
-<li>导数的定义</li>
-</ul>
-</li>
-</ul>
-<h4 id="函数的极限"><a href="#函数的极限" class="headerlink" title="函数的极限"></a>函数的极限</h4><h5 id="frac-0-0-frac-infty-infty"><a href="#frac-0-0-frac-infty-infty" class="headerlink" title="$frac{0}{0}; \frac{\infty}{\infty}$"></a>$frac{0}{0}; \frac{\infty}{\infty}$</h5><h6 id="洛必达"><a href="#洛必达" class="headerlink" title="洛必达"></a><em>洛必达</em></h6><h6 id="泰勒公式"><a href="#泰勒公式" class="headerlink" title="泰勒公式"></a><em>泰勒公式</em></h6><p>$$\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)$$</p>
-<p>常见的泰勒公式:</p>
-<ul>
-<li>$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$</li>
-<li>$ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$</li>
-<li>${1+x}^a=1+ax+\frac{a(a-1)}{2!}x+o(x^2)$</li>
-</ul>
-<h6 id="抓大头"><a href="#抓大头" class="headerlink" title="抓大头"></a><em>抓大头</em></h6><h5 id="infty-infty-0-cdot-infty"><a href="#infty-infty-0-cdot-infty" class="headerlink" title="$\infty-\infty; 0\cdot\infty$"></a>$\infty-\infty; 0\cdot\infty$</h5><h5 id="1-infty-0-0-infty-0"><a href="#1-infty-0-0-infty-0" class="headerlink" title="$1^{\infty} 0^{0}; \infty^{0}$"></a>$1^{\infty} 0^{0}; \infty^{0}$</h5><h4 id="数列的极限"><a href="#数列的极限" class="headerlink" title="数列的极限"></a>数列的极限</h4><h4 id="极限的应用"><a href="#极限的应用" class="headerlink" title="极限的应用"></a>极限的应用</h4><h3 id="导数"><a href="#导数" class="headerlink" title="导数"></a>导数</h3><h4 id="导数的计算"><a href="#导数的计算" class="headerlink" title="导数的计算"></a>导数的计算</h4><h4 id="导数的应用"><a href="#导数的应用" class="headerlink" title="导数的应用"></a>导数的应用</h4>]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>跳跳球</title>
     <url>/articles/mark-ball-game.html</url>
     <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"><br>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
@@ -924,14 +941,6 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>就是不听话</title>
-    <url>/articles/just-fuck-you.html</url>
-    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
-      <tags>
-        <tag>think</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CMD批处理命令的强大</title>
     <url>/articles/p11.html</url>
     <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
@@ -1017,6 +1026,63 @@ xhr.send();</code></pre>
         <tag>JS</tag>
         <tag>AJAX</tag>
         <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网红辞职信</title>
+    <url>/articles/p15.html</url>
+    <content><![CDATA[<p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre>
+<p>头条上的视频</p>
+{% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
+
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式:"></a>样式:</h4><pre><code>&lt;style&gt;
+    .main{
+        width: 500px;
+        height: 250px;
+        border: 2px solid black;
+        margin: 0 auto;
+        position:absolute;
+        left: 500px;
+    }
+    .title,.chose{
+        text-align: center;
+    }
+    .chose{
+        margin:40px;
+    }
+    .yes{
+        margin-right: 40px;
+    }
+&lt;/style&gt;</code></pre>
+<h4 id="dom树"><a href="#dom树" class="headerlink" title="dom树:"></a>dom树:</h4><pre><code class="html">&lt;div class=&quot;main&quot;&gt;
+    &lt;h2 class=&quot;title&quot;&gt;辞职信&lt;/h2&gt;
+    &lt;article&gt;老板我要辞职&lt;img width=&quot;100&quot; src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1530346447488&amp;di=cdd760f50b3188a667921dc3de943d38&amp;imgtype=0&amp;src=http%3A%2F%2F1873.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2011%2F5%2F3%2F13%2F13%2Fu115243949_1306e5597e5g214.gif&quot;&gt;,请批准!&lt;/article&gt;
+    &lt;div class=&quot;chose&quot;&gt;&lt;button class=&quot;yes&quot; id=&quot;yes&quot;&gt;同意&lt;/button&gt;&lt;button class=&quot;no&quot; id=&quot;no&quot;&gt;不同意&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript:"></a>javascript:</h4><pre><code class="script">&lt;script type=&quot;text/javascript&quot;&gt;
+    var no=document.getElementById(&quot;no&quot;);
+    var yes=document.getElementById(&quot;yes&quot;);
+    var main=document.querySelector(&quot;.main&quot;);
+    no.onmouseover=function () {
+        var x=Math.random() * (500-this.offsetWidth);
+        var y=Math.random()*(250-this.offsetHeight);
+        this.setAttribute(&#39;style&#39;,
+            &#39;position:absolute;&#39;+
+            &#39;left:&#39;+x+&#39;px;&#39;+
+            &#39;top:&#39;+y+&#39;px;&#39;
+        );
+    }
+    yes.onmousedown=function () {
+    main.innerHTML=&quot;&lt;h3 style=&#39;size: 30px; color: orangered;&#39;&gt;臣退了&lt;/h3&gt;,这一退也许就是一辈子~~~~&quot;;
+    }
+&lt;/script&gt;</code></pre>
+<hr>
+<p>实际演示请转向<a href="http://blog.madeai.cn/item/example/resign.html">demo</a></p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>H5</tag>
       </tags>
   </entry>
   <entry>
@@ -1123,63 +1189,6 @@ xhr.send();</code></pre>
       <tags>
         <tag>DOS</tag>
         <tag>hotkey</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网红辞职信</title>
-    <url>/articles/p15.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre>
-<p>头条上的视频</p>
-{% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式:"></a>样式:</h4><pre><code>&lt;style&gt;
-    .main{
-        width: 500px;
-        height: 250px;
-        border: 2px solid black;
-        margin: 0 auto;
-        position:absolute;
-        left: 500px;
-    }
-    .title,.chose{
-        text-align: center;
-    }
-    .chose{
-        margin:40px;
-    }
-    .yes{
-        margin-right: 40px;
-    }
-&lt;/style&gt;</code></pre>
-<h4 id="dom树"><a href="#dom树" class="headerlink" title="dom树:"></a>dom树:</h4><pre><code class="html">&lt;div class=&quot;main&quot;&gt;
-    &lt;h2 class=&quot;title&quot;&gt;辞职信&lt;/h2&gt;
-    &lt;article&gt;老板我要辞职&lt;img width=&quot;100&quot; src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1530346447488&amp;di=cdd760f50b3188a667921dc3de943d38&amp;imgtype=0&amp;src=http%3A%2F%2F1873.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2011%2F5%2F3%2F13%2F13%2Fu115243949_1306e5597e5g214.gif&quot;&gt;,请批准!&lt;/article&gt;
-    &lt;div class=&quot;chose&quot;&gt;&lt;button class=&quot;yes&quot; id=&quot;yes&quot;&gt;同意&lt;/button&gt;&lt;button class=&quot;no&quot; id=&quot;no&quot;&gt;不同意&lt;/button&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript:"></a>javascript:</h4><pre><code class="script">&lt;script type=&quot;text/javascript&quot;&gt;
-    var no=document.getElementById(&quot;no&quot;);
-    var yes=document.getElementById(&quot;yes&quot;);
-    var main=document.querySelector(&quot;.main&quot;);
-    no.onmouseover=function () {
-        var x=Math.random() * (500-this.offsetWidth);
-        var y=Math.random()*(250-this.offsetHeight);
-        this.setAttribute(&#39;style&#39;,
-            &#39;position:absolute;&#39;+
-            &#39;left:&#39;+x+&#39;px;&#39;+
-            &#39;top:&#39;+y+&#39;px;&#39;
-        );
-    }
-    yes.onmousedown=function () {
-    main.innerHTML=&quot;&lt;h3 style=&#39;size: 30px; color: orangered;&#39;&gt;臣退了&lt;/h3&gt;,这一退也许就是一辈子~~~~&quot;;
-    }
-&lt;/script&gt;</code></pre>
-<hr>
-<p>实际演示请转向<a href="http://blog.madeai.cn/item/example/resign.html">demo</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>H5</tag>
       </tags>
   </entry>
   <entry>
@@ -1459,7 +1468,7 @@ typedef struct{
  create mode 100644 readme.txt</code></pre>
 <h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
 <li>click “Create a new repository”</li>
-<li>git remote add origin <a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#109;" target="_blank" rel="noopener">&#103;&#x69;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#109;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
+<li>git remote add origin <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
 <li>git remote remove origin//取消本地关联远程库</li>
 <li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
 </ol>
