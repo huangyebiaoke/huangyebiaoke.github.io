@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于mysql</title>
+    <url>/articles/about-mysql.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
+<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
+<pre><code class="plsql">    use mysql;//选择mysql库
+    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
+    flush privileges;//刷新数据库</code></pre>
+<p>2.root用户远程连接数据库</p>
+<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
+    flush privileges;</code></pre>
+<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
+<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
+<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
+<thead>
+<tr>
+<th align="left">operation</th>
+<th align="left">usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">创建数据库</td>
+<td align="left">CREATE DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">删除数据库</td>
+<td align="left">DROP DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">创建数据表</td>
+<td align="left">CREATE TABLE table_name (column_name column_type);</td>
+</tr>
+<tr>
+<td align="left">删除数据表</td>
+<td align="left">DROP TABLE table_name</td>
+</tr>
+<tr>
+<td align="left">增(insert)</td>
+<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
+</tr>
+<tr>
+<td align="left">删(delete)</td>
+<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
+</tr>
+<tr>
+<td align="left">查(select)</td>
+<td align="left">select * from stu_info;</td>
+</tr>
+<tr>
+<td align="left">改(update)</td>
+<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
+</tr>
+</tbody></table>
+<p>其中关于创建数据表：</p>
+<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
+   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
+   `stuNo`  CHAR(6)  NOT  NULL,
+   `stuName` VARCHAR(40) NOT NULL,
+   `stuAge` INTEGER,
+   `stuAddress` VARCHAR(100) NOT NULL,
+   `subDate` DATE,//上传时间NOW();
+   PRIMARY KEY ( `stuId` )//主键;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+<p>其中关于往数据表中增加一条数据：</p>
+<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
+<p>往数据表中增加多条数据：</p>
+<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
+VALUES
+(valueA1,valueA2,...valueAN),
+(valueB1,valueB2,...valueBN),
+(valueC1,valueC2,...valueCN)
+......;</code></pre>
+<p>改数据表中的数据：</p>
+<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
+<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
+<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于Android线程</title>
     <url>/articles/about-android-thread.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/andy-lg.png" alt="banner"></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/andy-lg.png" alt="banner"></p>
 <h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>众所周知,android只能在主线程中更新UI视图,而一些诸如网络请求,socket通讯和Json解析之类比较耗时的操作一般放在子线程(用线程池来管理便于回收)中处理,否则会阻塞(zu se)UI线程.那么子线程中处理的结果怎么显示出来呢?有三种方法:</p>
 <ul>
 <li>使用RunOnUiThread切回主线程;</li>
@@ -86,90 +167,9 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
       </tags>
   </entry>
   <entry>
-    <title>关于mysql</title>
-    <url>/articles/about-mysql.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
-<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
-<pre><code class="plsql">    use mysql;//选择mysql库
-    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
-    flush privileges;//刷新数据库</code></pre>
-<p>2.root用户远程连接数据库</p>
-<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
-    flush privileges;</code></pre>
-<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
-<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
-<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
-<thead>
-<tr>
-<th align="left">operation</th>
-<th align="left">usage</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">创建数据库</td>
-<td align="left">CREATE DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">删除数据库</td>
-<td align="left">DROP DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">创建数据表</td>
-<td align="left">CREATE TABLE table_name (column_name column_type);</td>
-</tr>
-<tr>
-<td align="left">删除数据表</td>
-<td align="left">DROP TABLE table_name</td>
-</tr>
-<tr>
-<td align="left">增(insert)</td>
-<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
-</tr>
-<tr>
-<td align="left">删(delete)</td>
-<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
-</tr>
-<tr>
-<td align="left">查(select)</td>
-<td align="left">select * from stu_info;</td>
-</tr>
-<tr>
-<td align="left">改(update)</td>
-<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
-</tr>
-</tbody></table>
-<p>其中关于创建数据表：</p>
-<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
-   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
-   `stuNo`  CHAR(6)  NOT  NULL,
-   `stuName` VARCHAR(40) NOT NULL,
-   `stuAge` INTEGER,
-   `stuAddress` VARCHAR(100) NOT NULL,
-   `subDate` DATE,//上传时间NOW();
-   PRIMARY KEY ( `stuId` )//主键;
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
-<p>其中关于往数据表中增加一条数据：</p>
-<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
-<p>往数据表中增加多条数据：</p>
-<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
-VALUES
-(valueA1,valueA2,...valueAN),
-(valueB1,valueB2,...valueBN),
-(valueC1,valueC2,...valueCN)
-......;</code></pre>
-<p>改数据表中的数据：</p>
-<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
-<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
-<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>自动出题机</title>
     <url>/articles/automatic-generate-question.html</url>
-    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre>
 <h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
 <p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
 <p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
@@ -209,16 +209,241 @@ VALUES
   <entry>
     <title>Java数据类型</title>
     <url>/articles/data-type-of-java.html</url>
-    <content><![CDATA[<p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
 ]]></content>
       <tags>
         <tag>Java</tag>
       </tags>
   </entry>
   <entry>
+    <title>考研英语一写作题型</title>
+    <url>/articles/english-article-sentences.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+<li>社会热点<ul>
+<li>健康</li>
+<li>老年人</li>
+<li>职业道德</li>
+<li>爱心/社会公德</li>
+</ul>
+</li>
+<li>教育文化</li>
+<li>人生哲理</li>
+<li>环境保护</li>
+</ul>
+<h3 id="社会热点"><a href="#社会热点" class="headerlink" title="社会热点"></a>社会热点</h3><h4 id="健康"><a href="#健康" class="headerlink" title="健康"></a>健康</h4><h4 id="老年人"><a href="#老年人" class="headerlink" title="老年人"></a>老年人</h4><table>
+<thead>
+<tr>
+<th align="center">English</th>
+<th align="center">Chinese</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">only child</td>
+<td align="center">独子/女</td>
+</tr>
+<tr>
+<td align="center">spoil; doting love</td>
+<td align="center">溺爱</td>
+</tr>
+<tr>
+<td align="center">fierce competition</td>
+<td align="center">激烈的竞争</td>
+</tr>
+<tr>
+<td align="center">generation gap</td>
+<td align="center">代沟</td>
+</tr>
+<tr>
+<td align="center">bridge the gap</td>
+<td align="center">修复代沟</td>
+</tr>
+<tr>
+<td align="center">mutual understanding</td>
+<td align="center">相互理解</td>
+</tr>
+<tr>
+<td align="center">misunderstanding</td>
+<td align="center">误解</td>
+</tr>
+<tr>
+<td align="center">support one’s parent</td>
+<td align="center">体谅父母</td>
+</tr>
+<tr>
+<td align="center">take care of; look after</td>
+<td align="center">照顾</td>
+</tr>
+<tr>
+<td align="center">mistreat/maltre</td>
+<td align="center">虐待</td>
+</tr>
+<tr>
+<td align="center">population aging</td>
+<td align="center">人口老龄化</td>
+</tr>
+<tr>
+<td align="center">the aged; the elderly; senior citizens</td>
+<td align="center">老年人</td>
+</tr>
+<tr>
+<td align="center">practice filial piety</td>
+<td align="center">奉行孝道</td>
+</tr>
+</tbody></table>
+<h4 id="职业道德-professional-ethics"><a href="#职业道德-professional-ethics" class="headerlink" title="职业道德(professional ethics)"></a>职业道德(professional ethics)</h4><blockquote>
+<p>Honesty is the best policy.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">English</th>
+<th align="center">Chinese</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">dishonest behavior</td>
+<td align="center">欺诈行为</td>
+</tr>
+<tr>
+<td align="center">shoddy products/goods; counterfeit/inferior commodities</td>
+<td align="center">伪劣产品</td>
+</tr>
+<tr>
+<td align="center">fraudulent activity/behavior/conduct</td>
+<td align="center">欺诈行为</td>
+</tr>
+<tr>
+<td align="center">academic corruption</td>
+<td align="center">学术腐败</td>
+</tr>
+<tr>
+<td align="center">plagiarism</td>
+<td align="center">剽窃/抄袭</td>
+</tr>
+<tr>
+<td align="center">food safety</td>
+<td align="center">食品安全</td>
+</tr>
+<tr>
+<td align="center">drainage oil</td>
+<td align="center">地沟油</td>
+</tr>
+<tr>
+<td align="center">construction quality</td>
+<td align="center">建筑安全</td>
+</tr>
+<tr>
+<td align="center">self-centered</td>
+<td align="center">自私自利</td>
+</tr>
+<tr>
+<td align="center">selflessness</td>
+<td align="center">无私的</td>
+</tr>
+<tr>
+<td align="center">the level of social morality</td>
+<td align="center">社会道德水准</td>
+</tr>
+<tr>
+<td align="center">enthusiastic=passionate</td>
+<td align="center">热情的</td>
+</tr>
+</tbody></table>
+<ol>
+<li>Take the consideration of other noble characters.</li>
+<li>Want nothing but profit=Be blind to all but one’s own interest.</li>
+<li><strong>Manufacturing units guarantee/promise to turn out the products of good quality; commercial enterprises swear/pledge to provide genuine/authentic commodities polite and enthusiastic services.</strong></li>
+</ol>
+<h4 id="爱心-社会公德"><a href="#爱心-社会公德" class="headerlink" title="爱心/社会公德"></a>爱心/社会公德</h4><table>
+<thead>
+<tr>
+<th align="center">English</th>
+<th align="center">Chinese</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">traditional vitue</td>
+<td align="center">传统美德</td>
+</tr>
+<tr>
+<td align="center">sense of responsibility</td>
+<td align="center">责任感</td>
+</tr>
+<tr>
+<td align="center">shoulder/assume/undertake one’s responsibility</td>
+<td align="center">负起责任</td>
+</tr>
+<tr>
+<td align="center">avoid/shirk one’s duty/responsibility</td>
+<td align="center">逃避责任</td>
+</tr>
+<tr>
+<td align="center">devote/dedicate/devotion/dedication</td>
+<td align="center">奉献</td>
+</tr>
+<tr>
+<td align="center">selfless devotion</td>
+<td align="center">无私奉献</td>
+</tr>
+<tr>
+<td align="center">trust crisis</td>
+<td align="center">信任危机</td>
+</tr>
+<tr>
+<td align="center">immoral behavior</td>
+<td align="center">不道德的行为</td>
+</tr>
+<tr>
+<td align="center"><em>Project Hope</em></td>
+<td align="center">希望工程</td>
+</tr>
+<tr>
+<td align="center">charity</td>
+<td align="center">慈善</td>
+</tr>
+<tr>
+<td align="center">donate/donation</td>
+<td align="center">捐款</td>
+</tr>
+<tr>
+<td align="center">poor rural areas</td>
+<td align="center">贫困的乡村地区</td>
+</tr>
+<tr>
+<td align="center">respect the old and love the young</td>
+<td align="center">尊老爱幼</td>
+</tr>
+<tr>
+<td align="center">spite everywhere</td>
+<td align="center">随地吐痰</td>
+</tr>
+<tr>
+<td align="center">make noise; take loudly</td>
+<td align="center">大声说话</td>
+</tr>
+<tr>
+<td align="center">social harmony</td>
+<td align="center">社会和谐</td>
+</tr>
+<tr>
+<td align="center">traditional work-moral values</td>
+<td align="center">传统职业道德价值</td>
+</tr>
+</tbody></table>
+<p><strong>eg: To begain with, poor children in backward and underdeveloped areas are likely to become drop-outs either because they cannot afford the tuition or because …</strong></p>
+]]></content>
+      <categories>
+        <category>notebook</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>writing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>&lt;算法第四版&gt;最佳实践</title>
     <url>/articles/algorithms-fourth-edition-best-practice.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
 <h3 id="bucket-sort"><a href="#bucket-sort" class="headerlink" title="bucket sort"></a>bucket sort</h3><p><strong>桶排序</strong>的基本思路是遍历一个待排的数组,把每个数出现的次数记录到一个新的数组里面,那这个新的数组里的下标就是待排序的数组的值.</p>
 <p>设待排数组是arr,记录待排数组的桶是bucket让我们来理一下思路:</p>
 <ol>
@@ -370,7 +595,7 @@ VALUES
   <entry>
     <title>欧拉公式の推导</title>
     <url>/articles/euler-s-formula.html</url>
-    <content><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
 <h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
 <h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
 <p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
@@ -387,7 +612,7 @@ VALUES
   <entry>
     <title>官网信息更新获得通知</title>
     <url>/articles/get-website-message-alert.html</url>
-    <content><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
 <ol>
 <li>每隔10min检查一下官网的通知栏</li>
 <li>抓取第一条通知</li>
@@ -406,9 +631,9 @@ VALUES
 <li>先获取到它们的父级标签<code>&lt;td class=&quot;tablexu&quot;&gt;</code><pre><code class="java">Element element = doc.select(&quot;td.tablexu&quot;).first();</code></pre>
 </li>
 <li>在<code>&lt;a&gt;</code>标签所组成的集合里面选取第一个标签并获取标签内的文字, 也就是最新的通告<pre><code class="java">String newMsg=element.select(&quot;a&quot;).first().text();</code></pre>
-<h3 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h3></li>
+</li>
 </ol>
-<p><strong>Timer</strong>是javaAPI中的一个定时器, 它能每隔一段时间开启一个子线程处理任务(C#中也有类似的API);</p>
+<h3 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h3><p><strong>Timer</strong>是javaAPI中的一个定时器, 它能每隔一段时间开启一个子线程处理任务(C#中也有类似的API);</p>
 <p>java代码如下:</p>
 <pre><code class="java">import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -498,7 +723,7 @@ public class Main {
   <entry>
     <title>怎么使用live2d做一个看板娘</title>
     <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
-    <content><![CDATA[<h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
 <h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
 ]]></content>
       <tags>
@@ -508,7 +733,7 @@ public class Main {
   <entry>
     <title>撒野</title>
     <url>/articles/i-can-not-hear-you.html</url>
-    <content><![CDATA[<p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
 <p>这首歌就一句话:好听！</p>
 ]]></content>
       <tags>
@@ -519,7 +744,8 @@ public class Main {
   <entry>
     <title>就是不听话</title>
     <url>/articles/just-fuck-you.html</url>
-    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=15018146&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div class="bili_video"><iframe src="https://player.bilibili.com/player.html?aid=15018146&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" width="544" height="452" allowfullscreen="true"> </iframe></div>
+]]></content>
       <tags>
         <tag>think</tag>
       </tags>
@@ -527,7 +753,7 @@ public class Main {
   <entry>
     <title>极限&amp;导数</title>
     <url>/articles/limitation-derivative.html</url>
-    <content><![CDATA[<p><img src="http://pic.9ht.com/up/2016-4/201642715311.jpg" alt="title-picture"></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="http://pic.9ht.com/up/2016-4/201642715311.jpg" alt="title-picture"></p>
 <h3 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h3><ul>
 <li>函数的极限<ul>
 <li>$frac{0}{0}; \frac{\infty}{\infty}$</li>
@@ -563,7 +789,7 @@ public class Main {
   <entry>
     <title>扔骰（tou）子小游戏</title>
     <url>/articles/make-dice-game.html</url>
-    <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：</p>
 <h3 id="demo1"><a href="#demo1" class="headerlink" title="demo1:"></a>demo1:</h3><pre><code class="javascript">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
@@ -825,7 +1051,7 @@ public class Main {
   <entry>
     <title>跳跳球</title>
     <url>/articles/mark-ball-game.html</url>
-    <content><![CDATA[<p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"><br>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"><br>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
 <pre><code class="bash">&lt;html&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
@@ -943,7 +1169,7 @@ public class Main {
   <entry>
     <title>CMD批处理命令的强大</title>
     <url>/articles/p11.html</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
 <p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
 <ol>
 <li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
@@ -976,7 +1202,7 @@ public class Main {
   <entry>
     <title>ajax异步加载</title>
     <url>/articles/p12.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre>
 <h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
 xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
@@ -1031,7 +1257,7 @@ xhr.send();</code></pre>
   <entry>
     <title>网红辞职信</title>
     <url>/articles/p15.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre>
 <p>头条上的视频</p>
 {% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
@@ -1086,9 +1312,68 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>一些linux命令</title>
+    <url>/articles/p17.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="//img2.tfd.com/pp/wikiimg.ashx?p=commons/thumb/3/35/Tux.svg/280px-Tux.svg.png" alt="liunx"></p>
+<blockquote><p>Talk is cheap, show me the code.</p>
+<footer><strong>@Linus Benedict Torvalds ---</strong><cite><a href="https://github.com/torvalds" target="_blank" rel="noopener">github.com/torvalds</a></cite></footer></blockquote>
+
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>liunx常见的发行版有ubuntu,red hat,centos,gun,kail...整理一些常用的liunx(测试环境 centos release 6.9)命令,然后由于要学英语嘛,尝试用英语写作.</code></pre>
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"https://gslb.miaopai.com/stream/gX1nvE-FwDbx3sHgFfAvVfhdFHSViZLDe7mO9Q__.mp4?yx=&refer=weibo_app&Expires=1531913346&ssig=ieIoafqxGZ&KID=unistore,video","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+
+<h3 id="file-operation-at-touch-vi-ls-cd"><a href="#file-operation-at-touch-vi-ls-cd" class="headerlink" title="file operation (at,touch,vi,ls,cd..)"></a>file operation (at,touch,vi,ls,cd..)</h3><ul>
+<li><p>cat perview file content.</p>
+</li>
+<li><p><code>touch+path+filename</code> creat an empty file.</p>
+</li>
+<li><p>vi edit file.<br>vim有四种模式,分别是command(normal)-mode,last-line-mode,insert-mode,和visual-mode.默认进入vim时是普通模式,此时按:是底行模式,按insert是插入模式,按v是视图模式(可以用鼠标滑动)</p>
+<ul>
+<li>在普通模式下dd删除光标所在行</li>
+<li>在底行模式下wq保存并退出!q不保存退出</li>
+</ul>
+</li>
+<li><p>ls list folder or file.</p>
+<ul>
+<li><p><code>ls -l +path</code>view property of file or folder.<br><img src="https://i.loli.net/2018/07/16/5b4c66f7af213.png" alt="5b4c66f7af213"></p>
+</li>
+<li><p><code>ls +[letters]*</code>list file or folder began with letters(正则表达式).<br><img src="https://i.loli.net/2018/07/16/5b4c694bc560a.png" alt="5b4c694bc560a"></p>
+</li>
+</ul>
+</li>
+<li><p>cd Change the shell working directory.</p>
+<ul>
+<li><code>cd ..</code>进入当前目录的父目录</li>
+<li><code>cd -</code>切换到上一个工作目录</li>
+<li><code>cd ~</code>切换到root工作目录</li>
+<li><code>cd \</code>切换到根目录注意不是root目录</li>
+<li>如果路径太长你不想用cd的话看这里–&gt;<a href="https://olivierlacan.com/posts/cd-is-wasting-your-time/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website" target="_blank" rel="noopener">cd is wasting time</a></li>
+</ul>
+</li>
+<li><p><code>tree -d -L 2</code>搜索的深度为2层且只搜索文件夹,注意区分大小写</p>
+</li>
+</ul>
+<h3 id="other"><a href="#other" class="headerlink" title="other"></a>other</h3><ol>
+<li>切换用户<ul>
+<li>root-&gt;普通用户:<code>su +username</code></li>
+<li>普通用户-&gt;root:<code>sudo su</code>或者<code>su -root</code><br><img src="https://i.loli.net/2018/07/22/5b54953315576.png" alt="5b54953315576"><br>需要稍加注意的是当在root环境下时前面是#,而在普通用户环境下时前面是~</li>
+</ul>
+</li>
+</ol>
+<h3 id="package-management"><a href="#package-management" class="headerlink" title="package management"></a>package management</h3><p>yum,pkg,apt…</p>
+<p>brew,npm,yarn,pip…</p>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><ol>
+<li><a href="https://www.jianshu.com/p/a182a0be4b8a" target="_blank" rel="noopener">看完这篇Linux基本的操作就会了</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>hotkey</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何使用win10提高工作效率</title>
     <url>/articles/p16.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/windows-icon.png" alt="windows-icon"><br><meting-js server="netease" type="song" id="5197160"></meting-js></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/windows-icon.png" alt="windows-icon"><br><meting-js server="netease" type="song" id="5197160"></meting-js></p>
 <h3 id="windows-10-快捷键"><a href="#windows-10-快捷键" class="headerlink" title="windows 10 快捷键"></a>windows 10 快捷键</h3><h5 id="1-截图"><a href="#1-截图" class="headerlink" title="1. 截图"></a>1. 截图</h5><table>
 <thead>
 <tr>
@@ -1192,68 +1477,9 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>一些linux命令</title>
-    <url>/articles/p17.html</url>
-    <content><![CDATA[<p><img src="//img2.tfd.com/pp/wikiimg.ashx?p=commons/thumb/3/35/Tux.svg/280px-Tux.svg.png" alt="liunx"></p>
-<blockquote><p>Talk is cheap, show me the code.</p>
-<footer><strong>@Linus Benedict Torvalds ---</strong><cite><a href="https://github.com/torvalds" target="_blank" rel="noopener">github.com/torvalds</a></cite></footer></blockquote>
-
-<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>liunx常见的发行版有ubuntu,red hat,centos,gun,kail...整理一些常用的liunx(测试环境 centos release 6.9)命令,然后由于要学英语嘛,尝试用英语写作.</code></pre>
-<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"https://gslb.miaopai.com/stream/gX1nvE-FwDbx3sHgFfAvVfhdFHSViZLDe7mO9Q__.mp4?yx=&refer=weibo_app&Expires=1531913346&ssig=ieIoafqxGZ&KID=unistore,video","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-
-<h3 id="file-operation-at-touch-vi-ls-cd"><a href="#file-operation-at-touch-vi-ls-cd" class="headerlink" title="file operation (at,touch,vi,ls,cd..)"></a>file operation (at,touch,vi,ls,cd..)</h3><ul>
-<li><p>cat perview file content.</p>
-</li>
-<li><p><code>touch+path+filename</code> creat an empty file.</p>
-</li>
-<li><p>vi edit file.<br>vim有四种模式,分别是command(normal)-mode,last-line-mode,insert-mode,和visual-mode.默认进入vim时是普通模式,此时按:是底行模式,按insert是插入模式,按v是视图模式(可以用鼠标滑动)</p>
-<ul>
-<li>在普通模式下dd删除光标所在行</li>
-<li>在底行模式下wq保存并退出!q不保存退出</li>
-</ul>
-</li>
-<li><p>ls list folder or file.</p>
-<ul>
-<li><p><code>ls -l +path</code>view property of file or folder.<br><img src="https://i.loli.net/2018/07/16/5b4c66f7af213.png" alt="5b4c66f7af213"></p>
-</li>
-<li><p><code>ls +[letters]*</code>list file or folder began with letters(正则表达式).<br><img src="https://i.loli.net/2018/07/16/5b4c694bc560a.png" alt="5b4c694bc560a"></p>
-</li>
-</ul>
-</li>
-<li><p>cd Change the shell working directory.</p>
-<ul>
-<li><code>cd ..</code>进入当前目录的父目录</li>
-<li><code>cd -</code>切换到上一个工作目录</li>
-<li><code>cd ~</code>切换到root工作目录</li>
-<li><code>cd \</code>切换到根目录注意不是root目录</li>
-<li>如果路径太长你不想用cd的话看这里–&gt;<a href="https://olivierlacan.com/posts/cd-is-wasting-your-time/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website" target="_blank" rel="noopener">cd is wasting time</a></li>
-</ul>
-</li>
-<li><p><code>tree -d -L 2</code>搜索的深度为2层且只搜索文件夹,注意区分大小写</p>
-</li>
-</ul>
-<h3 id="other"><a href="#other" class="headerlink" title="other"></a>other</h3><ol>
-<li>切换用户<ul>
-<li>root-&gt;普通用户:<code>su +username</code></li>
-<li>普通用户-&gt;root:<code>sudo su</code>或者<code>su -root</code><br><img src="https://i.loli.net/2018/07/22/5b54953315576.png" alt="5b54953315576"><br>需要稍加注意的是当在root环境下时前面是#,而在普通用户环境下时前面是~</li>
-</ul>
-</li>
-</ol>
-<h3 id="package-management"><a href="#package-management" class="headerlink" title="package management"></a>package management</h3><p>yum,pkg,apt…</p>
-<p>brew,npm,yarn,pip…</p>
-<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><ol>
-<li><a href="https://www.jianshu.com/p/a182a0be4b8a" target="_blank" rel="noopener">看完这篇Linux基本的操作就会了</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>hotkey</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>风往南吹-想法</title>
     <url>/articles/p18.html</url>
-    <content><![CDATA[<p><meting-js server="netease" type="song" id="145586"></meting-js></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" type="song" id="145586"></meting-js></p>
 <p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
 <p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
 <p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
@@ -1297,7 +1523,7 @@ xhr.send();</code></pre>
   <entry>
     <title>堕落之王-想法</title>
     <url>/articles/p19.html</url>
-    <content><![CDATA[<p>2018-01-31<br>原文：“走了？分手？好啊！滚吧，我早就想甩了你了，就是不好开口！哈哈……哈哈！”<br>想法：</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>2018-01-31<br>原文：“走了？分手？好啊！滚吧，我早就想甩了你了，就是不好开口！哈哈……哈哈！”<br>想法：</p>
 <p>2018-01-31<br>原文：叹了一口气，又瘫软在床上，喃喃自语道：“走吧！走吧！走了好啊！不要再找像我这样的王八蛋了！”<br>想法：</p>
 <p>2018-01-31<br>原文：很久以后，眼睛开始渐渐恢复了视觉，耳朵也渐渐你恢复了听觉，一摸脸，已经泪流满面。“对不起，对不起！sorry，sorry。”我跪倒在床前，喃喃自语，泣不成声……<br>想法：</p>
 <p>2018-01-31<br>原文：像是辫子姑娘、窗外没有身体的脸、厕所里面一张狞笑的鬼面孔、漂浮在空中没有身体的鬼影……有些鬼不出现，但是会催眠你，将你引诱到他的坟墓上，让你捏泥球塞住自己的鼻孔、塞住自己的嘴巴，活活让自己窒息而死；有些鬼会让你一直干活，抬几百斤的东西搬上搬下，让你活活累死。<br>想法：</p>
@@ -1327,7 +1553,7 @@ xhr.send();</code></pre>
   <entry>
     <title>爱丽丝梦游仙境-想法</title>
     <url>/articles/p20.html</url>
-    <content><![CDATA[<p>2018-07-13<br>原文：起来，哭是没用的！”爱丽丝严厉地对自己说，”限你-，分钟内就停止哭！<br>想法：</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>2018-07-13<br>原文：起来，哭是没用的！”爱丽丝严厉地对自己说，”限你-，分钟内就停止哭！<br>想法：</p>
 <p>2018-07-13<br>原文：这个小孩很喜欢装成两个人<br>想法：</p>
 <p>2018-07-13<br>原文：小鳄鱼怎样保养 它闪亮的尾巴， 把尼罗河水灌进 每一片金色的鳞甲。 它笑得多么快乐， 伸开爪子的姿势多么文雅， 它在欢迎那些小鱼 游进它温柔微笑着的嘴巴。<br>想法：</p>
 <p>2018-07-13<br>原文：她第一个念头是掉进海里了。她对自己说：”那么我可以坐火车回去了，”<br>想法：孩子的想法可爱又单纯ಠ౪ಠ</p>
@@ -1347,7 +1573,7 @@ xhr.send();</code></pre>
   <entry>
     <title>My idol--Obama</title>
     <url>/articles/p6.html</url>
-    <content><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
     As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
 their own idol.Maybe actor singer or other famous people.
     My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
@@ -1370,7 +1596,7 @@ withhis daughter whenever how busy he is.
   <entry>
     <title>线性表的增删查改</title>
     <url>/articles/p7.html</url>
-    <content><![CDATA[<p>part1:头部</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>part1:头部</p>
 <pre><code class="c++">#include&lt;stdio.h&gt;
 
 #define datatype int
@@ -1455,7 +1681,7 @@ typedef struct{
   <entry>
     <title>git创建版本库和关联远程库</title>
     <url>/articles/p8.html</url>
-    <content><![CDATA[<p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
 <h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
 <li>mkdir LearningDataStructure//创建本地文件夹</li>
 <li>cd LearningDataStructure//进入文件夹</li>
@@ -1468,7 +1694,7 @@ typedef struct{
  create mode 100644 readme.txt</code></pre>
 <h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
 <li>click “Create a new repository”</li>
-<li>git remote add origin <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
+<li>git remote add origin <a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;" target="_blank" rel="noopener">&#x67;&#105;&#116;&#64;&#x67;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
 <li>git remote remove origin//取消本地关联远程库</li>
 <li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
 </ol>
@@ -1482,7 +1708,7 @@ typedef struct{
   <entry>
     <title>关于java的各种包</title>
     <url>/articles/p9.html</url>
-    <content><![CDATA[<blockquote>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
 <p>在整个JavaSE API中，大约包含1 200个包，总体来看，包名第一个名称主要有3种：java、javax和org。其中以java开头的包名是基础语言包，以javax开头的属于扩展包（其中x是extend的简写），而以org开头的则是第三方组织提供的功能包（organization的简写）。<br>下面简单介绍几个Java SE API的主要包。<br>（1）java．lang，是Java语言的核心包，是编写Java程序所需要的基本类和接口，包括Object类、System类、Class类、异常处理类、线程类等。这个包由编译器自动引入。<br>（2）java．applet，提供Applet执行时需要的类。<br>（3）java．awt，提供操作图形用户界面的基本功能。<br>（4）java．io，提供Java程序进行输入输出的类，以及目录和文件管理类。<br>（5）java．net，提供实现网络功能。<br>（6）java．util，提供实用程序类及集合类等常用的工具类。<br>（7）java．sql，提供使Java程序具有访问不同数据库的能力。<br>（8）java．rmi，提供远程连接与载入，实现了远程方法调用的功能。</p>
 </blockquote>
 <h3 id="java-util-Arrays"><a href="#java-util-Arrays" class="headerlink" title="java.util.Arrays;"></a>java.util.Arrays;</h3><p>usage：</p>
@@ -1510,7 +1736,7 @@ if(Objects.equals(a,b)){.......}
   <entry>
     <title>六级写作模板</title>
     <url>/articles/six-band-writing-template.html</url>
-    <content><![CDATA[<p>1.<br>    In recent years,<em>has/have been prevailing among</em>. In contrast,<em>.<br>    In number of factors can account for such phenomenon, but the following might be the critial ones. First and foremost,</em>. Moreover,<em>. Undoubtedly,</em>.Firstly_. Secondly,<em>.<br>    In my view,</em>. To begin with,<em>. What’s more,</em>. Only_.<br>2.<br>    It is widely accepted that_. What’s more,<em>.However</em>.<br>    On the one hand, some people hold the view that_. On the other hand, a great many people insist that_.<br>    From my perspective, however,<em>. Therefore</em>.<br>3.<br>    It is not an uncommon social phenomenon that_. For example,<em>.<br>    As to this issue, opinions vary from person to person. Some people hold that</em>. But others maintain that_.<br>    As far as I am concerned,<em>. On the one hand,</em>. On the other hand,<em>. In a word,</em>.<br>4.<br>    As is portrayed  in the picture,<em>. Actually, recent years have witnessed an increasing trend of</em>.<br>    This_ has inevitably brought about some_ effects. Anyway,<em>.<br>    However,</em>. Therefore, people should become fully aware of both sides of_.<br> 5.<br>    Nowdays, it is widely acknowledged that_. Therefore,<em>.However, as for this phenomenon, people’s ideas vary.<br>    Some insist that</em>.However,<em>.<br>    From my perspective,</em>. On the one hand,<em>.One the other hand,</em>.What’s more,<em>.<br>6.<br>    As is known to all,</em>. However,<em>.The cases of</em>.<br>    Therefore,<em>.Firstly,</em>.Secondly,<em>.Thirdly</em>.<br>    As far as I’m concerned,<em>.<br>7.<br>    As a saying goes</em>.Nowadays we are in an era of_.More and more people_.<br>    Admittedly, no one can deny the fact that_. Nevertheless,<em>. For example,</em>.Besides,<em>.<br>    Then what can we do to aviod being</em>? Here are some useful tips: To begin with,<em>. What’s more,</em>.<br>8.<br>    As someone once said,”<em>.”<em>have enormously facilitated and enriched our lives, yet</em>.<br>    In order to</em>, one needs_. Only when one succeeds in <em>can he</em>.<br>    It is never easy to_.Just as the saying goes,<em>.<br>9.<br>    As is vivdly shown in the picture,</em>. It mirrors a common phenomenon, which has raised a wide range of concern.<br>    This phenomenon may bring about some severe consequences. On the other hand,<em>.<br>    Considering the seriousness of the condition, some measures can be taken to improve it. Only in this way can we</em>.<br>10.<br>    For a growing number of_,<em>has come into fashion. From_to_.What’s more,</em>.<br>    Admittedly, there are different purposes behind this phenomenon, but the following are the most critical ones. To begin with,<em>. In addition,</em>.All of the above is_. In my opinion,<em>.To conclude,</em>.</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>1.<br>    In recent years,<em>has/have been prevailing among</em>. In contrast,<em>.<br>    In number of factors can account for such phenomenon, but the following might be the critial ones. First and foremost,</em>. Moreover,<em>. Undoubtedly,</em>.Firstly_. Secondly,<em>.<br>    In my view,</em>. To begin with,<em>. What’s more,</em>. Only_.<br>2.<br>    It is widely accepted that_. What’s more,<em>.However</em>.<br>    On the one hand, some people hold the view that_. On the other hand, a great many people insist that_.<br>    From my perspective, however,<em>. Therefore</em>.<br>3.<br>    It is not an uncommon social phenomenon that_. For example,<em>.<br>    As to this issue, opinions vary from person to person. Some people hold that</em>. But others maintain that_.<br>    As far as I am concerned,<em>. On the one hand,</em>. On the other hand,<em>. In a word,</em>.<br>4.<br>    As is portrayed  in the picture,<em>. Actually, recent years have witnessed an increasing trend of</em>.<br>    This_ has inevitably brought about some_ effects. Anyway,<em>.<br>    However,</em>. Therefore, people should become fully aware of both sides of_.<br> 5.<br>    Nowdays, it is widely acknowledged that_. Therefore,<em>.However, as for this phenomenon, people’s ideas vary.<br>    Some insist that</em>.However,<em>.<br>    From my perspective,</em>. On the one hand,<em>.One the other hand,</em>.What’s more,<em>.<br>6.<br>    As is known to all,</em>. However,<em>.The cases of</em>.<br>    Therefore,<em>.Firstly,</em>.Secondly,<em>.Thirdly</em>.<br>    As far as I’m concerned,<em>.<br>7.<br>    As a saying goes</em>.Nowadays we are in an era of_.More and more people_.<br>    Admittedly, no one can deny the fact that_. Nevertheless,<em>. For example,</em>.Besides,<em>.<br>    Then what can we do to aviod being</em>? Here are some useful tips: To begin with,<em>. What’s more,</em>.<br>8.<br>    As someone once said,”<em>.”<em>have enormously facilitated and enriched our lives, yet</em>.<br>    In order to</em>, one needs_. Only when one succeeds in <em>can he</em>.<br>    It is never easy to_.Just as the saying goes,<em>.<br>9.<br>    As is vivdly shown in the picture,</em>. It mirrors a common phenomenon, which has raised a wide range of concern.<br>    This phenomenon may bring about some severe consequences. On the other hand,<em>.<br>    Considering the seriousness of the condition, some measures can be taken to improve it. Only in this way can we</em>.<br>10.<br>    For a growing number of_,<em>has come into fashion. From_to_.What’s more,</em>.<br>    Admittedly, there are different purposes behind this phenomenon, but the following are the most critical ones. To begin with,<em>. In addition,</em>.All of the above is_. In my opinion,<em>.To conclude,</em>.</p>
 ]]></content>
       <tags>
         <tag>English</tag>
@@ -1520,7 +1746,7 @@ if(Objects.equals(a,b)){.......}
   <entry>
     <title>什么是伴随矩阵？</title>
     <url>/articles/what-is-adjoint-matrix.html</url>
-    <content><![CDATA[<img src="/assets/blogimg/伴随矩阵.jpg">
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/assets/blogimg/伴随矩阵.jpg">
 <h2>首先我们来看如何得到<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">伴随矩阵</a>:</h2>
 ~~1.设A=（a<sub>ij</sub>）为n阶方阵
 2.A<sub>ij</sub>是|A|在（i，j）上a<sub>ij</sub>的代数余子式

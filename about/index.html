@@ -129,17 +129,188 @@
 		</div>
 	</div>
 	<div id="post-content" class="post-content">
-		<h4 id="坐标-114°53’12’’-25°23’51’’-158-9"><a href="#坐标-114°53’12’’-25°23’51’’-158-9" class="headerlink" title="坐标:(114°53’12’’,25°23’51’’,158.9)"></a>坐标:(114°53’12’’,25°23’51’’,158.9)</h4><h4 id="现状-银河系-gt-太阳系-gt-地月轨道-gt-苦逼在读研究生"><a href="#现状-银河系-gt-太阳系-gt-地月轨道-gt-苦逼在读研究生" class="headerlink" title="现状:银河系-&gt;太阳系-&gt;地月轨道-&gt;苦逼在读研究生"></a>现状:银河系-&gt;太阳系-&gt;地月轨道-&gt;苦逼在读研究生</h4><h4 id="信仰-coding-change-the-world"><a href="#信仰-coding-change-the-world" class="headerlink" title="信仰:coding change the world!!"></a>信仰:<code>coding change the world!!</code></h4><h4 id="想去的几个地方"><a href="#想去的几个地方" class="headerlink" title="想去的几个地方:"></a>想去的几个地方:</h4><ul>
-<li><p><input disabled type="checkbox">  沈阳方特主题公园</p>
-</li>
-<li><p><input disabled type="checkbox">  雅鲁藏布江大峡谷 山南，雅鲁藏布江 拉萨市往机场方向</p>
-</li>
-<li><p><input disabled type="checkbox">  黄山天都峰鲫鱼背</p>
-</li>
-<li><p><input disabled type="checkbox">  阿勒泰</p>
-</li>
-</ul>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h3><h4 id="坐标-114°53’12’’-25°23’51’’-158-9"><a href="#坐标-114°53’12’’-25°23’51’’-158-9" class="headerlink" title="坐标:(114°53’12’’,25°23’51’’,158.9)"></a>坐标:(114°53’12’’,25°23’51’’,158.9)</h4><h4 id="现状-银河系-gt-太阳系-gt-地月轨道-gt-苦逼在读研究生"><a href="#现状-银河系-gt-太阳系-gt-地月轨道-gt-苦逼在读研究生" class="headerlink" title="现状:银河系-&gt;太阳系-&gt;地月轨道-&gt;苦逼在读研究生"></a>现状:银河系-&gt;太阳系-&gt;地月轨道-&gt;苦逼在读研究生</h4><h4 id="信仰-coding-change-the-world"><a href="#信仰-coding-change-the-world" class="headerlink" title="信仰:coding change the world!!"></a>信仰:<strong>coding change the world!!</strong></h4><h4 id="博文提交日志"><a href="#博文提交日志" class="headerlink" title="博文提交日志:"></a>博文提交日志:</h4>
+<div style="width:100%;overflow-x:auto;overflow-y:hidden;">
+<div id="calendar" style="width: 100%px;height:165px;"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    function dateFormat(date){
+      date = new Date(date)
+      return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
+    }
+    let calendarChart = echarts.init(document.getElementById('calendar'));
+    let endDate = new Date().getTime()
+    let startDate = new Date(endDate - 40*7*24*3600*1000).getTime()
+    let startDay = Math.ceil(startDate/(24*3600*1000))
+    let endDay = Math.ceil(endDate/(24*3600*1000))
 
+    let commitData = {"2020-09-01":1,"2020-08-29":1}
+    let seriesData = []
+
+    for(let i = startDay;i <= endDay;i++){
+      let date = i*24*3600*1000
+      let formatDate = dateFormat(date)
+      let times = commitData[formatDate] || 0
+      seriesData.push([formatDate, times])
+    }
+    let option = {
+      title: {
+        text: "活动日历",
+        x: "center"
+      },
+      backgroundColor: "#f9f9f9",
+      tooltip: {
+        padding: 10,
+        backgroundColor: "#555",
+        borderColor: "#777",
+        borderWidth: 1,
+        formatter: function(a) {
+          var b = a.value;
+          return '<div style="font-size: 14px;">' + b[0] + "：" + b[1] + "</div>"
+        }
+      },
+      visualMap: {
+        show: !1,
+        showLabel: !0,
+        min: 0,
+        max: 4,
+        calculable: !1,
+        inRange: {
+          symbol: "rect",
+          color: ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"]
+        },
+        itemWidth: 12,
+        itemHeight: 12,
+        orient: "horizontal",
+        left: "center",
+        top: 0
+      },
+      calendar: [{
+        top: 50,
+        left: "center",
+        range: [dateFormat(startDate), dateFormat(endDate)],
+        cellSize: [13, 13],
+        splitLine: {
+          show: !1
+        },
+        name: {
+          textStyle: {
+            color: "#3C4858"
+          }
+        },
+        itemStyle: {
+          borderColor: "#fff",
+          borderWidth: 2
+        },
+        yearLabel: {
+          show: !1
+        },
+        monthLabel: {
+          nameMap: "cn",
+          fontSize: 11,
+          color: "#3C4858"
+        },
+        dayLabel: {
+          formatter: "{start} 1st",
+          nameMap: "cn",
+          fontSize: 11,
+          color: "#3C4858"
+        }
+      }],
+      series: [{
+        type: "heatmap",
+        coordinateSystem: "calendar",
+        calendarIndex: 0,
+        data: seriesData
+      }]
+    };
+
+    calendarChart.setOption(option);
+  })();
+</script>
+
+<h4 id="想去的几个地方"><a href="#想去的几个地方" class="headerlink" title="想去的几个地方:"></a>想去的几个地方:</h4><ul>
+<li><input disabled type="checkbox"> 沈阳方特主题公园</li>
+<li><input disabled type="checkbox"> 雅鲁藏布江大峡谷 山南，雅鲁藏布江 拉萨市往机场方向</li>
+<li><input disabled type="checkbox"> 黄山天都峰鲫鱼背</li>
+<li><input disabled type="checkbox"> 阿勒泰</li>
+</ul>
+<h4 id="社交平台账号"><a href="#社交平台账号" class="headerlink" title="社交平台账号:"></a>社交平台账号:</h4><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Github</td>
+<td align="center"><a href="https://github.com/huangyebiaoke" target="_blank" rel="noopener">https://github.com/huangyebiaoke</a></td>
+</tr>
+<tr>
+<td align="center">QQ</td>
+<td align="center"><a href="https://wpa.qq.com/msgrd?v=3&amp;uin=1536711290&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener">https://wpa.qq.com/msgrd?v=3&amp;uin=1536711290&amp;site=qq&amp;menu=yes</a></td>
+</tr>
+<tr>
+<td align="center">Email</td>
+<td align="center"><a href="mailto:huangyebiaoke@outlook.com" target="_blank" rel="noopener">huangyebiaoke@outlook.com</a></td>
+</tr>
+<tr>
+<td align="center">Weibo</td>
+<td align="center"><a href="https://weibo.com/5910563005/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" rel="noopener">https://weibo.com/5910563005/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1</a></td>
+</tr>
+<tr>
+<td align="center">Zhihu</td>
+<td align="center"><a href="https://www.zhihu.com/people/hu-zhong-xin-14" target="_blank" rel="noopener">https://www.zhihu.com/people/hu-zhong-xin-14</a></td>
+</tr>
+<tr>
+<td align="center">Bilibili</td>
+<td align="center"><a href="https://space.bilibili.com/56733506/bangumi" target="_blank" rel="noopener">https://space.bilibili.com/56733506/bangumi</a></td>
+</tr>
+<tr>
+<td align="center">Douban</td>
+<td align="center"><a href="https://www.douban.com/people/176806943/" target="_blank" rel="noopener">https://www.douban.com/people/176806943/</a></td>
+</tr>
+<tr>
+<td align="center">Twitter</td>
+<td align="center"><a href="https://twitter.com/1536711290M?s=09" target="_blank" rel="noopener">https://twitter.com/1536711290M?s=09</a></td>
+</tr>
+<tr>
+<td align="center">Linkedin</td>
+<td align="center"><a href="https://www.linkedin.com/in/%E5%AE%9A%E6%98%8E-%E6%9D%A8-47a876155/" target="_blank" rel="noopener">https://www.linkedin.com/in/%E5%AE%9A%E6%98%8E-%E6%9D%A8-47a876155/</a></td>
+</tr>
+<tr>
+<td align="center">Tumblr</td>
+<td align="center"><a href="https://www.tumblr.com/blog/minghere" target="_blank" rel="noopener">https://www.tumblr.com/blog/minghere</a></td>
+</tr>
+</tbody></table>
+<h3 id="关于这个独立博客"><a href="#关于这个独立博客" class="headerlink" title="关于这个独立博客"></a>关于这个独立博客</h3><h4 id="现在的博客配置"><a href="#现在的博客配置" class="headerlink" title="现在的博客配置:"></a>现在的博客配置:</h4><ul>
+<li>托管平台: 自豪地使用<strong>Github Page</strong></li>
+<li>生成: <strong>Hexo</strong></li>
+<li>动态加速: <strong>qiniu CDN</strong>国内节点</li>
+<li>网站PV,UV: <strong>不蒜子</strong></li>
+<li>评论系统: Valine</li>
+<li>主题: <strong>Pinghsu</strong> customlize</li>
+<li>域名: <strong>aliyun DNS</strong></li>
+</ul>
+<h4 id="我的个人博客搭建历程"><a href="#我的个人博客搭建历程" class="headerlink" title="我的个人博客搭建历程:"></a>我的个人博客搭建历程:</h4><p>我在<strong>2017/06/20</strong>开始接触到独立博客,当时觉得很新鲜,独立博客上的大牛写的文章又好看又有技术含量,觉得博主们就像世外的高人一般;而且一个一个的友链就好像一张网,连接着每个个人博客,形成了一个博客圈子,我呆在独立博客的地方出不去了.</p>
+<ol>
+<li>当时便下定决心自己也要搞一个独立博客,开始用的是LAMP(Linux+Apache+MySQL+PHP)结合<strong>Wordpress</strong>在我的Windows10笔记本的WSL(Windows Linux Subsystem)搭建的博客系统,然后通过<em>ngrok.cc</em>内网穿透实现公网访问<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="期间看过一个叫N2N项目的论文,它是通过UDP打孔来进行一对一的内网穿透,不需要外网服务器;不过这个作者弃坑了,所以软件很不稳定
+">[1]</span></a></sup>.<br> <img src="/assets/blogimg/blog-screenshot.png" alt="blog-screenshot"><br> <img src="/assets/blogimg/blog-screenshot2.png" alt="blog-screenshot2"><br> <img src="/assets/blogimg/blog-screenshot3.png" alt="blog-screenshot3"></li>
+<li>用过一段时间后觉得WordPress方便是方便,就是插件太多,太臃肿了,而且服务开在本地我的笔记本不能时时刻刻开着机,要不然就是<strong>神船</strong>也得变<strong>沉船</strong>;遂在aliyun租了一台ECS,转向另一个博客框架<strong>Typecho</strong>,我还记得Typecho官网那句<em>念念不忘,必有回响</em>.</li>
+<li>aliyun的<strong>ECS</strong>虽然学生价低是低(100多RMB),但考虑到我迟早成为社会人之后肯定不能每年都续租.于是用Google搜索了一下有没有免费的博客平台<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="简书,掘金,思否不考虑;因为那时候我水平太低,只想做一个安安静静的美男子
+">[2]</span></a></sup>.</li>
+<li>我看到了<strong>hexo+github page</strong>的相关文章,遂脱离typecho转向<strong>静态博客</strong>的怀抱(不用担心被DDOS<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="做JSP作业的时候有过被同学D的经历(用JSP的Application关键字存储聊天信息,通过每5s http轮询刷新页面实现聊天室的功能),不过没换IP所以很容易用Linux找出访问频繁的IP,然后Ban掉
+">[3]</span></a></sup>).<ol>
+<li>一开始用的主题是自己魔改的<strong>yilia</strong>主题.</li>
+<li>用了大概一年左右,产出大概<strong>10篇左右</strong>的博文<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="我那时知道自己的水平,给自己的网站slogan是*科普计算机小知识*">[4]</span></a></sup>,那段风雨飘摇的年代Github被DNS污染及GFW墙,我先后辗转于<em>code page</em>,<em>gitee page</em>,<em>qiniu静态资源托管</em>,感受到小人物没钱的无奈与心酸.</li>
+<li>关于<strong>评论系统</strong>我一开始用的是<strong>畅言</strong>(搜狐的免费社会化评论系统),大概在18年末的时候挂了;所以切换到<strong>gitalk</strong>,但由于GFW和DNS污染,通常出现<em>network err</em>的警告;我就切换回国内的评论系统<strong>valine</strong>(也是Pinghsu主题自带的).</li>
+<li>2020年年初,考完研重新启程,我又回到了<strong>Github Page</strong>的怀抱,用<strong>qiniu CDN</strong>动态加速国内访问速度;觉得写作应该<strong>focus on</strong>文章,所以想找一个素一点的主题,符合极简的设计,于是就找到了<strong>Pinghsu</strong>,之后自己再改了一些布局和css,让其match自己的审美.</li>
+</ol>
+</li>
+</ol>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">期间看过一个叫N2N项目的论文,它是通过UDP打孔来进行一对一的内网穿透,不需要外网服务器;不过这个作者弃坑了,所以软件很不稳定<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">简书,掘金,思否不考虑;因为那时候我水平太低,只想做一个安安静静的美男子<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">做JSP作业的时候有过被同学D的经历(用JSP的Application关键字存储聊天信息,通过每5s http轮询刷新页面实现聊天室的功能),不过没换IP所以很容易用Linux找出访问频繁的IP,然后Ban掉<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">我那时知道自己的水平,给自己的网站slogan是<em>科普计算机小知识</em><a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>
 	</div>
 </article>
 
@@ -172,7 +343,7 @@
                 
                     <a class="social" target="blank" title="Zhihu" href="https://www.zhihu.com/people/hu-zhong-xin-14">Zhihu</a>
                 
-                    <a class="social" target="blank" title="Bilibili" href="https://space.bilibili.com/56733506/#/">Bilibili</a>
+                    <a class="social" target="blank" title="Bilibili" href="https://space.bilibili.com/56733506/bangumi">Bilibili</a>
                 
                     <a class="social" target="blank" title="Douban" href="https://www.douban.com/people/176806943/">Douban</a>
                 
@@ -204,7 +375,7 @@
                         <p><a href="https://github.com/cccyb/hexo-theme-pinghsu" target="_blank">Pinghsu</a> theme | Powered by <a href="https://hexo.io/" target="_blank" rel="nofollow">Hexo</a></p>
                     </div>
                     <div class="site-statistics">
-                        <p style="margin-top: 10px">总字数 14.8k</p>
+                        <p style="margin-top: 10px">总字数 15.3k</p>
                         
                             <p>
                         <span id="busuanzi_container_site_pv" style='display:none'>
@@ -229,13 +400,13 @@
                 
                 <li><a href="/articles/get-website-message-alert.html">官网信息更新获得通知</a></li>
                 
+                <li><a href="/articles/english-article-sentences.html">考研英语一写作题型</a></li>
+                
                 <li><a href="/articles/euler-s-formula.html">欧拉公式の推导</a></li>
                 
                 <li><a href="/articles/algorithms-fourth-edition-best-practice.html">&lt;算法第四版&gt;最佳实践</a></li>
                 
                 <li><a href="/articles/about-android-thread.html">关于Android线程</a></li>
-                
-                <li><a href="/articles/limitation-derivative.html">极限&amp;导数</a></li>
                 
             </div>
             

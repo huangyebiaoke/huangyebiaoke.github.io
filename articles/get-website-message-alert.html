@@ -130,10 +130,10 @@
 				</div>
 				<div class="post-header-thumb-meta">
 					<time datetime="1583813993" itemprop="datePubilished"><i class="fa fa-calendar-o"></i> 发表于 2020-03-10</time> |
-					<time datetime="1598910268" itemprop="dateUpdated"><i class="fa fa-calendar-check-o"></i> 更新于 2020-09-01</time> |
+					<time datetime="1599066522" itemprop="dateUpdated"><i class="fa fa-calendar-check-o"></i> 更新于 2020-09-03</time> |
 					<i class="fa fa-folder-o"></i> 分类于 
 					<div class="post-header-thumb-meta">
-						<span class="post-count"><i class="fa fa-pencil-square-o"></i> 字数统计:819字</span>
+						<span class="post-count"><i class="fa fa-pencil-square-o"></i> 字数统计:818字</span>
 						<span>|</span>
 						<span class="post-count"><i class="fa fa-clock-o"></i> 阅读时长:3 分钟</span>
 <!--									<div class="post-header-thumb-meta">-->
@@ -143,7 +143,7 @@
 						</span>
 						
 					
-					<i class="fa fa-comment-o"></i> 评论量: <a id="page-title-comment" href="#vcomments"></a>
+					<i class="fa fa-comment-o"></i> 评论量: <a id="page-title-comment" href="#vcomments">0</a>
 					
 					</div>
 				</div>
@@ -166,18 +166,17 @@
 			官网信息更新获得通知
 		</h1>
 		<div class="post-data">
-			
-			<span id="/articles/get-website-message-alert.html" class="leancloud-visitors" data-flag-title="官网信息更新获得通知">
-				<span class="leancloud-visitors-count">0</span> Views 
-			</span>
-			
+<!--			-->
+<!--			<span id="/articles/get-website-message-alert.html" class="leancloud-visitors" data-flag-title="官网信息更新获得通知">-->
+<!--				<span class="leancloud-visitors-count">0</span> Views-->
+<!--			</span>-->
+<!--			-->
             <time datetime="1583813993" itemprop="datePublished">Published on 2020-03-10</time>
 			
-			with <a id="page-title-comment" href="#vcomments"></a>
+			with <a id="page-title-comment" href="#vcomments">0</a> comments
 			
-
 			<div>
-				<span class="post-count">Word count: 819</span>
+				<span class="post-count">Word count: 818</span>
 				<span>|</span>
 				<span class="post-count">Reading time: 3min</span>
 			</div>
@@ -191,7 +190,7 @@
             
             
         </p>
-		<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
 <ol>
 <li>每隔10min检查一下官网的通知栏</li>
 <li>抓取第一条通知</li>
@@ -210,9 +209,9 @@
 <li>先获取到它们的父级标签<code>&lt;td class=&quot;tablexu&quot;&gt;</code><pre><code class="java">Element element = doc.select(&quot;td.tablexu&quot;).first();</code></pre>
 </li>
 <li>在<code>&lt;a&gt;</code>标签所组成的集合里面选取第一个标签并获取标签内的文字, 也就是最新的通告<pre><code class="java">String newMsg=element.select(&quot;a&quot;).first().text();</code></pre>
-<h3 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h3></li>
+</li>
 </ol>
-<p><strong>Timer</strong>是javaAPI中的一个定时器, 它能每隔一段时间开启一个子线程处理任务(C#中也有类似的API);</p>
+<h3 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h3><p><strong>Timer</strong>是javaAPI中的一个定时器, 它能每隔一段时间开启一个子线程处理任务(C#中也有类似的API);</p>
 <p>java代码如下:</p>
 <pre><code class="java">import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -343,7 +342,7 @@ public class Main {
 		<div class="bottom-bar-items right">
             
             
-            <span class="bottom-bar-item"><a href="/articles/euler-s-formula.html"><i class="fa fa-arrow-right"></i></a></span>
+            <span class="bottom-bar-item"><a href="/articles/english-article-sentences.html"><i class="fa fa-arrow-right"></i></a></span>
             
 			<span class="bottom-bar-item"><a href="#footer"> <i class="fa fa-arrow-down"></i> </a></span>
 			<span class="bottom-bar-item"><a href="#top"><i class="fa fa-arrow-up"></i></a></span>
@@ -440,7 +439,7 @@ public class Main {
                 
                     <a class="social" target="blank" title="Zhihu" href="https://www.zhihu.com/people/hu-zhong-xin-14">Zhihu</a>
                 
-                    <a class="social" target="blank" title="Bilibili" href="https://space.bilibili.com/56733506/#/">Bilibili</a>
+                    <a class="social" target="blank" title="Bilibili" href="https://space.bilibili.com/56733506/bangumi">Bilibili</a>
                 
                     <a class="social" target="blank" title="Douban" href="https://www.douban.com/people/176806943/">Douban</a>
                 
@@ -472,7 +471,7 @@ public class Main {
                         <p><a href="https://github.com/cccyb/hexo-theme-pinghsu" target="_blank">Pinghsu</a> theme | Powered by <a href="https://hexo.io/" target="_blank" rel="nofollow">Hexo</a></p>
                     </div>
                     <div class="site-statistics">
-                        <p style="margin-top: 10px">总字数 14.8k</p>
+                        <p style="margin-top: 10px">总字数 15.3k</p>
                         
                             <p>
                         <span id="busuanzi_container_site_pv" style='display:none'>
@@ -497,13 +496,13 @@ public class Main {
                 
                 <li><a href="/articles/get-website-message-alert.html">官网信息更新获得通知</a></li>
                 
+                <li><a href="/articles/english-article-sentences.html">考研英语一写作题型</a></li>
+                
                 <li><a href="/articles/euler-s-formula.html">欧拉公式の推导</a></li>
                 
                 <li><a href="/articles/algorithms-fourth-edition-best-practice.html">&lt;算法第四版&gt;最佳实践</a></li>
                 
                 <li><a href="/articles/about-android-thread.html">关于Android线程</a></li>
-                
-                <li><a href="/articles/limitation-derivative.html">极限&amp;导数</a></li>
                 
             </div>
             

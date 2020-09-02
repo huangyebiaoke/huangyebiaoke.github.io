@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.madeai.cn/"/>
-  <updated>2020-08-31T21:44:28.820Z</updated>
+  <updated>2020-09-02T17:08:42.674Z</updated>
   <id>http://blog.madeai.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blog.madeai.cn/articles/get-website-message-alert.html"/>
     <id>http://blog.madeai.cn/articles/get-website-message-alert.html</id>
     <published>2020-03-10T04:19:53.000Z</published>
-    <updated>2020-08-31T21:44:28.820Z</updated>
+    <updated>2020-09-02T17:08:42.674Z</updated>
     
     <summary type="html">
     
@@ -37,6 +37,34 @@
     
     
       <category term="Java" scheme="http://blog.madeai.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>考研英语一写作题型</title>
+    <link href="http://blog.madeai.cn/articles/english-article-sentences.html"/>
+    <id>http://blog.madeai.cn/articles/english-article-sentences.html</id>
+    <published>2019-09-03T10:34:00.000Z</published>
+    <updated>2020-09-02T11:25:03.700Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="notebook" scheme="http://blog.madeai.cn/categories/notebook/"/>
+    
+    
+      <category term="English" scheme="http://blog.madeai.cn/tags/English/"/>
+    
+      <category term="writing" scheme="http://blog.madeai.cn/tags/writing/"/>
     
   </entry>
   
@@ -687,7 +715,7 @@
     <link href="http://blog.madeai.cn/articles/just-fuck-you.html"/>
     <id>http://blog.madeai.cn/articles/just-fuck-you.html</id>
     <published>2017-10-04T19:58:57.000Z</published>
-    <updated>2020-08-29T06:58:37.103Z</updated>
+    <updated>2020-09-02T16:15:07.938Z</updated>
     
     <summary type="html">
     
