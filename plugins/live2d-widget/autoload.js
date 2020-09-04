@@ -5,9 +5,9 @@ try {
         $.ajax({url: "/plugins/live2d-widget/live2d.js", dataType:"script", cache: true, success: function() {
             /* 可直接修改部分参数 */
             live2d_settings['hitokotoAPI'] = "hitokoto.cn";  // 一言 API
-            live2d_settings['modelId'] = 5;                  // 默认模型 ID
-            live2d_settings['modelTexturesId'] = 1;          // 默认材质 ID
-            live2d_settings['modelStorage'] = false;         // 不储存模型 ID
+            live2d_settings['modelId'] = 3;                  // 默认模型 ID
+            live2d_settings['modelTexturesId'] = 85;          // 默认材质 ID
+            live2d_settings['modelStorage'] = true;         // 不储存模型 ID
             /* 在 initModel 前添加 */
             initModel("/plugins/live2d-widget/waifu-tips.json");
         }});
