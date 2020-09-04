@@ -39,7 +39,7 @@ live2d_settings['canTurnToHomePage']    = true;         // 显示 返回首页  
 live2d_settings['canTurnToAboutPage']   = false;         // 显示 跳转关于页  按钮，可选 true(真), false(假)
 
 // 模型切换模式
-live2d_settings['modelStorage']         = false;         // 记录 ID (刷新后恢复)，可选 true(真), false(假)
+live2d_settings['modelStorage']         = true;         // 记录 ID (刷新后恢复)，可选 true(真), false(假)
 live2d_settings['modelRandMode']        = 'switch';     // 模型切换，可选 'rand'(随机), 'switch'(顺序)
 live2d_settings['modelTexturesRandMode']= 'rand';       // 材质切换，可选 'rand'(随机), 'switch'(顺序)
 
@@ -53,7 +53,7 @@ live2d_settings['showWelcomeMessage']   = true;         // 显示进入面页欢
 
 //看板娘样式设置
 live2d_settings['waifuSize']            = '200x200';    // 看板娘大小，例如 '280x250', '600x535'
-live2d_settings['waifuTipsSize']        = '120x40';     // 提示框大小，例如 '250x70', '570x150'
+live2d_settings['waifuTipsSize']        = '120x80';     // 提示框大小，例如 '250x70', '570x150'
 live2d_settings['waifuFontSize']        = '11px';       // 提示框字体，例如 '12px', '30px'
 live2d_settings['waifuToolFont']        = '13px';       // 工具栏字体，例如 '14px', '36px'
 live2d_settings['waifuToolLine']        = '20px';       // 工具栏行高，例如 '20px', '36px'
