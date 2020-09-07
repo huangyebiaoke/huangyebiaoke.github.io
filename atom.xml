@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.madeai.cn/"/>
-  <updated>2020-09-02T17:08:42.674Z</updated>
+  <updated>2020-09-07T22:47:41.110Z</updated>
   <id>http://blog.madeai.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>考研经验分享</title>
+    <link href="http://blog.madeai.cn/articles/p21.html"/>
+    <id>http://blog.madeai.cn/articles/p21.html</id>
+    <published>2020-09-07T08:25:03.000Z</published>
+    <updated>2020-09-07T22:47:41.110Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="notebook" scheme="http://blog.madeai.cn/categories/notebook/"/>
+    
+    
+      <category term="think" scheme="http://blog.madeai.cn/tags/think/"/>
+    
+  </entry>
   
   <entry>
     <title>官网信息更新获得通知</title>
@@ -294,9 +320,9 @@
     </summary>
     
     
-      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
-    
       <category term="hotkey" scheme="http://blog.madeai.cn/tags/hotkey/"/>
+    
+      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
     
   </entry>
   
@@ -712,8 +738,8 @@
   
   <entry>
     <title>就是不听话</title>
-    <link href="http://blog.madeai.cn/articles/just-fuck-you.html"/>
-    <id>http://blog.madeai.cn/articles/just-fuck-you.html</id>
+    <link href="http://blog.madeai.cn/articles/p5.html"/>
+    <id>http://blog.madeai.cn/articles/p5.html</id>
     <published>2017-10-04T19:58:57.000Z</published>
     <updated>2020-09-02T17:42:14.593Z</updated>
     
