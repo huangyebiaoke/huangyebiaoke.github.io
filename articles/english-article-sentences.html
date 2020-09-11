@@ -122,7 +122,7 @@
 
 	
 	<div class="post-header-thumb">
-		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/6.jpg);"></div>
+		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/15.jpg);"></div>
 		<div class="post-header-thumb-cover">
 			<div class="post-header-thumb-container">
 				<div class="post-header-thumb-title">
@@ -618,6 +618,8 @@
             <div class="meta-item meta-posts">
                 <h3 class="meta-title">最近文章</h3>
                 
+                <li><a href="/articles/test-hls-stream.html">我要做大主播</a></li>
+                
                 <li><a href="/articles/p21.html">考研经验分享</a></li>
                 
                 <li><a href="/articles/get-website-message-alert.html">官网信息更新获得通知</a></li>
@@ -625,8 +627,6 @@
                 <li><a href="/articles/english-article-sentences.html">考研英语一写作题型</a></li>
                 
                 <li><a href="/articles/euler-s-formula.html">欧拉公式の推导</a></li>
-                
-                <li><a href="/articles/algorithms-fourth-edition-best-practice.html">&lt;算法第四版&gt;最佳实践</a></li>
                 
             </div>
             
@@ -674,6 +674,7 @@ var postDirectoryBuild = function() {
                 guid = 1,
                 id = 'directory' + (Math.random() + '').replace(/\D/, ''),
                 lastRevNum, num, elem;
+            // console.table(titleElem);
             while (titleElem.length) {
                 elem = titleElem.shift();
                 contentArr.push(elem.innerHTML);
@@ -697,6 +698,7 @@ var postDirectoryBuild = function() {
             if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
             return levelArr;
         })(article, contentArr, titleId);
+        // console.table(levelArr);
         currentList = root = document.createElement('ul');
         dirNum = [0];
         for (i = 0, len = levelArr.length; i < len; i++) {
@@ -716,6 +718,7 @@ var postDirectoryBuild = function() {
                     currentList = currentList.parentNode;
                 }
             }
+            // console.table(level);
             dirNum[dirNum.length - 1]++;
             li = document.createElement('li');
             link = document.createElement('a');
@@ -830,9 +833,10 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         appId: 'wjVSwutKSNftRb5mFdxR7yKd-gzGzoHsz',
         appKey: 'UgUgglfLX4JPziyHc98fyPXD',
         placeholder: '说点什么吧~' || 'Your commnet here. Be cool.',
-        avatar: 'mp' || 'mp',
+        avatar: 'robohash' || 'mp',
         pageSize: 10 || 10,
         visitor: true,
+        enableQQ: true
     })
 </script>
 

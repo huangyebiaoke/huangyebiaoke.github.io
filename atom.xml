@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.madeai.cn/"/>
-  <updated>2020-09-07T23:48:43.501Z</updated>
+  <updated>2020-09-11T21:01:14.910Z</updated>
   <id>http://blog.madeai.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我要做大主播</title>
+    <link href="http://blog.madeai.cn/articles/test-hls-stream.html"/>
+    <id>http://blog.madeai.cn/articles/test-hls-stream.html</id>
+    <published>2020-09-11T20:55:58.000Z</published>
+    <updated>2020-09-11T21:01:14.910Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="notebook" scheme="http://blog.madeai.cn/categories/notebook/"/>
+    
+    
+      <category term="ffmpeg" scheme="http://blog.madeai.cn/tags/ffmpeg/"/>
+    
+  </entry>
   
   <entry>
     <title>考研经验分享</title>
@@ -320,9 +346,9 @@
     </summary>
     
     
-      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
-    
       <category term="hotkey" scheme="http://blog.madeai.cn/tags/hotkey/"/>
+    
+      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
     
   </entry>
   
@@ -400,9 +426,9 @@
     </summary>
     
     
-      <category term="CMD" scheme="http://blog.madeai.cn/tags/CMD/"/>
-    
       <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
+    
+      <category term="CMD" scheme="http://blog.madeai.cn/tags/CMD/"/>
     
       <category term=".bat" scheme="http://blog.madeai.cn/tags/bat/"/>
     
