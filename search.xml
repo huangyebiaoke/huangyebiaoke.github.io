@@ -1,158 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>&lt;算法第四版&gt;最佳实践</title>
-    <url>/articles/algorithms-fourth-edition-best-practice.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
-<h3 id="bucket-sort"><a href="#bucket-sort" class="headerlink" title="bucket sort"></a>bucket sort</h3><p><strong>桶排序</strong>的基本思路是遍历一个待排的数组,把每个数出现的次数记录到一个新的数组里面,那这个新的数组里的下标就是待排序的数组的值.</p>
-<p>设待排数组是arr,记录待排数组的桶是bucket让我们来理一下思路:</p>
-<ol>
-<li>新建一个数组,数组的大小是arr.length-1;</li>
-<li>循环遍历arr这个数组,在循环体里面将arr数出现的次数记录到bucket这个数组里面;</li>
-<li>遍历bucket这个数组,判断值是多少就输出多少次bucket的下标;</li>
-</ol>
-<p>以下是Java代码:</p>
-<pre><code class="java">public static void bucketSort(int [] arr){
-        int[] bucket=new int[max(arr)+1];
-        for (int i = 0; i &lt; arr.length; i++) {
-            bucket[arr[i]]++;
-        }
-        int count=0;
-        for (int i=0;i&lt;bucket.length;i++){
-            for (int j = 1; j &lt;= bucket[i]; j++) {
-                arr[count++]=i;
-            }
-        }
-    }</code></pre>
-<p>以上只是一个简单的桶排序,<em>不能排序负数和小数</em>,但它的时间复杂度也仅仅是<code>T(N)=O(N+M)</code>;</p>
-<h3 id="buble-sort"><a href="#buble-sort" class="headerlink" title="buble sort"></a>buble sort</h3><p><strong>冒泡排序</strong>的的思路就是遍历数组,交换(<em>swap</em>)相邻两个元素,使余下未排序数组部分最大(或最小)的元素浮到最前或最后;<br>这样排序一个长度为N的数组所需要的时间复杂度<code>T(N)=O(N&lt;sup&gt;2&lt;/sup&gt;)</code></p>
-<p>以下是java代码:</p>
-<pre><code class="java">    public static void bubbleSort(int [] arr){
-        for (int i = arr.length; i &gt; 0; i--) {
-            for (int j = 0; j &lt; i-1; j++) {
-                if (arr[j]&gt;arr[j+1]){
-                    swap(arr,j,j+1);
-                }
-            }
-        }
-    }</code></pre>
-<p>冒泡排序的缺点很明显,在全部无序的情况下,时间复杂度太高了(因为它只能交换相邻两个元素);<br>而且上述的示例有一个需要改进的地方就是:设想一个数组前半部分是有序的,但是如果有序的话检查一次就够了(前面在排序后半部分的元素中已经检查过了),所以我们可以设一个布尔型的flag值,有序就直接跳过,这样能大大缩短代码运行时间;</p>
-<h3 id="selection-sort"><a href="#selection-sort" class="headerlink" title="selection sort"></a>selection sort</h3><p><strong>选择排序</strong>和冒泡排序有点类似,它的基本思路就是把数组看成两部分:一部分有序,一部分无序;<br>把后面无序的部分的最小值放到前半部分的最后面(<em>冒泡排序是交换相邻的元素</em>)</p>
-<p>以下是java代码:</p>
-<pre><code class="java">    public static void selectionSort(int[] arr){
-        for (int i = 0; i &lt; arr.length; i++) {
-            for (int j = i+1; j &lt; arr.length; j++) {
-                if (arr[j]&lt;arr[i]){
-                    swap(arr,j,i);
-                }
-            }
-        }
-    }</code></pre>
-<p>选择排序的时间复杂度也是<code>O(N&lt;sup&gt;2&lt;/sup&gt;)</code></p>
-<h3 id="insertion-sort"><a href="#insertion-sort" class="headerlink" title="insertion sort"></a>insertion sort</h3><p><strong>插入排序</strong>的基本思路是选择后面没排序的部分的第一个元素,插入到前半部分有序的合适位置(和选择排序正好相反);</p>
-<p><em>让我们来理一下思路吧:</em></p>
-<ol>
-<li>arr[0]是有序的;</li>
-<li>遍历余下的将arr[1]放到前面有序部分的合适位置(arr[0]前面或后面);</li>
-<li>每次把余下部分的第一个放到前面有序的合适位置(重复1,2步骤);</li>
-<li>直到余下的部分没有元素.</li>
-</ol>
-<p>以下是java代码:</p>
-<pre><code class="java">    /**
-     * thought the arr as two part, the front part is ordered and the end part is unordered;
-     * in the loop each time put the fist element of the end part to the appropriate position in the front part;
-     * until the outer loop is over;
-     * @param arr the array wait to sort;
-     */
-    public static void insertionSort(int[] arr){
-        for (int i = 0; i &lt; arr.length; i++) {
-            for (int j = 0; j &lt; i; j++) {
-                if (arr[i]&lt;arr[j]){
-                    int tmp=arr[i];
-                    for (int k = i; k &gt; j; k--) {
-                        arr[k]=arr[k-1];
-                    }
-                    arr[j]=tmp;
-                    break;
-                }
-            }
-        }
-    }</code></pre>
-<p>由于有两层循环,所以它的时间复杂度也是<code>O(N&lt;sup&gt;2&lt;/sup&gt;)</code>,不过和选择排序不同的是它是<em>稳定的排序</em>;</p>
-<h3 id="quick-sort"><a href="#quick-sort" class="headerlink" title="quick sort"></a>quick sort</h3><p><strong>快速排序</strong>采用分治法(<em>divide-and-conquer method</em>),利用递归(<em>recursion</em>)对数组作拆分处理;<br>分治法的基本思路就是:大事化小,小事化无;</p>
-<p>让我们来理一下思路吧:</p>
-<ol>
-<li>随便找一个元素看作基准点(为了方便起见我们不妨把arr[0]看作基准点);</li>
-<li>基准点左边的数比基准点小,右边的数比它大;</li>
-<li>循环调用,直到每部分只有两数,左边小,右边大;</li>
-</ol>
-<p>java代码如下:</p>
-<pre><code class="java">    /**
-     * &lt;quote&gt;Quicksort is a divide-and-conquer method for sorting.&lt;/quote&gt;
-     * divide the arr to two parts, set the leftest element as the standard position;
-     * find the smaller element than standard position from the right;
-     * find the larger element than standard position from the left;
-     * @param arr the arr wait to sort
-     * @param left left guard
-     * @param right right guard
-     */
-    public static void quickSort(int[] arr,int left,int right){
-        if (left&gt;right) return;
-        int i=left,j=right,pos=arr[left];
-        while(i!=j){
-            while(i&lt;j&amp;&amp;arr[j]&gt;=pos){
-                j--;
-            }
-            while(i&lt;j&amp;&amp;arr[i]&lt;=pos){
-                i++;
-            }
-            if (i&lt;j){
-                swap(arr,i,j);
-            }
-        }
-        arr[left]=arr[i];
-        arr[i]=pos;
-        quickSort(arr,left,i-1);
-        quickSort(arr,i+1,right);
-    }</code></pre>
-<p>由于快排是跳跃交换元素位置的(和冒泡排序不同),所以它的平均时间复杂度是<code>O(NlogN)</code>;<br>没接触到递归的同学可能觉得快排有点抽象,可以参照&lt;啊哈,算法&gt;或&lt;算法第四版&gt;(实际上我也在用这两本教材),你也可以看看发明者关于快排的论文;</p>
-<h3 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h3><p>以下是每种算法的平均时间复杂度:</p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>T(N)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>bucket sort</td>
-<td>O(N+M)</td>
-</tr>
-<tr>
-<td>buble sort</td>
-<td>O(N<sup>2</sup>)</td>
-</tr>
-<tr>
-<td>selection sort</td>
-<td>O(N<sup>2</sup>)</td>
-</tr>
-<tr>
-<td>insertion sort</td>
-<td>O(N<sup>2</sup>)</td>
-</tr>
-<tr>
-<td>quick sort</td>
-<td>O(NlogN)</td>
-</tr>
-</tbody></table>
-<p>还有其他的希尔排序,堆排序,计数排序,基数排序啊有待同学们去一一探索,这里就不再一一赘述了.</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于Android线程</title>
     <url>/articles/about-android-thread.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/andy-lg.png" alt="banner"></p>
@@ -316,6 +164,184 @@ VALUES
 ]]></content>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java数据类型</title>
+    <url>/articles/data-type-of-java.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>&lt;算法第四版&gt;最佳实践</title>
+    <url>/articles/algorithms-fourth-edition-best-practice.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
+<h3 id="bucket-sort"><a href="#bucket-sort" class="headerlink" title="bucket sort"></a>bucket sort</h3><p><strong>桶排序</strong>的基本思路是遍历一个待排的数组,把每个数出现的次数记录到一个新的数组里面,那这个新的数组里的下标就是待排序的数组的值.</p>
+<p>设待排数组是arr,记录待排数组的桶是bucket让我们来理一下思路:</p>
+<ol>
+<li>新建一个数组,数组的大小是arr.length-1;</li>
+<li>循环遍历arr这个数组,在循环体里面将arr数出现的次数记录到bucket这个数组里面;</li>
+<li>遍历bucket这个数组,判断值是多少就输出多少次bucket的下标;</li>
+</ol>
+<p>以下是Java代码:</p>
+<pre><code class="java">public static void bucketSort(int [] arr){
+        int[] bucket=new int[max(arr)+1];
+        for (int i = 0; i &lt; arr.length; i++) {
+            bucket[arr[i]]++;
+        }
+        int count=0;
+        for (int i=0;i&lt;bucket.length;i++){
+            for (int j = 1; j &lt;= bucket[i]; j++) {
+                arr[count++]=i;
+            }
+        }
+    }</code></pre>
+<p>以上只是一个简单的桶排序,<em>不能排序负数和小数</em>,但它的时间复杂度也仅仅是<code>T(N)=O(N+M)</code>;</p>
+<h3 id="buble-sort"><a href="#buble-sort" class="headerlink" title="buble sort"></a>buble sort</h3><p><strong>冒泡排序</strong>的的思路就是遍历数组,交换(<em>swap</em>)相邻两个元素,使余下未排序数组部分最大(或最小)的元素浮到最前或最后;<br>这样排序一个长度为N的数组所需要的时间复杂度<code>T(N)=O(N&lt;sup&gt;2&lt;/sup&gt;)</code></p>
+<p>以下是java代码:</p>
+<pre><code class="java">    public static void bubbleSort(int [] arr){
+        for (int i = arr.length; i &gt; 0; i--) {
+            for (int j = 0; j &lt; i-1; j++) {
+                if (arr[j]&gt;arr[j+1]){
+                    swap(arr,j,j+1);
+                }
+            }
+        }
+    }</code></pre>
+<p>冒泡排序的缺点很明显,在全部无序的情况下,时间复杂度太高了(因为它只能交换相邻两个元素);<br>而且上述的示例有一个需要改进的地方就是:设想一个数组前半部分是有序的,但是如果有序的话检查一次就够了(前面在排序后半部分的元素中已经检查过了),所以我们可以设一个布尔型的flag值,有序就直接跳过,这样能大大缩短代码运行时间;</p>
+<h3 id="selection-sort"><a href="#selection-sort" class="headerlink" title="selection sort"></a>selection sort</h3><p><strong>选择排序</strong>和冒泡排序有点类似,它的基本思路就是把数组看成两部分:一部分有序,一部分无序;<br>把后面无序的部分的最小值放到前半部分的最后面(<em>冒泡排序是交换相邻的元素</em>)</p>
+<p>以下是java代码:</p>
+<pre><code class="java">    public static void selectionSort(int[] arr){
+        for (int i = 0; i &lt; arr.length; i++) {
+            for (int j = i+1; j &lt; arr.length; j++) {
+                if (arr[j]&lt;arr[i]){
+                    swap(arr,j,i);
+                }
+            }
+        }
+    }</code></pre>
+<p>选择排序的时间复杂度也是<code>O(N&lt;sup&gt;2&lt;/sup&gt;)</code></p>
+<h3 id="insertion-sort"><a href="#insertion-sort" class="headerlink" title="insertion sort"></a>insertion sort</h3><p><strong>插入排序</strong>的基本思路是选择后面没排序的部分的第一个元素,插入到前半部分有序的合适位置(和选择排序正好相反);</p>
+<p><em>让我们来理一下思路吧:</em></p>
+<ol>
+<li>arr[0]是有序的;</li>
+<li>遍历余下的将arr[1]放到前面有序部分的合适位置(arr[0]前面或后面);</li>
+<li>每次把余下部分的第一个放到前面有序的合适位置(重复1,2步骤);</li>
+<li>直到余下的部分没有元素.</li>
+</ol>
+<p>以下是java代码:</p>
+<pre><code class="java">    /**
+     * thought the arr as two part, the front part is ordered and the end part is unordered;
+     * in the loop each time put the fist element of the end part to the appropriate position in the front part;
+     * until the outer loop is over;
+     * @param arr the array wait to sort;
+     */
+    public static void insertionSort(int[] arr){
+        for (int i = 0; i &lt; arr.length; i++) {
+            for (int j = 0; j &lt; i; j++) {
+                if (arr[i]&lt;arr[j]){
+                    int tmp=arr[i];
+                    for (int k = i; k &gt; j; k--) {
+                        arr[k]=arr[k-1];
+                    }
+                    arr[j]=tmp;
+                    break;
+                }
+            }
+        }
+    }</code></pre>
+<p>由于有两层循环,所以它的时间复杂度也是<code>O(N&lt;sup&gt;2&lt;/sup&gt;)</code>,不过和选择排序不同的是它是<em>稳定的排序</em>;</p>
+<h3 id="quick-sort"><a href="#quick-sort" class="headerlink" title="quick sort"></a>quick sort</h3><p><strong>快速排序</strong>采用分治法(<em>divide-and-conquer method</em>),利用递归(<em>recursion</em>)对数组作拆分处理;<br>分治法的基本思路就是:大事化小,小事化无;</p>
+<p>让我们来理一下思路吧:</p>
+<ol>
+<li>随便找一个元素看作基准点(为了方便起见我们不妨把arr[0]看作基准点);</li>
+<li>基准点左边的数比基准点小,右边的数比它大;</li>
+<li>循环调用,直到每部分只有两数,左边小,右边大;</li>
+</ol>
+<p>java代码如下:</p>
+<pre><code class="java">    /**
+     * &lt;quote&gt;Quicksort is a divide-and-conquer method for sorting.&lt;/quote&gt;
+     * divide the arr to two parts, set the leftest element as the standard position;
+     * find the smaller element than standard position from the right;
+     * find the larger element than standard position from the left;
+     * @param arr the arr wait to sort
+     * @param left left guard
+     * @param right right guard
+     */
+    public static void quickSort(int[] arr,int left,int right){
+        if (left&gt;right) return;
+        int i=left,j=right,pos=arr[left];
+        while(i!=j){
+            while(i&lt;j&amp;&amp;arr[j]&gt;=pos){
+                j--;
+            }
+            while(i&lt;j&amp;&amp;arr[i]&lt;=pos){
+                i++;
+            }
+            if (i&lt;j){
+                swap(arr,i,j);
+            }
+        }
+        arr[left]=arr[i];
+        arr[i]=pos;
+        quickSort(arr,left,i-1);
+        quickSort(arr,i+1,right);
+    }</code></pre>
+<p>由于快排是跳跃交换元素位置的(和冒泡排序不同),所以它的平均时间复杂度是<code>O(NlogN)</code>;<br>没接触到递归的同学可能觉得快排有点抽象,可以参照&lt;啊哈,算法&gt;或&lt;算法第四版&gt;(实际上我也在用这两本教材),你也可以看看发明者关于快排的论文;</p>
+<h3 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h3><p>以下是每种算法的平均时间复杂度:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>T(N)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bucket sort</td>
+<td>O(N+M)</td>
+</tr>
+<tr>
+<td>buble sort</td>
+<td>O(N<sup>2</sup>)</td>
+</tr>
+<tr>
+<td>selection sort</td>
+<td>O(N<sup>2</sup>)</td>
+</tr>
+<tr>
+<td>insertion sort</td>
+<td>O(N<sup>2</sup>)</td>
+</tr>
+<tr>
+<td>quick sort</td>
+<td>O(NlogN)</td>
+</tr>
+</tbody></table>
+<p>还有其他的希尔排序,堆排序,计数排序,基数排序啊有待同学们去一一探索,这里就不再一一赘述了.</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欧拉公式の推导</title>
+    <url>/articles/euler-s-formula.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
+<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
+<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
+<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
+<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
+<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
+<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
+<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
+<p>that is $e^{ix}=cosx+isinx$</p>
+]]></content>
+      <tags>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -544,6 +570,46 @@ VALUES
       </tags>
   </entry>
   <entry>
+    <title>自动出题机</title>
+    <url>/articles/automatic-generate-question.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre>
+<h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
+<p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
+<p>然后把excel导入数据库.</p>
+<h3 id="step2-后端API的设计-PHP是web最牛逼的语言"><a href="#step2-后端API的设计-PHP是web最牛逼的语言" class="headerlink" title="step2:后端API的设计(PHP是web最牛逼的语言)"></a>step2:后端API的设计(PHP是web最牛逼的语言)</h3><ol>
+<li><p>先来说一下需求吧,首先是像从数据库中随机抽取100道题,在把这些题目转为json格式(这里有一个不理想的地方是答案也一起包含进去了,这个在v2.0中改进)向前端提供.然后从前端接受json格式的分数等用户信息.</p>
+</li>
+<li><p>需求弄清楚就好办了,在时间紧迫和项目比较小的情况下用PHP做后端是比较理想的.结果向前端提供题目数据的<code>handle.php</code>减掉注释只用了<font color="red">26-9</font>行,从前端接收信息的<code>report.php</code>只用了<font color="red">20-4</font>行.让我不禁感叹PHP是web开发对新人最友好的后端语言!!<img src="https://i.loli.net/2018/09/24/5ba8724b10653.jpg" alt="5ba8724b10653"></p>
+</li>
+</ol>
+<h3 id="step3-前端页面设计-主要用jquery"><a href="#step3-前端页面设计-主要用jquery" class="headerlink" title="step3:前端页面设计(主要用jquery)"></a>step3:前端页面设计(主要用jquery)</h3><p>前端css用的很少主要是展示一个原型,在v2.0后会用现成的工具继续美化,主要是用js生成的页面</p>
+<p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
+<p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
+<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
+<p><strong>todo list</strong></p>
+<ul>
+<li><p><input disabled type="checkbox">  单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
+</li>
+<li><p><input checked disabled type="checkbox">  添加rank排行榜</p>
+</li>
+<li><p><input disabled type="checkbox">  添加评论系统</p>
+</li>
+<li><p><input checked disabled type="checkbox">  css美化页面</p>
+</li>
+<li><p><input checked disabled type="checkbox">  更友好的交互体验</p>
+</li>
+</ul>
+<p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>PHP</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>官网信息更新获得通知</title>
     <url>/articles/get-website-message-alert.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
@@ -655,20 +721,13 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>欧拉公式の推导</title>
-    <url>/articles/euler-s-formula.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Leonhard_Euler_2.jpg" alt="Euler"></p>
-<h3 id="Euler’s-formula"><a href="#Euler’s-formula" class="headerlink" title="Euler’s formula:"></a>Euler’s formula:</h3><p>$$<br>\Large{e^{ix}=cosx+isinx<br>\xrightarrow{x=\pi}<br>e^{\pi i}+1=0}<br>$$<br>This formula called <code>created by god</code>, because it contain $e\quad\pi\quad1$.</p>
-<h3 id="How-the-formula-come-from"><a href="#How-the-formula-come-from" class="headerlink" title="How the formula come from?"></a>How the formula come from?</h3><p>This answer is <strong>Taloyr</strong><br>$$<br>\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)<br>$$<br>when $x_0$ equals $0$, the formula transform to<br>$$<br>\underset{x \to 0}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(0)}{n!}x^n+o(x^n)<br>$$<br>Here’s three items about $e^x\quad sinx\quad cosx$</p>
-<p>$<br>\small{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+…+\frac{x^n}{n!}}<br>$</p>
-<p>$<br>\small{sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+O(x^5)}<br>$</p>
-<p>$<br>\small{cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)}<br>$</p>
-<p>At the first equaltion we replace the partation of $x$ with $ix$<br>and the orgainal equaltion become to</p>
-<p>$<br>e^{ix}=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+…+\frac{x^{in}}{in!}\Rightarrow e^{ix}=\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+O(x^4)\right)+\left(ix-i\frac{x^3}{3!}+i\frac{x^5}{5!}+O(x^5)\right)<br>$</p>
-<p>that is $e^{ix}=cosx+isinx$</p>
+    <title>怎么使用live2d做一个看板娘</title>
+    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
+<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
 ]]></content>
       <tags>
-        <tag>math</tag>
+        <tag>live2d</tag>
       </tags>
   </entry>
   <entry>
@@ -680,15 +739,6 @@ public class Main {
       <tags>
         <tag>think</tag>
         <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java数据类型</title>
-    <url>/articles/data-type-of-java.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -840,137 +890,9 @@ public class Main {
 <p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
 ]]></content>
       <tags>
+        <tag>JS</tag>
         <tag>H5</tag>
         <tag>canvas</tag>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自动出题机</title>
-    <url>/articles/automatic-generate-question.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><pre><code>学校开始了新一轮的信息技术大赛,我们班的科技委员下发了3191道复习题,当时excel格式的复习题无论在PC和移动端看起来都不太方便,所以就想用一个空闲的时间弄一个自动出题机(带评分功能的).</code></pre>
-<h3 id="step1-mysql大法好"><a href="#step1-mysql大法好" class="headerlink" title="step1:mysql大法好"></a>step1:mysql大法好</h3><p>  关于mysql表的设计,总共有两张表(暂时),一张examination表存的是问题,答案,题号,难度之类的:</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba86bc0380f6.png" alt="5ba86bc0380f6"></p>
-<p>还有一张exam_report表存用户提交之后产生的数据,比如:内网ip,外网ip,agent,提交时间,分数和多少道题没做.</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba86cdf6f9e0.png" alt="5ba86cdf6f9e0"></p>
-<p>然后把excel导入数据库.</p>
-<h3 id="step2-后端API的设计-PHP是web最牛逼的语言"><a href="#step2-后端API的设计-PHP是web最牛逼的语言" class="headerlink" title="step2:后端API的设计(PHP是web最牛逼的语言)"></a>step2:后端API的设计(PHP是web最牛逼的语言)</h3><ol>
-<li><p>先来说一下需求吧,首先是像从数据库中随机抽取100道题,在把这些题目转为json格式(这里有一个不理想的地方是答案也一起包含进去了,这个在v2.0中改进)向前端提供.然后从前端接受json格式的分数等用户信息.</p>
-</li>
-<li><p>需求弄清楚就好办了,在时间紧迫和项目比较小的情况下用PHP做后端是比较理想的.结果向前端提供题目数据的<code>handle.php</code>减掉注释只用了<font color="red">26-9</font>行,从前端接收信息的<code>report.php</code>只用了<font color="red">20-4</font>行.让我不禁感叹PHP是web开发对新人最友好的后端语言!!<img src="https://i.loli.net/2018/09/24/5ba8724b10653.jpg" alt="5ba8724b10653"></p>
-</li>
-</ol>
-<h3 id="step3-前端页面设计-主要用jquery"><a href="#step3-前端页面设计-主要用jquery" class="headerlink" title="step3:前端页面设计(主要用jquery)"></a>step3:前端页面设计(主要用jquery)</h3><p>前端css用的很少主要是展示一个原型,在v2.0后会用现成的工具继续美化,主要是用js生成的页面</p>
-<p><img src="https://i.loli.net/2018/09/24/5ba873882c817.png" alt="5ba873882c817"></p>
-<p>做完之后评分和给出答案(后续在v2.0会添加一些feature):<img src="https://i.loli.net/2018/09/24/5ba873edaca3d.png" alt="5ba873edaca3d"></p>
-<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>这不是一篇科普向的博文,主要是说明一个idea.然后在v2.0中需要添加的功能:</p>
-<p><strong>todo list</strong></p>
-<ul>
-<li><p><input disabled type="checkbox">  单独列为一个项目用<code>http://www.exam.madeai.cn</code></p>
-</li>
-<li><p><input checked disabled type="checkbox">  添加rank排行榜</p>
-</li>
-<li><p><input disabled type="checkbox">  添加评论系统</p>
-</li>
-<li><p><input checked disabled type="checkbox">  css美化页面</p>
-</li>
-<li><p><input checked disabled type="checkbox">  更友好的交互体验</p>
-</li>
-</ul>
-<p>然后是传送门:<a href="http://www.madeai.cn/exam" target="_blank" rel="noopener">信息技术大赛出题机</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>JS</tag>
-        <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CMD批处理命令的强大</title>
-    <url>/articles/p11.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
-<p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
-<ol>
-<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
-<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
-<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
-<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
-<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot; </code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
-<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
-</ol>
-<ul>
-<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
-<li>参考：</li>
-</ul>
-<ol>
-<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
-<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
-<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
-<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
-</ol>
-<ul>
-<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>CMD</tag>
-        <tag>DOS</tag>
-        <tag>.bat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ajax异步加载</title>
-    <url>/articles/p12.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre>
-<h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
-xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
-xhr.onload = function () {
-    var data = JSON.parse(xhr.responseText);
-    doSomething(data);
-}
-xhr.send();</code></pre>
-<ol>
-<li>其中<code>xhr.open();</code>有3个传入参数,第一个是数据传输的方式,最常用的就是<code>post</code>,<code>get</code>,<code>put</code>,<code>delect</code>了.第二个是后端的URL,值得注意的是如果是<strong>跨域</strong>的话,需要在后端PHP代码前添加<code>header(&quot;Access-Control-Allow-Origin: *&quot;);</code>,或者用代理.<br>第三参数是Boolean型的可选项,表示是否异步加载;</li>
-<li><code>xhr.onload();</code>是在数据加载完成后要处理的事情;也可以用<code>xhr.onreadystatechange=doSomething;</code>.<blockquote>
-<p>onreadystatechange 是一个事件句柄。它的值 (state_Change) 是一个函数的名称，当 XMLHttpRequest 对象的状态发生改变时，会触发此函数。状态从 0 (uninitialized) 到 4 (complete) 进行变化。仅在状态为 4 时，我们才执行代码。</p>
-</blockquote>
-</li>
-<li>最后一个<code>xhr.send();</code>就是将请求发送到服务器端了;</li>
-</ol>
-<h3 id="使用jquery封装的-ajax-和-getJSON-函数"><a href="#使用jquery封装的-ajax-和-getJSON-函数" class="headerlink" title="使用jquery封装的$ajax()和$getJSON()函数"></a>使用jquery封装的$ajax()和$getJSON()函数</h3><ul>
-<li>$ajax比较灵活哦,异步加载任何格式的数据;<pre><code class="javascript">$.ajax({
-  type: &quot;POST&quot;,//像登陆一样的比较重要的数据要用post,放进请求体里哦;
-  url: &quot;http://madeai.cn/api&quot;,
-  dataType: &quot;json&quot;,
-  data: {
-      username:444,
-      password:6666//用md5签名,数据传输更安全;
-  },
-  success: function (obj) {
-      doSomething(obj);
-  },
-  error: function(XMLHttpRequest, textStatus, errorThrown) {
-      console.log(XMLHttpRequest.status,XMLHttpRequest.status,textStatus);
-  },</code></pre>
-</li>
-<li>用$getJSON()来获取json数据;<pre><code class="javascript">$.getJSON(&quot;http://madeai.cn/api&quot;, &quot;&quot;, function (data) {
-  $.each(data[&quot;result&quot;].tracks, function (i, item) {//each循环 使用$.each方法遍历返回的数据data
-  /*doSomething;
-   *function();中第一个参数是数组的索引index,第二个是原数组对象;
-   */
-  });
-});</code></pre>
-</li>
-</ul>
-<p>jquery还封装了类似<code>$get()</code>,<code>$.post()</code>的函数;</p>
-<hr>
-<p>demo click <a href="https://huangyebiaoke.github.io/item/example/ajax&json.html" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>AJAX</tag>
-        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
@@ -1230,9 +1152,154 @@ xhr.send();</code></pre>
 <p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
 ]]></content>
       <tags>
+        <tag>JS</tag>
         <tag>H5</tag>
         <tag>canvas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ajax异步加载</title>
+    <url>/articles/p12.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre>
+<h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
+xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
+xhr.onload = function () {
+    var data = JSON.parse(xhr.responseText);
+    doSomething(data);
+}
+xhr.send();</code></pre>
+<ol>
+<li>其中<code>xhr.open();</code>有3个传入参数,第一个是数据传输的方式,最常用的就是<code>post</code>,<code>get</code>,<code>put</code>,<code>delect</code>了.第二个是后端的URL,值得注意的是如果是<strong>跨域</strong>的话,需要在后端PHP代码前添加<code>header(&quot;Access-Control-Allow-Origin: *&quot;);</code>,或者用代理.<br>第三参数是Boolean型的可选项,表示是否异步加载;</li>
+<li><code>xhr.onload();</code>是在数据加载完成后要处理的事情;也可以用<code>xhr.onreadystatechange=doSomething;</code>.<blockquote>
+<p>onreadystatechange 是一个事件句柄。它的值 (state_Change) 是一个函数的名称，当 XMLHttpRequest 对象的状态发生改变时，会触发此函数。状态从 0 (uninitialized) 到 4 (complete) 进行变化。仅在状态为 4 时，我们才执行代码。</p>
+</blockquote>
+</li>
+<li>最后一个<code>xhr.send();</code>就是将请求发送到服务器端了;</li>
+</ol>
+<h3 id="使用jquery封装的-ajax-和-getJSON-函数"><a href="#使用jquery封装的-ajax-和-getJSON-函数" class="headerlink" title="使用jquery封装的$ajax()和$getJSON()函数"></a>使用jquery封装的$ajax()和$getJSON()函数</h3><ul>
+<li>$ajax比较灵活哦,异步加载任何格式的数据;<pre><code class="javascript">$.ajax({
+  type: &quot;POST&quot;,//像登陆一样的比较重要的数据要用post,放进请求体里哦;
+  url: &quot;http://madeai.cn/api&quot;,
+  dataType: &quot;json&quot;,
+  data: {
+      username:444,
+      password:6666//用md5签名,数据传输更安全;
+  },
+  success: function (obj) {
+      doSomething(obj);
+  },
+  error: function(XMLHttpRequest, textStatus, errorThrown) {
+      console.log(XMLHttpRequest.status,XMLHttpRequest.status,textStatus);
+  },</code></pre>
+</li>
+<li>用$getJSON()来获取json数据;<pre><code class="javascript">$.getJSON(&quot;http://madeai.cn/api&quot;, &quot;&quot;, function (data) {
+  $.each(data[&quot;result&quot;].tracks, function (i, item) {//each循环 使用$.each方法遍历返回的数据data
+  /*doSomething;
+   *function();中第一个参数是数组的索引index,第二个是原数组对象;
+   */
+  });
+});</code></pre>
+</li>
+</ul>
+<p>jquery还封装了类似<code>$get()</code>,<code>$.post()</code>的函数;</p>
+<hr>
+<p>demo click <a href="https://huangyebiaoke.github.io/item/example/ajax&json.html" target="_blank" rel="noopener">here</a></p>
+]]></content>
+      <tags>
         <tag>JS</tag>
+        <tag>AJAX</tag>
+        <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CMD批处理命令的强大</title>
+    <url>/articles/p11.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
+<p><img src="/assets/blogimg/p11-1.png" alt="p11-1" title="p11-1"><br>    每个文件夹里是这样的文件：<br><img src="/assets/blogimg/p11-2.png" alt="p11-2" title="p11-2"><br>现在我需要：</p>
+<ol>
+<li>将每个子文件夹里以.dat为后缀的文件批量改成.exp.json为后缀;将每个子文件夹里以.txt为后缀的文件批量改成.mtn为后缀.</li>
+<li>在每个子文件夹里建立3个文件夹：expressions，montions，textures.</li>
+<li>将每个子文件夹里.exp.json为后缀的文件放入expressions文件夹，以.mtn为后缀的文件放入montions文件夹，以png为后缀的文件放入textures文件夹.<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3> 毫无疑问，在图形界面面对200多个子文件夹做复制粘贴的重复工作不仅枯燥而且效率低下。那么有没有更快捷的方法呢？答案是有，下面有请cmd批处理命令！！！！<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
+<li>对于我们以上提出的第一个<code>for /r %i in (*.txt) do ren &quot;%i&quot; *.mtn</code>命令是行之有效的。他的作用是遍历output这个主文件夹下的所有子文件夹，并且把.txt后缀改为.mtn。%i这个变量代表.txt,就是不断在每个子目录下运行<code>ren *.txt *.mtn</code>这个命令。</li>
+<li>对于第二个我们可以用<code>for /d %i in (*) do md &quot;%~fsi\expressions&quot; &quot;%~fsi\motions&quot; %~fsi\textures&quot; </code>这个命令来完成。意思就是不断在每个子目录下运行<code>md &quot;\expressions&quot; &quot;\motions&quot; &quot;\textures&quot;</code>这个命令。</li>
+<li>对于第三个<code>for /d %i in (*) do move &quot;%~fsi\*.exp.json&quot; &quot;%~fsi\expressions&quot;</code>意思大同小异。<br>然后我们看看效果：<br><img src="/assets/blogimg/p11-3.png" alt="p11-3" title="p11-3"><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3></li>
+</ol>
+<ul>
+<li>小彩蛋：<br><img src="/assets/blogimg/p11-4.gif" alt="p11-4" title="p11-4"></li>
+<li>参考：</li>
+</ul>
+<ol>
+<li><a href="https://tieba.baidu.com/p/5218112440" title="【教程】提取韩游【天命之子】的人物模型" target="_blank" rel="noopener">【教程】提取韩游【天命之子】的人物模型</a></li>
+<li><a href="https://tieba.baidu.com/p/5260198912?share=9105&fr=share&see_lz=1" title="天命之子 live2d打包教程" target="_blank" rel="noopener">天命之子 live2d打包教程</a></li>
+<li><a href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02" title="给博客添加能动的看板娘(Live2D)" target="_blank" rel="noopener">给博客添加能动的看板娘(Live2D)</a></li>
+<li><a href="https://tieba.baidu.com/p/3192612677?pn=1" title="24小时快速建模[Live2D Cubism 2.0 closed beta]报告" target="_blank" rel="noopener">24小时快速建模[Live2D Cubism 2.0 closed beta]报告</a></li>
+</ol>
+<ul>
+<li>demo click <a href="http://www.madeai.cn/live2d/" title="demo" target="_blank" rel="noopener">here</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>CMD</tag>
+        <tag>DOS</tag>
+        <tag>.bat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网红辞职信</title>
+    <url>/articles/p15.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre>
+<p>头条上的视频</p>
+{% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
+
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式:"></a>样式:</h4><pre><code>&lt;style&gt;
+    .main{
+        width: 500px;
+        height: 250px;
+        border: 2px solid black;
+        margin: 0 auto;
+        position:absolute;
+        left: 500px;
+    }
+    .title,.chose{
+        text-align: center;
+    }
+    .chose{
+        margin:40px;
+    }
+    .yes{
+        margin-right: 40px;
+    }
+&lt;/style&gt;</code></pre>
+<h4 id="dom树"><a href="#dom树" class="headerlink" title="dom树:"></a>dom树:</h4><pre><code class="html">&lt;div class=&quot;main&quot;&gt;
+    &lt;h2 class=&quot;title&quot;&gt;辞职信&lt;/h2&gt;
+    &lt;article&gt;老板我要辞职&lt;img width=&quot;100&quot; src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1530346447488&amp;di=cdd760f50b3188a667921dc3de943d38&amp;imgtype=0&amp;src=http%3A%2F%2F1873.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2011%2F5%2F3%2F13%2F13%2Fu115243949_1306e5597e5g214.gif&quot;&gt;,请批准!&lt;/article&gt;
+    &lt;div class=&quot;chose&quot;&gt;&lt;button class=&quot;yes&quot; id=&quot;yes&quot;&gt;同意&lt;/button&gt;&lt;button class=&quot;no&quot; id=&quot;no&quot;&gt;不同意&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript:"></a>javascript:</h4><pre><code class="script">&lt;script type=&quot;text/javascript&quot;&gt;
+    var no=document.getElementById(&quot;no&quot;);
+    var yes=document.getElementById(&quot;yes&quot;);
+    var main=document.querySelector(&quot;.main&quot;);
+    no.onmouseover=function () {
+        var x=Math.random() * (500-this.offsetWidth);
+        var y=Math.random()*(250-this.offsetHeight);
+        this.setAttribute(&#39;style&#39;,
+            &#39;position:absolute;&#39;+
+            &#39;left:&#39;+x+&#39;px;&#39;+
+            &#39;top:&#39;+y+&#39;px;&#39;
+        );
+    }
+    yes.onmousedown=function () {
+    main.innerHTML=&quot;&lt;h3 style=&#39;size: 30px; color: orangered;&#39;&gt;臣退了&lt;/h3&gt;,这一退也许就是一辈子~~~~&quot;;
+    }
+&lt;/script&gt;</code></pre>
+<hr>
+<p>实际演示请转向<a href="http://blog.madeai.cn/item/example/resign.html">demo</a></p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>H5</tag>
       </tags>
   </entry>
   <entry>
@@ -1342,13 +1409,47 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>怎么使用live2d做一个看板娘</title>
-    <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
-<h4 id="于是过了很久很久。。。"><a href="#于是过了很久很久。。。" class="headerlink" title="于是过了很久很久。。。"></a>于是过了很久很久。。。</h4><h2 id="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"><a href="#寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，" class="headerlink" title="寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，"></a>寒假期间浏览网页无意中看到许多博客有漂亮的看板娘，哇，这个有创意，</h2><p>…待续</p>
+    <title>风往南吹-想法</title>
+    <url>/articles/p18.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" type="song" id="145586"></meting-js></p>
+<p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
+<p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
+<p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
+<p>2018-03-20<br>原文：疼痛让我麻木的大脑清醒了一些，我内心里要把这种横来的力量化作工作上的动力，为了我的工作，我失去了曾经认为要相伴一生的微微，所以我唯一能继续做的，就是努力地去工作，我失去的，不能白失去。<br>想法：补偿心理，失去的想要以别的方式补回来[呲牙]</p>
+<p>2018-03-20<br>原文：嗯，该过去的就是会过去，不过一切都没关系，因为昨天总会被今天代替，今天又会很快被明天代替，所以人都该有希望，因为没有力量能阻挡明天的到来。<br>想法：</p>
+<p>2018-03-20<br>原文：有时候我觉得世界就想一台计算精确的计算机，每一个人都在其中，接受着它的安排。<br>想法：</p>
+<p>2018-03-20<br>原文：我心里想，嘿，我这总花公司钱请客吃饭的，到头来还总能加薪受表扬，这，这何乐而不为呢？用脑子挣钱和用腿挣钱就差这个区别，呵呵。<br>想法：</p>
+<p>2018-03-20<br>原文：因为我一直认为接吻时睁着眼的女人不值得信任<br>想法：</p>
+<p>2018-03-20<br>原文：不过每当我在回忆当时的事情，就嘲笑自己的无知和幼稚，殊不知张哥每次关心我伤口的时候，实际上就是在提醒我，他曾经为我的生命都做出过贡献，让我觉得为他做事是天经地义一般。<br>想法：</p>
+<p>2018-03-20<br>原文：两个人好了容易，分开就恶心了。<br>想法：</p>
+<p>2018-03-20<br>原文：我对女人的手非常敏感，可能大家对女人的手散发女人味很难理解？其实我觉得这只是种感觉，很细、很长又很肉乎的就是女人味的那种。<br>想法：</p>
+<p>2018-03-20<br>原文：自从经历了张全佑的那次事情之后，我一直感觉自己太累了，体力加脑力都在辛苦，所以我刚躺下就已经睡着了。<br>想法：过了35岁就干不动了，这是亚健康ಥ_ಥ</p>
+<p>2018-03-20<br>原文：因为我发现，我真心的爱整体的人们，我爱这片土地，但又痛恨每一个单独的人。<br>想法：每一个人都是可爱的，但是分开看又是另一回事了(＠_＠;)</p>
+<p>2018-03-20<br>原文：做人、做公司都是这样，如果不向上发展了，脚步一旦停滞就会后退，就像逆水行舟。<br>想法：永远不要让自己太安逸(๑•̀ㅂ•́)ง</p>
+<p>2018-03-21<br>原文：但是问题没有我想象的那般简单，因为当一个集体不能团结一致工作的话，那麻烦根本就是你难以想象的。交待下去的事情，员工还是正常地去做，但是你就是感觉很别扭，总是在某个地方让你觉得吃惊，就好像有很大仇恨一样，这就是内斗的痛苦。<br>想法：</p>
+<p>2018-03-21<br>原文：我发现，这款游戏真的很好玩，关键是它代表的风格，是一种更高更强的味道。和真实生活中的竞争颇有相似，而且它在游戏开始的时候，基本上是公平的，而且比赛双方的机会也是一样的。这点和生活不同，生活中除了时间外，就没有公平可言了。<br>想法：quake3，《雷神之锤：竞技场》是2001年由id software推出的吃鸡游戏（没错，最早的第一人称fps3D实施对抗类打枪游戏▄█▀█●），id software的每一款游戏都在挑战显卡和CPU的最高性能，推动着硬件的不断发展（就像现在的王者荣耀ヾ(≧O≦)〃嗷~）</p>
+<p>2018-03-21<br>原文：现在到好，我开始烦恼女人，因为前来和她说话的人太多了，总会碍到我喝酒。不过对这些网友前来约她，我心里也有反感，只是我自己告诉自己不能表现出来，否则又会有可能发生一段好开始不好终结的感情，这是我最不希望的感情，因为我觉得男人扔到感情里，是在糟蹋自己，而且我已经累了。<br>想法：</p>
+<p>2018-03-21<br>原文：在这个时候，我突然对女人产生一种厌恶，因为我当时就认为这钱不会丢失，只要我安排得当。<br>想法：女人的可怕你不懂，世界上最可怕的动物莫过于女人╥﹏╥</p>
+<p>2018-03-21<br>原文：饭菜基本上都是我们吃个刚好，没有过多的讲究排场。看来，富贵不是吃的。<br>想法：</p>
+<p>2018-03-21<br>原文：我听完这话后，我都呆住了。因为我一直认为的大好人、大男人居然是这样卑鄙龌龊。还好意思向一个弱不禁风的女孩子要分手费，而且张口还不是小数。我刹那间感觉天旋地转，好像天和地是掉过来的，原来认为是好的，居然都是坏的。我的世界观都跌进了混乱当众，一直认为正确的事情被全盘推翻了一样，不由得让我心里一阵抽搐。<br>想法：</p>
+<p>2018-03-21<br>原文：我早听说过，上海边上有一个叫周庄的地方，那里号称是东方的威尼斯，城市房子中间都是水道组成，过往的交通工具都是大小船舶，咱去不了威尼斯，就去个周庄也不错，况且还有美女相伴。<br>想法：mark一下，有机会一定要去看看～(^з^)-</p>
+<p>2018-03-21<br>原文：且站在石桥上，和站在北京山顶上看日落的感觉也完全不同，就好像是太阳特别优待你，在她就要隐去的瞬间里，把最后一点浪漫和温存都偷偷地洒给需要她的人。<br>想法：</p>
+<p>2018-03-21<br>原文：灵魂在阴影中挣扎，似乎在快乐中的一个个瞬间，总是带有空洞和压抑，让我有种余恨未消的感觉，但这种感觉来得莫名其妙，我不明白怎么会有这样的感觉。<br>想法：</p>
+<p>2018-03-21<br>原文：我开始想，是不是这个社会的教育下，人的外面和里面永远不能配套？<br>想法：</p>
+<p>2018-03-21<br>原文：飞机要是一路顺风就肯定要掉下去了，我得逆风才飞的起来啊。<br>想法：</p>
+<p>2018-03-21<br>原文：七、不过男人的这种情结也不能完全怪罪于可怜的男人，因为这个观点是女人们慢慢帮着树立起来的，她们也是帮凶。按照自己的意愿去捏造男人的性情和行为，然后又冠冕堂皇的用各种理由去指责男人的缺点，却不知道这一切的制造者才是罪魁祸首。<br>想法：</p>
+<p>2018-03-21<br>原文：二十、我的脑子一片混乱，我在颠簸中，看到罗骁呆呆的样子，不知道为什么，我开始发现这张天使面孔底下，充满了邪恶的忧郁。我发现她很反常，面孔中有内疚的表情，但却不知道像上次我受伤那样帮我止血。<br>想法：</p>
+<p>2018-03-21<br>原文：我也明白事理，人家有事情要忙，这是第一；男女经常是只能共福却不能共难这是第二；人在世界上只能相信自己，对其他人还是不要抱有太大的希望，否则希望越大失望越大。<br>想法：</p>
+<p>2018-03-21<br>原文：我在想，为什么会这样呢？命运为什么总捉弄强者呢？不过我很快就冷静了下来，因为现在即便再怎么样，对已经发生的事情也无济于事，最应该做的，是立刻把事情查清楚，毕竟这300万不会莫名其妙的人间蒸发。<br>想法：</p>
+<p>2018-03-21<br>原文：后来我发现，罗骁这种成熟的女人，似乎已经被社会沾染的太油滑，太圆滑了，根本就不能够完全赤诚相待。虽然也不知道罗骁究竟是怎么圆滑，但就是感觉相处，她的处事方式让我产生了一种危机感。也许女人注定就不要太强，否则就只能找那些可以与她互补的人才可以相安无事的在一起。或者我这样说欠缺公平，毕竟我现在的情况让任何人难以有安全感，而罗骁这样的女人最需要的就是安全感。<br>想法：</p>
+<p>2018-03-21<br>原文：生活往往是出人意料的，也许你一直以为是好的，实际却是坏的。不过你一直怀疑的，也许反而是最好的。<br>想法：</p>
+<p>2018-03-21<br>原文：一阵风从我的右边刮来，好冷，冷的刺骨，怎么风向南刮会冷呢？我混沌的脑子用唯一剩下的智慧思考这个问题。！！！！原来，现在刮的是北风啊，原来风往南吹，吹的却是北风，难怪我一直错觉风往南吹时是那么温暖，原来是刺骨的北风。怪不得我以为的好人却都害了我，而爱我的人却总是离开自己，原来，我早就是个自以为是的瞎子了……<br>想法：男主弥留之际的顿悟，看的不是太懂(°ー°〃)</p>
+<p>2018-03-21<br>原文：我既然已经表示了辞职，就不会再回头，否则就算回头了，也未必能得到重用。<br>想法：辞职上司挽留只是礼貌性的，想好再辞职，提出辞职就不能再待下去了(。_。)</p>
+<p>原文阅读☞<a href="/assets/files/1206665799.txt">风往南吹.TXT</a>，结局泪目T_T，又被作者摆了一道</p>
 ]]></content>
       <tags>
-        <tag>live2d</tag>
+        <tag>think</tag>
+        <tag>reading book</tag>
       </tags>
   </entry>
   <entry>
@@ -1411,290 +1512,6 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>爱丽丝梦游仙境-想法</title>
-    <url>/articles/p20.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>2018-07-13<br>原文：起来，哭是没用的！”爱丽丝严厉地对自己说，”限你-，分钟内就停止哭！<br>想法：</p>
-<p>2018-07-13<br>原文：这个小孩很喜欢装成两个人<br>想法：</p>
-<p>2018-07-13<br>原文：小鳄鱼怎样保养 它闪亮的尾巴， 把尼罗河水灌进 每一片金色的鳞甲。 它笑得多么快乐， 伸开爪子的姿势多么文雅， 它在欢迎那些小鱼 游进它温柔微笑着的嘴巴。<br>想法：</p>
-<p>2018-07-13<br>原文：她第一个念头是掉进海里了。她对自己说：”那么我可以坐火车回去了，”<br>想法：孩子的想法可爱又单纯ಠ౪ಠ</p>
-<p>2018-07-13<br>原文：只渡渡鸟（一种现已绝种的鸟，原产非洲毛里求斯。）<br>想法：中学课本上的渡渡鸟，可怜的小家伙╥﹏╥</p>
-<p>2018-07-13<br>原文：我发现了什么吃的东西时，当然知道’这’是指什么。’这’通常指一只青蛙或一条蚯蚓<br>想法：可爱的小鸭子～(^з^)-</p>
-<p>2018-07-13<br>原文：”你的口袋里还有别的东西吗，”它转向爱丽丝问道。 “只有一个顶针了。”爱丽丝伤心地说。 “把它拿来。”渡渡鸟说， 这时，大家又围住了爱丽丝，渡渡鸟接过顶针后兑严肃地递给了她，说：”我们请求你接受这只精致的顶针，”<br>想法：自己给自己奖品嘛？渡渡鸟严肃起来可真好笑ಠ౪ಠ</p>
-<p>2018-07-13<br>原文： “你记得吗，你答应过讲你的历史，”爱丽丝说，”作为什么恨……恨’m’和’g’呀，”她压低声音，说完了这句话，她怕说出猫和狗这两个字惹老鼠生气，于是只说出猫和狗两字的拼音字头。<br>想法：这个翻译我不同意，猫就是m，狗就是g，有点low还是写c和d好。</p>
-<p>2018-07-13<br>原文：因为今晨我没事干，所以我要跟你捣捣蛋<br>想法：</p>
-<p>2018-07-13<br>原文：你要个碗（弯）！”爱丽丝说，由于她总是热心帮助别人的，因此就焦急她四周寻找，”哦，让我帮你找找看。”<br>想法：傻白甜的天然呆爱丽丝o(*≧▽≦)ツ┏━┓拍桌狂笑</p>
-<p>2018-07-13<br>原文：”别说了，妈！你这样罗嗦，就是牡蛎都忍耐不了。”小螃蟹耐着小脾气说。<br>想法：螃蟹都是这样吃杜蛎的么？ಥ_ಥ</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>reading book</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>风往南吹-想法</title>
-    <url>/articles/p18.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" type="song" id="145586"></meting-js></p>
-<p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
-<p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
-<p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
-<p>2018-03-20<br>原文：疼痛让我麻木的大脑清醒了一些，我内心里要把这种横来的力量化作工作上的动力，为了我的工作，我失去了曾经认为要相伴一生的微微，所以我唯一能继续做的，就是努力地去工作，我失去的，不能白失去。<br>想法：补偿心理，失去的想要以别的方式补回来[呲牙]</p>
-<p>2018-03-20<br>原文：嗯，该过去的就是会过去，不过一切都没关系，因为昨天总会被今天代替，今天又会很快被明天代替，所以人都该有希望，因为没有力量能阻挡明天的到来。<br>想法：</p>
-<p>2018-03-20<br>原文：有时候我觉得世界就想一台计算精确的计算机，每一个人都在其中，接受着它的安排。<br>想法：</p>
-<p>2018-03-20<br>原文：我心里想，嘿，我这总花公司钱请客吃饭的，到头来还总能加薪受表扬，这，这何乐而不为呢？用脑子挣钱和用腿挣钱就差这个区别，呵呵。<br>想法：</p>
-<p>2018-03-20<br>原文：因为我一直认为接吻时睁着眼的女人不值得信任<br>想法：</p>
-<p>2018-03-20<br>原文：不过每当我在回忆当时的事情，就嘲笑自己的无知和幼稚，殊不知张哥每次关心我伤口的时候，实际上就是在提醒我，他曾经为我的生命都做出过贡献，让我觉得为他做事是天经地义一般。<br>想法：</p>
-<p>2018-03-20<br>原文：两个人好了容易，分开就恶心了。<br>想法：</p>
-<p>2018-03-20<br>原文：我对女人的手非常敏感，可能大家对女人的手散发女人味很难理解？其实我觉得这只是种感觉，很细、很长又很肉乎的就是女人味的那种。<br>想法：</p>
-<p>2018-03-20<br>原文：自从经历了张全佑的那次事情之后，我一直感觉自己太累了，体力加脑力都在辛苦，所以我刚躺下就已经睡着了。<br>想法：过了35岁就干不动了，这是亚健康ಥ_ಥ</p>
-<p>2018-03-20<br>原文：因为我发现，我真心的爱整体的人们，我爱这片土地，但又痛恨每一个单独的人。<br>想法：每一个人都是可爱的，但是分开看又是另一回事了(＠_＠;)</p>
-<p>2018-03-20<br>原文：做人、做公司都是这样，如果不向上发展了，脚步一旦停滞就会后退，就像逆水行舟。<br>想法：永远不要让自己太安逸(๑•̀ㅂ•́)ง</p>
-<p>2018-03-21<br>原文：但是问题没有我想象的那般简单，因为当一个集体不能团结一致工作的话，那麻烦根本就是你难以想象的。交待下去的事情，员工还是正常地去做，但是你就是感觉很别扭，总是在某个地方让你觉得吃惊，就好像有很大仇恨一样，这就是内斗的痛苦。<br>想法：</p>
-<p>2018-03-21<br>原文：我发现，这款游戏真的很好玩，关键是它代表的风格，是一种更高更强的味道。和真实生活中的竞争颇有相似，而且它在游戏开始的时候，基本上是公平的，而且比赛双方的机会也是一样的。这点和生活不同，生活中除了时间外，就没有公平可言了。<br>想法：quake3，《雷神之锤：竞技场》是2001年由id software推出的吃鸡游戏（没错，最早的第一人称fps3D实施对抗类打枪游戏▄█▀█●），id software的每一款游戏都在挑战显卡和CPU的最高性能，推动着硬件的不断发展（就像现在的王者荣耀ヾ(≧O≦)〃嗷~）</p>
-<p>2018-03-21<br>原文：现在到好，我开始烦恼女人，因为前来和她说话的人太多了，总会碍到我喝酒。不过对这些网友前来约她，我心里也有反感，只是我自己告诉自己不能表现出来，否则又会有可能发生一段好开始不好终结的感情，这是我最不希望的感情，因为我觉得男人扔到感情里，是在糟蹋自己，而且我已经累了。<br>想法：</p>
-<p>2018-03-21<br>原文：在这个时候，我突然对女人产生一种厌恶，因为我当时就认为这钱不会丢失，只要我安排得当。<br>想法：女人的可怕你不懂，世界上最可怕的动物莫过于女人╥﹏╥</p>
-<p>2018-03-21<br>原文：饭菜基本上都是我们吃个刚好，没有过多的讲究排场。看来，富贵不是吃的。<br>想法：</p>
-<p>2018-03-21<br>原文：我听完这话后，我都呆住了。因为我一直认为的大好人、大男人居然是这样卑鄙龌龊。还好意思向一个弱不禁风的女孩子要分手费，而且张口还不是小数。我刹那间感觉天旋地转，好像天和地是掉过来的，原来认为是好的，居然都是坏的。我的世界观都跌进了混乱当众，一直认为正确的事情被全盘推翻了一样，不由得让我心里一阵抽搐。<br>想法：</p>
-<p>2018-03-21<br>原文：我早听说过，上海边上有一个叫周庄的地方，那里号称是东方的威尼斯，城市房子中间都是水道组成，过往的交通工具都是大小船舶，咱去不了威尼斯，就去个周庄也不错，况且还有美女相伴。<br>想法：mark一下，有机会一定要去看看～(^з^)-</p>
-<p>2018-03-21<br>原文：且站在石桥上，和站在北京山顶上看日落的感觉也完全不同，就好像是太阳特别优待你，在她就要隐去的瞬间里，把最后一点浪漫和温存都偷偷地洒给需要她的人。<br>想法：</p>
-<p>2018-03-21<br>原文：灵魂在阴影中挣扎，似乎在快乐中的一个个瞬间，总是带有空洞和压抑，让我有种余恨未消的感觉，但这种感觉来得莫名其妙，我不明白怎么会有这样的感觉。<br>想法：</p>
-<p>2018-03-21<br>原文：我开始想，是不是这个社会的教育下，人的外面和里面永远不能配套？<br>想法：</p>
-<p>2018-03-21<br>原文：飞机要是一路顺风就肯定要掉下去了，我得逆风才飞的起来啊。<br>想法：</p>
-<p>2018-03-21<br>原文：七、不过男人的这种情结也不能完全怪罪于可怜的男人，因为这个观点是女人们慢慢帮着树立起来的，她们也是帮凶。按照自己的意愿去捏造男人的性情和行为，然后又冠冕堂皇的用各种理由去指责男人的缺点，却不知道这一切的制造者才是罪魁祸首。<br>想法：</p>
-<p>2018-03-21<br>原文：二十、我的脑子一片混乱，我在颠簸中，看到罗骁呆呆的样子，不知道为什么，我开始发现这张天使面孔底下，充满了邪恶的忧郁。我发现她很反常，面孔中有内疚的表情，但却不知道像上次我受伤那样帮我止血。<br>想法：</p>
-<p>2018-03-21<br>原文：我也明白事理，人家有事情要忙，这是第一；男女经常是只能共福却不能共难这是第二；人在世界上只能相信自己，对其他人还是不要抱有太大的希望，否则希望越大失望越大。<br>想法：</p>
-<p>2018-03-21<br>原文：我在想，为什么会这样呢？命运为什么总捉弄强者呢？不过我很快就冷静了下来，因为现在即便再怎么样，对已经发生的事情也无济于事，最应该做的，是立刻把事情查清楚，毕竟这300万不会莫名其妙的人间蒸发。<br>想法：</p>
-<p>2018-03-21<br>原文：后来我发现，罗骁这种成熟的女人，似乎已经被社会沾染的太油滑，太圆滑了，根本就不能够完全赤诚相待。虽然也不知道罗骁究竟是怎么圆滑，但就是感觉相处，她的处事方式让我产生了一种危机感。也许女人注定就不要太强，否则就只能找那些可以与她互补的人才可以相安无事的在一起。或者我这样说欠缺公平，毕竟我现在的情况让任何人难以有安全感，而罗骁这样的女人最需要的就是安全感。<br>想法：</p>
-<p>2018-03-21<br>原文：生活往往是出人意料的，也许你一直以为是好的，实际却是坏的。不过你一直怀疑的，也许反而是最好的。<br>想法：</p>
-<p>2018-03-21<br>原文：一阵风从我的右边刮来，好冷，冷的刺骨，怎么风向南刮会冷呢？我混沌的脑子用唯一剩下的智慧思考这个问题。！！！！原来，现在刮的是北风啊，原来风往南吹，吹的却是北风，难怪我一直错觉风往南吹时是那么温暖，原来是刺骨的北风。怪不得我以为的好人却都害了我，而爱我的人却总是离开自己，原来，我早就是个自以为是的瞎子了……<br>想法：男主弥留之际的顿悟，看的不是太懂(°ー°〃)</p>
-<p>2018-03-21<br>原文：我既然已经表示了辞职，就不会再回头，否则就算回头了，也未必能得到重用。<br>想法：辞职上司挽留只是礼貌性的，想好再辞职，提出辞职就不能再待下去了(。_。)</p>
-<p>原文阅读☞<a href="/assets/files/1206665799.txt">风往南吹.TXT</a>，结局泪目T_T，又被作者摆了一道</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>reading book</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网红辞职信</title>
-    <url>/articles/p15.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p15-1.png" alt="banner"></p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><pre><code>前几天抖音头条刷的特别火的臣退了的视频被人拿来写辞职信,于是就蹭一波热度.</code></pre>
-<p>头条上的视频</p>
-{% dplayer "url=http://publicereadmsmnsnsnnss.oss-cn-hangzhou.aliyuncs.com/_14-39-09.mp4 " "loop=no" "theme=#FADFA3" "autoplay=false" %}
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式:"></a>样式:</h4><pre><code>&lt;style&gt;
-    .main{
-        width: 500px;
-        height: 250px;
-        border: 2px solid black;
-        margin: 0 auto;
-        position:absolute;
-        left: 500px;
-    }
-    .title,.chose{
-        text-align: center;
-    }
-    .chose{
-        margin:40px;
-    }
-    .yes{
-        margin-right: 40px;
-    }
-&lt;/style&gt;</code></pre>
-<h4 id="dom树"><a href="#dom树" class="headerlink" title="dom树:"></a>dom树:</h4><pre><code class="html">&lt;div class=&quot;main&quot;&gt;
-    &lt;h2 class=&quot;title&quot;&gt;辞职信&lt;/h2&gt;
-    &lt;article&gt;老板我要辞职&lt;img width=&quot;100&quot; src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1530346447488&amp;di=cdd760f50b3188a667921dc3de943d38&amp;imgtype=0&amp;src=http%3A%2F%2F1873.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2011%2F5%2F3%2F13%2F13%2Fu115243949_1306e5597e5g214.gif&quot;&gt;,请批准!&lt;/article&gt;
-    &lt;div class=&quot;chose&quot;&gt;&lt;button class=&quot;yes&quot; id=&quot;yes&quot;&gt;同意&lt;/button&gt;&lt;button class=&quot;no&quot; id=&quot;no&quot;&gt;不同意&lt;/button&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript:"></a>javascript:</h4><pre><code class="script">&lt;script type=&quot;text/javascript&quot;&gt;
-    var no=document.getElementById(&quot;no&quot;);
-    var yes=document.getElementById(&quot;yes&quot;);
-    var main=document.querySelector(&quot;.main&quot;);
-    no.onmouseover=function () {
-        var x=Math.random() * (500-this.offsetWidth);
-        var y=Math.random()*(250-this.offsetHeight);
-        this.setAttribute(&#39;style&#39;,
-            &#39;position:absolute;&#39;+
-            &#39;left:&#39;+x+&#39;px;&#39;+
-            &#39;top:&#39;+y+&#39;px;&#39;
-        );
-    }
-    yes.onmousedown=function () {
-    main.innerHTML=&quot;&lt;h3 style=&#39;size: 30px; color: orangered;&#39;&gt;臣退了&lt;/h3&gt;,这一退也许就是一辈子~~~~&quot;;
-    }
-&lt;/script&gt;</code></pre>
-<hr>
-<p>实际演示请转向<a href="http://blog.madeai.cn/item/example/resign.html">demo</a></p>
-]]></content>
-      <tags>
-        <tag>H5</tag>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>My idol--Obama</title>
-    <url>/articles/p6.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
-    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
-their own idol.Maybe actor singer or other famous people.
-    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
-humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
-    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
-without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
-    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
-withhis daughter whenever how busy he is.
-    Oboma is so great person that's why I like him.
-
-<p>附：</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git创建版本库和关联远程库</title>
-    <url>/articles/p8.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
-<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
-<li>mkdir LearningDataStructure//创建本地文件夹</li>
-<li>cd LearningDataStructure//进入文件夹</li>
-<li>pwd//显示当前目录<pre><code class="bash">/e/LearningDataStructure</code></pre>
-</li>
-<li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li>
-<li>git add README.md//把文件添加到仓库</li>
-<li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash">[master (root-commit) cb926e7] wrote a readme file
- 1 file changed, 2 insertions(+)
- create mode 100644 readme.txt</code></pre>
-<h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
-<li>click “Create a new repository”</li>
-<li>git remote add origin <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#46;&#99;&#111;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
-<li>git remote remove origin//取消本地关联远程库</li>
-<li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
-</ol>
-<hr>
-<p>附:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于java的各种包</title>
-    <url>/articles/p9.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
-<p>在整个JavaSE API中，大约包含1 200个包，总体来看，包名第一个名称主要有3种：java、javax和org。其中以java开头的包名是基础语言包，以javax开头的属于扩展包（其中x是extend的简写），而以org开头的则是第三方组织提供的功能包（organization的简写）。<br>下面简单介绍几个Java SE API的主要包。<br>（1）java．lang，是Java语言的核心包，是编写Java程序所需要的基本类和接口，包括Object类、System类、Class类、异常处理类、线程类等。这个包由编译器自动引入。<br>（2）java．applet，提供Applet执行时需要的类。<br>（3）java．awt，提供操作图形用户界面的基本功能。<br>（4）java．io，提供Java程序进行输入输出的类，以及目录和文件管理类。<br>（5）java．net，提供实现网络功能。<br>（6）java．util，提供实用程序类及集合类等常用的工具类。<br>（7）java．sql，提供使Java程序具有访问不同数据库的能力。<br>（8）java．rmi，提供远程连接与载入，实现了远程方法调用的功能。</p>
-</blockquote>
-<h3 id="java-util-Arrays"><a href="#java-util-Arrays" class="headerlink" title="java.util.Arrays;"></a>java.util.Arrays;</h3><p>usage：</p>
-<pre><code class="java">    import java.util.Arrays;
-
-    Arrays.sort(arr);//升序排序
-    Arrays.toString(arr);//将数组转为字符串</code></pre>
-<h3 id="java-util-Scanner"><a href="#java-util-Scanner" class="headerlink" title="java.util.Scanner;"></a>java.util.Scanner;</h3><pre><code class="java">import java.util.Scanner;
-
-Scanner input = new Scanner(System.in);
-String name=input.next();
-int num=input.nextIn();</code></pre>
-<h3 id="关于equals；"><a href="#关于equals；" class="headerlink" title="关于equals；"></a>关于equals；</h3><p><img src="http://img.mukewang.com/53703cb10001f78a06340312.jpg" alt="picture" title="picture"></p>
-<pre><code class="java">import java.util.*;
-if( a!=null &amp;&amp; a.equals(b) ){.............}
-
-if(Objects.equals(a,b)){.......}
-</code></pre>
-<p>more…click <a href="https://docs.oracle.com/javase/9/index.html" target="_blank" rel="noopener">docs.oracle.com</a></p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线性表的增删查改</title>
-    <url>/articles/p7.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>part1:头部</p>
-<pre><code class="c++">#include&lt;stdio.h&gt;
-
-#define datatype int
-#define MAXSIZE 100
-
-typedef struct{
-    datatype data[MAXSIZE];
-    int last;
-}SeqList;</code></pre>
-<p>part2:初始化线性表 建立空表</p>
-<pre><code class="c++">SeqList *InIt(){
-    SeqList *L;
-    L=new SeqList;//L=(SeqList*)malloc(sizeof(SeqList));
-    L-&gt;last=-1;
-    return L;
-}</code></pre>
-<p>part3:插入 尾插法</p>
-<pre><code class="c++">int InsList(SeqList *L, int i, datatype x){
-    if (i&lt;0||i&gt;MAXSIZE){
-        printf(&quot;要插入点不在范围内&quot;);
-        return -1;
-    }
-    if (L-&gt;last==MAXSIZE){
-        printf(&quot;线性表已满&quot;);
-        return -1;
-    }
-    for (int j=L-&gt;last+1; j&gt;=i; --j){
-        L-&gt;data[j]=L-&gt;data[--j];/* data(j++) */    
-    }
-    L-&gt;data[i]=x;
-    L-&gt;last++;//插入一个新元素 last指针后移
-    return 1;
-}</code></pre>
-<p>part4:删除</p>
-<pre><code class="c++">int DelList(SeqList *L, int i){
-    if (i&lt;0||i&gt;MAXSIZE){
-        printf(&quot;要删除点不在范围内&quot;);
-        return -1;
-
-    }
-    for (int j=i; j&lt;=L-&gt;last-1; ++j){
-        L-&gt;data[j]=L-&gt;data[++j];
-    }
-    L-&gt;last--;
-    return 1;
-}</code></pre>
-<p>part5:按值查找</p>
-<pre><code class="c++">int SeacherList(SeqList *L, datatype x){
-    for (int j=0; j&lt;=L-&gt;last; ++j){
-        if(L-&gt;data[j]==x){
-        return j;
-        }
-    }
-}</code></pre>
-<p>part6:输出控制台</p>
-<pre><code class="c++">void ShowList(SeqList *L){
-    for (int j=0; j&lt;=L-&gt;last; ++j){
-        printf(&quot;%d\t&quot;,L-&gt;data[j]);
-    }
-}</code></pre>
-<p>part7:主函数 调用</p>
-<pre><code class="c++">int main(int argc, char const *argv[]){//int main(void)
-    int x=0;
-    SeqList *L;
-    L=InIt();
-    for (int i=0; ; ++i){
-        scanf(&quot;%d&quot;,&amp;x);
-        if (x==-1)
-            break;
-        InsList(L,i,x);
-    }
-    ShowList(L);
-    return 0;
-}</code></pre>
-<p>结果:<br><img src="/assets/blogimg/p9-1.png" alt="result"></p>
-]]></content>
-      <tags>
-        <tag>C</tag>
-        <tag>CPP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>堕落之王-想法</title>
     <url>/articles/p19.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>2018-01-31<br>原文：“走了？分手？好啊！滚吧，我早就想甩了你了，就是不好开口！哈哈……哈哈！”<br>想法：</p>
@@ -1722,41 +1539,6 @@ typedef struct{
       <tags>
         <tag>think</tag>
         <tag>reading book</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>什么是伴随矩阵？</title>
-    <url>/articles/what-is-adjoint-matrix.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/assets/blogimg/伴随矩阵.jpg">
-<h2>首先我们来看如何得到<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">伴随矩阵</a>:</h2>
-~~1.设A=（a<sub>ij</sub>）为n阶方阵
-2.A<sub>ij</sub>是|A|在（i，j）上a<sub>ij</sub>的代数余子式
-3.则全部由代数余子式组成的n阶方阵为A的伴随矩阵A~~
-
-
-<h2>我们来弄清楚几个专有名词：</h2>
-~~|A|：n阶方阵的n阶行列式，行列式是一个数;
-a<sub>ij</sub>的元余子式：n阶行列式去除i行j列剩下的部分，记作M<sub>ij</sub>;
-a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</sub>;~~
-
-<p>现在知道什么叫伴随矩阵了吗？不知道点这里—&gt;<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">https://www.baidu.com/s?ie=UTF-8&amp;wd=伴随矩阵</a></p>
-<h2>放图时间：</h2>
-<img src="/assets/blogimg/cat1.jpg">
-<img src="/assets/blogimg/cat2.jpg">
-<img src="/assets/blogimg/cat3.jpg">
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>六级写作模板</title>
-    <url>/articles/six-band-writing-template.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>1.<br>    In recent years,<em>has/have been prevailing among</em>. In contrast,<em>.<br>    In number of factors can account for such phenomenon, but the following might be the critial ones. First and foremost,</em>. Moreover,<em>. Undoubtedly,</em>.Firstly_. Secondly,<em>.<br>    In my view,</em>. To begin with,<em>. What’s more,</em>. Only_.<br>2.<br>    It is widely accepted that_. What’s more,<em>.However</em>.<br>    On the one hand, some people hold the view that_. On the other hand, a great many people insist that_.<br>    From my perspective, however,<em>. Therefore</em>.<br>3.<br>    It is not an uncommon social phenomenon that_. For example,<em>.<br>    As to this issue, opinions vary from person to person. Some people hold that</em>. But others maintain that_.<br>    As far as I am concerned,<em>. On the one hand,</em>. On the other hand,<em>. In a word,</em>.<br>4.<br>    As is portrayed  in the picture,<em>. Actually, recent years have witnessed an increasing trend of</em>.<br>    This_ has inevitably brought about some_ effects. Anyway,<em>.<br>    However,</em>. Therefore, people should become fully aware of both sides of_.<br> 5.<br>    Nowdays, it is widely acknowledged that_. Therefore,<em>.However, as for this phenomenon, people’s ideas vary.<br>    Some insist that</em>.However,<em>.<br>    From my perspective,</em>. On the one hand,<em>.One the other hand,</em>.What’s more,<em>.<br>6.<br>    As is known to all,</em>. However,<em>.The cases of</em>.<br>    Therefore,<em>.Firstly,</em>.Secondly,<em>.Thirdly</em>.<br>    As far as I’m concerned,<em>.<br>7.<br>    As a saying goes</em>.Nowadays we are in an era of_.More and more people_.<br>    Admittedly, no one can deny the fact that_. Nevertheless,<em>. For example,</em>.Besides,<em>.<br>    Then what can we do to aviod being</em>? Here are some useful tips: To begin with,<em>. What’s more,</em>.<br>8.<br>    As someone once said,”<em>.”<em>have enormously facilitated and enriched our lives, yet</em>.<br>    In order to</em>, one needs_. Only when one succeeds in <em>can he</em>.<br>    It is never easy to_.Just as the saying goes,<em>.<br>9.<br>    As is vivdly shown in the picture,</em>. It mirrors a common phenomenon, which has raised a wide range of concern.<br>    This phenomenon may bring about some severe consequences. On the other hand,<em>.<br>    Considering the seriousness of the condition, some measures can be taken to improve it. Only in this way can we</em>.<br>10.<br>    For a growing number of_,<em>has come into fashion. From_to_.What’s more,</em>.<br>    Admittedly, there are different purposes behind this phenomenon, but the following are the most critical ones. To begin with,<em>. In addition,</em>.All of the above is_. In my opinion,<em>.To conclude,</em>.</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-        <tag>writing</tag>
       </tags>
   </entry>
   <entry>
@@ -1900,12 +1682,317 @@ a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</su
       </tags>
   </entry>
   <entry>
+    <title>爱丽丝梦游仙境-想法</title>
+    <url>/articles/p20.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>2018-07-13<br>原文：起来，哭是没用的！”爱丽丝严厉地对自己说，”限你-，分钟内就停止哭！<br>想法：</p>
+<p>2018-07-13<br>原文：这个小孩很喜欢装成两个人<br>想法：</p>
+<p>2018-07-13<br>原文：小鳄鱼怎样保养 它闪亮的尾巴， 把尼罗河水灌进 每一片金色的鳞甲。 它笑得多么快乐， 伸开爪子的姿势多么文雅， 它在欢迎那些小鱼 游进它温柔微笑着的嘴巴。<br>想法：</p>
+<p>2018-07-13<br>原文：她第一个念头是掉进海里了。她对自己说：”那么我可以坐火车回去了，”<br>想法：孩子的想法可爱又单纯ಠ౪ಠ</p>
+<p>2018-07-13<br>原文：只渡渡鸟（一种现已绝种的鸟，原产非洲毛里求斯。）<br>想法：中学课本上的渡渡鸟，可怜的小家伙╥﹏╥</p>
+<p>2018-07-13<br>原文：我发现了什么吃的东西时，当然知道’这’是指什么。’这’通常指一只青蛙或一条蚯蚓<br>想法：可爱的小鸭子～(^з^)-</p>
+<p>2018-07-13<br>原文：”你的口袋里还有别的东西吗，”它转向爱丽丝问道。 “只有一个顶针了。”爱丽丝伤心地说。 “把它拿来。”渡渡鸟说， 这时，大家又围住了爱丽丝，渡渡鸟接过顶针后兑严肃地递给了她，说：”我们请求你接受这只精致的顶针，”<br>想法：自己给自己奖品嘛？渡渡鸟严肃起来可真好笑ಠ౪ಠ</p>
+<p>2018-07-13<br>原文： “你记得吗，你答应过讲你的历史，”爱丽丝说，”作为什么恨……恨’m’和’g’呀，”她压低声音，说完了这句话，她怕说出猫和狗这两个字惹老鼠生气，于是只说出猫和狗两字的拼音字头。<br>想法：这个翻译我不同意，猫就是m，狗就是g，有点low还是写c和d好。</p>
+<p>2018-07-13<br>原文：因为今晨我没事干，所以我要跟你捣捣蛋<br>想法：</p>
+<p>2018-07-13<br>原文：你要个碗（弯）！”爱丽丝说，由于她总是热心帮助别人的，因此就焦急她四周寻找，”哦，让我帮你找找看。”<br>想法：傻白甜的天然呆爱丽丝o(*≧▽≦)ツ┏━┓拍桌狂笑</p>
+<p>2018-07-13<br>原文：”别说了，妈！你这样罗嗦，就是牡蛎都忍耐不了。”小螃蟹耐着小脾气说。<br>想法：螃蟹都是这样吃杜蛎的么？ಥ_ಥ</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
+        <tag>reading book</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构和算法分析(第三版)练习</title>
+    <url>/articles/p22.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="recursive"><a href="#recursive" class="headerlink" title="recursive"></a>recursive</h3><ul>
+<li>base case</li>
+<li>making progress</li>
+<li>design rule</li>
+<li>compound interst rule</li>
+</ul>
+<h3 id="自动装箱和拆箱"><a href="#自动装箱和拆箱" class="headerlink" title="自动装箱和拆箱"></a>自动装箱和拆箱</h3><pre><code class="java">class BoxingDemo{
+    public static void main(String[] args) {
+        // Cell类中的set方法传入的是Object类型
+        Cell&lt;Integer&gt; c=new Cell&lt;&gt;();
+        c.set(37);
+        int val=c.get();
+        System.out.println(val+&quot;&quot;);
+    }
+}</code></pre>
+<h3 id="java5中的通配符-wildcard"><a href="#java5中的通配符-wildcard" class="headerlink" title="java5中的通配符(wildcard)"></a>java5中的<strong>通配符</strong>(wildcard)</h3><pre><code class="java">/*可以传入Shape类型或者它的子类Square*/
+public static double totalArea(Collection&lt;? extends Shape&gt; arr){
+    double total=0;
+    for (Shape s : arr) {
+        if (s!=null) {
+            total+=s.area();
+        }
+        return total;
+    }
+}</code></pre>
+<h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><pre><code class="java">public static &lt;AnyType extends Comparable&lt;? super AnyType&gt;&gt;  int binarySearch(AnyType[] a,AnyType x){
+    int low=0,high=a.length-1;
+    while(low&lt;=high){
+        int mid=(low+high)/2;
+        if(a[mid].compareTo(x)&lt;0){
+            low=mid+1;
+        }else if(a[mid].compareTo(x)&gt;0){
+            high=mid-1;
+        }else{
+            return mid;
+        }
+    }
+    return -1;
+}</code></pre>
+<h3 id="ADT-abstract-data-type"><a href="#ADT-abstract-data-type" class="headerlink" title="ADT(abstract data type)"></a>ADT(abstract data type)</h3><pre><code>是带有一组操作的一些对象的集合.抽象数据类型是数学的抽象(表,集合,图);</code></pre>
+<h4 id="Iterator接口"><a href="#Iterator接口" class="headerlink" title="Iterator接口"></a>Iterator接口</h4><pre><code class="java">public static&lt;AnyType&gt; void print(Collection&lt;AnyType&gt; coll){
+    Iterator&lt;AnyType&gt; itr=coll.iterator();
+    while(itr.hasNext()){
+        AnyType item=itr.next();
+        System.out.println(item);
+    }
+}</code></pre>
+<h4 id="List接口-ArrayList-LinkedList"><a href="#List接口-ArrayList-LinkedList" class="headerlink" title="List接口(ArrayList,LinkedList)"></a>List接口(ArrayList,LinkedList)</h4><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">ArrayList</th>
+<th align="left">LinkedList</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">实现</td>
+<td align="left">可增长的数组</td>
+<td align="left">双链表</td>
+</tr>
+<tr>
+<td align="left">优点</td>
+<td align="left">get&amp;set耗费常数级的时间</td>
+<td align="left">在现有表进行删除和插入都是常数级的耗时</td>
+</tr>
+<tr>
+<td align="left">缺点</td>
+<td align="left">新项的插入和现有项的删除代价昂贵,除非是在末端</td>
+<td align="left">由于不容易做索引,因此对get的调用时昂贵的O(N)</td>
+</tr>
+</tbody></table>
+<p><em>tips:</em></p>
+<ul>
+<li>LinkedList常用方法:addFirst,removeFist,addLast,removeLast,getFirst,getLast;</li>
+</ul>
+]]></content>
+      <categories>
+        <category>notebook</category>
+      </categories>
+      <tags>
+        <tag>reading book</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>就是不听话</title>
     <url>/articles/p5.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><iframe src="//player.bilibili.com/player.html?aid=15018146&bvid=BV1Gx41137eT&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 ]]></content>
       <tags>
         <tag>think</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线性表的增删查改</title>
+    <url>/articles/p7.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>part1:头部</p>
+<pre><code class="c++">#include&lt;stdio.h&gt;
+
+#define datatype int
+#define MAXSIZE 100
+
+typedef struct{
+    datatype data[MAXSIZE];
+    int last;
+}SeqList;</code></pre>
+<p>part2:初始化线性表 建立空表</p>
+<pre><code class="c++">SeqList *InIt(){
+    SeqList *L;
+    L=new SeqList;//L=(SeqList*)malloc(sizeof(SeqList));
+    L-&gt;last=-1;
+    return L;
+}</code></pre>
+<p>part3:插入 尾插法</p>
+<pre><code class="c++">int InsList(SeqList *L, int i, datatype x){
+    if (i&lt;0||i&gt;MAXSIZE){
+        printf(&quot;要插入点不在范围内&quot;);
+        return -1;
+    }
+    if (L-&gt;last==MAXSIZE){
+        printf(&quot;线性表已满&quot;);
+        return -1;
+    }
+    for (int j=L-&gt;last+1; j&gt;=i; --j){
+        L-&gt;data[j]=L-&gt;data[--j];/* data(j++) */    
+    }
+    L-&gt;data[i]=x;
+    L-&gt;last++;//插入一个新元素 last指针后移
+    return 1;
+}</code></pre>
+<p>part4:删除</p>
+<pre><code class="c++">int DelList(SeqList *L, int i){
+    if (i&lt;0||i&gt;MAXSIZE){
+        printf(&quot;要删除点不在范围内&quot;);
+        return -1;
+
+    }
+    for (int j=i; j&lt;=L-&gt;last-1; ++j){
+        L-&gt;data[j]=L-&gt;data[++j];
+    }
+    L-&gt;last--;
+    return 1;
+}</code></pre>
+<p>part5:按值查找</p>
+<pre><code class="c++">int SeacherList(SeqList *L, datatype x){
+    for (int j=0; j&lt;=L-&gt;last; ++j){
+        if(L-&gt;data[j]==x){
+        return j;
+        }
+    }
+}</code></pre>
+<p>part6:输出控制台</p>
+<pre><code class="c++">void ShowList(SeqList *L){
+    for (int j=0; j&lt;=L-&gt;last; ++j){
+        printf(&quot;%d\t&quot;,L-&gt;data[j]);
+    }
+}</code></pre>
+<p>part7:主函数 调用</p>
+<pre><code class="c++">int main(int argc, char const *argv[]){//int main(void)
+    int x=0;
+    SeqList *L;
+    L=InIt();
+    for (int i=0; ; ++i){
+        scanf(&quot;%d&quot;,&amp;x);
+        if (x==-1)
+            break;
+        InsList(L,i,x);
+    }
+    ShowList(L);
+    return 0;
+}</code></pre>
+<p>结果:<br><img src="/assets/blogimg/p9-1.png" alt="result"></p>
+]]></content>
+      <tags>
+        <tag>C</tag>
+        <tag>CPP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>My idol--Obama</title>
+    <url>/articles/p6.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Obama" align="left" hspace="30" style="width=3rem;border-radius: 5px;box-shadow: 0.6px 0.6px o.5px #888888;">
+    As an old saying goes: An idol is an example to advise you what should do and what should not do.everyone has
+their own idol.Maybe actor singer or other famous people.
+    My idol is Obama--the first African American to have served as the 44th President of the United States.He is so 
+humorous,wise and farsighted.He is so glamour that attract me to look forward with him.
+    As a president,he did so many great for America.The first thing he did is promote the establishment of a world 
+without nuclear weapons in 2009.The second thing is killed BenLaden--the biggest terrorist.without Obama's order,who care you live or die.The third event occur in 2008--the global financial crisis.The president Obama saved America,again.
+    As a husband,he love his wife Michele so much,no somking no drinking and no whoring.As a father,he also pay 
+withhis daughter whenever how busy he is.
+    Oboma is so great person that's why I like him.
+
+<p>附：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Barack_Obama" target="_blank" rel="noopener">wiki/Barack_Obama</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于java的各种包</title>
+    <url>/articles/p9.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p>在整个JavaSE API中，大约包含1 200个包，总体来看，包名第一个名称主要有3种：java、javax和org。其中以java开头的包名是基础语言包，以javax开头的属于扩展包（其中x是extend的简写），而以org开头的则是第三方组织提供的功能包（organization的简写）。<br>下面简单介绍几个Java SE API的主要包。<br>（1）java．lang，是Java语言的核心包，是编写Java程序所需要的基本类和接口，包括Object类、System类、Class类、异常处理类、线程类等。这个包由编译器自动引入。<br>（2）java．applet，提供Applet执行时需要的类。<br>（3）java．awt，提供操作图形用户界面的基本功能。<br>（4）java．io，提供Java程序进行输入输出的类，以及目录和文件管理类。<br>（5）java．net，提供实现网络功能。<br>（6）java．util，提供实用程序类及集合类等常用的工具类。<br>（7）java．sql，提供使Java程序具有访问不同数据库的能力。<br>（8）java．rmi，提供远程连接与载入，实现了远程方法调用的功能。</p>
+</blockquote>
+<h3 id="java-util-Arrays"><a href="#java-util-Arrays" class="headerlink" title="java.util.Arrays;"></a>java.util.Arrays;</h3><p>usage：</p>
+<pre><code class="java">    import java.util.Arrays;
+
+    Arrays.sort(arr);//升序排序
+    Arrays.toString(arr);//将数组转为字符串</code></pre>
+<h3 id="java-util-Scanner"><a href="#java-util-Scanner" class="headerlink" title="java.util.Scanner;"></a>java.util.Scanner;</h3><pre><code class="java">import java.util.Scanner;
+
+Scanner input = new Scanner(System.in);
+String name=input.next();
+int num=input.nextIn();</code></pre>
+<h3 id="关于equals；"><a href="#关于equals；" class="headerlink" title="关于equals；"></a>关于equals；</h3><p><img src="http://img.mukewang.com/53703cb10001f78a06340312.jpg" alt="picture" title="picture"></p>
+<pre><code class="java">import java.util.*;
+if( a!=null &amp;&amp; a.equals(b) ){.............}
+
+if(Objects.equals(a,b)){.......}
+</code></pre>
+<p>more…click <a href="https://docs.oracle.com/javase/9/index.html" target="_blank" rel="noopener">docs.oracle.com</a></p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>什么是伴随矩阵？</title>
+    <url>/articles/what-is-adjoint-matrix.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/assets/blogimg/伴随矩阵.jpg">
+<h2>首先我们来看如何得到<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">伴随矩阵</a>:</h2>
+~~1.设A=（a<sub>ij</sub>）为n阶方阵
+2.A<sub>ij</sub>是|A|在（i，j）上a<sub>ij</sub>的代数余子式
+3.则全部由代数余子式组成的n阶方阵为A的伴随矩阵A~~
+
+
+<h2>我们来弄清楚几个专有名词：</h2>
+~~|A|：n阶方阵的n阶行列式，行列式是一个数;
+a<sub>ij</sub>的元余子式：n阶行列式去除i行j列剩下的部分，记作M<sub>ij</sub>;
+a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</sub>;~~
+
+<p>现在知道什么叫伴随矩阵了吗？不知道点这里—&gt;<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">https://www.baidu.com/s?ie=UTF-8&amp;wd=伴随矩阵</a></p>
+<h2>放图时间：</h2>
+<img src="/assets/blogimg/cat1.jpg">
+<img src="/assets/blogimg/cat2.jpg">
+<img src="/assets/blogimg/cat3.jpg">
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>六级写作模板</title>
+    <url>/articles/six-band-writing-template.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>1.<br>    In recent years,<em>has/have been prevailing among</em>. In contrast,<em>.<br>    In number of factors can account for such phenomenon, but the following might be the critial ones. First and foremost,</em>. Moreover,<em>. Undoubtedly,</em>.Firstly_. Secondly,<em>.<br>    In my view,</em>. To begin with,<em>. What’s more,</em>. Only_.<br>2.<br>    It is widely accepted that_. What’s more,<em>.However</em>.<br>    On the one hand, some people hold the view that_. On the other hand, a great many people insist that_.<br>    From my perspective, however,<em>. Therefore</em>.<br>3.<br>    It is not an uncommon social phenomenon that_. For example,<em>.<br>    As to this issue, opinions vary from person to person. Some people hold that</em>. But others maintain that_.<br>    As far as I am concerned,<em>. On the one hand,</em>. On the other hand,<em>. In a word,</em>.<br>4.<br>    As is portrayed  in the picture,<em>. Actually, recent years have witnessed an increasing trend of</em>.<br>    This_ has inevitably brought about some_ effects. Anyway,<em>.<br>    However,</em>. Therefore, people should become fully aware of both sides of_.<br> 5.<br>    Nowdays, it is widely acknowledged that_. Therefore,<em>.However, as for this phenomenon, people’s ideas vary.<br>    Some insist that</em>.However,<em>.<br>    From my perspective,</em>. On the one hand,<em>.One the other hand,</em>.What’s more,<em>.<br>6.<br>    As is known to all,</em>. However,<em>.The cases of</em>.<br>    Therefore,<em>.Firstly,</em>.Secondly,<em>.Thirdly</em>.<br>    As far as I’m concerned,<em>.<br>7.<br>    As a saying goes</em>.Nowadays we are in an era of_.More and more people_.<br>    Admittedly, no one can deny the fact that_. Nevertheless,<em>. For example,</em>.Besides,<em>.<br>    Then what can we do to aviod being</em>? Here are some useful tips: To begin with,<em>. What’s more,</em>.<br>8.<br>    As someone once said,”<em>.”<em>have enormously facilitated and enriched our lives, yet</em>.<br>    In order to</em>, one needs_. Only when one succeeds in <em>can he</em>.<br>    It is never easy to_.Just as the saying goes,<em>.<br>9.<br>    As is vivdly shown in the picture,</em>. It mirrors a common phenomenon, which has raised a wide range of concern.<br>    This phenomenon may bring about some severe consequences. On the other hand,<em>.<br>    Considering the seriousness of the condition, some measures can be taken to improve it. Only in this way can we</em>.<br>10.<br>    For a growing number of_,<em>has come into fashion. From_to_.What’s more,</em>.<br>    Admittedly, there are different purposes behind this phenomenon, but the following are the most critical ones. To begin with,<em>. In addition,</em>.All of the above is_. In my opinion,<em>.To conclude,</em>.</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+        <tag>writing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git创建版本库和关联远程库</title>
+    <url>/articles/p8.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
+<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
+<li>mkdir LearningDataStructure//创建本地文件夹</li>
+<li>cd LearningDataStructure//进入文件夹</li>
+<li>pwd//显示当前目录<pre><code class="bash">/e/LearningDataStructure</code></pre>
+</li>
+<li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li>
+<li>git add README.md//把文件添加到仓库</li>
+<li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash">[master (root-commit) cb926e7] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt</code></pre>
+<h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
+<li>click “Create a new repository”</li>
+<li>git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
+<li>git remote remove origin//取消本地关联远程库</li>
+<li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
+</ol>
+<hr>
+<p>附:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
 </search>
