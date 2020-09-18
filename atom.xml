@@ -99,7 +99,7 @@
     <link href="http://blog.madeai.cn/articles/p22.html"/>
     <id>http://blog.madeai.cn/articles/p22.html</id>
     <published>2019-08-23T15:31:00.000Z</published>
-    <updated>2020-09-13T14:42:29.330Z</updated>
+    <updated>2020-09-17T01:35:19.909Z</updated>
     
     <summary type="html">
     
@@ -116,9 +116,9 @@
       <category term="notebook" scheme="http://blog.madeai.cn/categories/notebook/"/>
     
     
-      <category term="reading book" scheme="http://blog.madeai.cn/tags/reading-book/"/>
+      <category term="Java" scheme="http://blog.madeai.cn/tags/Java/"/>
     
-      <category term="java" scheme="http://blog.madeai.cn/tags/java/"/>
+      <category term="reading book" scheme="http://blog.madeai.cn/tags/reading-book/"/>
     
   </entry>
   
@@ -268,11 +268,11 @@
     </summary>
     
     
-      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
-    
       <category term="PHP" scheme="http://blog.madeai.cn/tags/PHP/"/>
     
       <category term="JS" scheme="http://blog.madeai.cn/tags/JS/"/>
+    
+      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
     
   </entry>
   
