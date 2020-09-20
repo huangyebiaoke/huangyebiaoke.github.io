@@ -213,11 +213,11 @@
       
         <tags>
             
+            <tag> MySQL </tag>
+            
             <tag> PHP </tag>
             
             <tag> JS </tag>
-            
-            <tag> MySQL </tag>
             
         </tags>
       
@@ -278,9 +278,9 @@
       
         <tags>
             
-            <tag> DOS </tag>
-            
             <tag> hotkey </tag>
+            
+            <tag> DOS </tag>
             
         </tags>
       
@@ -478,7 +478,7 @@
       <link href="/articles/p8.html"/>
       <url>/articles/p8.html</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p8-1.png" alt="banner"></p><h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol><li>mkdir LearningDataStructure//创建本地文件夹</li><li>cd LearningDataStructure//进入文件夹</li><li>pwd//显示当前目录<pre><code class="bash">/e/LearningDataStructure</code></pre></li><li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li><li>git add README.md//把文件添加到仓库</li><li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash">[master (root-commit) cb926e7] wrote a readme file 1 file changed, 2 insertions(+) create mode 100644 readme.txt</code></pre><h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li><li>click “Create a new repository”</li><li>git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;" target="_blank" rel="noopener">&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li><li>git remote remove origin//取消本地关联远程库</li><li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li></ol><hr><p>附:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p8-1.png" alt="banner"></p><h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol><li>mkdir LearningDataStructure//创建本地文件夹</li><li>cd LearningDataStructure//进入文件夹</li><li>pwd//显示当前目录<pre><code class="bash">/e/LearningDataStructure</code></pre></li><li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li><li>git add README.md//把文件添加到仓库</li><li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash">[master (root-commit) cb926e7] wrote a readme file 1 file changed, 2 insertions(+) create mode 100644 readme.txt</code></pre><h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li><li>click “Create a new repository”</li><li>git remote add origin <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#46;&#99;&#111;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li><li>git remote remove origin//取消本地关联远程库</li><li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li></ol><hr><p>附:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a></p>]]></content>
       
       
       
