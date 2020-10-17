@@ -86,224 +86,6 @@ class Task extends AsyncTask&lt;String,String,String&gt;{
       </tags>
   </entry>
   <entry>
-    <title>关于mysql</title>
-    <url>/articles/about-mysql.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
-<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
-<pre><code class="plsql">    use mysql;//选择mysql库
-    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
-    flush privileges;//刷新数据库</code></pre>
-<p>2.root用户远程连接数据库</p>
-<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
-    flush privileges;</code></pre>
-<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
-<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
-<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
-<thead>
-<tr>
-<th align="left">operation</th>
-<th align="left">usage</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">创建数据库</td>
-<td align="left">CREATE DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">删除数据库</td>
-<td align="left">DROP DATABASE STUDENTS</td>
-</tr>
-<tr>
-<td align="left">创建数据表</td>
-<td align="left">CREATE TABLE table_name (column_name column_type);</td>
-</tr>
-<tr>
-<td align="left">删除数据表</td>
-<td align="left">DROP TABLE table_name</td>
-</tr>
-<tr>
-<td align="left">增(insert)</td>
-<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
-</tr>
-<tr>
-<td align="left">删(delete)</td>
-<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
-</tr>
-<tr>
-<td align="left">查(select)</td>
-<td align="left">select * from stu_info;</td>
-</tr>
-<tr>
-<td align="left">改(update)</td>
-<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
-</tr>
-</tbody></table>
-<p>其中关于创建数据表：</p>
-<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
-   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
-   `stuNo`  CHAR(6)  NOT  NULL,
-   `stuName` VARCHAR(40) NOT NULL,
-   `stuAge` INTEGER,
-   `stuAddress` VARCHAR(100) NOT NULL,
-   `subDate` DATE,//上传时间NOW();
-   PRIMARY KEY ( `stuId` )//主键;
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
-<p>其中关于往数据表中增加一条数据：</p>
-<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
-<p>往数据表中增加多条数据：</p>
-<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
-VALUES
-(valueA1,valueA2,...valueAN),
-(valueB1,valueB2,...valueBN),
-(valueC1,valueC2,...valueCN)
-......;</code></pre>
-<p>改数据表中的数据：</p>
-<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
-<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
-<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《计算机与智能》读后感</title>
-    <url>/articles/computing-machinery-and-intelligence.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Computing Machinery and Intelligence<sup id="fnref:1"><a href="#fn:1" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”<a href="https://blog.csdn.net/xiaocai281/article/details/102473502?utm_source=app&tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">[图灵的文章”Computing machinery and intelligence”译文]{.underline}</a>“&gt;[1]</a></sup></p>
-<h2 id="模仿游戏"><a href="#模仿游戏" class="headerlink" title="模仿游戏 "></a>模仿游戏 </h2><p><img src="https://qiniu.madeai.cn/blogimg/computing_machinery_and_intelligence.drawio.svg?imgslim" alt="computing_machinery_and_intelligence.drawio"></p>
-<p>图表 1模仿游戏示意图</p>
-<h2 id="游戏中的机器"><a href="#游戏中的机器" class="headerlink" title="游戏中的机器"></a>游戏中的机器</h2><p>1.”一个或一队工程师制造出一个可以工作的机器，但是却不能很好的描述其工作方式，因为他们使用了基于试验的方法来设计它”</p>
-<p>现在的神经网络通过训练来确定模型的权重、偏置参数，其内部也是一个黑盒子，输出的不确定性是由其非线性激活函数来决定的。当然最近的一篇《Explaining Deep Neural Networks》试图解释神经网络的原理<sup id="fnref:2"><a href="#fn:2" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”<a href="https://zhuanlan.zhihu.com/p/262922354" target="_blank" rel="noopener">[让神经网络解释自己：牛津大学博士小姐姐，用毕业论文揭示”炼丹炉”结构]{.underline}</a><br>“&gt;[2]</a></sup>。</p>
-<p>2.”为什么不拿一台直接作实验？很容易就能满足游戏的要求。让许多提问者同时参加游戏，然后统计出判断正确的概率”</p>
-<pre><code class="py">accuracy_cnt=0
-for i in range(len(x)):
-    y=predict(network,x[i])
-    p=np.argmax(y)#获取概率最高的元素的引用
-    if p==t[i]:
-        accuracy_cnt+=1
-print(&quot;Accuracy:&quot;+str(float(accuracy_cnt)/len(x)))#0.9352</code></pre>
-<p>个人认为判断一个模型的好坏可以从它的执行时间和精确度两个方面来衡量。</p>
-<p>3.”是否存在可想象的计算机能够通过游戏。”</p>
-<p>得出<strong>强人工智能</strong>实现的可能性，标准即为能否通过图灵测试。</p>
-<h2 id="数字计算机"><a href="#数字计算机" class="headerlink" title="数字计算机"></a>数字计算机</h2><p>1.”（i）存贮器（ii）执行单元（iii）控制器”</p>
-<p>冯.诺伊曼计算机结构：控制器、运算器、存储器、输入设备、输出设备</p>
-<p>2.”不妨把它们称为”指令表”。控制器的功能就是保证指令按照正确的顺序执行，其设计使得这成为可能。”</p>
-<p>CPU中的指令集，高级语言都是把语义化的代码翻译成指令集供CPU执行。像Python、Javascript是边解释边运行；而Java、CPP要编译成字节码文件才能运行。</p>
-<p>3.”把存放在6890的数加上存放在4302的数，并把结果存入后面单元。”</p>
-<p>这种操作可以使用机器语言轻松完成。</p>
-<p>4.””现在执行存储在 5606的指令，并从那里继续执行。”或者是：”如果 4505位置是0，那么执行存储在6707的指令，否则继续”。”</p>
-<p>现在的高级语言有go和ifelse这类关键字对应。顺序结构、循环结构、分支结构。</p>
-<p>5.”如果一个人想让机器模仿计算员执行复杂的操作，他必须告诉计算机如何做，并把结果翻译成某种形式的指令表。这种构造指令表的行为通常被称为”编程””</p>
-<p>我觉得编程的概念是写代码，一般是高级语言；而”将结果翻译成某种形式的指令表”是编译器要做的事情将代码编程成计算机能理解的二进制文件，再通过CPU中的指令集运行二进制文件。</p>
-<p>6.”通常并不能通过观察判断出一个机器是否有随机元素，因为一个相似的效果可以依据Pi的小数部分进行选择来产生。”</p>
-<p>关于依据Pi的小数部分来产生随机数的想法我是不赞同的，就算现在大部分高级语言实现的Random接口来产生的随机数也只是伪随机数（依据从某个时间节点到现在的毫秒数来产生）。牵扯到如何把一个数组随机打乱，使每个元素的概率一致是不能仅仅用Random和排序来做的，要使用专门的Shuffle算法来操作。</p>
-<p>7. “让一个计算机具有无限的存储空间并不存在理论上的困难，当然在任何时候都只有有限的部分被使用。同样，只有有限的存储空间被建造，不过我们可以想象越来越多的存储空间可以根据要求添加。”</p>
-<p>“无限容量计算机”结合Google的三篇论文《GFS》、《Big Table》、《Map Reduce》，以及Hadoop和后来的分布式与云计算技术使其成为可能，同时具备实用价值。”根据要求添加”在《GFS》这篇论文中明确得指出了GFS系统设计要符合”可伸缩性”、”容错”、”灾难冗余”的原则或者要求。</p>
-<p>8.”分析机的存储全部由用轮子和卡片组成的机械实现。”</p>
-<p>在《Deep Learning from Scratch》这本书2.6章节（P60）中有提到”仅通过与非门的组合就能实现计算机”，并推荐《计算机系统要素：从零开始构建现代计算机》这本书。实际上结合我在本科学习过”<strong>电子电工</strong>“这门课程，就可以通过逻辑门电路累加器加法器…CPU计算机来实现（基于电流电路的硬件）。由此看来向华老师所言”软件硬件不分家”是有一定的道理的。</p>
-<p>9.”在神经系统中，化学过程至少和电过程同样重要，某些计算机的存储器主要基于声学原理，计算机和神经系统都使用电仅仅是表面的相似，如果我们希望寻找这样的相似，倒不如寻找功能上的数学相似性。”</p>
-<p>现代神经网络的构建和神经系统中的神经元有相似的地方（也可以看成一总仿生的应用）。神经元之间的通过生物电来传递介质（或者说信息），当然这种生物电是由生物的化学反应产生的（联想到可以用神经元来实现计算机的可行性，这种计算机可能天生对深度学习有较高的性能，同时软硬件会结合得更加紧密）。”某些计算机的存储器主要基于声学原理”这里有一些看不明白，存储器基于声学原理，这个好像在现代计算机硬件中没有见过。</p>
-<h2 id="数字计算机的通用性"><a href="#数字计算机的通用性" class="headerlink" title="数字计算机的通用性"></a>数字计算机的通用性</h2><p>1.”即使是考虑实际的物理机器而不是理想机器，只要知道了某个时刻状态的合理准确的信息，就可以相当准确的预测未来状态的信息。”</p>
-<p>然而神经网络确实恰恰相反，由于其内部的大量非线性函数，所以造成了内部的不可解释和结果的不确定性。即使可以通过调参来提高准确率，还是被相关从业人员笑称为”炼丹”。</p>
-<p>2.”例如，现在在曼彻斯特工作的机器可以有2^165000个状态，也就是大约10^50000。”</p>
-<p>现代CPU的制程能达到7微米（手机中的CPU），这意味着能在有限空间中集成更多的电路。晶圆（我把它看成一个一个小开关）的个数也是CPU的性能参数之一，但这是否和状态有关呢？</p>
-<p>3.”具有这样性质的机器带来一个重要结果就是，若不考虑速度，并不需要设计出不同的新机器来执行不同的计算，它们都可以用一个数字计算机来实现，只要根据情况适当编程。由此可见，所有数字计算机在某种意义上是等价的。”</p>
-<p>图灵的设想同过时间证明了其正确性，现代计算机软硬件的结合通过系统，编程的手段可以调用系统提供的顶层API来调用底层的硬件。家用PC、laptop、服务器等计算机都可以通过安装系统和软件来实现统用的功能。</p>
-<p><img src="https://qiniu.madeai.cn/blogimg/architecture_of_modern_computer.drawio.svg?imgslim" alt="architecture_of_modern_computer.drawio"></p>
-<p>图表 2现代通用计算机构造图</p>
-<h2 id="关于主要问题的对立观点"><a href="#关于主要问题的对立观点" class="headerlink" title="关于主要问题的对立观点"></a>关于主要问题的对立观点</h2><p>1.”猜想往往是非常重要的，因为它们提示有用的研究线索。”</p>
-<p>根据现实情况作出合理的猜想对科学研究有帮助，猜想验证结论</p>
-<p><img src="https://qiniu.madeai.cn/blogimg/machine-can-think.svg?imgslim" alt="machine-can-think"></p>
-<p>图表 3对所持意见的对立观点思维导图.SVG</p>
-<p>2.”在两种情况下，我们其实都是上帝意志的工具，为他所创造的灵魂提供住所。　“</p>
-<p>主观和客观，本我及…</p>
-<p>3.”总而言之，人可能比任何特定的机器聪明，但是可能有更聪明的其他机器，等等。”</p>
-<p>特定领域的计算机确实比人类聪明，”Deep Blue”和”AlphaGo”的出现使得强人工智能成为可能。</p>
-<p>4.”除非机器能够因为感受到思想与情绪”</p>
-<p>现代的弱人工智能尽管能够画出一些画作、写出一些诗文，但它不知道自己在做什么，更不会因此而喜悦。所以到强人工智能的路还有很长。</p>
-<p>5.”要想知道某人是否在思维，唯一的途径就是成为那个人”</p>
-<p>实际上现代脑机接口的发展可以通过脑电的波动来看出一个人是否在思考。但如何把这种方法应用到计算机上呢，看风扇的转速、CPU的温度么？</p>
-<p>6.”在实际中经常采用”口试”的方式来发现某人是真的理解某事”</p>
-<p>事实上，很多时候未成年人并没有自己的世界观、价值观和人生观。这种思维不健全的未成年人通常没有形成自己的观点，而是人云亦云，鹦鹉学舌。这和现在的一些对话机器人（弱人工智能）有相似的地方。对此我的理解是：只有深刻地经历过后才会理解语言背后的含义。</p>
-<p>7.”机器能够通过观察自己行为的结果，修改自己的程序，以便更有效地达到某种目的。这并不是乌托邦式的空想，而是不久的将来可能办到的事”</p>
-<p>“机器不能成为它自己思维的主体”现代的神经网络在没有确定权重、偏置参数的情况下是不确定的，可以说”没有主体”，但经过几轮训练之后就像初生的婴儿蹒跚学步，就有了类似经验的东西。”通过观察自己行为的结果，修改自己的程序”现在出现的GAN（对抗生成模型）有异曲同工之妙。</p>
-<p>8.” 人们会认为机器所使用的方法（不管是什么方法，总是机械性的）实在太低级了”</p>
-<p>现在的神经网络、深度学习似乎不这么低级了。</p>
-<p>9. “这并不意味着就无法制造能’独立思考’的电子设备，用生物学的话说，我们能够在其中建立条件反射，用来作’学习’的基础”</p>
-<p>实际上现在的深度学习都是基于神经元模仿生物大脑的思考来设计的。这也证实了Hartree的猜测的可能性。</p>
-<p>10.”不可能制定一套旨在描述一个人在每种情况该做什么的规则”</p>
-<p>在现实情况中，法律是约束人类行动的第一战线，其次是道德，最后才是经验习得。</p>
-<p>11.”因为我们认为，受行为规律调控意味着人就是某种机器（尽管不一定是离散状态机器）”</p>
-<p>有这种行为规律（或者说先天反射），但是这种行为规律不完备，所以说同样不能将人称之为机器。</p>
-<p>12.”相信我们的身体除了按照已知的物理学规律运作外，还按照未知的、但相似的规律运作。”</p>
-<p>心灵感应一般存在于双胞胎之间，似乎和量子纠缠有某种联系。</p>
-<p>13.”但是，这个随机数字生成程序又受提问者的精神运动的影响，这个精神运动也许就能让计算机猜对的次数比概率计算高”</p>
-<p>用意念或者精神来影响客观世界仍旧是神学范畴。</p>
-<h2 id="学习机器"><a href="#学习机器" class="headerlink" title="学习机器"></a>学习机器</h2><p><img src="https://qiniu.madeai.cn/blogimg/nuclear_fusion.drawio.svg?imgslim" alt="nuclear_fusion.drawio"></p>
-<p>图表 4核聚变链式反应</p>
-<p>1.” 然而，如果原子堆的大小变的足够大的时候，中子产生的反应很可能会持续的增加，直到原子堆解体。思维中是否存在这样的现象呢？机器中呢？这样的现象在人脑中应该是存在的。”</p>
-<p>这里用核聚变中的链式反应来作类比，我觉得是不合适的，科学研究应该是严谨认真的（尽管有些文学作品中可能会用思维爆炸这类词来形容一个人的思维过程）</p>
-<p>2.”进入其中的想法将会产生二级三级越来越多的想法，最终成为一个完整的&quot;理论&quot;。”</p>
-<p>显然当我的思想成为超临界状态的时候只会胡思乱想而不会形成什么理论。</p>
-<p>3.”如果是后一种情况，那么整个思维都是机械的。”</p>
-<p>人类的某些思维活动可能会和剥洋葱皮有些类似。但我不赞成这种纯机械的方式来比喻人类的思维活动过程，因为我认为人类的思维活动是非线性的。</p>
-<p>4.”而且认为只有一小部分用来进行高级的思考，其余大部分用来保存图像。”</p>
-<p>根据生物学的知识来看，人类的大脑可以分为几个区域，这些区域分别对应不同的功能。由此看来人类大脑的构造和计算机有相似之处。</p>
-<p>5. 被视为模拟神经细胞的现代机器，其速度比神经细胞快1000倍，这在许多方面可以为补偿速度的损失提供”安全余地”，剩下的问题主要就是如何编程让机器能够完成游戏。</p>
-<p>“模拟神经细胞的现代机器”那个时候就有仿生计算机的出现吗？对此我表示怀疑。</p>
-<p><img src="https://qiniu.madeai.cn/blogimg/human_brain.drawio.svg?imgslim" alt="human_brain.drawio"></p>
-<p>图表 5大脑是怎么进入状态的</p>
-<p>6.”在试图模拟成人大脑的过程中，我们必须考虑大脑是怎么进入状态的”</p>
-<p>有时候我会想，大脑进入状态的过程和计算机开机的过程是否相似。</p>
-<p>7.”大脑所经历的经验，此经验不被称为教育。”</p>
-<p>我对这个观点持反对意见，经验是对经历的一种总结，也应该被视为一种教育。并且我认为这种教育要比课堂上的教育有效的多。</p>
-<p>8.”与其试图编程模拟成人大脑，不如模拟儿童大脑，如果让儿童大脑接受正确的教育课程，就可能获得成人大脑。”</p>
-<p>这个我在没看图灵的论文之前也想过，试图用深度学习的技术开发一个对话机器人，然后让它和同龄的学生从幼儿园开始接受人类的教育，最后进化为成人的大脑。此刻我和图灵隔空对话。</p>
-<p>9.”显然这个过程与进化有联系”</p>
-<p>遗传算法物竞天择，适者生存。</p>
-<p>10.” 并不需要局限于随机的变异，如果能够找出某些缺陷的原因，就可能想到改进它的变异。”</p>
-<p>随机变异+人类辅助的过程确实会加快机器的进化，同时人类的辅助过程决定者机器未来的属性。这里人类充当着自然界中的环境因素（或者说是上帝），我更乐意看成是一个孔洞不一致的筛子。</p>
-<p>11.”其他的学生肯定会嘲笑它，它必须得到专门地训练。”</p>
-<p>这里将机器赋予人权，机器没有腿和胳膊、机器的视觉传感器可能不如人类的发达。但是教育是平等的（至少是相对平等）</p>
-<p>12.”海伦.勒女士的例子表明只要老师和学生能够以某种方式进行双向的交流，教育就能进行。”</p>
-<p>让我想起了中学的一篇课文，海伦女士对待盲人的”我”充满耐心和爱，让”我”感受到生活下去的力量。</p>
-<p>13.”使得遭到惩罚的事件不大可能重复，而受到奖励的事件则会增加重复的可能性。”</p>
-<p>这里我想到了GAN（对抗生成模型），有这种奖励和惩戒的机制在里面。</p>
-<p>14.”如果教师没有与学生沟通的其他方式，那么所传达的信息量不会超过所用的奖励和惩罚的总和。”</p>
-<p>教育”儿童机器”还应该有其他更加温和的方法，奖励惩戒机制可以用作验证其他温和方法的一种。</p>
-<p>15.” 在后一种情况下，大多数存储空间将被用来存储定义和命题，这些命题可能具有各种各样的形式，例如，确定的事实，推测，数学上证明的定理，权威给出的判断，具有逻辑形式却没有确定值的表达式等等。”</p>
-<p>我赞同第一种”尽可能保持简单以保持通用性”，毕竟大多数人生下来就没有所谓的天赋，多数的技能都是通过后天习得，practice make perfect。</p>
-<p>16.”合理的命令（在系统内部表达，并不是系统规则的一部分）”</p>
-<p>机器人三大定律：一：机器人不得伤害人类个体，或者目睹人类个体将遭受危险而袖手不管；二：机器人必须服从人给予它的命令，当该命令与第一定律冲突时例外；三：机器人在不违反第一、第二定律的情况下要尽可能保护自己的生存。个人认为这三大定律在一定程度上保证了人类的安全，但是同时也使得机器和人类不能平等地享有人权。所以我是不赞成的。</p>
-<p>17.”在这些指令中，最重要的是调节逻辑系统规则的执行顺序，因为在使用这个系统的每一步，都会有许多不同选择，在遵守逻辑系统规则的情况下，任意选择一个都是允许的。”</p>
-<p>在现代深度学习神经网络中的表现在于权重和偏置参数的调节，而这也依赖于训练的次数和数据集的质量。</p>
-<p>18.”这些命题可能来自权威，也可能来自机器本身，例如科学归纳。”</p>
-<p>“科学归纳”意味着机器要有获得经验的能力。</p>
-<p>19. 在学习过程中发生变化的规则是一类不那么自命不凡的规则，只声称短暂的有效性。读者可以将之与美国宪法类比。</p>
-<p>可以用人类基因是不变的规则，但是后天的条件反射是可变的规则来类比。</p>
-<p>20.”智能行为应该和完全服从命令的行为有别，但又不能太大，不应该产生随机的行为或无限循环。”</p>
-<p>线性回归、梯度下降、最小二乘</p>
-<p>21.”学习的过程并不会产生百分之百的确定结果，否则就不是学习了。”</p>
-<p>类比现在的深度学习神经网络，准确率也不可能达到100%。否则就不是学习了，而是既定的规则。</p>
-<p>22.”在一个学习机器中加入随机元素应该是明智的”</p>
-<p>神经网络中大量的非线性函数。</p>
-<p>23. 如何跟踪已经尝试过的不同基因组合，从而避免重复呢？</p>
-<p>在有些递归或者动态规划算法中，可能会用一个数组来存储已经计算过的值，从而减少计算的次数，优化算法的时间复杂度。同时也是用空间换时间的一种思想的实践。</p>
-<p>24.”我们希望机器最终能和人在所有纯智力领域竞争，但何处是最好的开端？”</p>
-<p>“Blue Deep”在智力问答游戏中的出色表现和”AlphaGo”、”AlphaZero”在围棋的出色表现使得强人工智能的实现又近了一步。</p>
-<p>25.”也有人认为最好用钱给机器买最好的传感器，然后教它听说英语，和教一个正常的小孩一样，教它命名事物等等。”</p>
-<p>在我还没看过图灵这篇论文的时候也有过这种想法，用最好的传感器造一个类人机器人，然后让它从幼儿园开始接受教育，最终实现强人工智能的目的（显然还要强大的算法的支持）。</p>
-<p>26.”我们的目光所及，只是不远的前方，但是可以看到，那里有许多工作要做。”</p>
-<p>此时此刻，两个灵魂在隔空对话，图灵的大部分想法到了这个时代有的已经验证有的还没实现。图灵的大多数想法放到这个时代并没有落后，甚至还有一些超前。”我们的目光所及，只是不远的前方”我们还有许多工作要完成。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://blog.csdn.net/xiaocai281/article/details/102473502?utm_source=app&amp;tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">[图灵的文章&quot;Computing machinery and intelligence&quot;译文]{.underline}</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://zhuanlan.zhihu.com/p/262922354" target="_blank" rel="noopener">[让神经网络解释自己：牛津大学博士小姐姐，用毕业论文揭示&quot;炼丹炉&quot;结构]{.underline}</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>Paper</tag>
-        <tag>reading-book</tag>
-        <tag>think</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>&lt;算法第四版&gt;最佳实践</title>
     <url>/articles/algorithms-fourth-edition-best-practice.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/sort-algorithm-banner.png" alt="sort-algorithm"></p>
@@ -456,12 +238,84 @@ print(&quot;Accuracy:&quot;+str(float(accuracy_cnt)/len(x)))#0.9352</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Java数据类型</title>
-    <url>/articles/data-type-of-java.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+    <title>关于mysql</title>
+    <url>/articles/about-mysql.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p10-1.png" alt="login mysql" title="login mysql"></p>
+<h3 id="如何开启mysql的远程连接"><a href="#如何开启mysql的远程连接" class="headerlink" title="如何开启mysql的远程连接"></a>如何开启mysql的远程连接</h3><p>1.直接修改user表</p>
+<pre><code class="plsql">    use mysql;//选择mysql库
+    update user set host=&#39;%&#39; where user=&#39;root&#39;;//把user表内的root用户的host设置为任意ip
+    flush privileges;//刷新数据库</code></pre>
+<p>2.root用户远程连接数据库</p>
+<pre><code class="plsql">    grant all privileges on *.* to &#39;user&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;
+    flush privileges;</code></pre>
+<p>上面第一行代码的意思是允许user这个用户在任意ip使用password这个密码登陆mysql，如果没有user这个用户就会创建一个；</p>
+<p>让我们来查一下可以远程登陆的用户吧:<br><img src="/assets/blogimg/p10-2.png" alt="select" title="select"><br>这样就可以在本地使用<code>mysql -h *** -u root -p</code>连接远程数据库啦，也可以使用图形化工具如<strong>Navicat for MySQL</strong>管理你的数据库了；<br>如果你的mysql还不可以远程连接的话，你可能需要进入<code>/etc/mysql/my.conf</code>把<code>bind-address = 127.0.0.1</code>改为<code>bind-address = 0.0.0.0</code>或者直接用#注释掉。</p>
+<h3 id="关于一些sql语法；"><a href="#关于一些sql语法；" class="headerlink" title="关于一些sql语法；"></a>关于一些sql语法；</h3><table>
+<thead>
+<tr>
+<th align="left">operation</th>
+<th align="left">usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">创建数据库</td>
+<td align="left">CREATE DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">删除数据库</td>
+<td align="left">DROP DATABASE STUDENTS</td>
+</tr>
+<tr>
+<td align="left">创建数据表</td>
+<td align="left">CREATE TABLE table_name (column_name column_type);</td>
+</tr>
+<tr>
+<td align="left">删除数据表</td>
+<td align="left">DROP TABLE table_name</td>
+</tr>
+<tr>
+<td align="left">增(insert)</td>
+<td align="left">INSERT INTO table_name ( field1, field2,…fieldN )VALUES( value1, value2,…valueN );</td>
+</tr>
+<tr>
+<td align="left">删(delete)</td>
+<td align="left">DELETE FROM stu_info WHERE stu_no = ‘035’;</td>
+</tr>
+<tr>
+<td align="left">查(select)</td>
+<td align="left">select * from stu_info;</td>
+</tr>
+<tr>
+<td align="left">改(update)</td>
+<td align="left">UPDATE stu_info SET field1=value1 WHERE…</td>
+</tr>
+</tbody></table>
+<p>其中关于创建数据表：</p>
+<pre><code class="plsql">CREATE TABLE IF NOT EXISTS `stuInfo`(
+   `stuId` INT UNSIGNED AUTO_INCREMENT,//自增；
+   `stuNo`  CHAR(6)  NOT  NULL,
+   `stuName` VARCHAR(40) NOT NULL,
+   `stuAge` INTEGER,
+   `stuAddress` VARCHAR(100) NOT NULL,
+   `subDate` DATE,//上传时间NOW();
+   PRIMARY KEY ( `stuId` )//主键;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+<p>其中关于往数据表中增加一条数据：</p>
+<pre><code class="plsql">INSERT INTO stu_info(stu_no,stu_name,stu_age,submission_date) VALUES(&#39;032&#39;,&#39;Ford&#39;,22,SYSDATE);</code></pre>
+<p>往数据表中增加多条数据：</p>
+<pre><code class="plsql">INSERT INTO table_name  (field1, field2,...fieldN)
+VALUES
+(valueA1,valueA2,...valueAN),
+(valueB1,valueB2,...valueBN),
+(valueC1,valueC2,...valueCN)
+......;</code></pre>
+<p>改数据表中的数据：</p>
+<pre><code class="plsql">UPDATE stu_info SET stu_age = 26, submission_date = &#39;2012-09-18&#39;WHERE stu_no= &#39;035&#39;;</code></pre>
+<p><img src="/assets/blogimg/p10-3.png" alt="select" title="select"></p>
+<p>more…click <a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">runoob.com</a><br>demo…click <a href="http://www.madeai.cn:8888/test" target="_blank" rel="noopener">here</a></p>
 ]]></content>
       <tags>
-        <tag>Java</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -747,6 +601,163 @@ print(&quot;Accuracy:&quot;+str(float(accuracy_cnt)/len(x)))#0.9352</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Java数据类型</title>
+    <url>/articles/data-type-of-java.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Java 语言是一种强类型语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：<br><img src="http://img.mukewang.com/535a6fc10001b8f604930247.jpg" alt="java数据类型" title="java数据类型"><br>在 Java 的领域里，基本数据类型变量存的是数据本身，而引用类型变量存的是保存数据的空间地址。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《计算机与智能》读后感</title>
+    <url>/articles/computing-machinery-and-intelligence.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Computing Machinery and Intelligence<sup id="fnref:1"><a href="#fn:1" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”<a href="https://blog.csdn.net/xiaocai281/article/details/102473502?utm_source=app&tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">图灵的文章”Computing machinery and intelligence”译文</a>“&gt;[1]</a></sup></p>
+<h2 id="模仿游戏"><a href="#模仿游戏" class="headerlink" title="模仿游戏 "></a>模仿游戏 </h2><p><img src="https://qiniu.madeai.cn/blogimg/computing_machinery_and_intelligence.drawio.svg?imgslim" alt="computing_machinery_and_intelligence.drawio"></p>
+<p>图表 1模仿游戏示意图</p>
+<h2 id="游戏中的机器"><a href="#游戏中的机器" class="headerlink" title="游戏中的机器"></a>游戏中的机器</h2><p>1.”一个或一队工程师制造出一个可以工作的机器，但是却不能很好的描述其工作方式，因为他们使用了基于试验的方法来设计它”</p>
+<p>现在的神经网络通过训练来确定模型的权重、偏置参数，其内部也是一个黑盒子，输出的不确定性是由其非线性激活函数来决定的。当然最近的一篇《Explaining Deep Neural Networks》试图解释神经网络的原理<sup id="fnref:2"><a href="#fn:2" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”<a href="https://zhuanlan.zhihu.com/p/262922354" target="_blank" rel="noopener">让神经网络解释自己：牛津大学博士小姐姐，用毕业论文揭示”炼丹炉”结构</a><br>“&gt;[2]</a></sup>。</p>
+<p>2.”为什么不拿一台直接作实验？很容易就能满足游戏的要求。让许多提问者同时参加游戏，然后统计出判断正确的概率”</p>
+<pre><code class="py">accuracy_cnt=0
+for i in range(len(x)):
+    y=predict(network,x[i])
+    p=np.argmax(y)#获取概率最高的元素的引用
+    if p==t[i]:
+        accuracy_cnt+=1
+print(&quot;Accuracy:&quot;+str(float(accuracy_cnt)/len(x)))#0.9352</code></pre>
+<p>个人认为判断一个模型的好坏可以从它的执行时间和精确度两个方面来衡量。</p>
+<p>3.”是否存在可想象的计算机能够通过游戏。”</p>
+<p>得出<strong>强人工智能</strong>实现的可能性，标准即为能否通过图灵测试。</p>
+<h2 id="数字计算机"><a href="#数字计算机" class="headerlink" title="数字计算机"></a>数字计算机</h2><p>1.”（i）存贮器（ii）执行单元（iii）控制器”</p>
+<p>冯.诺伊曼计算机结构：控制器、运算器、存储器、输入设备、输出设备</p>
+<p>2.”不妨把它们称为”指令表”。控制器的功能就是保证指令按照正确的顺序执行，其设计使得这成为可能。”</p>
+<p>CPU中的指令集，高级语言都是把语义化的代码翻译成指令集供CPU执行。像Python、Javascript是边解释边运行；而Java、CPP要编译成字节码文件才能运行。</p>
+<p>3.”把存放在6890的数加上存放在4302的数，并把结果存入后面单元。”</p>
+<p>这种操作可以使用机器语言轻松完成。</p>
+<p>4.””现在执行存储在 5606的指令，并从那里继续执行。”或者是：”如果 4505位置是0，那么执行存储在6707的指令，否则继续”。”</p>
+<p>现在的高级语言有go和ifelse这类关键字对应。顺序结构、循环结构、分支结构。</p>
+<p>5.”如果一个人想让机器模仿计算员执行复杂的操作，他必须告诉计算机如何做，并把结果翻译成某种形式的指令表。这种构造指令表的行为通常被称为”编程””</p>
+<p>我觉得编程的概念是写代码，一般是高级语言；而”将结果翻译成某种形式的指令表”是编译器要做的事情将代码编程成计算机能理解的二进制文件，再通过CPU中的指令集运行二进制文件。</p>
+<p>6.”通常并不能通过观察判断出一个机器是否有随机元素，因为一个相似的效果可以依据Pi的小数部分进行选择来产生。”</p>
+<p>关于依据Pi的小数部分来产生随机数的想法我是不赞同的，就算现在大部分高级语言实现的Random接口来产生的随机数也只是伪随机数（依据从某个时间节点到现在的毫秒数来产生）。牵扯到如何把一个数组随机打乱，使每个元素的概率一致是不能仅仅用Random和排序来做的，要使用专门的Shuffle算法来操作。</p>
+<p>7. “让一个计算机具有无限的存储空间并不存在理论上的困难，当然在任何时候都只有有限的部分被使用。同样，只有有限的存储空间被建造，不过我们可以想象越来越多的存储空间可以根据要求添加。”</p>
+<p>“无限容量计算机”结合Google的三篇论文《GFS》、《Big Table》、《Map Reduce》，以及Hadoop和后来的分布式与云计算技术使其成为可能，同时具备实用价值。”根据要求添加”在《GFS》这篇论文中明确得指出了GFS系统设计要符合”可伸缩性”、”容错”、”灾难冗余”的原则或者要求。</p>
+<p>8.”分析机的存储全部由用轮子和卡片组成的机械实现。”</p>
+<p>在《Deep Learning from Scratch》这本书2.6章节（P60）中有提到”仅通过与非门的组合就能实现计算机”，并推荐《计算机系统要素：从零开始构建现代计算机》这本书。实际上结合我在本科学习过”<strong>电子电工</strong>“这门课程，就可以通过逻辑门电路累加器加法器…CPU计算机来实现（基于电流电路的硬件）。由此看来向华老师所言”软件硬件不分家”是有一定的道理的。</p>
+<p>9.”在神经系统中，化学过程至少和电过程同样重要，某些计算机的存储器主要基于声学原理，计算机和神经系统都使用电仅仅是表面的相似，如果我们希望寻找这样的相似，倒不如寻找功能上的数学相似性。”</p>
+<p>现代神经网络的构建和神经系统中的神经元有相似的地方（也可以看成一总仿生的应用）。神经元之间的通过生物电来传递介质（或者说信息），当然这种生物电是由生物的化学反应产生的（联想到可以用神经元来实现计算机的可行性，这种计算机可能天生对深度学习有较高的性能，同时软硬件会结合得更加紧密）。”某些计算机的存储器主要基于声学原理”这里有一些看不明白，存储器基于声学原理，这个好像在现代计算机硬件中没有见过。</p>
+<h2 id="数字计算机的通用性"><a href="#数字计算机的通用性" class="headerlink" title="数字计算机的通用性"></a>数字计算机的通用性</h2><p>1.”即使是考虑实际的物理机器而不是理想机器，只要知道了某个时刻状态的合理准确的信息，就可以相当准确的预测未来状态的信息。”</p>
+<p>然而神经网络确实恰恰相反，由于其内部的大量非线性函数，所以造成了内部的不可解释和结果的不确定性。即使可以通过调参来提高准确率，还是被相关从业人员笑称为”炼丹”。</p>
+<p>2.”例如，现在在曼彻斯特工作的机器可以有2^165000个状态，也就是大约10^50000。”</p>
+<p>现代CPU的制程能达到7微米（手机中的CPU），这意味着能在有限空间中集成更多的电路。晶圆（我把它看成一个一个小开关）的个数也是CPU的性能参数之一，但这是否和状态有关呢？</p>
+<p>3.”具有这样性质的机器带来一个重要结果就是，若不考虑速度，并不需要设计出不同的新机器来执行不同的计算，它们都可以用一个数字计算机来实现，只要根据情况适当编程。由此可见，所有数字计算机在某种意义上是等价的。”</p>
+<p>图灵的设想同过时间证明了其正确性，现代计算机软硬件的结合通过系统，编程的手段可以调用系统提供的顶层API来调用底层的硬件。家用PC、laptop、服务器等计算机都可以通过安装系统和软件来实现统用的功能。</p>
+<p><img src="https://qiniu.madeai.cn/blogimg/architecture_of_modern_computer.drawio.svg?imgslim" alt="architecture_of_modern_computer.drawio"></p>
+<p>图表 2现代通用计算机构造图</p>
+<h2 id="关于主要问题的对立观点"><a href="#关于主要问题的对立观点" class="headerlink" title="关于主要问题的对立观点"></a>关于主要问题的对立观点</h2><p>1.”猜想往往是非常重要的，因为它们提示有用的研究线索。”</p>
+<p>根据现实情况作出合理的猜想对科学研究有帮助，猜想验证结论</p>
+<p><img src="https://qiniu.madeai.cn/blogimg/machine-can-think.svg?imgslim" alt="machine-can-think"></p>
+<p>图表 3对所持意见的对立观点思维导图.SVG</p>
+<p>2.”在两种情况下，我们其实都是上帝意志的工具，为他所创造的灵魂提供住所。　“</p>
+<p>主观和客观，本我及…</p>
+<p>3.”总而言之，人可能比任何特定的机器聪明，但是可能有更聪明的其他机器，等等。”</p>
+<p>特定领域的计算机确实比人类聪明，”Deep Blue”和”AlphaGo”的出现使得强人工智能成为可能。</p>
+<p>4.”除非机器能够因为感受到思想与情绪”</p>
+<p>现代的弱人工智能尽管能够画出一些画作、写出一些诗文，但它不知道自己在做什么，更不会因此而喜悦。所以到强人工智能的路还有很长。</p>
+<p>5.”要想知道某人是否在思维，唯一的途径就是成为那个人”</p>
+<p>实际上现代脑机接口的发展可以通过脑电的波动来看出一个人是否在思考。但如何把这种方法应用到计算机上呢，看风扇的转速、CPU的温度么？</p>
+<p>6.”在实际中经常采用”口试”的方式来发现某人是真的理解某事”</p>
+<p>事实上，很多时候未成年人并没有自己的世界观、价值观和人生观。这种思维不健全的未成年人通常没有形成自己的观点，而是人云亦云，鹦鹉学舌。这和现在的一些对话机器人（弱人工智能）有相似的地方。对此我的理解是：只有深刻地经历过后才会理解语言背后的含义。</p>
+<p>7.”机器能够通过观察自己行为的结果，修改自己的程序，以便更有效地达到某种目的。这并不是乌托邦式的空想，而是不久的将来可能办到的事”</p>
+<p>“机器不能成为它自己思维的主体”现代的神经网络在没有确定权重、偏置参数的情况下是不确定的，可以说”没有主体”，但经过几轮训练之后就像初生的婴儿蹒跚学步，就有了类似经验的东西。”通过观察自己行为的结果，修改自己的程序”现在出现的GAN（对抗生成模型）有异曲同工之妙。</p>
+<p>8.” 人们会认为机器所使用的方法（不管是什么方法，总是机械性的）实在太低级了”</p>
+<p>现在的神经网络、深度学习似乎不这么低级了。</p>
+<p>9. “这并不意味着就无法制造能’独立思考’的电子设备，用生物学的话说，我们能够在其中建立条件反射，用来作’学习’的基础”</p>
+<p>实际上现在的深度学习都是基于神经元模仿生物大脑的思考来设计的。这也证实了Hartree的猜测的可能性。</p>
+<p>10.”不可能制定一套旨在描述一个人在每种情况该做什么的规则”</p>
+<p>在现实情况中，法律是约束人类行动的第一战线，其次是道德，最后才是经验习得。</p>
+<p>11.”因为我们认为，受行为规律调控意味着人就是某种机器（尽管不一定是离散状态机器）”</p>
+<p>有这种行为规律（或者说先天反射），但是这种行为规律不完备，所以说同样不能将人称之为机器。</p>
+<p>12.”相信我们的身体除了按照已知的物理学规律运作外，还按照未知的、但相似的规律运作。”</p>
+<p>心灵感应一般存在于双胞胎之间，似乎和量子纠缠有某种联系。</p>
+<p>13.”但是，这个随机数字生成程序又受提问者的精神运动的影响，这个精神运动也许就能让计算机猜对的次数比概率计算高”</p>
+<p>用意念或者精神来影响客观世界仍旧是神学范畴。</p>
+<h2 id="学习机器"><a href="#学习机器" class="headerlink" title="学习机器"></a>学习机器</h2><p><img src="https://qiniu.madeai.cn/blogimg/nuclear_fusion.drawio.svg?imgslim" alt="nuclear_fusion.drawio"></p>
+<p>图表 4核聚变链式反应</p>
+<p>1.” 然而，如果原子堆的大小变的足够大的时候，中子产生的反应很可能会持续的增加，直到原子堆解体。思维中是否存在这样的现象呢？机器中呢？这样的现象在人脑中应该是存在的。”</p>
+<p>这里用核聚变中的链式反应来作类比，我觉得是不合适的，科学研究应该是严谨认真的（尽管有些文学作品中可能会用思维爆炸这类词来形容一个人的思维过程）</p>
+<p>2.”进入其中的想法将会产生二级三级越来越多的想法，最终成为一个完整的&quot;理论&quot;。”</p>
+<p>显然当我的思想成为超临界状态的时候只会胡思乱想而不会形成什么理论。</p>
+<p>3.”如果是后一种情况，那么整个思维都是机械的。”</p>
+<p>人类的某些思维活动可能会和剥洋葱皮有些类似。但我不赞成这种纯机械的方式来比喻人类的思维活动过程，因为我认为人类的思维活动是非线性的。</p>
+<p>4.”而且认为只有一小部分用来进行高级的思考，其余大部分用来保存图像。”</p>
+<p>根据生物学的知识来看，人类的大脑可以分为几个区域，这些区域分别对应不同的功能。由此看来人类大脑的构造和计算机有相似之处。</p>
+<p>5. 被视为模拟神经细胞的现代机器，其速度比神经细胞快1000倍，这在许多方面可以为补偿速度的损失提供”安全余地”，剩下的问题主要就是如何编程让机器能够完成游戏。</p>
+<p>“模拟神经细胞的现代机器”那个时候就有仿生计算机的出现吗？对此我表示怀疑。</p>
+<p><img src="https://qiniu.madeai.cn/blogimg/human_brain.drawio.svg?imgslim" alt="human_brain.drawio"></p>
+<p>图表 5大脑是怎么进入状态的</p>
+<p>6.”在试图模拟成人大脑的过程中，我们必须考虑大脑是怎么进入状态的”</p>
+<p>有时候我会想，大脑进入状态的过程和计算机开机的过程是否相似。</p>
+<p>7.”大脑所经历的经验，此经验不被称为教育。”</p>
+<p>我对这个观点持反对意见，经验是对经历的一种总结，也应该被视为一种教育。并且我认为这种教育要比课堂上的教育有效的多。</p>
+<p>8.”与其试图编程模拟成人大脑，不如模拟儿童大脑，如果让儿童大脑接受正确的教育课程，就可能获得成人大脑。”</p>
+<p>这个我在没看图灵的论文之前也想过，试图用深度学习的技术开发一个对话机器人，然后让它和同龄的学生从幼儿园开始接受人类的教育，最后进化为成人的大脑。此刻我和图灵隔空对话。</p>
+<p>9.”显然这个过程与进化有联系”</p>
+<p>遗传算法物竞天择，适者生存。</p>
+<p>10.” 并不需要局限于随机的变异，如果能够找出某些缺陷的原因，就可能想到改进它的变异。”</p>
+<p>随机变异+人类辅助的过程确实会加快机器的进化，同时人类的辅助过程决定者机器未来的属性。这里人类充当着自然界中的环境因素（或者说是上帝），我更乐意看成是一个孔洞不一致的筛子。</p>
+<p>11.”其他的学生肯定会嘲笑它，它必须得到专门地训练。”</p>
+<p>这里将机器赋予人权，机器没有腿和胳膊、机器的视觉传感器可能不如人类的发达。但是教育是平等的（至少是相对平等）</p>
+<p>12.”海伦.勒女士的例子表明只要老师和学生能够以某种方式进行双向的交流，教育就能进行。”</p>
+<p>让我想起了中学的一篇课文，海伦女士对待盲人的”我”充满耐心和爱，让”我”感受到生活下去的力量。</p>
+<p>13.”使得遭到惩罚的事件不大可能重复，而受到奖励的事件则会增加重复的可能性。”</p>
+<p>这里我想到了GAN（对抗生成模型），有这种奖励和惩戒的机制在里面。</p>
+<p>14.”如果教师没有与学生沟通的其他方式，那么所传达的信息量不会超过所用的奖励和惩罚的总和。”</p>
+<p>教育”儿童机器”还应该有其他更加温和的方法，奖励惩戒机制可以用作验证其他温和方法的一种。</p>
+<p>15.” 在后一种情况下，大多数存储空间将被用来存储定义和命题，这些命题可能具有各种各样的形式，例如，确定的事实，推测，数学上证明的定理，权威给出的判断，具有逻辑形式却没有确定值的表达式等等。”</p>
+<p>我赞同第一种”尽可能保持简单以保持通用性”，毕竟大多数人生下来就没有所谓的天赋，多数的技能都是通过后天习得，practice make perfect。</p>
+<p>16.”合理的命令（在系统内部表达，并不是系统规则的一部分）”</p>
+<p>机器人三大定律：一：机器人不得伤害人类个体，或者目睹人类个体将遭受危险而袖手不管；二：机器人必须服从人给予它的命令，当该命令与第一定律冲突时例外；三：机器人在不违反第一、第二定律的情况下要尽可能保护自己的生存。个人认为这三大定律在一定程度上保证了人类的安全，但是同时也使得机器和人类不能平等地享有人权。所以我是不赞成的。</p>
+<p>17.”在这些指令中，最重要的是调节逻辑系统规则的执行顺序，因为在使用这个系统的每一步，都会有许多不同选择，在遵守逻辑系统规则的情况下，任意选择一个都是允许的。”</p>
+<p>在现代深度学习神经网络中的表现在于权重和偏置参数的调节，而这也依赖于训练的次数和数据集的质量。</p>
+<p>18.”这些命题可能来自权威，也可能来自机器本身，例如科学归纳。”</p>
+<p>“科学归纳”意味着机器要有获得经验的能力。</p>
+<p>19. 在学习过程中发生变化的规则是一类不那么自命不凡的规则，只声称短暂的有效性。读者可以将之与美国宪法类比。</p>
+<p>可以用人类基因是不变的规则，但是后天的条件反射是可变的规则来类比。</p>
+<p>20.”智能行为应该和完全服从命令的行为有别，但又不能太大，不应该产生随机的行为或无限循环。”</p>
+<p>线性回归、梯度下降、最小二乘</p>
+<p>21.”学习的过程并不会产生百分之百的确定结果，否则就不是学习了。”</p>
+<p>类比现在的深度学习神经网络，准确率也不可能达到100%。否则就不是学习了，而是既定的规则。</p>
+<p>22.”在一个学习机器中加入随机元素应该是明智的”</p>
+<p>神经网络中大量的非线性函数。</p>
+<p>23. 如何跟踪已经尝试过的不同基因组合，从而避免重复呢？</p>
+<p>在有些递归或者动态规划算法中，可能会用一个数组来存储已经计算过的值，从而减少计算的次数，优化算法的时间复杂度。同时也是用空间换时间的一种思想的实践。</p>
+<p>24.”我们希望机器最终能和人在所有纯智力领域竞争，但何处是最好的开端？”</p>
+<p>“Blue Deep”在智力问答游戏中的出色表现和”AlphaGo”、”AlphaZero”在围棋的出色表现使得强人工智能的实现又近了一步。</p>
+<p>25.”也有人认为最好用钱给机器买最好的传感器，然后教它听说英语，和教一个正常的小孩一样，教它命名事物等等。”</p>
+<p>在我还没看过图灵这篇论文的时候也有过这种想法，用最好的传感器造一个类人机器人，然后让它从幼儿园开始接受教育，最终实现强人工智能的目的（显然还要强大的算法的支持）。</p>
+<p>26.”我们的目光所及，只是不远的前方，但是可以看到，那里有许多工作要做。”</p>
+<p>此时此刻，两个灵魂在隔空对话，图灵的大部分想法到了这个时代有的已经验证有的还没实现。图灵的大多数想法放到这个时代并没有落后，甚至还有一些超前。”我们的目光所及，只是不远的前方”我们还有许多工作要完成。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://blog.csdn.net/xiaocai281/article/details/102473502?utm_source=app&amp;tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">图灵的文章&quot;Computing machinery and intelligence&quot;译文</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://zhuanlan.zhihu.com/p/262922354" target="_blank" rel="noopener">让神经网络解释自己：牛津大学博士小姐姐，用毕业论文揭示&quot;炼丹炉&quot;结构</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>Paper</tag>
+        <tag>reading-book</tag>
+        <tag>think</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>撒野</title>
+    <url>/articles/i-can-not-hear-you.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
+<p>这首歌就一句话:好听！</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
+        <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>官网信息更新获得通知</title>
     <url>/articles/get-website-message-alert.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>国家线还没出, 众多2020考研学子们一定异常焦急地等待官网的通告, 想着复试名单什么时候出, 但又不能时时刻刻盯着官网的通知栏; 别担心, 让代码来帮助你…<br>我们需要代码帮我们完成这样几件事:</p>
@@ -858,17 +869,6 @@ public class Main {
       </tags>
   </entry>
   <entry>
-    <title>撒野</title>
-    <url>/articles/i-can-not-hear-you.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" type="song" id="483937795"></meting-js></p>
-<p>这首歌就一句话:好听！</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>怎么使用live2d做一个看板娘</title>
     <url>/articles/how-to-make-a-showgirl-use-live2d.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，"><a href="#如你所见右边是我老婆-≧▽≦-如你所见左边是我老婆-≧▽≦-，" class="headerlink" title="如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，"></a>如你所见右边是我老婆(/≧▽≦)/如你所见左边是我老婆(/≧▽≦)/，</h4><p>噗，开个玩笑，博主没老婆的啦！<br><img src="/assets/blogimg/2151926752.png" alt="下载 (1).png"><br>如何利用live2d做一个悬浮小人呢？<br>这其中我经历了九九八十一难，这要从我玩天命之子（日服）说起，当我打开天命之子这款游戏时，哇塞，这精美的立体手绘，这暴露的战斗服装。俺♥中一颤，这这这不就是我一直寻找的老婆吗？</p>
@@ -876,215 +876,6 @@ public class Main {
 ]]></content>
       <tags>
         <tag>live2d</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>极限&amp;导数</title>
-    <url>/articles/limitation-derivative.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="http://pic.9ht.com/up/2016-4/201642715311.jpg" alt="title-picture"></p>
-<h3 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h3><ul>
-<li>函数的极限<ul>
-<li>$frac{0}{0}; \frac{\infty}{\infty}$</li>
-<li>$\infty-\infty; 0\cdot\infty$</li>
-<li>$1^{\infty} 0^{0}; \infty^{0}$</li>
-</ul>
-</li>
-<li>数列的极限<ul>
-<li>夹逼准则</li>
-<li>单调有界收敛准则</li>
-<li>定积分的定义</li>
-</ul>
-</li>
-<li>极限的应用<ul>
-<li>连续,间断点</li>
-<li>渐近线(垂直,水平,斜)</li>
-<li>导数的定义</li>
-</ul>
-</li>
-</ul>
-<h4 id="函数的极限"><a href="#函数的极限" class="headerlink" title="函数的极限"></a>函数的极限</h4><h5 id="frac-0-0-frac-infty-infty"><a href="#frac-0-0-frac-infty-infty" class="headerlink" title="$frac{0}{0}; \frac{\infty}{\infty}$"></a>$frac{0}{0}; \frac{\infty}{\infty}$</h5><h6 id="洛必达"><a href="#洛必达" class="headerlink" title="洛必达"></a><em>洛必达</em></h6><h6 id="泰勒公式"><a href="#泰勒公式" class="headerlink" title="泰勒公式"></a><em>泰勒公式</em></h6><p>$$\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)$$</p>
-<p>常见的泰勒公式:</p>
-<ul>
-<li>$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$</li>
-<li>$ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$</li>
-<li>${1+x}^a=1+ax+\frac{a(a-1)}{2!}x+o(x^2)$</li>
-</ul>
-<h6 id="抓大头"><a href="#抓大头" class="headerlink" title="抓大头"></a><em>抓大头</em></h6><h5 id="infty-infty-0-cdot-infty"><a href="#infty-infty-0-cdot-infty" class="headerlink" title="$\infty-\infty; 0\cdot\infty$"></a>$\infty-\infty; 0\cdot\infty$</h5><h5 id="1-infty-0-0-infty-0"><a href="#1-infty-0-0-infty-0" class="headerlink" title="$1^{\infty} 0^{0}; \infty^{0}$"></a>$1^{\infty} 0^{0}; \infty^{0}$</h5><h4 id="数列的极限"><a href="#数列的极限" class="headerlink" title="数列的极限"></a>数列的极限</h4><h4 id="极限的应用"><a href="#极限的应用" class="headerlink" title="极限的应用"></a>极限的应用</h4><h3 id="导数"><a href="#导数" class="headerlink" title="导数"></a>导数</h3><h4 id="导数的计算"><a href="#导数的计算" class="headerlink" title="导数的计算"></a>导数的计算</h4><h4 id="导数的应用"><a href="#导数的应用" class="headerlink" title="导数的应用"></a>导数的应用</h4>]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>跳跳球</title>
-    <url>/articles/mark-ball-game.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"><br>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
-    &lt;script&gt;
-        function init() {
-            setInterval(&quot;document.f.display.value=String(Number(document.f.display.value)+1)&quot;,1000);
-        }//定时器 每隔一秒加一次
-        /*function incre() {
-         document.f.display.value=String(Number(document.f.display.value)+1);
-
-         }*/
-
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init()&quot;&gt;
-    &lt;form name=&quot;f&quot;&gt;&lt;!--不写form总报错 不知道为啥--&gt;
-        &lt;input name=&quot;display&quot; type=&quot;text&quot; value=&quot;0&quot;/&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>2.<a href="/item/game/tiaotiaoball/ball1">用canvas插入img：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;ball&lt;/title&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    var img1=new Image();
-    var img2=new Image();
-    img1.src=&quot;../../images/cool.jpg&quot;;
-    img2.src=&quot;../../images/dog.gif&quot;;
-    var ctx;
-    function init(){
-        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);
-        ctx.drawImage(img1,10,20,50,50);
-        ctx.drawImage(img2,150,20,100,100);
-    }
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init();&quot;&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
-        your browser don&#39;t support convas
-    &lt;/canvas&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>3.<a href="/item/game/tiaotiaoball/ball">跳跳球：</a></p>
-<pre><code class="bash">&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;ball&lt;/title&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    var boxx=50,boxy=50,boxw=300,boxh=300;//盒子左上角据左边画布的距离，盒子左上角据上边画布的距离，盒子的宽高；
-    var ballx=20,bally=20,ballvx=2,ballvy=4,ballr=6;//球的初始位置（相对盒子），球的位移，球的半径；
-    var hshang=boxy+ballr,hxia=boxh+boxy-ballr,hzuo=boxx+ballr,hyou=boxw+boxx-ballr;//里面的小盒子 用于检测碰撞；
-    var ctx;//保存上下文 不太懂上下文是啥
-    function init(){
-        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);//获取canvas的上下文
-        ctx.fillStyle=&quot;rgb(200.0.0)&quot;;//设置填充颜色
-        ctx.lineWidth=6; //设置线宽
-        moveball();//先显示ball
-        setInterval(moveball,10); //setTimeout()只执行一次事件 不能重复调用moveball事件；
-    }
-    function moveball() {
-        ctx.clearRect(boxx,boxy,boxw,boxh);//擦除整个盒子包括ball 第一次运行不会有任何影响
-        moveandcheck();
-        ctx.beginPath();
-        ctx.arc(ballx,bally,ballr,0,2*Math.PI,true);//画圆
-        ctx.fill();
-        ctx.strokeRect(boxx,boxy,boxw,boxh);//画盒子
-    }
-    function moveandcheck() {//检测碰撞
-        var perballx=ballx+ballvx,perbally=bally+ballvy;
-        if(perballx&gt;hyou) {//如果超过小盒子的右边
-            ballvx=-ballvx;//改变水平方向
-            perballx=hyou; //&quot;设置下一个x等于这个边界值&quot; 没看懂啥意思；
-        }
-        if(perballx&lt;hzuo) {
-            perballx=hzuo;
-            ballvx=-ballvx;
-        }
-        if(perbally&gt;hxia) {
-            perbally=hxia;
-            ballvy=-ballvy;
-        }
-        if(perbally&lt;hshang) {
-            perbally=hshang;
-            ballvy=-ballvy;
-        }
-        ballx=perballx;
-        bally=perbally;
-    }
-    function change() {
-        ballvx=Number(document.f.vx.value);
-        ballvy=Number(document.f.vy.value);
-    }//在form标签里调用onsubmit=&quot;return change();&quot;需要设置return false不然会整个刷新页面
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body onload=&quot;init();&quot;&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
-        your browser don&#39;t support convas
-    &lt;/canvas&gt;
-    &lt;form name=&quot;f&quot; id=&quot;f&quot;&gt;
-        水平速度:&lt;input name=&quot;vx&quot; id=&quot;vx&quot; type=&quot;number&quot; value=&quot;2&quot;&gt;
-        垂直速度:&lt;input name=&quot;vy&quot; id=&quot;xy&quot; type=&quot;number&quot; value=&quot;4&quot;&gt;
-        &lt;input type=&quot;button&quot; value=&quot;change&quot; onclick=&quot;change()&quot;&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>H5</tag>
-        <tag>canvas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ajax异步加载</title>
-    <url>/articles/p12.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre>
-<h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
-xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
-xhr.onload = function () {
-    var data = JSON.parse(xhr.responseText);
-    doSomething(data);
-}
-xhr.send();</code></pre>
-<ol>
-<li>其中<code>xhr.open();</code>有3个传入参数,第一个是数据传输的方式,最常用的就是<code>post</code>,<code>get</code>,<code>put</code>,<code>delect</code>了.第二个是后端的URL,值得注意的是如果是<strong>跨域</strong>的话,需要在后端PHP代码前添加<code>header(&quot;Access-Control-Allow-Origin: *&quot;);</code>,或者用代理.<br>第三参数是Boolean型的可选项,表示是否异步加载;</li>
-<li><code>xhr.onload();</code>是在数据加载完成后要处理的事情;也可以用<code>xhr.onreadystatechange=doSomething;</code>.<blockquote>
-<p>onreadystatechange 是一个事件句柄。它的值 (state_Change) 是一个函数的名称，当 XMLHttpRequest 对象的状态发生改变时，会触发此函数。状态从 0 (uninitialized) 到 4 (complete) 进行变化。仅在状态为 4 时，我们才执行代码。</p>
-</blockquote>
-</li>
-<li>最后一个<code>xhr.send();</code>就是将请求发送到服务器端了;</li>
-</ol>
-<h3 id="使用jquery封装的-ajax-和-getJSON-函数"><a href="#使用jquery封装的-ajax-和-getJSON-函数" class="headerlink" title="使用jquery封装的$ajax()和$getJSON()函数"></a>使用jquery封装的$ajax()和$getJSON()函数</h3><ul>
-<li>$ajax比较灵活哦,异步加载任何格式的数据;<pre><code class="javascript">$.ajax({
-  type: &quot;POST&quot;,//像登陆一样的比较重要的数据要用post,放进请求体里哦;
-  url: &quot;http://madeai.cn/api&quot;,
-  dataType: &quot;json&quot;,
-  data: {
-      username:444,
-      password:6666//用md5签名,数据传输更安全;
-  },
-  success: function (obj) {
-      doSomething(obj);
-  },
-  error: function(XMLHttpRequest, textStatus, errorThrown) {
-      console.log(XMLHttpRequest.status,XMLHttpRequest.status,textStatus);
-  },</code></pre>
-</li>
-<li>用$getJSON()来获取json数据;<pre><code class="javascript">$.getJSON(&quot;http://madeai.cn/api&quot;, &quot;&quot;, function (data) {
-  $.each(data[&quot;result&quot;].tracks, function (i, item) {//each循环 使用$.each方法遍历返回的数据data
-  /*doSomething;
-   *function();中第一个参数是数组的索引index,第二个是原数组对象;
-   */
-  });
-});</code></pre>
-</li>
-</ul>
-<p>jquery还封装了类似<code>$get()</code>,<code>$.post()</code>的函数;</p>
-<hr>
-<p>demo click <a href="https://huangyebiaoke.github.io/item/example/ajax&json.html" target="_blank" rel="noopener">here</a></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>AJAX</tag>
-        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
@@ -1350,6 +1141,160 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>极限&amp;导数</title>
+    <url>/articles/limitation-derivative.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="http://pic.9ht.com/up/2016-4/201642715311.jpg" alt="title-picture"></p>
+<h3 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h3><ul>
+<li>函数的极限<ul>
+<li>$frac{0}{0}; \frac{\infty}{\infty}$</li>
+<li>$\infty-\infty; 0\cdot\infty$</li>
+<li>$1^{\infty} 0^{0}; \infty^{0}$</li>
+</ul>
+</li>
+<li>数列的极限<ul>
+<li>夹逼准则</li>
+<li>单调有界收敛准则</li>
+<li>定积分的定义</li>
+</ul>
+</li>
+<li>极限的应用<ul>
+<li>连续,间断点</li>
+<li>渐近线(垂直,水平,斜)</li>
+<li>导数的定义</li>
+</ul>
+</li>
+</ul>
+<h4 id="函数的极限"><a href="#函数的极限" class="headerlink" title="函数的极限"></a>函数的极限</h4><h5 id="frac-0-0-frac-infty-infty"><a href="#frac-0-0-frac-infty-infty" class="headerlink" title="$frac{0}{0}; \frac{\infty}{\infty}$"></a>$frac{0}{0}; \frac{\infty}{\infty}$</h5><h6 id="洛必达"><a href="#洛必达" class="headerlink" title="洛必达"></a><em>洛必达</em></h6><h6 id="泰勒公式"><a href="#泰勒公式" class="headerlink" title="泰勒公式"></a><em>泰勒公式</em></h6><p>$$\underset{x \to x_{0}}{\lim}f(x)=\sum_{i=0}^{n}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o(x^n)$$</p>
+<p>常见的泰勒公式:</p>
+<ul>
+<li>$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$</li>
+<li>$ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$</li>
+<li>${1+x}^a=1+ax+\frac{a(a-1)}{2!}x+o(x^2)$</li>
+</ul>
+<h6 id="抓大头"><a href="#抓大头" class="headerlink" title="抓大头"></a><em>抓大头</em></h6><h5 id="infty-infty-0-cdot-infty"><a href="#infty-infty-0-cdot-infty" class="headerlink" title="$\infty-\infty; 0\cdot\infty$"></a>$\infty-\infty; 0\cdot\infty$</h5><h5 id="1-infty-0-0-infty-0"><a href="#1-infty-0-0-infty-0" class="headerlink" title="$1^{\infty} 0^{0}; \infty^{0}$"></a>$1^{\infty} 0^{0}; \infty^{0}$</h5><h4 id="数列的极限"><a href="#数列的极限" class="headerlink" title="数列的极限"></a>数列的极限</h4><h4 id="极限的应用"><a href="#极限的应用" class="headerlink" title="极限的应用"></a>极限的应用</h4><h3 id="导数"><a href="#导数" class="headerlink" title="导数"></a>导数</h3><h4 id="导数的计算"><a href="#导数的计算" class="headerlink" title="导数的计算"></a>导数的计算</h4><h4 id="导数的应用"><a href="#导数的应用" class="headerlink" title="导数的应用"></a>导数的应用</h4>]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跳跳球</title>
+    <url>/articles/mark-ball-game.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这些天没什么事读了《HTML5游戏开发》这本书，做一下实例：<br><img src="/assets/blogimg/item_game_tiaotiaoball_ball.png"><br>1.<a href="/item/game/tiaotiaoball/settime">计时器：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--解决中文乱码的问题--&gt;
+    &lt;script&gt;
+        function init() {
+            setInterval(&quot;document.f.display.value=String(Number(document.f.display.value)+1)&quot;,1000);
+        }//定时器 每隔一秒加一次
+        /*function incre() {
+         document.f.display.value=String(Number(document.f.display.value)+1);
+
+         }*/
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init()&quot;&gt;
+    &lt;form name=&quot;f&quot;&gt;&lt;!--不写form总报错 不知道为啥--&gt;
+        &lt;input name=&quot;display&quot; type=&quot;text&quot; value=&quot;0&quot;/&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>2.<a href="/item/game/tiaotiaoball/ball1">用canvas插入img：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ball&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var img1=new Image();
+    var img2=new Image();
+    img1.src=&quot;../../images/cool.jpg&quot;;
+    img2.src=&quot;../../images/dog.gif&quot;;
+    var ctx;
+    function init(){
+        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);
+        ctx.drawImage(img1,10,20,50,50);
+        ctx.drawImage(img2,150,20,100,100);
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
+        your browser don&#39;t support convas
+    &lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>3.<a href="/item/game/tiaotiaoball/ball">跳跳球：</a></p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ball&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var boxx=50,boxy=50,boxw=300,boxh=300;//盒子左上角据左边画布的距离，盒子左上角据上边画布的距离，盒子的宽高；
+    var ballx=20,bally=20,ballvx=2,ballvy=4,ballr=6;//球的初始位置（相对盒子），球的位移，球的半径；
+    var hshang=boxy+ballr,hxia=boxh+boxy-ballr,hzuo=boxx+ballr,hyou=boxw+boxx-ballr;//里面的小盒子 用于检测碰撞；
+    var ctx;//保存上下文 不太懂上下文是啥
+    function init(){
+        ctx=document.getElementById(&quot;canvas&quot;).getContext(&#39;2d&#39;);//获取canvas的上下文
+        ctx.fillStyle=&quot;rgb(200.0.0)&quot;;//设置填充颜色
+        ctx.lineWidth=6; //设置线宽
+        moveball();//先显示ball
+        setInterval(moveball,10); //setTimeout()只执行一次事件 不能重复调用moveball事件；
+    }
+    function moveball() {
+        ctx.clearRect(boxx,boxy,boxw,boxh);//擦除整个盒子包括ball 第一次运行不会有任何影响
+        moveandcheck();
+        ctx.beginPath();
+        ctx.arc(ballx,bally,ballr,0,2*Math.PI,true);//画圆
+        ctx.fill();
+        ctx.strokeRect(boxx,boxy,boxw,boxh);//画盒子
+    }
+    function moveandcheck() {//检测碰撞
+        var perballx=ballx+ballvx,perbally=bally+ballvy;
+        if(perballx&gt;hyou) {//如果超过小盒子的右边
+            ballvx=-ballvx;//改变水平方向
+            perballx=hyou; //&quot;设置下一个x等于这个边界值&quot; 没看懂啥意思；
+        }
+        if(perballx&lt;hzuo) {
+            perballx=hzuo;
+            ballvx=-ballvx;
+        }
+        if(perbally&gt;hxia) {
+            perbally=hxia;
+            ballvy=-ballvy;
+        }
+        if(perbally&lt;hshang) {
+            perbally=hshang;
+            ballvy=-ballvy;
+        }
+        ballx=perballx;
+        bally=perbally;
+    }
+    function change() {
+        ballvx=Number(document.f.vx.value);
+        ballvy=Number(document.f.vy.value);
+    }//在form标签里调用onsubmit=&quot;return change();&quot;需要设置return false不然会整个刷新页面
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;400&quot; style=&quot;background-color: aqua;&quot;&gt;
+        your browser don&#39;t support convas
+    &lt;/canvas&gt;
+    &lt;form name=&quot;f&quot; id=&quot;f&quot;&gt;
+        水平速度:&lt;input name=&quot;vx&quot; id=&quot;vx&quot; type=&quot;number&quot; value=&quot;2&quot;&gt;
+        垂直速度:&lt;input name=&quot;vy&quot; id=&quot;xy&quot; type=&quot;number&quot; value=&quot;4&quot;&gt;
+        &lt;input type=&quot;button&quot; value=&quot;change&quot; onclick=&quot;change()&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>附：<br>1.<a href="http://www.friendsofed.com/downloads.html" target="_blank" rel="noopener">The Essential Guide to HTML5—using games to learn html5 and javascript</a></p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>H5</tag>
+        <tag>canvas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CMD批处理命令的强大</title>
     <url>/articles/p11.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>前几天我用quickbms批量提取韩游天命之子（destiny_child）的pck文件，提取出来的是一个一个文件夹：</code></pre>
@@ -1383,47 +1328,58 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>风往南吹-想法</title>
-    <url>/articles/p18.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" type="song" id="145586"></meting-js></p>
-<p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
-<p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
-<p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
-<p>2018-03-20<br>原文：疼痛让我麻木的大脑清醒了一些，我内心里要把这种横来的力量化作工作上的动力，为了我的工作，我失去了曾经认为要相伴一生的微微，所以我唯一能继续做的，就是努力地去工作，我失去的，不能白失去。<br>想法：补偿心理，失去的想要以别的方式补回来[呲牙]</p>
-<p>2018-03-20<br>原文：嗯，该过去的就是会过去，不过一切都没关系，因为昨天总会被今天代替，今天又会很快被明天代替，所以人都该有希望，因为没有力量能阻挡明天的到来。<br>想法：</p>
-<p>2018-03-20<br>原文：有时候我觉得世界就想一台计算精确的计算机，每一个人都在其中，接受着它的安排。<br>想法：</p>
-<p>2018-03-20<br>原文：我心里想，嘿，我这总花公司钱请客吃饭的，到头来还总能加薪受表扬，这，这何乐而不为呢？用脑子挣钱和用腿挣钱就差这个区别，呵呵。<br>想法：</p>
-<p>2018-03-20<br>原文：因为我一直认为接吻时睁着眼的女人不值得信任<br>想法：</p>
-<p>2018-03-20<br>原文：不过每当我在回忆当时的事情，就嘲笑自己的无知和幼稚，殊不知张哥每次关心我伤口的时候，实际上就是在提醒我，他曾经为我的生命都做出过贡献，让我觉得为他做事是天经地义一般。<br>想法：</p>
-<p>2018-03-20<br>原文：两个人好了容易，分开就恶心了。<br>想法：</p>
-<p>2018-03-20<br>原文：我对女人的手非常敏感，可能大家对女人的手散发女人味很难理解？其实我觉得这只是种感觉，很细、很长又很肉乎的就是女人味的那种。<br>想法：</p>
-<p>2018-03-20<br>原文：自从经历了张全佑的那次事情之后，我一直感觉自己太累了，体力加脑力都在辛苦，所以我刚躺下就已经睡着了。<br>想法：过了35岁就干不动了，这是亚健康ಥ_ಥ</p>
-<p>2018-03-20<br>原文：因为我发现，我真心的爱整体的人们，我爱这片土地，但又痛恨每一个单独的人。<br>想法：每一个人都是可爱的，但是分开看又是另一回事了(＠_＠;)</p>
-<p>2018-03-20<br>原文：做人、做公司都是这样，如果不向上发展了，脚步一旦停滞就会后退，就像逆水行舟。<br>想法：永远不要让自己太安逸(๑•̀ㅂ•́)ง</p>
-<p>2018-03-21<br>原文：但是问题没有我想象的那般简单，因为当一个集体不能团结一致工作的话，那麻烦根本就是你难以想象的。交待下去的事情，员工还是正常地去做，但是你就是感觉很别扭，总是在某个地方让你觉得吃惊，就好像有很大仇恨一样，这就是内斗的痛苦。<br>想法：</p>
-<p>2018-03-21<br>原文：我发现，这款游戏真的很好玩，关键是它代表的风格，是一种更高更强的味道。和真实生活中的竞争颇有相似，而且它在游戏开始的时候，基本上是公平的，而且比赛双方的机会也是一样的。这点和生活不同，生活中除了时间外，就没有公平可言了。<br>想法：quake3，《雷神之锤：竞技场》是2001年由id software推出的吃鸡游戏（没错，最早的第一人称fps3D实施对抗类打枪游戏▄█▀█●），id software的每一款游戏都在挑战显卡和CPU的最高性能，推动着硬件的不断发展（就像现在的王者荣耀ヾ(≧O≦)〃嗷~）</p>
-<p>2018-03-21<br>原文：现在到好，我开始烦恼女人，因为前来和她说话的人太多了，总会碍到我喝酒。不过对这些网友前来约她，我心里也有反感，只是我自己告诉自己不能表现出来，否则又会有可能发生一段好开始不好终结的感情，这是我最不希望的感情，因为我觉得男人扔到感情里，是在糟蹋自己，而且我已经累了。<br>想法：</p>
-<p>2018-03-21<br>原文：在这个时候，我突然对女人产生一种厌恶，因为我当时就认为这钱不会丢失，只要我安排得当。<br>想法：女人的可怕你不懂，世界上最可怕的动物莫过于女人╥﹏╥</p>
-<p>2018-03-21<br>原文：饭菜基本上都是我们吃个刚好，没有过多的讲究排场。看来，富贵不是吃的。<br>想法：</p>
-<p>2018-03-21<br>原文：我听完这话后，我都呆住了。因为我一直认为的大好人、大男人居然是这样卑鄙龌龊。还好意思向一个弱不禁风的女孩子要分手费，而且张口还不是小数。我刹那间感觉天旋地转，好像天和地是掉过来的，原来认为是好的，居然都是坏的。我的世界观都跌进了混乱当众，一直认为正确的事情被全盘推翻了一样，不由得让我心里一阵抽搐。<br>想法：</p>
-<p>2018-03-21<br>原文：我早听说过，上海边上有一个叫周庄的地方，那里号称是东方的威尼斯，城市房子中间都是水道组成，过往的交通工具都是大小船舶，咱去不了威尼斯，就去个周庄也不错，况且还有美女相伴。<br>想法：mark一下，有机会一定要去看看～(^з^)-</p>
-<p>2018-03-21<br>原文：且站在石桥上，和站在北京山顶上看日落的感觉也完全不同，就好像是太阳特别优待你，在她就要隐去的瞬间里，把最后一点浪漫和温存都偷偷地洒给需要她的人。<br>想法：</p>
-<p>2018-03-21<br>原文：灵魂在阴影中挣扎，似乎在快乐中的一个个瞬间，总是带有空洞和压抑，让我有种余恨未消的感觉，但这种感觉来得莫名其妙，我不明白怎么会有这样的感觉。<br>想法：</p>
-<p>2018-03-21<br>原文：我开始想，是不是这个社会的教育下，人的外面和里面永远不能配套？<br>想法：</p>
-<p>2018-03-21<br>原文：飞机要是一路顺风就肯定要掉下去了，我得逆风才飞的起来啊。<br>想法：</p>
-<p>2018-03-21<br>原文：七、不过男人的这种情结也不能完全怪罪于可怜的男人，因为这个观点是女人们慢慢帮着树立起来的，她们也是帮凶。按照自己的意愿去捏造男人的性情和行为，然后又冠冕堂皇的用各种理由去指责男人的缺点，却不知道这一切的制造者才是罪魁祸首。<br>想法：</p>
-<p>2018-03-21<br>原文：二十、我的脑子一片混乱，我在颠簸中，看到罗骁呆呆的样子，不知道为什么，我开始发现这张天使面孔底下，充满了邪恶的忧郁。我发现她很反常，面孔中有内疚的表情，但却不知道像上次我受伤那样帮我止血。<br>想法：</p>
-<p>2018-03-21<br>原文：我也明白事理，人家有事情要忙，这是第一；男女经常是只能共福却不能共难这是第二；人在世界上只能相信自己，对其他人还是不要抱有太大的希望，否则希望越大失望越大。<br>想法：</p>
-<p>2018-03-21<br>原文：我在想，为什么会这样呢？命运为什么总捉弄强者呢？不过我很快就冷静了下来，因为现在即便再怎么样，对已经发生的事情也无济于事，最应该做的，是立刻把事情查清楚，毕竟这300万不会莫名其妙的人间蒸发。<br>想法：</p>
-<p>2018-03-21<br>原文：后来我发现，罗骁这种成熟的女人，似乎已经被社会沾染的太油滑，太圆滑了，根本就不能够完全赤诚相待。虽然也不知道罗骁究竟是怎么圆滑，但就是感觉相处，她的处事方式让我产生了一种危机感。也许女人注定就不要太强，否则就只能找那些可以与她互补的人才可以相安无事的在一起。或者我这样说欠缺公平，毕竟我现在的情况让任何人难以有安全感，而罗骁这样的女人最需要的就是安全感。<br>想法：</p>
-<p>2018-03-21<br>原文：生活往往是出人意料的，也许你一直以为是好的，实际却是坏的。不过你一直怀疑的，也许反而是最好的。<br>想法：</p>
-<p>2018-03-21<br>原文：一阵风从我的右边刮来，好冷，冷的刺骨，怎么风向南刮会冷呢？我混沌的脑子用唯一剩下的智慧思考这个问题。！！！！原来，现在刮的是北风啊，原来风往南吹，吹的却是北风，难怪我一直错觉风往南吹时是那么温暖，原来是刺骨的北风。怪不得我以为的好人却都害了我，而爱我的人却总是离开自己，原来，我早就是个自以为是的瞎子了……<br>想法：男主弥留之际的顿悟，看的不是太懂(°ー°〃)</p>
-<p>2018-03-21<br>原文：我既然已经表示了辞职，就不会再回头，否则就算回头了，也未必能得到重用。<br>想法：辞职上司挽留只是礼貌性的，想好再辞职，提出辞职就不能再待下去了(。_。)</p>
-<p>原文阅读☞<a href="/assets/files/1206665799.txt">风往南吹.TXT</a>，结局泪目T_T，又被作者摆了一道</p>
+    <title>ajax异步加载</title>
+    <url>/articles/p12.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p12-1.png" alt="p12-1" title="p12-1"></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>ajax即Asynchronous Javascript And XML,异步javascript和XML;json即JavaScript Object Notation,javascript对象标记.</code></pre>
+<h3 id="使用原生js创建XMLHttpRequest对象"><a href="#使用原生js创建XMLHttpRequest对象" class="headerlink" title="使用原生js创建XMLHttpRequest对象"></a>使用原生js创建XMLHttpRequest对象</h3><pre><code class="javascript">var xhr = new XMLHttpRequest;
+xhr.open(&quot;GET&quot;, &quot;https://blog.madeai.cn/api&quot;);
+xhr.onload = function () {
+    var data = JSON.parse(xhr.responseText);
+    doSomething(data);
+}
+xhr.send();</code></pre>
+<ol>
+<li>其中<code>xhr.open();</code>有3个传入参数,第一个是数据传输的方式,最常用的就是<code>post</code>,<code>get</code>,<code>put</code>,<code>delect</code>了.第二个是后端的URL,值得注意的是如果是<strong>跨域</strong>的话,需要在后端PHP代码前添加<code>header(&quot;Access-Control-Allow-Origin: *&quot;);</code>,或者用代理.<br>第三参数是Boolean型的可选项,表示是否异步加载;</li>
+<li><code>xhr.onload();</code>是在数据加载完成后要处理的事情;也可以用<code>xhr.onreadystatechange=doSomething;</code>.<blockquote>
+<p>onreadystatechange 是一个事件句柄。它的值 (state_Change) 是一个函数的名称，当 XMLHttpRequest 对象的状态发生改变时，会触发此函数。状态从 0 (uninitialized) 到 4 (complete) 进行变化。仅在状态为 4 时，我们才执行代码。</p>
+</blockquote>
+</li>
+<li>最后一个<code>xhr.send();</code>就是将请求发送到服务器端了;</li>
+</ol>
+<h3 id="使用jquery封装的-ajax-和-getJSON-函数"><a href="#使用jquery封装的-ajax-和-getJSON-函数" class="headerlink" title="使用jquery封装的$ajax()和$getJSON()函数"></a>使用jquery封装的$ajax()和$getJSON()函数</h3><ul>
+<li>$ajax比较灵活哦,异步加载任何格式的数据;<pre><code class="javascript">$.ajax({
+  type: &quot;POST&quot;,//像登陆一样的比较重要的数据要用post,放进请求体里哦;
+  url: &quot;http://madeai.cn/api&quot;,
+  dataType: &quot;json&quot;,
+  data: {
+      username:444,
+      password:6666//用md5签名,数据传输更安全;
+  },
+  success: function (obj) {
+      doSomething(obj);
+  },
+  error: function(XMLHttpRequest, textStatus, errorThrown) {
+      console.log(XMLHttpRequest.status,XMLHttpRequest.status,textStatus);
+  },</code></pre>
+</li>
+<li>用$getJSON()来获取json数据;<pre><code class="javascript">$.getJSON(&quot;http://madeai.cn/api&quot;, &quot;&quot;, function (data) {
+  $.each(data[&quot;result&quot;].tracks, function (i, item) {//each循环 使用$.each方法遍历返回的数据data
+  /*doSomething;
+   *function();中第一个参数是数组的索引index,第二个是原数组对象;
+   */
+  });
+});</code></pre>
+</li>
+</ul>
+<p>jquery还封装了类似<code>$get()</code>,<code>$.post()</code>的函数;</p>
+<hr>
+<p>demo click <a href="https://huangyebiaoke.github.io/item/example/ajax&json.html" target="_blank" rel="noopener">here</a></p>
 ]]></content>
       <tags>
-        <tag>think</tag>
-        <tag>reading book</tag>
+        <tag>JS</tag>
+        <tag>AJAX</tag>
+        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
@@ -1590,26 +1546,6 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>爱丽丝梦游仙境-想法</title>
-    <url>/articles/p20.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>2018-07-13<br>原文：起来，哭是没用的！”爱丽丝严厉地对自己说，”限你-，分钟内就停止哭！<br>想法：</p>
-<p>2018-07-13<br>原文：这个小孩很喜欢装成两个人<br>想法：</p>
-<p>2018-07-13<br>原文：小鳄鱼怎样保养 它闪亮的尾巴， 把尼罗河水灌进 每一片金色的鳞甲。 它笑得多么快乐， 伸开爪子的姿势多么文雅， 它在欢迎那些小鱼 游进它温柔微笑着的嘴巴。<br>想法：</p>
-<p>2018-07-13<br>原文：她第一个念头是掉进海里了。她对自己说：”那么我可以坐火车回去了，”<br>想法：孩子的想法可爱又单纯ಠ౪ಠ</p>
-<p>2018-07-13<br>原文：只渡渡鸟（一种现已绝种的鸟，原产非洲毛里求斯。）<br>想法：中学课本上的渡渡鸟，可怜的小家伙╥﹏╥</p>
-<p>2018-07-13<br>原文：我发现了什么吃的东西时，当然知道’这’是指什么。’这’通常指一只青蛙或一条蚯蚓<br>想法：可爱的小鸭子～(^з^)-</p>
-<p>2018-07-13<br>原文：”你的口袋里还有别的东西吗，”它转向爱丽丝问道。 “只有一个顶针了。”爱丽丝伤心地说。 “把它拿来。”渡渡鸟说， 这时，大家又围住了爱丽丝，渡渡鸟接过顶针后兑严肃地递给了她，说：”我们请求你接受这只精致的顶针，”<br>想法：自己给自己奖品嘛？渡渡鸟严肃起来可真好笑ಠ౪ಠ</p>
-<p>2018-07-13<br>原文： “你记得吗，你答应过讲你的历史，”爱丽丝说，”作为什么恨……恨’m’和’g’呀，”她压低声音，说完了这句话，她怕说出猫和狗这两个字惹老鼠生气，于是只说出猫和狗两字的拼音字头。<br>想法：这个翻译我不同意，猫就是m，狗就是g，有点low还是写c和d好。</p>
-<p>2018-07-13<br>原文：因为今晨我没事干，所以我要跟你捣捣蛋<br>想法：</p>
-<p>2018-07-13<br>原文：你要个碗（弯）！”爱丽丝说，由于她总是热心帮助别人的，因此就焦急她四周寻找，”哦，让我帮你找找看。”<br>想法：傻白甜的天然呆爱丽丝o(*≧▽≦)ツ┏━┓拍桌狂笑</p>
-<p>2018-07-13<br>原文：”别说了，妈！你这样罗嗦，就是牡蛎都忍耐不了。”小螃蟹耐着小脾气说。<br>想法：螃蟹都是这样吃杜蛎的么？ಥ_ಥ</p>
-]]></content>
-      <tags>
-        <tag>think</tag>
-        <tag>reading book</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一些linux命令</title>
     <url>/articles/p17.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="//img2.tfd.com/pp/wikiimg.ashx?p=commons/thumb/3/35/Tux.svg/280px-Tux.svg.png" alt="liunx"></p>
@@ -1669,89 +1605,66 @@ xhr.send();</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>数据结构和算法分析(第三版)练习</title>
-    <url>/articles/p22.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="recursive"><a href="#recursive" class="headerlink" title="recursive"></a>recursive</h3><ul>
-<li>base case</li>
-<li>making progress</li>
-<li>design rule</li>
-<li>compound interst rule</li>
-</ul>
-<h3 id="自动装箱和拆箱"><a href="#自动装箱和拆箱" class="headerlink" title="自动装箱和拆箱"></a>自动装箱和拆箱</h3><pre><code class="java">class BoxingDemo{
-    public static void main(String[] args) {
-        // Cell类中的set方法传入的是Object类型
-        Cell&lt;Integer&gt; c=new Cell&lt;&gt;();
-        c.set(37);
-        int val=c.get();
-        System.out.println(val+&quot;&quot;);
-    }
-}</code></pre>
-<h3 id="java5中的通配符-wildcard"><a href="#java5中的通配符-wildcard" class="headerlink" title="java5中的通配符(wildcard)"></a>java5中的<strong>通配符</strong>(wildcard)</h3><pre><code class="java">/*可以传入Shape类型或者它的子类Square*/
-public static double totalArea(Collection&lt;? extends Shape&gt; arr){
-    double total=0;
-    for (Shape s : arr) {
-        if (s!=null) {
-            total+=s.area();
-        }
-        return total;
-    }
-}</code></pre>
-<h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><pre><code class="java">public static &lt;AnyType extends Comparable&lt;? super AnyType&gt;&gt;  int binarySearch(AnyType[] a,AnyType x){
-    int low=0,high=a.length-1;
-    while(low&lt;=high){
-        int mid=(low+high)/2;
-        if(a[mid].compareTo(x)&lt;0){
-            low=mid+1;
-        }else if(a[mid].compareTo(x)&gt;0){
-            high=mid-1;
-        }else{
-            return mid;
-        }
-    }
-    return -1;
-}</code></pre>
-<h3 id="ADT-abstract-data-type"><a href="#ADT-abstract-data-type" class="headerlink" title="ADT(abstract data type)"></a>ADT(abstract data type)</h3><pre><code>是带有一组操作的一些对象的集合.抽象数据类型是数学的抽象(表,集合,图);</code></pre>
-<h4 id="Iterator接口"><a href="#Iterator接口" class="headerlink" title="Iterator接口"></a>Iterator接口</h4><pre><code class="java">public static&lt;AnyType&gt; void print(Collection&lt;AnyType&gt; coll){
-    Iterator&lt;AnyType&gt; itr=coll.iterator();
-    while(itr.hasNext()){
-        AnyType item=itr.next();
-        System.out.println(item);
-    }
-}</code></pre>
-<h4 id="List接口-ArrayList-LinkedList"><a href="#List接口-ArrayList-LinkedList" class="headerlink" title="List接口(ArrayList,LinkedList)"></a>List接口(ArrayList,LinkedList)</h4><table>
-<thead>
-<tr>
-<th align="left"></th>
-<th align="left">ArrayList</th>
-<th align="left">LinkedList</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">实现</td>
-<td align="left">可增长的数组</td>
-<td align="left">双链表</td>
-</tr>
-<tr>
-<td align="left">优点</td>
-<td align="left">get&amp;set耗费常数级的时间</td>
-<td align="left">在现有表进行删除和插入都是常数级的耗时</td>
-</tr>
-<tr>
-<td align="left">缺点</td>
-<td align="left">新项的插入和现有项的删除代价昂贵,除非是在末端</td>
-<td align="left">由于不容易做索引,因此对get的调用时昂贵的O(N)</td>
-</tr>
-</tbody></table>
-<p><em>tips:</em></p>
-<ul>
-<li>LinkedList常用方法:addFirst,removeFist,addLast,removeLast,getFirst,getLast;</li>
-</ul>
+    <title>风往南吹-想法</title>
+    <url>/articles/p18.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" type="song" id="145586"></meting-js></p>
+<p>2018-03-20<br>原文：人的感情就是这样善变，当你的注意力被吸引过来的时候，所有的精力就会投入其中，而当这些注意力转移后，一切的一切就都全变了，以前越专心，改变就会越大。<br>想法：</p>
+<p>2018-03-20<br>原文：还是了解的太迟了？我发觉感情这个玩意其实就是有足够精力才能享受的快乐，是给生活锦上添花的东西，而不是生存的必要条件。<br>想法：先填饱肚子，饱暖思淫欲(,• ₃ •,)</p>
+<p>2018-03-20<br>原文：我很清楚，从感情上讲，女人通常记忆最深的是她第一个男人，而男人则刚好相反，记忆里的总是最后一个女人。<br>想法：</p>
+<p>2018-03-20<br>原文：疼痛让我麻木的大脑清醒了一些，我内心里要把这种横来的力量化作工作上的动力，为了我的工作，我失去了曾经认为要相伴一生的微微，所以我唯一能继续做的，就是努力地去工作，我失去的，不能白失去。<br>想法：补偿心理，失去的想要以别的方式补回来[呲牙]</p>
+<p>2018-03-20<br>原文：嗯，该过去的就是会过去，不过一切都没关系，因为昨天总会被今天代替，今天又会很快被明天代替，所以人都该有希望，因为没有力量能阻挡明天的到来。<br>想法：</p>
+<p>2018-03-20<br>原文：有时候我觉得世界就想一台计算精确的计算机，每一个人都在其中，接受着它的安排。<br>想法：</p>
+<p>2018-03-20<br>原文：我心里想，嘿，我这总花公司钱请客吃饭的，到头来还总能加薪受表扬，这，这何乐而不为呢？用脑子挣钱和用腿挣钱就差这个区别，呵呵。<br>想法：</p>
+<p>2018-03-20<br>原文：因为我一直认为接吻时睁着眼的女人不值得信任<br>想法：</p>
+<p>2018-03-20<br>原文：不过每当我在回忆当时的事情，就嘲笑自己的无知和幼稚，殊不知张哥每次关心我伤口的时候，实际上就是在提醒我，他曾经为我的生命都做出过贡献，让我觉得为他做事是天经地义一般。<br>想法：</p>
+<p>2018-03-20<br>原文：两个人好了容易，分开就恶心了。<br>想法：</p>
+<p>2018-03-20<br>原文：我对女人的手非常敏感，可能大家对女人的手散发女人味很难理解？其实我觉得这只是种感觉，很细、很长又很肉乎的就是女人味的那种。<br>想法：</p>
+<p>2018-03-20<br>原文：自从经历了张全佑的那次事情之后，我一直感觉自己太累了，体力加脑力都在辛苦，所以我刚躺下就已经睡着了。<br>想法：过了35岁就干不动了，这是亚健康ಥ_ಥ</p>
+<p>2018-03-20<br>原文：因为我发现，我真心的爱整体的人们，我爱这片土地，但又痛恨每一个单独的人。<br>想法：每一个人都是可爱的，但是分开看又是另一回事了(＠_＠;)</p>
+<p>2018-03-20<br>原文：做人、做公司都是这样，如果不向上发展了，脚步一旦停滞就会后退，就像逆水行舟。<br>想法：永远不要让自己太安逸(๑•̀ㅂ•́)ง</p>
+<p>2018-03-21<br>原文：但是问题没有我想象的那般简单，因为当一个集体不能团结一致工作的话，那麻烦根本就是你难以想象的。交待下去的事情，员工还是正常地去做，但是你就是感觉很别扭，总是在某个地方让你觉得吃惊，就好像有很大仇恨一样，这就是内斗的痛苦。<br>想法：</p>
+<p>2018-03-21<br>原文：我发现，这款游戏真的很好玩，关键是它代表的风格，是一种更高更强的味道。和真实生活中的竞争颇有相似，而且它在游戏开始的时候，基本上是公平的，而且比赛双方的机会也是一样的。这点和生活不同，生活中除了时间外，就没有公平可言了。<br>想法：quake3，《雷神之锤：竞技场》是2001年由id software推出的吃鸡游戏（没错，最早的第一人称fps3D实施对抗类打枪游戏▄█▀█●），id software的每一款游戏都在挑战显卡和CPU的最高性能，推动着硬件的不断发展（就像现在的王者荣耀ヾ(≧O≦)〃嗷~）</p>
+<p>2018-03-21<br>原文：现在到好，我开始烦恼女人，因为前来和她说话的人太多了，总会碍到我喝酒。不过对这些网友前来约她，我心里也有反感，只是我自己告诉自己不能表现出来，否则又会有可能发生一段好开始不好终结的感情，这是我最不希望的感情，因为我觉得男人扔到感情里，是在糟蹋自己，而且我已经累了。<br>想法：</p>
+<p>2018-03-21<br>原文：在这个时候，我突然对女人产生一种厌恶，因为我当时就认为这钱不会丢失，只要我安排得当。<br>想法：女人的可怕你不懂，世界上最可怕的动物莫过于女人╥﹏╥</p>
+<p>2018-03-21<br>原文：饭菜基本上都是我们吃个刚好，没有过多的讲究排场。看来，富贵不是吃的。<br>想法：</p>
+<p>2018-03-21<br>原文：我听完这话后，我都呆住了。因为我一直认为的大好人、大男人居然是这样卑鄙龌龊。还好意思向一个弱不禁风的女孩子要分手费，而且张口还不是小数。我刹那间感觉天旋地转，好像天和地是掉过来的，原来认为是好的，居然都是坏的。我的世界观都跌进了混乱当众，一直认为正确的事情被全盘推翻了一样，不由得让我心里一阵抽搐。<br>想法：</p>
+<p>2018-03-21<br>原文：我早听说过，上海边上有一个叫周庄的地方，那里号称是东方的威尼斯，城市房子中间都是水道组成，过往的交通工具都是大小船舶，咱去不了威尼斯，就去个周庄也不错，况且还有美女相伴。<br>想法：mark一下，有机会一定要去看看～(^з^)-</p>
+<p>2018-03-21<br>原文：且站在石桥上，和站在北京山顶上看日落的感觉也完全不同，就好像是太阳特别优待你，在她就要隐去的瞬间里，把最后一点浪漫和温存都偷偷地洒给需要她的人。<br>想法：</p>
+<p>2018-03-21<br>原文：灵魂在阴影中挣扎，似乎在快乐中的一个个瞬间，总是带有空洞和压抑，让我有种余恨未消的感觉，但这种感觉来得莫名其妙，我不明白怎么会有这样的感觉。<br>想法：</p>
+<p>2018-03-21<br>原文：我开始想，是不是这个社会的教育下，人的外面和里面永远不能配套？<br>想法：</p>
+<p>2018-03-21<br>原文：飞机要是一路顺风就肯定要掉下去了，我得逆风才飞的起来啊。<br>想法：</p>
+<p>2018-03-21<br>原文：七、不过男人的这种情结也不能完全怪罪于可怜的男人，因为这个观点是女人们慢慢帮着树立起来的，她们也是帮凶。按照自己的意愿去捏造男人的性情和行为，然后又冠冕堂皇的用各种理由去指责男人的缺点，却不知道这一切的制造者才是罪魁祸首。<br>想法：</p>
+<p>2018-03-21<br>原文：二十、我的脑子一片混乱，我在颠簸中，看到罗骁呆呆的样子，不知道为什么，我开始发现这张天使面孔底下，充满了邪恶的忧郁。我发现她很反常，面孔中有内疚的表情，但却不知道像上次我受伤那样帮我止血。<br>想法：</p>
+<p>2018-03-21<br>原文：我也明白事理，人家有事情要忙，这是第一；男女经常是只能共福却不能共难这是第二；人在世界上只能相信自己，对其他人还是不要抱有太大的希望，否则希望越大失望越大。<br>想法：</p>
+<p>2018-03-21<br>原文：我在想，为什么会这样呢？命运为什么总捉弄强者呢？不过我很快就冷静了下来，因为现在即便再怎么样，对已经发生的事情也无济于事，最应该做的，是立刻把事情查清楚，毕竟这300万不会莫名其妙的人间蒸发。<br>想法：</p>
+<p>2018-03-21<br>原文：后来我发现，罗骁这种成熟的女人，似乎已经被社会沾染的太油滑，太圆滑了，根本就不能够完全赤诚相待。虽然也不知道罗骁究竟是怎么圆滑，但就是感觉相处，她的处事方式让我产生了一种危机感。也许女人注定就不要太强，否则就只能找那些可以与她互补的人才可以相安无事的在一起。或者我这样说欠缺公平，毕竟我现在的情况让任何人难以有安全感，而罗骁这样的女人最需要的就是安全感。<br>想法：</p>
+<p>2018-03-21<br>原文：生活往往是出人意料的，也许你一直以为是好的，实际却是坏的。不过你一直怀疑的，也许反而是最好的。<br>想法：</p>
+<p>2018-03-21<br>原文：一阵风从我的右边刮来，好冷，冷的刺骨，怎么风向南刮会冷呢？我混沌的脑子用唯一剩下的智慧思考这个问题。！！！！原来，现在刮的是北风啊，原来风往南吹，吹的却是北风，难怪我一直错觉风往南吹时是那么温暖，原来是刺骨的北风。怪不得我以为的好人却都害了我，而爱我的人却总是离开自己，原来，我早就是个自以为是的瞎子了……<br>想法：男主弥留之际的顿悟，看的不是太懂(°ー°〃)</p>
+<p>2018-03-21<br>原文：我既然已经表示了辞职，就不会再回头，否则就算回头了，也未必能得到重用。<br>想法：辞职上司挽留只是礼貌性的，想好再辞职，提出辞职就不能再待下去了(。_。)</p>
+<p>原文阅读☞<a href="/assets/files/1206665799.txt">风往南吹.TXT</a>，结局泪目T_T，又被作者摆了一道</p>
 ]]></content>
-      <categories>
-        <category>notebook</category>
-      </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>think</tag>
+        <tag>reading book</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爱丽丝梦游仙境-想法</title>
+    <url>/articles/p20.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>2018-07-13<br>原文：起来，哭是没用的！”爱丽丝严厉地对自己说，”限你-，分钟内就停止哭！<br>想法：</p>
+<p>2018-07-13<br>原文：这个小孩很喜欢装成两个人<br>想法：</p>
+<p>2018-07-13<br>原文：小鳄鱼怎样保养 它闪亮的尾巴， 把尼罗河水灌进 每一片金色的鳞甲。 它笑得多么快乐， 伸开爪子的姿势多么文雅， 它在欢迎那些小鱼 游进它温柔微笑着的嘴巴。<br>想法：</p>
+<p>2018-07-13<br>原文：她第一个念头是掉进海里了。她对自己说：”那么我可以坐火车回去了，”<br>想法：孩子的想法可爱又单纯ಠ౪ಠ</p>
+<p>2018-07-13<br>原文：只渡渡鸟（一种现已绝种的鸟，原产非洲毛里求斯。）<br>想法：中学课本上的渡渡鸟，可怜的小家伙╥﹏╥</p>
+<p>2018-07-13<br>原文：我发现了什么吃的东西时，当然知道’这’是指什么。’这’通常指一只青蛙或一条蚯蚓<br>想法：可爱的小鸭子～(^з^)-</p>
+<p>2018-07-13<br>原文：”你的口袋里还有别的东西吗，”它转向爱丽丝问道。 “只有一个顶针了。”爱丽丝伤心地说。 “把它拿来。”渡渡鸟说， 这时，大家又围住了爱丽丝，渡渡鸟接过顶针后兑严肃地递给了她，说：”我们请求你接受这只精致的顶针，”<br>想法：自己给自己奖品嘛？渡渡鸟严肃起来可真好笑ಠ౪ಠ</p>
+<p>2018-07-13<br>原文： “你记得吗，你答应过讲你的历史，”爱丽丝说，”作为什么恨……恨’m’和’g’呀，”她压低声音，说完了这句话，她怕说出猫和狗这两个字惹老鼠生气，于是只说出猫和狗两字的拼音字头。<br>想法：这个翻译我不同意，猫就是m，狗就是g，有点low还是写c和d好。</p>
+<p>2018-07-13<br>原文：因为今晨我没事干，所以我要跟你捣捣蛋<br>想法：</p>
+<p>2018-07-13<br>原文：你要个碗（弯）！”爱丽丝说，由于她总是热心帮助别人的，因此就焦急她四周寻找，”哦，让我帮你找找看。”<br>想法：傻白甜的天然呆爱丽丝o(*≧▽≦)ツ┏━┓拍桌狂笑</p>
+<p>2018-07-13<br>原文：”别说了，妈！你这样罗嗦，就是牡蛎都忍耐不了。”小螃蟹耐着小脾气说。<br>想法：螃蟹都是这样吃杜蛎的么？ಥ_ಥ</p>
+]]></content>
+      <tags>
+        <tag>think</tag>
         <tag>reading book</tag>
       </tags>
   </entry>
@@ -1926,6 +1839,93 @@ public static double totalArea(Collection&lt;? extends Shape&gt; arr){
       </tags>
   </entry>
   <entry>
+    <title>数据结构和算法分析(第三版)练习</title>
+    <url>/articles/p22.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="recursive"><a href="#recursive" class="headerlink" title="recursive"></a>recursive</h3><ul>
+<li>base case</li>
+<li>making progress</li>
+<li>design rule</li>
+<li>compound interst rule</li>
+</ul>
+<h3 id="自动装箱和拆箱"><a href="#自动装箱和拆箱" class="headerlink" title="自动装箱和拆箱"></a>自动装箱和拆箱</h3><pre><code class="java">class BoxingDemo{
+    public static void main(String[] args) {
+        // Cell类中的set方法传入的是Object类型
+        Cell&lt;Integer&gt; c=new Cell&lt;&gt;();
+        c.set(37);
+        int val=c.get();
+        System.out.println(val+&quot;&quot;);
+    }
+}</code></pre>
+<h3 id="java5中的通配符-wildcard"><a href="#java5中的通配符-wildcard" class="headerlink" title="java5中的通配符(wildcard)"></a>java5中的<strong>通配符</strong>(wildcard)</h3><pre><code class="java">/*可以传入Shape类型或者它的子类Square*/
+public static double totalArea(Collection&lt;? extends Shape&gt; arr){
+    double total=0;
+    for (Shape s : arr) {
+        if (s!=null) {
+            total+=s.area();
+        }
+        return total;
+    }
+}</code></pre>
+<h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><pre><code class="java">public static &lt;AnyType extends Comparable&lt;? super AnyType&gt;&gt;  int binarySearch(AnyType[] a,AnyType x){
+    int low=0,high=a.length-1;
+    while(low&lt;=high){
+        int mid=(low+high)/2;
+        if(a[mid].compareTo(x)&lt;0){
+            low=mid+1;
+        }else if(a[mid].compareTo(x)&gt;0){
+            high=mid-1;
+        }else{
+            return mid;
+        }
+    }
+    return -1;
+}</code></pre>
+<h3 id="ADT-abstract-data-type"><a href="#ADT-abstract-data-type" class="headerlink" title="ADT(abstract data type)"></a>ADT(abstract data type)</h3><pre><code>是带有一组操作的一些对象的集合.抽象数据类型是数学的抽象(表,集合,图);</code></pre>
+<h4 id="Iterator接口"><a href="#Iterator接口" class="headerlink" title="Iterator接口"></a>Iterator接口</h4><pre><code class="java">public static&lt;AnyType&gt; void print(Collection&lt;AnyType&gt; coll){
+    Iterator&lt;AnyType&gt; itr=coll.iterator();
+    while(itr.hasNext()){
+        AnyType item=itr.next();
+        System.out.println(item);
+    }
+}</code></pre>
+<h4 id="List接口-ArrayList-LinkedList"><a href="#List接口-ArrayList-LinkedList" class="headerlink" title="List接口(ArrayList,LinkedList)"></a>List接口(ArrayList,LinkedList)</h4><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">ArrayList</th>
+<th align="left">LinkedList</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">实现</td>
+<td align="left">可增长的数组</td>
+<td align="left">双链表</td>
+</tr>
+<tr>
+<td align="left">优点</td>
+<td align="left">get&amp;set耗费常数级的时间</td>
+<td align="left">在现有表进行删除和插入都是常数级的耗时</td>
+</tr>
+<tr>
+<td align="left">缺点</td>
+<td align="left">新项的插入和现有项的删除代价昂贵,除非是在末端</td>
+<td align="left">由于不容易做索引,因此对get的调用时昂贵的O(N)</td>
+</tr>
+</tbody></table>
+<p><em>tips:</em></p>
+<ul>
+<li>LinkedList常用方法:addFirst,removeFist,addLast,removeLast,getFirst,getLast;</li>
+</ul>
+]]></content>
+      <categories>
+        <category>notebook</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>reading book</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>就是不听话</title>
     <url>/articles/p5.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><iframe src="//player.bilibili.com/player.html?aid=15018146&bvid=BV1Gx41137eT&cid=24462732&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
@@ -1955,6 +1955,33 @@ withhis daughter whenever how busy he is.
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git创建版本库和关联远程库</title>
+    <url>/articles/p8.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
+<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
+<li>mkdir LearningDataStructure//创建本地文件夹</li>
+<li>cd LearningDataStructure//进入文件夹</li>
+<li>pwd//显示当前目录<pre><code class="bash">/e/LearningDataStructure</code></pre>
+</li>
+<li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li>
+<li>git add README.md//把文件添加到仓库</li>
+<li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash">[master (root-commit) cb926e7] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt</code></pre>
+<h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
+<li>click “Create a new repository”</li>
+<li>git remote add origin <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#103;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
+<li>git remote remove origin//取消本地关联远程库</li>
+<li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
+</ol>
+<hr>
+<p>附:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2043,33 +2070,6 @@ typedef struct{
       </tags>
   </entry>
   <entry>
-    <title>git创建版本库和关联远程库</title>
-    <url>/articles/p8.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/assets/blogimg/p8-1.png" alt="banner"></p>
-<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><ol>
-<li>mkdir LearningDataStructure//创建本地文件夹</li>
-<li>cd LearningDataStructure//进入文件夹</li>
-<li>pwd//显示当前目录<pre><code class="bash">/e/LearningDataStructure</code></pre>
-</li>
-<li>git init//初始化<br> Initialized empty Git repository in /e/LearningDataStructure/.git/</li>
-<li>git add README.md//把文件添加到仓库</li>
-<li>git commit -m “这是一个readme文件”//把文件提交到仓库并添加描述<pre><code class="bash">[master (root-commit) cb926e7] wrote a readme file
- 1 file changed, 2 insertions(+)
- create mode 100644 readme.txt</code></pre>
-<h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2></li>
-<li>click “Create a new repository”</li>
-<li>git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:huangyebiaoke/LearningDataStructure.git//本地关联远程库</li>
-<li>git remote remove origin//取消本地关联远程库</li>
-<li>git push -u origin master//把本地内容推送到远程库<h2 id="git思维导图"><a href="#git思维导图" class="headerlink" title="git思维导图"></a>git思维导图</h2><img src="/assets/blogimg/p8-2.png" alt="git picture"></li>
-</ol>
-<hr>
-<p>附:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于java的各种包</title>
     <url>/articles/p9.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
@@ -2098,16 +2098,6 @@ if(Objects.equals(a,b)){.......}
       </tags>
   </entry>
   <entry>
-    <title>六级写作模板</title>
-    <url>/articles/six-band-writing-template.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>1.<br>    In recent years,<em>has/have been prevailing among</em>. In contrast,<em>.<br>    In number of factors can account for such phenomenon, but the following might be the critial ones. First and foremost,</em>. Moreover,<em>. Undoubtedly,</em>.Firstly_. Secondly,<em>.<br>    In my view,</em>. To begin with,<em>. What’s more,</em>. Only_.<br>2.<br>    It is widely accepted that_. What’s more,<em>.However</em>.<br>    On the one hand, some people hold the view that_. On the other hand, a great many people insist that_.<br>    From my perspective, however,<em>. Therefore</em>.<br>3.<br>    It is not an uncommon social phenomenon that_. For example,<em>.<br>    As to this issue, opinions vary from person to person. Some people hold that</em>. But others maintain that_.<br>    As far as I am concerned,<em>. On the one hand,</em>. On the other hand,<em>. In a word,</em>.<br>4.<br>    As is portrayed  in the picture,<em>. Actually, recent years have witnessed an increasing trend of</em>.<br>    This_ has inevitably brought about some_ effects. Anyway,<em>.<br>    However,</em>. Therefore, people should become fully aware of both sides of_.<br> 5.<br>    Nowdays, it is widely acknowledged that_. Therefore,<em>.However, as for this phenomenon, people’s ideas vary.<br>    Some insist that</em>.However,<em>.<br>    From my perspective,</em>. On the one hand,<em>.One the other hand,</em>.What’s more,<em>.<br>6.<br>    As is known to all,</em>. However,<em>.The cases of</em>.<br>    Therefore,<em>.Firstly,</em>.Secondly,<em>.Thirdly</em>.<br>    As far as I’m concerned,<em>.<br>7.<br>    As a saying goes</em>.Nowadays we are in an era of_.More and more people_.<br>    Admittedly, no one can deny the fact that_. Nevertheless,<em>. For example,</em>.Besides,<em>.<br>    Then what can we do to aviod being</em>? Here are some useful tips: To begin with,<em>. What’s more,</em>.<br>8.<br>    As someone once said,”<em>.”<em>have enormously facilitated and enriched our lives, yet</em>.<br>    In order to</em>, one needs_. Only when one succeeds in <em>can he</em>.<br>    It is never easy to_.Just as the saying goes,<em>.<br>9.<br>    As is vivdly shown in the picture,</em>. It mirrors a common phenomenon, which has raised a wide range of concern.<br>    This phenomenon may bring about some severe consequences. On the other hand,<em>.<br>    Considering the seriousness of the condition, some measures can be taken to improve it. Only in this way can we</em>.<br>10.<br>    For a growing number of_,<em>has come into fashion. From_to_.What’s more,</em>.<br>    Admittedly, there are different purposes behind this phenomenon, but the following are the most critical ones. To begin with,<em>. In addition,</em>.All of the above is_. In my opinion,<em>.To conclude,</em>.</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-        <tag>writing</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>什么是伴随矩阵？</title>
     <url>/articles/what-is-adjoint-matrix.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/assets/blogimg/伴随矩阵.jpg">
@@ -2130,6 +2120,16 @@ a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</su
 ]]></content>
       <tags>
         <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>六级写作模板</title>
+    <url>/articles/six-band-writing-template.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>1.<br>    In recent years,<em>has/have been prevailing among</em>. In contrast,<em>.<br>    In number of factors can account for such phenomenon, but the following might be the critial ones. First and foremost,</em>. Moreover,<em>. Undoubtedly,</em>.Firstly_. Secondly,<em>.<br>    In my view,</em>. To begin with,<em>. What’s more,</em>. Only_.<br>2.<br>    It is widely accepted that_. What’s more,<em>.However</em>.<br>    On the one hand, some people hold the view that_. On the other hand, a great many people insist that_.<br>    From my perspective, however,<em>. Therefore</em>.<br>3.<br>    It is not an uncommon social phenomenon that_. For example,<em>.<br>    As to this issue, opinions vary from person to person. Some people hold that</em>. But others maintain that_.<br>    As far as I am concerned,<em>. On the one hand,</em>. On the other hand,<em>. In a word,</em>.<br>4.<br>    As is portrayed  in the picture,<em>. Actually, recent years have witnessed an increasing trend of</em>.<br>    This_ has inevitably brought about some_ effects. Anyway,<em>.<br>    However,</em>. Therefore, people should become fully aware of both sides of_.<br> 5.<br>    Nowdays, it is widely acknowledged that_. Therefore,<em>.However, as for this phenomenon, people’s ideas vary.<br>    Some insist that</em>.However,<em>.<br>    From my perspective,</em>. On the one hand,<em>.One the other hand,</em>.What’s more,<em>.<br>6.<br>    As is known to all,</em>. However,<em>.The cases of</em>.<br>    Therefore,<em>.Firstly,</em>.Secondly,<em>.Thirdly</em>.<br>    As far as I’m concerned,<em>.<br>7.<br>    As a saying goes</em>.Nowadays we are in an era of_.More and more people_.<br>    Admittedly, no one can deny the fact that_. Nevertheless,<em>. For example,</em>.Besides,<em>.<br>    Then what can we do to aviod being</em>? Here are some useful tips: To begin with,<em>. What’s more,</em>.<br>8.<br>    As someone once said,”<em>.”<em>have enormously facilitated and enriched our lives, yet</em>.<br>    In order to</em>, one needs_. Only when one succeeds in <em>can he</em>.<br>    It is never easy to_.Just as the saying goes,<em>.<br>9.<br>    As is vivdly shown in the picture,</em>. It mirrors a common phenomenon, which has raised a wide range of concern.<br>    This phenomenon may bring about some severe consequences. On the other hand,<em>.<br>    Considering the seriousness of the condition, some measures can be taken to improve it. Only in this way can we</em>.<br>10.<br>    For a growing number of_,<em>has come into fashion. From_to_.What’s more,</em>.<br>    Admittedly, there are different purposes behind this phenomenon, but the following are the most critical ones. To begin with,<em>. In addition,</em>.All of the above is_. In my opinion,<em>.To conclude,</em>.</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+        <tag>writing</tag>
       </tags>
   </entry>
 </search>
