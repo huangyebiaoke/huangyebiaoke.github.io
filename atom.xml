@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.madeai.cn/"/>
-  <updated>2020-10-17T06:50:33.227Z</updated>
+  <updated>2020-10-17T06:53:12.612Z</updated>
   <id>http://blog.madeai.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>自动出题机</title>
+    <title>《计算机与智能》读后感</title>
     <link href="http://blog.madeai.cn/articles/computing-machinery-and-intelligence.html"/>
     <id>http://blog.madeai.cn/articles/computing-machinery-and-intelligence.html</id>
     <published>2020-10-17T06:50:00.000Z</published>
-    <updated>2020-10-17T06:50:33.227Z</updated>
+    <updated>2020-10-17T06:53:12.612Z</updated>
     
     <summary type="html">
     
@@ -298,11 +298,11 @@
     </summary>
     
     
+      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
+    
       <category term="PHP" scheme="http://blog.madeai.cn/tags/PHP/"/>
     
       <category term="JS" scheme="http://blog.madeai.cn/tags/JS/"/>
-    
-      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
     
   </entry>
   
