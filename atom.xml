@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.madeai.cn/"/>
-  <updated>2020-09-07T23:48:43.501Z</updated>
+  <updated>2020-10-17T06:50:33.227Z</updated>
   <id>http://blog.madeai.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自动出题机</title>
+    <link href="http://blog.madeai.cn/articles/computing-machinery-and-intelligence.html"/>
+    <id>http://blog.madeai.cn/articles/computing-machinery-and-intelligence.html</id>
+    <published>2020-10-17T06:50:00.000Z</published>
+    <updated>2020-10-17T06:50:33.227Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://blog.madeai.cn/tags/Python/"/>
+    
+      <category term="Paper" scheme="http://blog.madeai.cn/tags/Paper/"/>
+    
+      <category term="reading-book" scheme="http://blog.madeai.cn/tags/reading-book/"/>
+    
+      <category term="think" scheme="http://blog.madeai.cn/tags/think/"/>
+    
+  </entry>
   
   <entry>
     <title>考研经验分享</title>
@@ -253,7 +283,7 @@
     <link href="http://blog.madeai.cn/articles/automatic-generate-question.html"/>
     <id>http://blog.madeai.cn/articles/automatic-generate-question.html</id>
     <published>2018-09-24T04:01:24.000Z</published>
-    <updated>2020-08-31T21:45:25.820Z</updated>
+    <updated>2020-10-17T06:42:44.326Z</updated>
     
     <summary type="html">
     
@@ -268,11 +298,11 @@
     </summary>
     
     
-      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
-    
       <category term="PHP" scheme="http://blog.madeai.cn/tags/PHP/"/>
     
       <category term="JS" scheme="http://blog.madeai.cn/tags/JS/"/>
+    
+      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
     
   </entry>
   
@@ -348,9 +378,9 @@
     </summary>
     
     
-      <category term="hotkey" scheme="http://blog.madeai.cn/tags/hotkey/"/>
-    
       <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
+    
+      <category term="hotkey" scheme="http://blog.madeai.cn/tags/hotkey/"/>
     
   </entry>
   

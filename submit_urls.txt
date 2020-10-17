@@ -1,3 +1,5 @@
+http://blog.madeai.cn/articles/computing-machinery-and-intelligence.html
+http://blog.madeai.cn/articles/automatic-generate-question.html
 http://blog.madeai.cn/articles/p22.html
 http://blog.madeai.cn/articles/p21.html
 http://blog.madeai.cn/articles/p5.html
@@ -6,5 +8,3 @@ http://blog.madeai.cn/articles/english-article-sentences.html
 http://blog.madeai.cn/articles/data-type-of-java.html
 http://blog.madeai.cn/articles/what-is-adjoint-matrix.html
 http://blog.madeai.cn/articles/p20.html
-http://blog.madeai.cn/articles/p19.html
-http://blog.madeai.cn/articles/p18.html
