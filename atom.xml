@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.madeai.cn/"/>
-  <updated>2020-10-17T06:58:57.068Z</updated>
+  <updated>2020-10-26T03:15:56.746Z</updated>
   <id>http://blog.madeai.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blog.madeai.cn/articles/computing-machinery-and-intelligence.html"/>
     <id>http://blog.madeai.cn/articles/computing-machinery-and-intelligence.html</id>
     <published>2020-10-17T06:50:00.000Z</published>
-    <updated>2020-10-17T06:58:57.068Z</updated>
+    <updated>2020-10-26T03:15:56.746Z</updated>
     
     <summary type="html">
     
@@ -38,7 +38,7 @@
     
       <category term="Python" scheme="http://blog.madeai.cn/tags/Python/"/>
     
-      <category term="Paper" scheme="http://blog.madeai.cn/tags/Paper/"/>
+      <category term="paper" scheme="http://blog.madeai.cn/tags/paper/"/>
     
       <category term="reading-book" scheme="http://blog.madeai.cn/tags/reading-book/"/>
     
@@ -378,9 +378,9 @@
     </summary>
     
     
-      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
-    
       <category term="hotkey" scheme="http://blog.madeai.cn/tags/hotkey/"/>
+    
+      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
     
   </entry>
   
@@ -458,9 +458,9 @@
     </summary>
     
     
-      <category term="CMD" scheme="http://blog.madeai.cn/tags/CMD/"/>
-    
       <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
+    
+      <category term="CMD" scheme="http://blog.madeai.cn/tags/CMD/"/>
     
       <category term=".bat" scheme="http://blog.madeai.cn/tags/bat/"/>
     
