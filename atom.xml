@@ -378,9 +378,9 @@
     </summary>
     
     
-      <category term="hotkey" scheme="http://blog.madeai.cn/tags/hotkey/"/>
-    
       <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
+    
+      <category term="hotkey" scheme="http://blog.madeai.cn/tags/hotkey/"/>
     
   </entry>
   
@@ -458,9 +458,9 @@
     </summary>
     
     
-      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
-    
       <category term="CMD" scheme="http://blog.madeai.cn/tags/CMD/"/>
+    
+      <category term="DOS" scheme="http://blog.madeai.cn/tags/DOS/"/>
     
       <category term=".bat" scheme="http://blog.madeai.cn/tags/bat/"/>
     
