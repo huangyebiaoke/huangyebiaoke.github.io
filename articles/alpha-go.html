@@ -118,7 +118,7 @@
 
 	
 	<div class="post-header-thumb">
-		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/18.jpg);"></div>
+		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/17.jpg);"></div>
 		<div class="post-header-thumb-cover">
 			<div class="post-header-thumb-container">
 				<div class="post-header-thumb-title">
@@ -126,7 +126,7 @@
 				</div>
 				<div class="post-header-thumb-meta">
 					<time datetime="1605865200" itemprop="datePubilished"><i class="fa fa-calendar-o"></i> 发表于 2020-11-20</time> |
-					<time datetime="1605865589" itemprop="dateUpdated"><i class="fa fa-calendar-check-o"></i> 更新于 2020-11-20</time> |
+					<time datetime="1605952961" itemprop="dateUpdated"><i class="fa fa-calendar-check-o"></i> 更新于 2020-11-21</time> |
 					<i class="fa fa-folder-o"></i> 分类于 
 					<div class="post-header-thumb-meta">
 						<span class="post-count"><i class="fa fa-pencil-square-o"></i> 字数统计:2.6k字</span>
@@ -328,9 +328,10 @@
 <h3 id="编码阶段"><a href="#编码阶段" class="headerlink" title="编码阶段"></a>编码阶段</h3><p><a data-fancybox="gallery" href="https://qiniu.madeai.cn/blogimg/image-20201120172538668.png?imgslim" data-height="800"><img src="https://qiniu.madeai.cn/blogimg/image-20201120172538668.png?imgslim"></a></p>
 <p>界面设计图示</p>
 <p>在规则设定上，默认玩家先手AI后手。玩家用”X”表示，AI用”O”表示。</p>
+<p><a data-fancybox="gallery" href="https://qiniu.madeai.cn/blogimg/clip_image001.png?imgslim" data-height="800"><img src="https://qiniu.madeai.cn/blogimg/clip_image001.png?imgslim"></a></p>
 <p>博弈树的设计图示</p>
 <p>在上图中，树的深度是9，因为最坏情况下要走9步。每个节点记录落子的方位和权值信息。由于是玩家先手，所以第一层的节点存储玩家的信息，由于AI的胜率要尽可能大，所以估值函数返回的值当中一定要是最小的才行；下一层是AI执棋，所以估值函数的返回值要选择大的。</p>
-<p><a data-fancybox="gallery" href="https://qiniu.madeai.cn/blogimg/clip_image001.png?imgslim" data-height="800"><img src="https://qiniu.madeai.cn/blogimg/clip_image001.png?imgslim"></a></p>
+<p><a data-fancybox="gallery" href="https://qiniu.madeai.cn/blogimg/image-20201121180223198.png?imgslim" data-height="800"><img src="https://qiniu.madeai.cn/blogimg/image-20201121180223198.png?imgslim"></a></p>
 <p>AI必输局面</p>
 <p>由以上局面和一般经验总结，占据最中间的位置赢面最大，所以可以设置在arr[1][1]时的初始权重最大；其次是边角位置，由于可以分别向两个方向落3个子，所以它的初始权重次之。边缘的位置不好判断，要结合具体的局面来设置权重。我们把所有的局面输入神经网络，通过神经网络的BP机制来动态调整权重。</p>
 <p><strong>AI自学习：</strong></p>

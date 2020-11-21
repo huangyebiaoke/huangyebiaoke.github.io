@@ -2265,9 +2265,10 @@ a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</su
 <h3 id="编码阶段"><a href="#编码阶段" class="headerlink" title="编码阶段"></a>编码阶段</h3><p><img src="https://qiniu.madeai.cn/blogimg/image-20201120172538668.png?imgslim" alt="image-20201120172538668"></p>
 <p>界面设计图示</p>
 <p>在规则设定上，默认玩家先手AI后手。玩家用”X”表示，AI用”O”表示。</p>
+<p><img src="https://qiniu.madeai.cn/blogimg/clip_image001.png?imgslim" alt="img"></p>
 <p>博弈树的设计图示</p>
 <p>在上图中，树的深度是9，因为最坏情况下要走9步。每个节点记录落子的方位和权值信息。由于是玩家先手，所以第一层的节点存储玩家的信息，由于AI的胜率要尽可能大，所以估值函数返回的值当中一定要是最小的才行；下一层是AI执棋，所以估值函数的返回值要选择大的。</p>
-<p><img src="https://qiniu.madeai.cn/blogimg/clip_image001.png?imgslim" alt="img"></p>
+<p><img src="https://qiniu.madeai.cn/blogimg/image-20201121180223198.png?imgslim" alt="image-20201121180223198"></p>
 <p>AI必输局面</p>
 <p>由以上局面和一般经验总结，占据最中间的位置赢面最大，所以可以设置在arr[1][1]时的初始权重最大；其次是边角位置，由于可以分别向两个方向落3个子，所以它的初始权重次之。边缘的位置不好判断，要结合具体的局面来设置权重。我们把所有的局面输入神经网络，通过神经网络的BP机制来动态调整权重。</p>
 <p><strong>AI自学习：</strong></p>
