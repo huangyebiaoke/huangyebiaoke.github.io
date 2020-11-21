@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.madeai.cn/"/>
-  <updated>2020-10-26T03:15:56.746Z</updated>
+  <updated>2020-11-20T09:46:29.771Z</updated>
   <id>http://blog.madeai.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AlphaGo论文读后感及其应用</title>
+    <link href="http://blog.madeai.cn/articles/alpha-go.html"/>
+    <id>http://blog.madeai.cn/articles/alpha-go.html</id>
+    <published>2020-11-20T09:40:00.000Z</published>
+    <updated>2020-11-20T09:46:29.771Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://blog.madeai.cn/tags/Python/"/>
+    
+      <category term="paper" scheme="http://blog.madeai.cn/tags/paper/"/>
+    
+      <category term="reading-book" scheme="http://blog.madeai.cn/tags/reading-book/"/>
+    
+      <category term="think" scheme="http://blog.madeai.cn/tags/think/"/>
+    
+  </entry>
   
   <entry>
     <title>《计算机与智能》读后感</title>

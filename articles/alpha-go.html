@@ -30,7 +30,7 @@
     
     <title>
     
-        什么是伴随矩阵？ - 无人之境
+        AlphaGo论文读后感及其应用 - 无人之境
     
     </title>
     <meta name="keywords" content="Android,MySQL,Ajax,JSON,web,SpringBoot,madeai">
@@ -58,7 +58,7 @@
     <script src="https://cdn.jsdelivr.net/npm/valine@1.3.6/dist/Valine.min.js"></script>
     
 
-</head>
+<script src="/assets/js/DPlayer.min.js"></script><script src="/assets/js/DPlayer.min.js"></script></head>
 <body class="bg-white" gtools_scp_screen_capture_injected="true">
 <!--[if lt IE 8]>
 <div class="browsehappy" role="dialog">
@@ -118,23 +118,23 @@
 
 	
 	<div class="post-header-thumb">
-		<div class="post-header-thumb-op" style="background-image:url(/assets/blogimg/伴随矩阵.jpg);"></div>
+		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/16.jpg);"></div>
 		<div class="post-header-thumb-cover">
 			<div class="post-header-thumb-container">
 				<div class="post-header-thumb-title">
-					什么是伴随矩阵？
+					AlphaGo论文读后感及其应用
 				</div>
 				<div class="post-header-thumb-meta">
-					<time datetime="1507898686" itemprop="datePubilished"><i class="fa fa-calendar-o"></i> 发表于 2017-10-13</time> |
-					<time datetime="1598910505" itemprop="dateUpdated"><i class="fa fa-calendar-check-o"></i> 更新于 2020-09-01</time> |
+					<time datetime="1605865200" itemprop="datePubilished"><i class="fa fa-calendar-o"></i> 发表于 2020-11-20</time> |
+					<time datetime="1605865589" itemprop="dateUpdated"><i class="fa fa-calendar-check-o"></i> 更新于 2020-11-20</time> |
 					<i class="fa fa-folder-o"></i> 分类于 
 					<div class="post-header-thumb-meta">
-						<span class="post-count"><i class="fa fa-pencil-square-o"></i> 字数统计:162字</span>
+						<span class="post-count"><i class="fa fa-pencil-square-o"></i> 字数统计:2.6k字</span>
 						<span>|</span>
-						<span class="post-count"><i class="fa fa-clock-o"></i> 阅读时长:1 分钟</span>
+						<span class="post-count"><i class="fa fa-clock-o"></i> 阅读时长:9 分钟</span>
 <!--									<div class="post-header-thumb-meta">-->
 					
-						<span id="/articles/what-is-adjoint-matrix.html" class="leancloud-visitors" data-flag-title="什么是伴随矩阵？">
+						<span id="/articles/alpha-go.html" class="leancloud-visitors" data-flag-title="AlphaGo论文读后感及其应用">
 							<i class="fa fa-eye"></i> 阅读量: <span class="leancloud-visitors-count">0</span> |
 						</span>
 						
@@ -146,7 +146,13 @@
 				<div class="post-tags">
 					
 					
-					<a href="/tags/math/">math</a>
+					<a href="/tags/Python/">Python</a>
+					
+					<a href="/tags/paper/">paper</a>
+					
+					<a href="/tags/reading-book/">reading-book</a>
+					
+					<a href="/tags/think/">think</a>
 					
 					
 				</div>
@@ -159,22 +165,22 @@
 <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
 	<div class="post-header">
 		<h1 class="post-title" itemprop="name headline">
-			什么是伴随矩阵？
+			AlphaGo论文读后感及其应用
 		</h1>
 		<div class="post-data">
 <!--			-->
-<!--			<span id="/articles/what-is-adjoint-matrix.html" class="leancloud-visitors" data-flag-title="什么是伴随矩阵？">-->
+<!--			<span id="/articles/alpha-go.html" class="leancloud-visitors" data-flag-title="AlphaGo论文读后感及其应用">-->
 <!--				<span class="leancloud-visitors-count">0</span> Views-->
 <!--			</span>-->
 <!--			-->
-            <time datetime="1507898686" itemprop="datePublished">Published on 2017-10-13</time>
+            <time datetime="1605865200" itemprop="datePublished">Published on 2020-11-20</time>
 			
 			with <a id="page-title-comment" href="#vcomments">0</a> comments
 			
 			<div>
-				<span class="post-count">Word count: 162</span>
+				<span class="post-count">Word count: 2.6k</span>
 				<span>|</span>
-				<span class="post-count">Reading time: 1min</span>
+				<span class="post-count">Reading time: 9min</span>
 			</div>
 		</div>
 	</div>
@@ -182,27 +188,241 @@
 		<p class="post-tags">
             
             
-            <a href="/tags/math/">math</a>
+            <a href="/tags/Python/">Python</a>
+            
+            <a href="/tags/paper/">paper</a>
+            
+            <a href="/tags/reading-book/">reading-book</a>
+            
+            <a href="/tags/think/">think</a>
             
             
         </p>
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><a data-fancybox="gallery" href="/assets/blogimg/伴随矩阵.jpg" data-height="800"><img src="/assets/blogimg/伴随矩阵.jpg"></a>
-<h2>首先我们来看如何得到<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">伴随矩阵</a>:</h2>
-~~1.设A=（a<sub>ij</sub>）为n阶方阵
-2.A<sub>ij</sub>是|A|在（i，j）上a<sub>ij</sub>的代数余子式
-3.则全部由代数余子式组成的n阶方阵为A的伴随矩阵A~~
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="论文摘要"><a href="#论文摘要" class="headerlink" title="论文摘要"></a>论文摘要</h2><ol>
+<li><p>这个方法使用估值神经网络来评估棋局，以及使用策略网络来选择如何落子。这些深度神经网络被一种新的组合来训练：使用了人类专业比赛数据的监督学习，以及自我对弈的强化学习。</p>
+</li>
+<li><p>在状态 s 时对搜索树进行剪枝，然后用一个近似估值函数v(s)≈v∗(s)取代状态 s 下面的子树，这个近似估值函数预测状态 s 之后的对弈结果。</p>
+</li>
+<li><p>搜索的宽度可以通过来自策略p(a|s)的样品动作来降低，这个策略是一个在位置 s 的可能下棋走子 a 概率分布。</p>
+</li>
+<li><p>蒙特卡洛树搜索使用蒙特卡洛走子方法，评估搜索树中每一个状态的估值。随着执行越来越多的模拟，这个搜索树成长越来越大，而且相关估值愈发精确。</p>
+</li>
+<li><p>然而，先前的工作已经受到了基于输入的线性组合的肤浅的策略或估值函数的限制。</p>
+</li>
+<li><p>它们使用很多层的神经网络，每一个安排在重叠的瓦片，用来构建愈发抽象的，局部代表的图片，我们为围棋程序部署了类似的体系架构。我们给程序传入了一个 19*19 大小棋局的图片，然后使用卷积神经网络来构建一个位置的代表。我们使用这些神经网络来降低搜索树的有效的深度和广度：通过估值网络来评估棋局，和使用策略网络来博弈取样。</p>
+</li>
+<li><p>我们的AlphaGo程序有效地把策略网络、估值网络，和蒙特卡洛搜索树结合在一起。</p>
+</li>
+<li><p>如果赢棋，结果等于 +1，如果输棋，结果等于 -1。然后权重在每一个步骤 t 更新：朝向最大化预期结果的方向随机梯度递增。</p>
+</li>
+<li><p>我们想出了新的自我对弈的数据集合，包含了三千万个不同的棋局，每一个都是从不同盘博弈中采样。每一盘博弈都是在 RL 策略网络和自己之间对弈，直到博弈本身结束。</p>
+</li>
+<li><p>AlphaGo 在把策略网络、估值网络和 MCTS 算法结合，MCTS 通过预测搜索选择下棋动作。</p>
+</li>
+<li><p>基于高性能蒙特卡洛树搜索算法的、蒙特卡洛树搜索</p>
+</li>
+<li><p>基于一个深度神经网络和树搜索的结合开发了一个围棋程序。我们首次，对围棋开发了一个有效地下棋走子选择器和棋局评估函数，它是基于被一个创新型地监督学习和强化学习地组合训练的深度网络。我们引入了新的搜索算法，它成功的把神经网络评估和蒙特卡洛滚动走子结合在一起。我们的程序 AlphaGo 把这些组成部分按照比例集成在一起，成为了一个高性能的树搜索引擎。</p>
+</li>
+<li><p>一个有挑战性的决策任务；一个难以对付的解空间；和一个非常复杂的最优解，以至于它看上去不可能世界使用策略或者估值函数逼近。</p>
+</li>
+<li><p>通过把树搜索和策略估值网络结合在一起，AlphaGo最终达到了围棋职业选手的水平。</p>
+</li>
+</ol>
+<h2 id="AlphaGo应用——五子棋"><a href="#AlphaGo应用——五子棋" class="headerlink" title="AlphaGo应用——五子棋"></a>AlphaGo应用——五子棋</h2><h3 id="评估函数"><a href="#评估函数" class="headerlink" title="评估函数"></a>评估函数</h3><ol>
+<li><p><strong>是对一个可走的空位子进行打分</strong>，如果ai白子落在这个空位置的分数越高，说明这个位置就越好，每次ai走棋就找到一个最好的空位置就行了。</p>
+</li>
+<li><p><strong>是对现在的棋盘局面进行打分</strong>。 ai白子首先找所有可以走的空位置，模拟走了这个位置以后，用f函数进行局面评分，如果走了这样的一个空位置的得分越高，说明这个位置就越好，每次ai走棋就找这样一个分数最高的位置。</p>
+</li>
+</ol>
+<p>如果你只是想实现一个只看一步的ai，那么你可以用第一个函数也可以用第二个函数。但是如果你想要实现基于博弈树的极大极小搜索和α-β剪枝算法的”聪明”ai，就只能用第二个函数，因为<strong>博弈树必须要对局面打分，而不是对位置打分</strong>。</p>
+<h3 id="棋型权重设计"><a href="#棋型权重设计" class="headerlink" title="棋型权重设计"></a>棋型权重设计</h3><table>
+<thead>
+<tr>
+<th>棋型代号</th>
+<th>棋型说明</th>
+<th>权重</th>
+<th>棋型代号</th>
+<th>棋型说明</th>
+<th><strong>权重</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WIN</td>
+<td>白赢</td>
+<td>1000000</td>
+<td>LOSE</td>
+<td>黑赢</td>
+<td>-10000000</td>
+</tr>
+<tr>
+<td>FLEX4</td>
+<td>白活4</td>
+<td>50000</td>
+<td>flex4</td>
+<td>黑活4</td>
+<td>-100000</td>
+</tr>
+<tr>
+<td>BLOCK4</td>
+<td>白冲4</td>
+<td>400</td>
+<td>block4</td>
+<td>黑冲4</td>
+<td>-100000</td>
+</tr>
+<tr>
+<td>FLEX3</td>
+<td>白活3</td>
+<td>400</td>
+<td>flex3</td>
+<td>黑活3</td>
+<td>-8000</td>
+</tr>
+<tr>
+<td>BLOCK3</td>
+<td>白眠3</td>
+<td>20</td>
+<td>block3</td>
+<td>黑眠3</td>
+<td>-50</td>
+</tr>
+<tr>
+<td>FLEX2</td>
+<td>白活2</td>
+<td>20</td>
+<td>flex2</td>
+<td>黑活2</td>
+<td>-50</td>
+</tr>
+<tr>
+<td>BLOCK2</td>
+<td>白眠2</td>
+<td>1</td>
+<td>block2</td>
+<td>黑眠2</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>FLEX1</td>
+<td>白活1</td>
+<td>1</td>
+<td>flex1</td>
+<td>黑活1</td>
+<td>-3</td>
+</tr>
+</tbody></table>
+<p>权重设计表格</p>
+<h3 id="极大极小搜索"><a href="#极大极小搜索" class="headerlink" title="极大极小搜索"></a>极大极小搜索</h3><p>在博弈树中，当ai走棋时选择对自己最有利的位置节点走，而当玩家走棋时，是ai模拟玩家选择对玩家最有利的位置节点走。由于评估函数F对局势的评分是对于ai白子来说的，所以ai走棋时选择F最大的节点，模拟玩家走棋时选择F最小的节点（F越小，对ai越不利，对玩家越有利，ai模拟玩家时是认为玩家是”聪明”的），这就是称为极大极小搜索的缘故。</p>
+<h3 id="α-β剪枝算法"><a href="#α-β剪枝算法" class="headerlink" title="α-β剪枝算法"></a>α-β剪枝算法</h3><p>α-β剪枝算法中每一个节点对应有一个α和一个β，α表示目前该节点的最好下界，β表示目前该节点的最好上界。在最开始时，α为负无穷，β为正无穷。然后进行搜索，max层节点每搜索它的一个子节点，就要更新自己的α（下界），而min层节点每搜索它的一个子节点，就要更新自己的β（上界）。如果更新之后发现α&gt;=β了，说明后面的子节点已经不需要进行搜索了，直接break剪枝掉。这就是α-β剪枝算法的全部含义。</p>
+<h3 id="局部搜索和静态评价启发"><a href="#局部搜索和静态评价启发" class="headerlink" title="局部搜索和静态评价启发"></a>局部搜索和静态评价启发</h3><p>a)  局部搜索是说，只考虑那些能和棋子产生关系的空位置，而不用考虑所有空位置，这样能极大减小b的值。</p>
+<p>b)  静态评价启发是对于α-β剪枝算法而言的，意思是说，如果越早搜索到较优走法，剪枝就会越早发生。如果对可走节点的评估分数进行简单排序，就可以提高剪枝速度。</p>
+<h2 id="Bingo-AI的实现"><a href="#Bingo-AI的实现" class="headerlink" title="Bingo AI的实现"></a>Bingo AI的实现</h2><h3 id="游戏规则"><a href="#游戏规则" class="headerlink" title="游戏规则"></a>游戏规则</h3><p>游戏双方分别在3x3的方格纸上依次画x或o，直到一方的x或o连成一条直线（3个子）获胜。</p>
+<p><a data-fancybox="gallery" href="https://qiniu.madeai.cn/blogimg/image-20201120172338713.png?imgslim" data-height="800"><img src="https://qiniu.madeai.cn/blogimg/image-20201120172338713.png?imgslim"></a></p>
+<p>平局示意图</p>
+<h3 id="系统架构设计"><a href="#系统架构设计" class="headerlink" title="系统架构设计"></a>系统架构设计</h3><h4 id="Pygame"><a href="#Pygame" class="headerlink" title="Pygame"></a>Pygame</h4><blockquote>
+<p>Pygame is a set of Python modules designed for writing video games. Pygame adds functionality on top of the excellent SDL library. This allows you to create fully featured games and multimedia programs in the python language.</p>
+</blockquote>
+<h4 id="TensorFlow"><a href="#TensorFlow" class="headerlink" title="TensorFlow"></a>TensorFlow</h4><blockquote>
+<p>TensorFlow 是一个端到端开源机器学习平台。它拥有一个全面而灵活的生态系统，其中包含各种工具、库和社区资源，可助力研究人员推动先进机器学习技术的发展，并使开发者能够轻松地构建和部署由机器学习提供支持的应用。</p>
+</blockquote>
+<h3 id="编码阶段"><a href="#编码阶段" class="headerlink" title="编码阶段"></a>编码阶段</h3><p><a data-fancybox="gallery" href="https://qiniu.madeai.cn/blogimg/image-20201120172538668.png?imgslim" data-height="800"><img src="https://qiniu.madeai.cn/blogimg/image-20201120172538668.png?imgslim"></a></p>
+<p>界面设计图示</p>
+<p>在规则设定上，默认玩家先手AI后手。玩家用”X”表示，AI用”O”表示。</p>
+<p>博弈树的设计图示</p>
+<p>在上图中，树的深度是9，因为最坏情况下要走9步。每个节点记录落子的方位和权值信息。由于是玩家先手，所以第一层的节点存储玩家的信息，由于AI的胜率要尽可能大，所以估值函数返回的值当中一定要是最小的才行；下一层是AI执棋，所以估值函数的返回值要选择大的。</p>
+<p><a data-fancybox="gallery" href="https://qiniu.madeai.cn/blogimg/clip_image001.png?imgslim" data-height="800"><img src="https://qiniu.madeai.cn/blogimg/clip_image001.png?imgslim"></a></p>
+<p>AI必输局面</p>
+<p>由以上局面和一般经验总结，占据最中间的位置赢面最大，所以可以设置在arr[1][1]时的初始权重最大；其次是边角位置，由于可以分别向两个方向落3个子，所以它的初始权重次之。边缘的位置不好判断，要结合具体的局面来设置权重。我们把所有的局面输入神经网络，通过神经网络的BP机制来动态调整权重。</p>
+<p><strong>AI自学习：</strong></p>
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"http://pan.madeai.cn/?/video/p1.mp4","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 
-
-<h2>我们来弄清楚几个专有名词：</h2>
-~~|A|：n阶方阵的n阶行列式，行列式是一个数;
-a<sub>ij</sub>的元余子式：n阶行列式去除i行j列剩下的部分，记作M<sub>ij</sub>;
-a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</sub>;~~
-
-<p>现在知道什么叫伴随矩阵了吗？不知道点这里—&gt;<a href="https://www.baidu.com/s?ie=UTF-8&wd=%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5" target="_blank" rel="noopener">https://www.baidu.com/s?ie=UTF-8&amp;wd=伴随矩阵</a></p>
-<h2>放图时间：</h2>
-<a data-fancybox="gallery" href="/assets/blogimg/cat1.jpg" data-height="800"><img src="/assets/blogimg/cat1.jpg"></a>
-<a data-fancybox="gallery" href="/assets/blogimg/cat2.jpg" data-height="800"><img src="/assets/blogimg/cat2.jpg"></a>
-<a data-fancybox="gallery" href="/assets/blogimg/cat3.jpg" data-height="800"><img src="/assets/blogimg/cat3.jpg"></a>
+<p>监督学习演示视频</p>
+<p>如以上视频所示，一开始我们和AI下棋，AI通过随机函数来随机生成落子方位。随着棋局的增加，AI将局面数组、赢方、权重的信息记录进一个json文件，根据玩家赢得次数来设计每个局面的权重。然后进入神经网络学习，通过BP来调整权重，通过α-β剪枝来降低搜索时间复杂度。随着我们和AI对弈次数的增加，AI会变得越来越有赢面，最后不再使用随机函数。</p>
+<p><strong>参数设计：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Arr</td>
+<td>Int[][]</td>
+<td>游戏地图，0是空，1是玩家子，2是AI子</td>
+</tr>
+<tr>
+<td>Hold</td>
+<td>Int</td>
+<td>谁落子，1是玩家落子，2是AI落子</td>
+</tr>
+</tbody></table>
+<p><strong>函数设计：</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>参数</th>
+<th>返回值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>judge_full</td>
+<td>Arr:棋局地图</td>
+<td>Bool:是否平局</td>
+<td>供judge_win调用</td>
+</tr>
+<tr>
+<td>judge_win</td>
+<td>Arr:棋局地图</td>
+<td>Int:哪方赢(0,1,2,-1)</td>
+<td>判断局面情况</td>
+</tr>
+<tr>
+<td>fill_zero</td>
+<td>Arr:棋局地图</td>
+<td>NaN</td>
+<td>游戏结束将地图填充0</td>
+</tr>
+<tr>
+<td>computer_move</td>
+<td>Arr:棋局地图</td>
+<td>NaN</td>
+<td>AI落子</td>
+</tr>
+<tr>
+<td>process_res</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>游戏结束后的处理，是否继续</td>
+</tr>
+<tr>
+<td>evaluate</td>
+<td>Arr:棋局地图</td>
+<td>Int:权重</td>
+<td>估值函数，里面要调用学习到的模型来输出权重</td>
+</tr>
+</tbody></table>
+<p><strong>展望：</strong></p>
+<p>关于AI状态机的设定。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><p><a href="https://studygolang.com/articles/6466" target="_blank" rel="noopener">AlphaGo论文的译文</a></p>
+</li>
+<li><p><a href="https://www.researchgate.net/publication/292074166_Mastering_the_game_of_Go_with_deep_neural_networks_and_tree_search" target="_blank" rel="noopener">Mastering the game of Go with deep neural networks and tree search</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/livingsu/article/details/104536005" target="_blank" rel="noopener">五子棋ai：极大极小搜索和α-β剪枝算法的思想和实现(qt和c++)</a></p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/BV1a7411K7g1" target="_blank" rel="noopener">Alpha-Beta剪枝算法(极大极小算法-人工智能)</a></p>
+</li>
+<li><p><a href="https://eyehere.net/2011/python-pygame-novice-professional-index/" target="_blank" rel="noopener">用Python和Pygame写游戏-从入门到精通</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/78677068" target="_blank" rel="noopener">井字棋真的有必胜方法吗？</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/question/41323126/answer/382320588" target="_blank" rel="noopener">有谁照着论文把 AlphaGo 重现出来了？</a></p>
+</li>
+</ol>
 
 		
 		<div style="text-align: center; margin: 20px 0;">
@@ -243,18 +463,16 @@ a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</su
 	<div class="bottom-bar-inner">
 		<div class="bottom-bar-items social-share left">
 			<span class="bottom-bar-item"><i class="fa fa-share-square-o" aria-hidden="true"></i></span>
-			<span class="bottom-bar-item bottom-bar-qq"><a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://blog.madeai.cn/articles/what-is-adjoint-matrix.html&amp;sharesource=qzone&amp;title=什么是伴随矩阵？" target="_blank" title="什么是伴随矩阵？" rel="nofollow">Qzone</a></span>
-			<span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=http://blog.madeai.cn/articles/what-is-adjoint-matrix.html&amp;title=什么是伴随矩阵？" target="_blank" title="什么是伴随矩阵？" rel="nofollow">Weibo</a></span>
-<!--			<span class="bottom-bar-item bottom-bar-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.madeai.cn/articles/what-is-adjoint-matrix.html" target="_blank" title="什么是伴随矩阵？" rel="nofollow">Facebook</a></span>-->
-			<span class="bottom-bar-item bottom-bar-twitter"><a href="https://twitter.com/intent/tweet?url=http://blog.madeai.cn/articles/what-is-adjoint-matrix.html&amp;text=什么是伴随矩阵？" target="_blank" title="什么是伴随矩阵？" rel="nofollow">Twitter</a></span>
-			<span class="bottom-bar-item bottom-bar-qrcode"><a href="https://cli.im/api/qrcode/code?text=http://blog.madeai.cn/articles/what-is-adjoint-matrix.html" target="_blank" rel="nofollow">QRcode</a></span>
+			<span class="bottom-bar-item bottom-bar-qq"><a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://blog.madeai.cn/articles/alpha-go.html&amp;sharesource=qzone&amp;title=AlphaGo论文读后感及其应用" target="_blank" title="AlphaGo论文读后感及其应用" rel="nofollow">Qzone</a></span>
+			<span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=http://blog.madeai.cn/articles/alpha-go.html&amp;title=AlphaGo论文读后感及其应用" target="_blank" title="AlphaGo论文读后感及其应用" rel="nofollow">Weibo</a></span>
+<!--			<span class="bottom-bar-item bottom-bar-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.madeai.cn/articles/alpha-go.html" target="_blank" title="AlphaGo论文读后感及其应用" rel="nofollow">Facebook</a></span>-->
+			<span class="bottom-bar-item bottom-bar-twitter"><a href="https://twitter.com/intent/tweet?url=http://blog.madeai.cn/articles/alpha-go.html&amp;text=AlphaGo论文读后感及其应用" target="_blank" title="AlphaGo论文读后感及其应用" rel="nofollow">Twitter</a></span>
+			<span class="bottom-bar-item bottom-bar-qrcode"><a href="https://cli.im/api/qrcode/code?text=http://blog.madeai.cn/articles/alpha-go.html" target="_blank" rel="nofollow">QRcode</a></span>
 		</div>
 		<div class="bottom-bar-items right">
             
-            <span class="bottom-bar-item"><a href="/articles/i-can-not-hear-you.html"><i class="fa fa-arrow-left"></i></a></span>
             
-            
-            <span class="bottom-bar-item"><a href="/articles/mark-ball-game.html"><i class="fa fa-arrow-right"></i></a></span>
+            <span class="bottom-bar-item"><a href="/articles/computing-machinery-and-intelligence.html"><i class="fa fa-arrow-right"></i></a></span>
             
 			<span class="bottom-bar-item"><a href="#footer"> <i class="fa fa-arrow-down"></i> </a></span>
 			<span class="bottom-bar-item"><a href="#top"><i class="fa fa-arrow-up"></i></a></span>
@@ -270,9 +488,9 @@ a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</su
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-label">
-						<div class="item-title"><a href="/articles/euler-s-formula.html">欧拉公式の推导</a></div>
+						<div class="item-title"><a href="/articles/computing-machinery-and-intelligence.html">《计算机与智能》读后感</a></div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">2019-07-27</div>
+							<div class="item-meta-date" style="color: #5f5f5f;">2020-10-17</div>
 							<div class="item-meta-ico bg-ico-book" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
@@ -285,9 +503,26 @@ a<sub>ij</sub>的代数余子式：A<sub>ij</sub>=(-1)<sup>i+j</sup>M<sub>ij</su
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-label">
-						<div class="item-title"><a href="/articles/limitation-derivative.html">极限&amp;导数</a></div>
+						<div class="item-title"><a href="/articles/p21.html">考研经验分享</a></div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">2019-01-21</div>
+							<div class="item-meta-date" style="color: #5f5f5f;">2020-09-07</div>
+							<div class="item-meta-ico bg-ico-note" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                            <div class="item-meta-cat">
+                                
+                                <a href="/categories/notebook/">notebook</a>
+                                
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="/articles/p20.html">爱丽丝梦游仙境-想法</a></div>
+						<div class="item-meta clearfix">
+							<div class="item-meta-date" style="color: #5f5f5f;">2018-07-13</div>
 							<div class="item-meta-ico bg-ico-book" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
@@ -641,7 +876,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
 // 获取文章评论数
 var query1 = new AV.Query('Comment');
-query1.equalTo('url', '/articles/what-is-adjoint-matrix.html');
+query1.equalTo('url', '/articles/alpha-go.html');
 query1.doesNotExist('pid');
 query1.count().then(function (count) {
     document.getElementById('page-title-comment').innerText = count;
