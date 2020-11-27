@@ -1,5 +1,5 @@
-http://blog.madeai.cn/articles/alpha-go.html
 http://blog.madeai.cn/articles/computing-machinery-and-intelligence.html
+http://blog.madeai.cn/articles/alpha-go.html
 http://blog.madeai.cn/articles/automatic-generate-question.html
 http://blog.madeai.cn/articles/p22.html
 http://blog.madeai.cn/articles/p21.html
