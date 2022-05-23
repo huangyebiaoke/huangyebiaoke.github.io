@@ -58,8 +58,8 @@
     </script>
     
     
-    <script src="https://code.bdstatic.com/npm/leancloud-storage@3.0.4/dist/av-min.js"></script>
-    <script src="/js/Valine.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
     
 
 </head>
@@ -130,9 +130,9 @@
             
             <a href="/tags/think/" class="text-white bg-green"># think(8)</a>
             
-            <a href="/tags/Java/" class="text-white bg-orange"># Java(7)</a>
+            <a href="/tags/Java/" class="text-white bg-green"># Java(7)</a>
             
-            <a href="/tags/JS/" class="text-white bg-green"># JS(5)</a>
+            <a href="/tags/JS/" class="text-white bg-purple"># JS(5)</a>
             
             <a href="/tags/reading-book/" class="text-white bg-red"># reading book(4)</a>
             
@@ -140,50 +140,50 @@
             
             <a href="/tags/math/" class="text-white bg-red"># math(3)</a>
             
-            <a href="/tags/H5/" class="text-white bg-red"># H5(3)</a>
+            <a href="/tags/H5/" class="text-white bg-green"># H5(3)</a>
             
-            <a href="/tags/MySQL/" class="text-white bg-yellow"># MySQL(2)</a>
+            <a href="/tags/MySQL/" class="text-white bg-green"># MySQL(2)</a>
             
-            <a href="/tags/paper/" class="text-white bg-green"># paper(2)</a>
+            <a href="/tags/paper/" class="text-white bg-yellow"># paper(2)</a>
             
             <a href="/tags/Python/" class="text-white bg-red"># Python(2)</a>
             
-            <a href="/tags/algorithm/" class="text-white bg-red"># algorithm(2)</a>
+            <a href="/tags/algorithm/" class="text-white bg-purple"># algorithm(2)</a>
             
-            <a href="/tags/writing/" class="text-white bg-purple"># writing(2)</a>
+            <a href="/tags/writing/" class="text-white bg-green"># writing(2)</a>
             
-            <a href="/tags/canvas/" class="text-white bg-red"># canvas(2)</a>
+            <a href="/tags/canvas/" class="text-white bg-orange"># canvas(2)</a>
             
-            <a href="/tags/DOS/" class="text-white bg-blue"># DOS(2)</a>
+            <a href="/tags/DOS/" class="text-white bg-orange"># DOS(2)</a>
             
-            <a href="/tags/hotkey/" class="text-white bg-red"># hotkey(2)</a>
+            <a href="/tags/hotkey/" class="text-white bg-yellow"># hotkey(2)</a>
             
-            <a href="/tags/Android/" class="text-white bg-green"># Android(1)</a>
+            <a href="/tags/Android/" class="text-white bg-yellow"># Android(1)</a>
             
-            <a href="/tags/PHP/" class="text-white bg-yellow"># PHP(1)</a>
+            <a href="/tags/PHP/" class="text-white bg-red"># PHP(1)</a>
             
-            <a href="/tags/live2d/" class="text-white bg-purple"># live2d(1)</a>
+            <a href="/tags/live2d/" class="text-white bg-yellow"># live2d(1)</a>
             
-            <a href="/tags/music/" class="text-white bg-green"># music(1)</a>
+            <a href="/tags/music/" class="text-white bg-purple"># music(1)</a>
             
-            <a href="/tags/CMD/" class="text-white bg-orange"># CMD(1)</a>
+            <a href="/tags/CMD/" class="text-white bg-purple"># CMD(1)</a>
             
             <a href="/tags/bat/" class="text-white bg-yellow"># .bat(1)</a>
             
-            <a href="/tags/AJAX/" class="text-white bg-yellow"># AJAX(1)</a>
+            <a href="/tags/AJAX/" class="text-white bg-blue"># AJAX(1)</a>
             
-            <a href="/tags/JSON/" class="text-white bg-green"># JSON(1)</a>
+            <a href="/tags/JSON/" class="text-white bg-blue"># JSON(1)</a>
             
             <a href="/tags/Linux/" class="text-white bg-green"># Linux(1)</a>
             
-            <a href="/tags/C/" class="text-white bg-purple"># C(1)</a>
+            <a href="/tags/C/" class="text-white bg-red"># C(1)</a>
             
-            <a href="/tags/CPP/" class="text-white bg-red"># CPP(1)</a>
+            <a href="/tags/CPP/" class="text-white bg-purple"># CPP(1)</a>
             
-            <a href="/tags/Git/" class="text-white bg-green"># Git(1)</a>
+            <a href="/tags/Git/" class="text-white bg-yellow"># Git(1)</a>
             
         
-            <div class="search-tags-hr bg-green"></div>
+            <div class="search-tags-hr bg-blue"></div>
         </div>
     </div>
 </div>
@@ -308,9 +308,6 @@
             </div>
             
             
-            <div class="meta-item meta-comments">
-            </div>
-            
 		</div>
 	</div>
 </footer>
@@ -383,41 +380,22 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
 
 <script>
-    new Valine({
-        el: '#vcomments',
-        appId: 'wjVSwutKSNftRb5mFdxR7yKd-gzGzoHsz',
-        appKey: 'UgUgglfLX4JPziyHc98fyPXD',
-        placeholder: '说点什么吧~' || 'Your commnet here. Be cool.',
-        avatar: 'robohash' || 'mp',
-        pageSize: 10 || 10,
-        visitor: true,
-        enableQQ: true
+    const gitalk = new Gitalk({
+        clientID: '23abedc384baaed0f181',
+        clientSecret: 'a0b5098dcff025e49c424ba1cbe5cd3684b6822f',
+        repo: 'huangyebiaoke.github.io',      // The repository of store comments,
+        owner: 'huangyebiaoke',
+        admin: ['huangyebiaoke'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
     })
+    gitalk.render('gitalk-container')
 </script>
 
 
 <script>
 
 
-
-// 获取最近评论
-var query2 = new AV.Query('Comment');
-query2.doesNotExist('pid');
-query2.descending('createdAt');
-query2.limit(5);
-query2.find().then(function (data) {
-    var _dom = '<h3 class="meta-title">最近评论</h3>';
-    data.forEach(function(comment) {
-        const plainComment = comment.get('comment').replace(/<[^>]+>/gim, '');
-        const href = `${comment.get('url')}#${comment.get('objectId')}`;
-        _dom += `<li><a href="${href}">${comment.get('nick')} : ${plainComment}</a></li>`
-    })
-    document.getElementsByClassName('meta-comments')[0].innerHTML = _dom;
-}, function (error) {
-    console.log(error.message);    
-}).catch(function (error) {
-    console.log(error.message);
-});
 
 </script>
 
