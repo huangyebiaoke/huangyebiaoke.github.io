@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.madeai.cn/"/>
-  <updated>2020-11-26T12:14:44.356Z</updated>
+  <updated>2022-05-23T10:50:06.351Z</updated>
   <id>http://blog.madeai.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>&lt;算法第四版&gt;最佳实践-优先队列</title>
+    <link href="http://blog.madeai.cn/articles/priority-queues.html"/>
+    <id>http://blog.madeai.cn/articles/priority-queues.html</id>
+    <published>2022-05-23T10:38:47.000Z</published>
+    <updated>2022-05-23T10:50:06.351Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="notebook" scheme="http://blog.madeai.cn/categories/notebook/"/>
+    
+    
+      <category term="Java" scheme="http://blog.madeai.cn/tags/Java/"/>
+    
+      <category term="algorithm" scheme="http://blog.madeai.cn/tags/algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>AlphaGo论文读后感及其应用</title>
@@ -36,9 +64,9 @@
     </summary>
     
     
-      <category term="think" scheme="http://blog.madeai.cn/tags/think/"/>
-    
       <category term="paper" scheme="http://blog.madeai.cn/tags/paper/"/>
+    
+      <category term="think" scheme="http://blog.madeai.cn/tags/think/"/>
     
       <category term="Python" scheme="http://blog.madeai.cn/tags/Python/"/>
     
@@ -64,9 +92,9 @@
     </summary>
     
     
-      <category term="think" scheme="http://blog.madeai.cn/tags/think/"/>
-    
       <category term="paper" scheme="http://blog.madeai.cn/tags/paper/"/>
+    
+      <category term="think" scheme="http://blog.madeai.cn/tags/think/"/>
     
       <category term="Python" scheme="http://blog.madeai.cn/tags/Python/"/>
     
@@ -324,11 +352,11 @@
     </summary>
     
     
+      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
+    
       <category term="PHP" scheme="http://blog.madeai.cn/tags/PHP/"/>
     
       <category term="JS" scheme="http://blog.madeai.cn/tags/JS/"/>
-    
-      <category term="MySQL" scheme="http://blog.madeai.cn/tags/MySQL/"/>
     
   </entry>
   

@@ -12,7 +12,7 @@
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
@@ -54,8 +54,10 @@
     </script>
     
     
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/valine@1.3.6/dist/Valine.min.js"></script>
+    <script src="https://code.bdstatic.com/npm/leancloud-storage@3.0.4/dist/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+    <!-- <script src='https://cdn.jsdelivr.net/npm/valine@1.3.6/dist/Valine.min.js'></script> -->
     
 
 <script src="/assets/js/DPlayer.min.js"></script><script src="/assets/js/DPlayer.min.js"></script></head>
@@ -118,7 +120,7 @@
 
 	
 	<div class="post-header-thumb">
-		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/2.jpg);"></div>
+		<div class="post-header-thumb-op" style="background-image:url(/images/thumbs/16.jpg);"></div>
 		<div class="post-header-thumb-cover">
 			<div class="post-header-thumb-container">
 				<div class="post-header-thumb-title">
@@ -146,9 +148,9 @@
 				<div class="post-tags">
 					
 					
-					<a href="/tags/think/">think</a>
-					
 					<a href="/tags/paper/">paper</a>
+					
+					<a href="/tags/think/">think</a>
 					
 					<a href="/tags/Python/">Python</a>
 					
@@ -186,9 +188,9 @@
 		<p class="post-tags">
             
             
-            <a href="/tags/think/">think</a>
-            
             <a href="/tags/paper/">paper</a>
+            
+            <a href="/tags/think/">think</a>
             
             <a href="/tags/Python/">Python</a>
             
@@ -331,7 +333,7 @@
 <p>AI必输局面</p>
 <p>由以上局面和一般经验总结，占据最中间的位置赢面最大，所以可以设置在arr[1][1]时的初始权重最大；其次是边角位置，由于可以分别向两个方向落3个子，所以它的初始权重次之。边缘的位置不好判断，要结合具体的局面来设置权重。我们把所有的局面输入神经网络，通过神经网络的BP机制来动态调整权重。</p>
 <p><strong>AI自学习：</strong></p>
-<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","video":{"url":"http://pan.madeai.cn/?/video/p1.mp4","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"http://pan.madeai.cn/?/video/p1.mp4","pic":"/assets/img/dplayer-cover.svg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 
 <p>监督学习演示视频</p>
 <p>如以上视频所示，一开始我们和AI下棋，AI通过随机函数来随机生成落子方位。随着棋局的增加，AI将局面数组、赢方、权重的信息记录进一个json文件，根据玩家赢得次数来设计每个局面的权重。然后进入神经网络学习，通过BP来调整权重，通过α-β剪枝来降低搜索时间复杂度。随着我们和AI对弈次数的增加，AI会变得越来越有赢面，最后不再使用随机函数。</p>
@@ -467,6 +469,8 @@
 			<span class="bottom-bar-item bottom-bar-qrcode"><a href="https://cli.im/api/qrcode/code?text=http://blog.madeai.cn/articles/alpha-go.html" target="_blank" rel="nofollow">QRcode</a></span>
 		</div>
 		<div class="bottom-bar-items right">
+            
+            <span class="bottom-bar-item"><a href="/articles/priority-queues.html"><i class="fa fa-arrow-left"></i></a></span>
             
             
             <span class="bottom-bar-item"><a href="/articles/computing-machinery-and-intelligence.html"><i class="fa fa-arrow-right"></i></a></span>
@@ -623,7 +627,7 @@
                         <p><a href="https://github.com/cccyb/hexo-theme-pinghsu" target="_blank">Pinghsu</a> theme | Powered by <a href="https://hexo.io/" target="_blank" rel="nofollow">Hexo</a></p>
                     </div>
                     <div class="site-statistics">
-                        <p style="margin-top: 10px">总字数 26.1k</p>
+                        <p style="margin-top: 10px">总字数 26.8k</p>
                         
                             <p>
                         <span id="busuanzi_container_site_pv" style='display:none'>
@@ -637,7 +641,7 @@
                         
                             <p style="margin-top: 10px"><a href="https://www.miibeian.gov.cn">赣ICP备17011914号</a></p>
                         
-                        <p>&copy; 2017-2021
+                        <p>&copy; 2017-2022
                             <i class="fa fa-heartbeat"></i> <a href="http://blog.madeai.cn">madeai</a></p>
                     </div>
                 </div>
@@ -646,6 +650,8 @@
             <div class="meta-item meta-posts">
                 <h3 class="meta-title">最近文章</h3>
                 
+                <li><a href="/articles/priority-queues.html">&lt;算法第四版&gt;最佳实践-优先队列</a></li>
+                
                 <li><a href="/articles/alpha-go.html">AlphaGo论文读后感及其应用</a></li>
                 
                 <li><a href="/articles/computing-machinery-and-intelligence.html">《计算机与智能》读后感</a></li>
@@ -653,8 +659,6 @@
                 <li><a href="/articles/p21.html">考研经验分享</a></li>
                 
                 <li><a href="/articles/get-website-message-alert.html">官网信息更新获得通知</a></li>
-                
-                <li><a href="/articles/english-article-sentences.html">考研英语一写作题型</a></li>
                 
             </div>
             
@@ -763,13 +767,13 @@ var postDirectoryBuild = function() {
 postDirectoryBuild();
 </script>
 
-<script src="//cdn.bootcss.com/headroom/0.9.1/headroom.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/headroom.js@0.9.1/dist/headroom.min.js"></script>
 
-<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+<script src="/js/highlight.min.js"></script>
 
 
 
-<script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="/js/fastclick.min.js"></script>
 
 <script>
 
